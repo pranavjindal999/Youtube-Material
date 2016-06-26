@@ -1,0 +1,31 @@
+<br>
+<div class="row">
+    <div class="input-field col s12">
+        <i class="material-icons prefix">search</i>
+        <input id="icon_prefix" type="text" ng-model="query" ng-keypress="($event.charCode==13)?submit(false):return">
+        <label for="icon_prefix">Search for videos on youtube...</label>
+    </div>
+</div>
+<div class="col s12 m4 center" ng-if="preloader">
+    <spinner>
+</div>
+<div class="row" ng-if="response">
+    <div class="col s6 m6 l3" ng-repeat="video in response.items">
+        <div class="card">
+            <a href="http://www.youtube.com/watch?v={{video.id.videoId}}">
+                <div class="card-image">
+                    <img-loader id="{{video.id.videoId}}" img-src="video.snippet.thumbnails.medium.url">
+                </div>
+                <div class="card-content">
+                    <span class="truncate">{{video.snippet.title}}</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<button class="btn waves-effect waves-light" name="action" ng-if="response.prevPageToken" ng-click="submit(response.prevPageToken)">Previous
+    <i class="material-icons right">navigate_before</i>
+</button>
+<button class="btn waves-effect waves-light right" name="action" ng-if="response.nextPageToken" ng-click="submit(response.nextPageToken)">Next
+    <i class="material-icons right">navigate_next</i>
+</button>

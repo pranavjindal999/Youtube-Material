@@ -2,7 +2,7 @@
     angular.module('spinner', []).directive('spinner', function() {
         return {
             restrict: 'E',
-            templateUrl: 'js/spinner/spinner.html',
+            templateUrl: 'js/directives/spinner/spinner.html',
         };
     });
 })(window.angular);

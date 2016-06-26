@@ -1,6 +1,6 @@
 app.controller('youtubeController', ['$scope', 'searchService',
-
     function($scope, searchService) {
+
         $scope.preloader = false;
         $scope.response = false;
 

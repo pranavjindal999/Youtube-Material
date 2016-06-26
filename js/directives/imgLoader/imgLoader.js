@@ -5,7 +5,7 @@
             scope: {
                 src: '=imgSrc'
             },
-            templateUrl: 'js/imgLoader/imgLoader.html',
+            templateUrl: 'js/directives/imgLoader/imgLoader.html',
             link: function(scope, element, attr) {
                 scope.loader = true;
                 (angular.element(element.children()[1])).on('load', function(event) {
