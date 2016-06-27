@@ -1,6 +1,6 @@
 app.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(true)
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/search");
     $stateProvider
         .state('home', {
             views: {
@@ -13,7 +13,7 @@ app.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvid
             }
         })
         .state('home.searchVideos', {
-            url: "/",
+            url: "/search",
             views: {
                 'main@': {
                     templateUrl: 'js/modules/searchVideos/searchVideos.html',

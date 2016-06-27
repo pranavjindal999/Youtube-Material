@@ -2,8 +2,8 @@
 <div class="row">
     <div class="input-field col s12">
         <i class="material-icons prefix">search</i>
-        <input id="icon_prefix" type="text" ng-model="query" ng-keypress="($event.charCode==13)?submit(false):return">
-        <label for="icon_prefix">Search for videos on youtube...</label>
+        <input id="icon_prefix" type="text" ng-model="query" ng-keypress="($event.charCode==13)?submit():return">
+        <label  ng-class="active" for="icon_prefix">Search for videos on youtube...</label>
     </div>
 </div>
 <div class="col s12 m4 center" ng-if="preloader">
