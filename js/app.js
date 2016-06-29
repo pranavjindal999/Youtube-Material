@@ -12,4 +12,4 @@ function init() {
         });
 }
 
-var app = angular.module('youtube', ['imgLoader', 'spinner', 'ui.router']);
+var app = angular.module('youtube', ['imgLoader', 'spinner', 'videoItem','ui.router']);
