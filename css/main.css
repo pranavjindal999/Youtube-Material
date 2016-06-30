@@ -1,3 +1,7 @@
+*{
+	box-sizing: border-box !important;
+}
+
 body {
         display: flex;
         min-height: 100vh;
@@ -7,3 +11,8 @@ body {
     main {
         flex: 1 0 auto;
     }
+
+    @media only screen and (min-width: 993px){
+.container {
+    width: 80%;
+}}

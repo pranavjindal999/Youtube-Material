@@ -1,7 +1,32 @@
 <div class="navbar-fixed">
-<nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="search" target="_self" class="brand-logo">
+    <nav class="red" role="navigation">
+        <div class="nav-wrapper container" style=""><a id="logo-container" ui-sref="home.searchVideos({query: null, pageToken:null})" target="_self" class="brand-logo">
       Youtube</a>
-    </div>
-</nav>
+            <ul class="right" style="max-width: 55%">
+                <li>
+                    <div id="test" class="input-field">
+                        <input id="search" ng-model="query" ng-keypress="($event.charCode==13)?submit($event):return" placeholder="Search...">
+                        <label for="search"><i class="material-icons">search</i></label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>
+<style type="text/css">
+#search:focus {
+    border: 0px;
+    box-shadow: none;
+}
+#search:{
+	width: 100%;
+}
+::-webkit-input-placeholder {
+   color: rgba(255,255,255,0.7);
+}
+@media only screen and (max-width: 992px){
+	#logo-container{
+		position: initial; display: initial;
+	}
+}
+</style>

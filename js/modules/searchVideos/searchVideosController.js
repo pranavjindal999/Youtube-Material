@@ -1,25 +1,14 @@
 (function(angular) {
-    app.controller('youtubeController', ['$scope', 'searchService', 'channelService', '$location', '$httpParamSerializer',
-        function($scope, searchService, channelService, $location, $httpParamSerializer) {
+    app.controller('youtubeController', ['$scope', '$state','searchService', 'channelService', '$stateParams',
+        function($scope, $state, searchService, channelService, $stateParams) {
 
-            if ($location.search().query) {
-                $scope.query = $location.search().query;
-                $scope.active = "active";
-            }
-
-            $scope.submit = function(pageToken) {
-                var queryString = {};
-                queryString.query = $scope.query;
-                queryString.pageToken = pageToken;
-                queryString = $httpParamSerializer(queryString);
-
+            $scope.submit = function() {
                 $scope.preloader = true;
                 $scope.videos = false;
                 $scope.nextPageToken = false;
                 $scope.previousPageToken = false;
-                $location.path('/search').search(queryString);
 
-                searchService.getVideos($location.search().pageToken, $location.search().query)
+                searchService.getVideos($stateParams.pageToken, $stateParams.query)
                     .then(function(searchResult) {
                         channelService.getChannels(getChannelIds(searchResult.items))
                             .then(function(channels) {
@@ -30,7 +19,9 @@
                             });
                     });
             }
-
+            $scope.nextOrPrevious = function(pageToken){
+                $state.go('home.searchVideos', { query: $stateParams.query , pageToken : pageToken });
+            }
             $scope.submit();
         }
     ]);

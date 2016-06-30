@@ -5,7 +5,8 @@ app.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvid
         .state('home', {
             views: {
                 "header": {
-                    templateUrl: "js/modules/header/header.html"
+                    templateUrl: "js/modules/header/header.html",
+                    controller: 'headerController'
                 },
                 "footer": {
                     templateUrl: "js/modules/footer/footer.html"
@@ -13,7 +14,7 @@ app.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvid
             }
         })
         .state('home.searchVideos', {
-            url: "/search",
+            url: "/search?query&pageToken",
             views: {
                 'main@': {
                     templateUrl: 'js/modules/searchVideos/searchVideos.html',
