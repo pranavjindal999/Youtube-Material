@@ -12,7 +12,6 @@
                 $scope.query = query;
                 $scope.submit();
             }
-            $scope.items = ["tvf", "tvf play", "tvf pitchers", "tvf permanent roommates"];
             $scope.searchFocused = function() {
                 $scope.search_ul = "nav-items-focus right";
                 $scope.search_li = "search-item-li-focus";
