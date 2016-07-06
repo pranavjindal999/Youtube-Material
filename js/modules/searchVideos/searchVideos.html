@@ -7,9 +7,11 @@
         <video-item video="video"></video-item>
     </div>
 </div>
-<button class="btn waves-effect waves-light" name="action" ng-if="previousPageToken" ng-click="nextOrPrevious(previousPageToken)">Previous
-    <i class="material-icons right">navigate_before</i>
-</button>
-<button class="btn waves-effect waves-light right" name="action" ng-if="nextPageToken" ng-click="nextOrPrevious(nextPageToken)">Next
-    <i class="material-icons right">navigate_next</i>
-</button>
+<div>
+    <button class="btn waves-effect waves-light max-width-50" name="action" ng-if="previousPageToken" ng-click="nextOrPrevious(previousPageToken)">Previous
+        <i class="material-icons right">navigate_before</i>
+    </button>
+    <button class="btn waves-effect waves-light right max-width-50" name="action" ng-if="nextPageToken" ng-click="nextOrPrevious(nextPageToken)">Next
+        <i class="material-icons right">navigate_next</i>
+    </button>
+</div>

@@ -1,22 +1,15 @@
 <div class="card hoverable">
-    <div class="row" style="margin:0px">
-        <a href="http://www.youtube.com/watch?v={{video.id.videoId}}" class="col s12 white-text red truncate" s>{{video.snippet.title}}</a>
-        <a href="http://www.youtube.com/watch?v={{video.id.videoId}}" class="card-image col s6" style="padding: 0px;margin: 0px">
+    <div class="row zero-margin">
+        <a href="http://www.youtube.com/watch?v={{video.id.videoId}}" class="col s12 white-text red darken-3 truncate">{{video.snippet.title}}
+        </a>
+        <a class="zero-padding zero-margin card-image col s7" href="http://www.youtube.com/watch?v={{video.id.videoId}}" class="card-image col s6">
             <img-loader id="{{video.id.videoId}}" img-src="video.snippet.thumbnails.medium.url">
         </a>
-        <div class="col s6">
-            <a style="bottom: 10px;width: 45%;position: absolute;" class="chip hover" href="https://www.youtube.com/channel/{{video.snippet.channelId}}">
+        <div class="col s5">
+            <a class="chip video-item-channel" href="https://www.youtube.com/channel/{{video.snippet.channelId}}">
                 <img ng-src="{{video.snippet.channelThumbnail}}">
                 <span class="truncate">{{video.snippet.channelTitle}}</span>
             </a>
         </div>
     </div>
 </div>
-
-<style type="text/css">
-	.hover:hover{
-		transition: background-color .5s,color .5s;
-		background-color: grey;
-		color:white;
-	}
-</style>
