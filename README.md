@@ -3,4 +3,4 @@ My naïve attempt at making a material version of Youtube using materializecss, 
 
 
 # Demo
-youtube-material.bitballoon.com
+http://youtube-material.bitballoon.com
