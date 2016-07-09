@@ -1,5 +1,6 @@
 <br>
-<div class="col s12 m4 center" ng-if="preloader">
+<div class="container">
+    <div class="center" ng-if="preloader">
     <spinner>
 </div>
 <div class="row" ng-if="videos">
@@ -14,4 +15,6 @@
     <button class="btn waves-effect waves-light right max-width-50" name="action" ng-if="nextPageToken" ng-click="nextOrPrevious(nextPageToken)">Next
         <i class="material-icons right">navigate_next</i>
     </button>
+</div>
+
 </div>

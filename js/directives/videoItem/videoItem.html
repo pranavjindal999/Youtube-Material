@@ -1,14 +1,14 @@
 <div class="card hoverable">
     <div class="row zero-margin">
-        <a href="http://www.youtube.com/watch?v={{video.id.videoId}}" class="col s12 white-text red darken-3 truncate">{{video.snippet.title}}
+        <a ui-sref="home.videoPage({id: video.id.videoId})" class="col s12 white-text red darken-3 truncate">{{::video.snippet.title}}
         </a>
-        <a class="zero-padding zero-margin card-image col s7" href="http://www.youtube.com/watch?v={{video.id.videoId}}" class="card-image col s6">
-            <img-loader id="{{video.id.videoId}}" img-src="video.snippet.thumbnails.medium.url">
+        <a class="zero-padding zero-margin card-image col s7" ui-sref="home.videoPage({id: video.id.videoId})"  class="card-image col s6">
+            <img-loader id="{{::video.id.videoId}}" img-src="video.snippet.thumbnails.medium.url">
         </a>
         <div class="col s5">
-            <a class="chip video-item-channel" href="https://www.youtube.com/channel/{{video.snippet.channelId}}">
-                <img ng-src="{{video.snippet.channelThumbnail}}">
-                <span class="truncate">{{video.snippet.channelTitle}}</span>
+            <a class="chip video-item-channel" href="https://www.youtube.com/channel/{{::video.snippet.channelId}}">
+                <img ng-src="{{::video.snippet.channelThumbnail}}">
+                <span class="truncate">{{::video.snippet.channelTitle}}</span>
             </a>
         </div>
     </div>

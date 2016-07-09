@@ -3,21 +3,28 @@
         function($scope, $state, $location, searchService) {
 
             $scope.fetchSearchSuggestion = function() {
-                searchService.getSearchSuggestion($scope.query)
+                if ($scope.query)
+                    searchService.getSearchSuggestion($scope.query)
                     .then(function(data) {
+                        $scope.selectedIndex = -1;
                         $scope.items = data;
+
                     })
             }
+
             $scope.suggestionClick = function(query) {
                 $scope.query = query;
                 $scope.submit();
             }
+
             $scope.searchFocused = function() {
                 $scope.search_ul = "nav-items-focus right";
                 $scope.search_li = "search-item-li-focus";
                 $scope.mobileSearchFocus = "hide-on-small-only";
-                $scope.crossSign = true;
                 $scope.searchSuggestion = true;
+                $scope.crossSign = true;
+                $scope.fetchSearchSuggestion();
+                $scope.items = [];
             }
 
             $scope.searchBlured = function() {
@@ -26,16 +33,38 @@
                 $scope.mobileSearchFocus = "";
                 $scope.crossSign = false;
                 $scope.searchSuggestion = false;
+                $scope.selectedIndex = -1;
+                $scope.items = [];
             }
 
-            $scope.submit = function($event) {
-                try { $event.target.blur(); } catch (err) {}
+            $scope.submit = function() {
                 $state.go('home.searchVideos', { query: $scope.query, pageToken: null });
+            }
+
+            $scope.inputKeypress = function($event) {
+                if ($event.keyCode == 38)
+                    $event.preventDefault();
+                if ($event.keyCode == 13) {
+                    $event.target.blur();
+                    $scope.submit();
+                } else if ($event.keyCode == 40 && $scope.items[1].length > $scope.selectedIndex + 1 && $scope.items != []) {
+                    $scope.selectedIndex++;
+                    $scope.query = $scope.items[1][$scope.selectedIndex];
+                } else if ($event.keyCode == 38 && $scope.selectedIndex > 0 && $scope.items != []) {
+                    $scope.selectedIndex--;
+                    $scope.query = $scope.items[1][$scope.selectedIndex];
+                }
+            }
+
+            $scope.mouseOver = function($index) {
+                $scope.selectedIndex = $index;
             }
 
             $scope.init = function() {
                 if ($location.search().query) {
                     $scope.query = $location.search().query;
+                } else {
+                    $scope.query = "";
                 }
                 $scope.searchBlured();
             }

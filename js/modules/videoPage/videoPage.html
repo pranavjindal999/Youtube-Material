@@ -1,0 +1,56 @@
+<br ng-if="!isMobile">
+<div ng-init="init()" class="row">
+    <div class="col l8 s12" ng-class="isMobile">
+        <div class="col s12" ng-class="isMobile">
+            <div class="card" ng-class="isMobile">
+                <div class="card-image">
+                    <div class='embed-container'>
+                        <youtube-video autoplay="true" video-id={{videoId}}></youtube-video>
+                    </div>
+                </div>
+                <ul class="collapsible zero-margin video-accordion">
+                    <li>
+                        <ul class="collapsible-header active zero-padding">
+                            <li style="padding: 0px 10px;">
+                                <h5 >{{video.snippet.title}}</h5>
+                            </li>
+                            <li class="divider"></li>
+                            <li style="padding: 11px 10px;">
+                                <div class="chip">
+                                    <img ng-src="{{channel.snippet.thumbnails.default.url}}"> {{channel.snippet.title}}
+                                </div>
+                                <div class="right" style="">
+                                	<strong style="top:-17px; position:relative;">{{viewCount}} Views</strong>
+                                	<div style="z-index:10; width: {{dislikeWidth}}%;height: 3px; background-color: red; position: relative; top: -24px;"></div>
+                                	<div style="height: 3px; background-color: green; position: relative; top: -27px"></div>
+                                	
+                                	<div style="display:inline-block; position:relative; top:-32px">
+                                		<i class="material-icons" style="margin-right: 2px;">thumb_down</i>{{dislikeCount}}
+                                	</div>
+                                	<div style="display: inline-block; position:relative; top:-32px">
+                                		<i class="material-icons" style="margin-right: 2px;  margin-left: 5px;">thumb_up</i>{{likeCount}}
+                                	</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="collapsible-body">
+                        	<blockquote> <strong>Uploaded: {{uploadedTime}}</strong> </blockquote>
+                            <p class="pre-wrap">{{video.snippet.description}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col s12">
+             <ul class="collection">
+      <li class="collection-item">Comments here.. Soon..</li>
+      <li class="collection-item">Comments here.. Soon..</li>
+      <li class="collection-item">Comments here.. Soon..</li>
+      <li class="collection-item">Comments here.. Soon..</li>
+    </ul>
+        </div>
+    </div>
+    <div class="col l4 s12">
+        <video-item video="video" ng-repeat="video in relatedVideos"></video-item>
+    </div>
+</div>

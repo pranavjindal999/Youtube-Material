@@ -21,6 +21,15 @@ app.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvid
                     controller: 'youtubeController'
                 }
             }
+        })
+        .state('home.videoPage', {
+            url: "/watch?id",
+            views: {
+                'main@': {
+                    templateUrl: 'js/modules/videoPage/videoPage.html',
+                    controller: 'videoPageController'
+                }
+            }
         });
     $locationProvider.html5Mode(true);
 })

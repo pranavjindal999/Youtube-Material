@@ -6,10 +6,10 @@ var youtubeApi = null;
 function init() {
     gapi.client.setApiKey(browserKey);
     youtubeApi = gapi.client.load('youtube', 'v3');
- 	// bootstraping angular after gapi is loaded..
+    // bootstraping angular after gapi is loaded..
     angular.element(document).ready(function() {
-            angular.bootstrap(document, ['youtube']);
-        });
+        angular.bootstrap(document, ['youtube']);
+    });
 }
 
-var app = angular.module('youtube', ['imgLoader', 'spinner', 'videoItem','ui.router']);
+var app = angular.module('youtube', ['ngProgress', 'imgLoader', 'spinner', 'videoItem', 'youtubeVideo' ,'ui.router']);

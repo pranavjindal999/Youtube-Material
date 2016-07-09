@@ -14,6 +14,8 @@
     <!-- Libraries -->
     <script type="text/javascript" src="js/library/angular.min.js"></script>
     <script type="text/javascript" src="js/library/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="js/library/ngprogress.min.js"></script>
+    <script type="text/javascript" src="js/library/moment.min.js"></script>
     <script async type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
     <!-- Configurations -->
@@ -23,18 +25,21 @@
     <script type="text/javascript" src="js/directives/imgLoader/imgLoader.js"></script>
     <script type="text/javascript" src="js/directives/spinner/spinner.js"></script>
     <script type="text/javascript" src="js/directives/videoItem/videoItem.js"></script>
+    <script type="text/javascript" src="js/directives/youtubeVideo/youtubeVideo.js"></script>
     <!-- Services -->
     <script type="text/javascript" src="js/services/searchService.js"></script>
     <script type="text/javascript" src="js/services/channelService.js"></script>
     <!-- Controllers -->
     <script type="text/javascript" src="js/modules/searchVideos/searchVideosController.js"></script>
     <script type="text/javascript" src="js/modules/header/headerController.js"></script>
+    <script type="text/javascript" src="js/modules/videoPage/videoPageController.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=init"></script>
+
 </head>
 
 <body>
     <div ui-view="header"></div>
-    <main class="container">
+    <main>
         <div ui-view="main"></div>
     </main>
     <div ui-view="footer"></div>
