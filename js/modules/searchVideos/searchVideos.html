@@ -4,8 +4,9 @@
     <spinner>
 </div>
 <div class="row" ng-if="videos">
-    <div class="col s12 m6 l4" ng-repeat="video in videos">
-        <video-item video="video"></video-item>
+    <div class="col s12 l6" ng-repeat="video in videos">
+        <video-item video="video" video-detail="videoDetails[$index]" channel="channels[$index]">
+        </video-item>
     </div>
 </div>
 <div>

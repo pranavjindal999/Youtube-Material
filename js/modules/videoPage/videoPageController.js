@@ -1,7 +1,6 @@
 (function(angular) {
-    app.controller('videoPageController', ['$scope', '$state', '$stateParams', 'searchService', 'channelService',
-        function($scope, $state, $stateParams, searchService, channelService) {
-
+    app.controller('videoPageController', ['$scope', '$state', '$stateParams', 'searchService',
+        function($scope, $state, $stateParams, searchService) {
             $scope.formatVideoDetails = function() {
                 if (moment().format("M D YY") == moment($scope.video.snippet.publishedAt).format("M D YY")) {
                     $scope.uploadedTime = moment($scope.video.snippet.publishedAt)
@@ -10,13 +9,12 @@
                     $scope.uploadedTime = moment($scope.video.snippet.publishedAt)
                         .format("Do MMMM YYYY");
                 }
-
                 $scope.viewCount = parseInt($scope.video.statistics.viewCount).toLocaleString();
                 var likes = parseInt($scope.video.statistics.likeCount);
                 var dislikes = parseInt($scope.video.statistics.dislikeCount);
                 $scope.likeCount = likes.toLocaleString();
                 $scope.dislikeCount = dislikes.toLocaleString();
-                $scope.dislikeWidth = (dislikes/(likes+dislikes))*100;
+                $scope.dislikeWidth = (dislikes / (likes + dislikes)) * 100;
             }
 
             $scope.init = function() {
@@ -42,25 +40,26 @@
                     .then(function(video) {
                         $scope.video = video;
                         $scope.formatVideoDetails();
-                        channelService.getChannels(video.snippet.channelId, 'items(snippet(thumbnails/default,title))')
-                            .then(function(channels) {
-                                $scope.channel = channels[0];
+                        searchService.getChannel(video.snippet.channelId, 'items(id,snippet(thumbnails/default,title))')
+                            .then(function(channel) {
+                                $scope.channel = channel;
                             });
                     });
 
-                searchService.getVideosWithChannels(null, null, $scope.videoId)
-                    .then(function(relatedVideos) {
-                        $scope.relatedVideos = relatedVideos;
+                searchService.getVideos(null, null, $scope.videoId)
+                    .then(function(videos) {
+                        $scope.relatedVideos = videos.items;
+
+                        searchService.getVideoDetails($scope.relatedVideos, 'statistics,contentDetails')
+                            .then(function(videoDetails) {
+                                $scope.videoDetails = videoDetails;
+                            });
+
+                        searchService.getMappedChannels($scope.relatedVideos, 'items(id,snippet/thumbnails/default)')
+                            .then(function(mappedChannels) {
+                                $scope.channels = mappedChannels;
+                            });
                     });
-
-
-
-
-                $(document).ready(function() {
-                    $('.collapsible').collapsible({
-                        accordion: true
-                    });
-                });
             }
         }
     ]);

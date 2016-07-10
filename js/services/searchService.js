@@ -1,4 +1,4 @@
-app.factory('searchService', function($q, $http, channelService) {
+app.factory('searchService', function($q, $http) {
     var service = {};
     service.getVideos = function(pageToken, query, relatedToVideoId) {
         var data = $q.defer();
@@ -14,19 +14,6 @@ app.factory('searchService', function($q, $http, channelService) {
                 data.resolve(response.result);
             });
         })
-        return data.promise;
-    }
-
-    service.getVideosWithChannels = function(pageToken, query, relatedToVideoId) {
-        var data = $q.defer();
-        service.getVideos(pageToken, query, relatedToVideoId)
-            .then(function(searchResult) {
-                channelService.getChannels(getChannelIds(searchResult.items), 'items(id,snippet/thumbnails/default)')
-                    .then(function(channels) {
-                        var videosWithChannels = mapChannelstoVideos(searchResult.items, channels);
-                        data.resolve(videosWithChannels);
-                    })
-            });
         return data.promise;
     }
 
@@ -52,7 +39,8 @@ app.factory('searchService', function($q, $http, channelService) {
         youtubeApi.then(function() {
             gapi.client.youtube.videos.list({
                 'part': 'snippet,statistics',
-                'id': videoId
+                'id': videoId,
+                'fields': 'items(snippet(publishedAt,channelId,description,title),statistics(commentCount,dislikeCount,likeCount,viewCount))'
             }).then(function(response) {
                 data.resolve(response.result.items[0]);
             });
@@ -60,24 +48,78 @@ app.factory('searchService', function($q, $http, channelService) {
         return data.promise;
     }
 
-    function mapChannelstoVideos(videos, channels) {
+
+    service.getVideoDetails = function(videos, part, fields) {
+        var data = $q.defer();
+        youtubeApi.then(function() {
+            gapi.client.youtube.videos.list({
+                'part': part,
+                'id': getVideoIds(videos),
+                'fields': fields
+            }).then(function(response) {
+                data.resolve(response.result.items);
+            });
+        })
+        return data.promise;
+    }
+
+    service.getMappedChannels = function(videosToMap, fields) {        
+        var data = $q.defer();
+        youtubeApi.then(function() {
+            gapi.client.youtube.channels.list({
+                'part': 'snippet',
+                'id': getChannelIds(videosToMap),
+                'fields': fields
+            }).then(function(response) {
+                var mappedChannels = mapChannelstoVideos(videosToMap, response.result.items);
+                data.resolve(mappedChannels);
+            });
+        })
+        return data.promise;
+    }
+
+    service.getChannel = function(channelId, fields) {        
+        var data = $q.defer();
+        youtubeApi.then(function() {
+            gapi.client.youtube.channels.list({
+                'part': 'snippet',
+                'id': channelId,
+                'fields': fields
+            }).then(function(response) {
+                data.resolve(response.result.items[0]);
+            });
+        })
+        return data.promise;
+    }
+
+    var mapChannelstoVideos = function(videos, channels) {
+        var mappedChannels = [];
         for (var i = 0; i < videos.length; i++) {
             for (var j = 0; j < channels.length; j++) {
                 if (channels[j].id == videos[i].snippet.channelId) {
-                    videos[i].snippet.channelThumbnail = channels[j].snippet.thumbnails.default.url;
+                    mappedChannels[i] = {};
+                    mappedChannels[i].channelThumbnail = channels[j].snippet.thumbnails.default.url;
                     break;
                 }
             }
         }
-        return videos;
+        return mappedChannels;
     }
 
-    function getChannelIds(videos) {
+    var getChannelIds = function(videos) {
         var channelIds = '';
         for (var i = videos.length - 1; i >= 0; i--) {
             channelIds += videos[i].snippet.channelId + ',';
         }
         return channelIds;
+    }
+
+    function getVideoIds(videos) {
+        var videoIds = '';
+        for (var i = videos.length - 1; i >= 0; i--) {
+            videoIds += videos[i].id.videoId + ',';
+        }
+        return videoIds;
     }
 
     return service;

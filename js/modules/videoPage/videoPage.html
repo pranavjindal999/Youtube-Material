@@ -5,7 +5,7 @@
             <div class="card" ng-class="isMobile">
                 <div class="card-image">
                     <div class='embed-container'>
-                        <youtube-video autoplay="true" video-id={{videoId}}></youtube-video>
+                        <youtube-video autoplay="false" video-id={{videoId}}></youtube-video>
                     </div>
                 </div>
                 <ul class="collapsible zero-margin video-accordion">
@@ -16,8 +16,11 @@
                             </li>
                             <li class="divider"></li>
                             <li style="padding: 11px 10px;">
-                                <div class="chip">
-                                    <img ng-src="{{channel.snippet.thumbnails.default.url}}"> {{channel.snippet.title}}
+                                <div class="chip" style="max-width: 50%">
+                                    <img ng-src="{{channel.snippet.thumbnails.default.url}}">
+                                    <span class="truncate">
+                                    	{{channel.snippet.title}}
+                                    </span>
                                 </div>
                                 <div class="right" style="">
                                 	<strong style="top:-17px; position:relative;">{{viewCount}} Views</strong>
@@ -51,6 +54,6 @@
         </div>
     </div>
     <div class="col l4 s12">
-        <video-item video="video" ng-repeat="video in relatedVideos"></video-item>
+        <video-item video="video" video-detail="videoDetails[$index]" channel="channels[$index]" ng-repeat="video in relatedVideos"></video-item>
     </div>
 </div>

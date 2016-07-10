@@ -34,7 +34,7 @@
                 iframeApiService.onReady(function() {
                     player = new YT.Player(element.children()[0], {
                         playerVars: {
-                            autoplay: (scope.autoplay=="true")?0:0,
+                            autoplay: (scope.autoplay=="true")?1:0,
                             modestbranding: 1,
                             showinfo:0
                         },

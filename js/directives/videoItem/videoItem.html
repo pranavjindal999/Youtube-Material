@@ -1,15 +1,23 @@
-<div class="card hoverable">
-    <div class="row zero-margin">
-        <a ui-sref="home.videoPage({id: video.id.videoId})" class="col s12 white-text red darken-3 truncate">{{::video.snippet.title}}
-        </a>
-        <a class="zero-padding zero-margin card-image col s7" ui-sref="home.videoPage({id: video.id.videoId})"  class="card-image col s6">
-            <img-loader id="{{::video.id.videoId}}" img-src="video.snippet.thumbnails.medium.url">
-        </a>
-        <div class="col s5">
-            <a class="chip video-item-channel" href="https://www.youtube.com/channel/{{::video.snippet.channelId}}">
-                <img ng-src="{{::video.snippet.channelThumbnail}}">
-                <span class="truncate">{{::video.snippet.channelTitle}}</span>
-            </a>
+<div class="waves-effect card hoverable" style="display:block; background-color:{{random}}">
+    <a class="row zero-margin pos-rel" ui-sref="home.videoPage({id: video.id.videoId})">
+        <div class="col s6 l4 zero-margin zero-padding pos-rel">
+            <div class="zero-padding zero-margin card-image" class="card-image col s6">
+                <img-loader id="{{video.id.videoId}}" img-src="video.snippet.thumbnails.medium.url">
+                </img-loader>
+            </div>
+            <div class="duration">
+                {{duration(videoDetail.contentDetails.duration)}}
+            </div>
         </div>
-    </div>
+        <div class="col s6 l8" ">
+                <div class="multi-line-ellipsis black-text">
+                    {{video.snippet.title}}
+                </div>
+            <span>{{uploaded}}</span>
+        </div>
+        <a class="chip channel-chip " href="https://www.youtube.com/channel/{{video.snippet.channelId}}">
+            <img ng-src="{{channel.channelThumbnail}} ">
+            <span class="truncate ">{{video.snippet.channelTitle}}</span>
+        </a>
+    </a>
 </div>
