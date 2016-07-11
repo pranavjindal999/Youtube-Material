@@ -1,23 +1,22 @@
-<div class="waves-effect card hoverable" style="display:block; background-color:{{random}}">
+<div class="waves-effect card hoverable" style="display: block">
     <a class="row zero-margin pos-rel" ui-sref="home.videoPage({id: video.id.videoId})">
-        <div class="col s6 l4 zero-margin zero-padding pos-rel">
+        <div class="col s6 l5 zero-margin zero-padding pos-rel">
             <div class="zero-padding zero-margin card-image" class="card-image col s6">
-                <img-loader id="{{video.id.videoId}}" img-src="video.snippet.thumbnails.medium.url">
-                </img-loader>
+                <img ng-src="{{::video.snippet.thumbnails.medium.url}}"/>
             </div>
-            <div class="duration">
-                {{duration(videoDetail.contentDetails.duration)}}
+            <div class="video-item-duration">
+                {{::videoDetail.contentDetails.duration}}
             </div>
         </div>
-        <div class="col s6 l8" ">
-                <div class="multi-line-ellipsis black-text">
-                    {{video.snippet.title}}
+        <div class="col s6 l7" ">
+                <div class="video-item-title">
+                    {{::video.snippet.title}}
                 </div>
-            <span>{{uploaded}}</span>
+            <span class="video-item-uploaded">{{::uploaded}}</span>
         </div>
-        <a class="chip channel-chip " href="https://www.youtube.com/channel/{{video.snippet.channelId}}">
-            <img ng-src="{{channel.channelThumbnail}} ">
-            <span class="truncate ">{{video.snippet.channelTitle}}</span>
+        <a class="chip channel-chip " href="https://www.youtube.com/channel/{{::video.snippet.channelId}}">
+            <img ng-src="{{::channel.channelThumbnail}} ">
+            <span class="truncate ">{{::video.snippet.channelTitle}}</span>
         </a>
     </a>
 </div>

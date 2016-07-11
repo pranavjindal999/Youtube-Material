@@ -7,9 +7,12 @@
                     searchService.getSearchSuggestion($scope.query)
                     .then(function(data) {
                         $scope.selectedIndex = -1;
-                        $scope.items = data;
-
-                    })
+                        $scope.items = data;                        
+                        if(data[1].length==0 || !$scope.search_li)
+                            $scope.searchSuggestion=false;
+                        else
+                            $scope.searchSuggestion=true;
+                    });
             }
 
             $scope.suggestionClick = function(query) {

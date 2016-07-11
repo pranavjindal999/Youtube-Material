@@ -57,6 +57,9 @@ app.factory('searchService', function($q, $http) {
                 'id': getVideoIds(videos),
                 'fields': fields
             }).then(function(response) {
+                for (var i = 0; i < response.result.items.length; i++) {
+                    response.result.items[i].contentDetails.duration = moment.duration(response.result.items[i].contentDetails.duration).format();
+                }
                 data.resolve(response.result.items);
             });
         })
