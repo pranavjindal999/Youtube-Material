@@ -1,0 +1,16 @@
+<li class="collection-item avatar">
+    <img class="circle" ng-src="{{::comment.snippet.topLevelComment.snippet.authorProfileImageUrl}}">
+    <strong class="title">{{::comment.snippet.topLevelComment.snippet.authorDisplayName}}</strong>
+    <span style="font-size: .85em; color: #727272;">&nbsp;&nbsp;&nbsp;{{::comment.snippet.topLevelComment.snippet.updatedAt}}</span>
+    <br>
+    <span ng-bind-html="comment.snippet.topLevelComment.snippet.textDisplay"></span>
+    <ul class="collection" ng-if="comment.replies">
+        <li class="collection-item avatar" ng-repeat="reply in comment.replies.comments">
+            <img class="circle" ng-src="{{::reply.snippet.authorProfileImageUrl}}">
+            <strong class="title">{{::reply.snippet.authorDisplayName}}</strong>
+            <span style="font-size: .85em; color: #727272;">&nbsp;&nbsp;&nbsp;{{::reply.snippet.updatedAt}}</span>
+            <br>
+            <span ng-bind-html="reply.snippet.textDisplay"></span>
+        </li>
+    </ul>
+</li>

@@ -1,4 +1,4 @@
-app.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider) {
+youtubeApp.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(true)
     $urlRouterProvider.otherwise("/search");
     $stateProvider

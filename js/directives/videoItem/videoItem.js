@@ -1,5 +1,5 @@
 (function(angular) {
-    angular.module('videoItem', []).directive('videoItem', function() {
+    youtubeApp.directive('videoItem', function() {
         return {
             restrict: 'E',
             scope: {

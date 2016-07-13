@@ -12,4 +12,4 @@ function init() {
     });
 }
 
-var app = angular.module('youtube', ['ngProgress', 'imgLoader', 'spinner', 'videoItem', 'youtubeVideo' ,'ui.router']);
+var youtubeApp = angular.module('youtube', ['ngProgress','ui.router']);

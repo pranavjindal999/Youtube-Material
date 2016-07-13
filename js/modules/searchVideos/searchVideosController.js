@@ -1,5 +1,5 @@
 (function(angular) {
-    app.controller('youtubeController', ['$scope', '$state', 'searchService', '$stateParams',
+    youtubeApp.controller('youtubeController', ['$scope', '$state', 'searchService', '$stateParams',
         function($scope, $state, searchService, $stateParams) {
 
             $scope.submit = function() {

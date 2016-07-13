@@ -1,5 +1,5 @@
 (function(angular) {
-    angular.module('imgLoader', []).directive('imgLoader', function() {
+    youtubeApp.directive('imgLoader', function() {
         return {
             restrict: 'E',
             scope: {

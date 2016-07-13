@@ -1,5 +1,5 @@
 (function(angular) {
-    app.controller('videoPageController', ['$scope', '$state', '$stateParams', 'searchService',
+    youtubeApp.controller('videoPageController', ['$scope', '$state', '$stateParams', 'searchService',
         function($scope, $state, $stateParams, searchService) {
             $scope.formatVideoDetails = function() {
                 if (moment().format("M D YY") == moment($scope.video.snippet.publishedAt).format("M D YY")) {
@@ -17,21 +17,19 @@
                 $scope.dislikeCount = dislikes.toLocaleString();
                 $scope.dislikeWidth = (dislikes / (likes + dislikes)) * 100;
 
-                if ($scope.video.snippet.description.length>300)
-                {
+                if ($scope.video.snippet.description.length > 300) {
                     $scope.isExpandable = true;
                     $scope.descriptionButton = "Expand Description";
-                    $scope.expandDescription = function(){
-                        if($scope.description=="expanded-description"){
-                            $scope.description="";
+                    $scope.expandDescription = function() {
+                        if ($scope.description == "expanded-description") {
+                            $scope.description = "";
                             $scope.descriptionButton = "Expand Description";
-                            if($scope.isMobile)
-                            window.scrollTo(0, 150);
-                        else
-                            window.scrollTo(0, 350);
-                        }
-                        else{
-                            $scope.description="expanded-description";
+                            if ($scope.isMobile)
+                                window.scrollTo(0, 150);
+                            else
+                                window.scrollTo(0, 350);
+                        } else {
+                            $scope.description = "expanded-description";
                             $scope.descriptionButton = "Collapse Description";
                         }
                     }
@@ -39,8 +37,14 @@
             }
 
             $scope.init = function() {
+                
+                
                 window.scrollTo(0, 0);
                 $scope.videoId = $stateParams.id;
+                searchService.getComments($scope.videoId).then(function(comments){
+                    $scope.comments = comments;
+                });
+                
                 $(window).resize(function() {
                     $scope.$apply(function() {
                         if (window.innerWidth < 993) {

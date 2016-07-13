@@ -1,4 +1,4 @@
-app.factory('searchService', function($q, $http) {
+youtubeApp.factory('searchService', function($q, $http) {
     var service = {};
     service.getVideos = function(pageToken, query, relatedToVideoId) {
         var data = $q.defer();
@@ -90,6 +90,20 @@ app.factory('searchService', function($q, $http) {
                 'fields': fields
             }).then(function(response) {
                 data.resolve(response.result.items[0]);
+            });
+        })
+        return data.promise;
+    }
+
+    service.getComments = function(videoId, fields) {        
+        var data = $q.defer();
+        youtubeApi.then(function() {
+            gapi.client.youtube.commentThreads.list({
+                'part': 'snippet,replies',
+                'videoId': videoId,
+                'fields': 'items(replies(comments(snippet(authorDisplayName,authorProfileImageUrl,publishedAt,textDisplay,updatedAt))),snippet(topLevelComment(snippet(authorDisplayName,authorProfileImageUrl,publishedAt,textDisplay,updatedAt))))'
+            }).then(function(response) {
+                data.resolve(response.result.items);
             });
         })
         return data.promise;

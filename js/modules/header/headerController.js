@@ -1,5 +1,5 @@
 (function(angular) {
-    app.controller('headerController', ['$scope', '$state', '$location', 'searchService',
+    youtubeApp.controller('headerController', ['$scope', '$state', '$location', 'searchService',
         function($scope, $state, $location, searchService) {
 
             $scope.fetchSearchSuggestion = function() {

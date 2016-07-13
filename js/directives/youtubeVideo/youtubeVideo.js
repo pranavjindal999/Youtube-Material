@@ -1,7 +1,5 @@
 (function(angular) {
-    var youtubeVideoApp = angular.module('youtubeVideo', [])
-
-    youtubeVideoApp.factory("iframeApiService", function($q, $window) {
+    youtubeApp.factory("iframeApiService", function($q, $window) {
         var service = {};
         var deferred = $q.defer();
         $window.onYouTubeIframeAPIReady = function() {
@@ -13,7 +11,7 @@
         return service;
     });
 
-    youtubeVideoApp.directive('youtubeVideo', function(iframeApiService) {
+    youtubeApp.directive('youtubeVideo', function(iframeApiService) {
         return {
             restrict: "E",
             scope: {
