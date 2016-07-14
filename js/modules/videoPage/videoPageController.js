@@ -19,32 +19,57 @@
 
                 if ($scope.video.snippet.description.length > 300) {
                     $scope.isExpandable = true;
-                    $scope.descriptionButton = "Expand Description";
+                    $scope.expandDescriptionBar = "Expand Description";
                     $scope.expandDescription = function() {
                         if ($scope.description == "expanded-description") {
                             $scope.description = "";
-                            $scope.descriptionButton = "Expand Description";
-                            if ($scope.isMobile)
-                                window.scrollTo(0, 150);
-                            else
-                                window.scrollTo(0, 350);
+                            $scope.expandDescriptionBar = "Expand Description";
+                            angular.element(document).scrollToElementAnimated(videoInfo);
                         } else {
                             $scope.description = "expanded-description";
-                            $scope.descriptionButton = "Collapse Description";
+                            $scope.expandDescriptionBar = "Collapse Description";
                         }
                     }
                 }
             }
 
-            $scope.init = function() {
-                
-                
-                window.scrollTo(0, 0);
-                $scope.videoId = $stateParams.id;
-                searchService.getComments($scope.videoId).then(function(comments){
-                    $scope.comments = comments;
+            $scope.loadMoreComments = function(pageToken) {
+                var parameters = {
+                    'videoId': $scope.videoId,
+                    'pageToken': pageToken,
+                    'order': $scope.order
+                }
+                $scope.commentsLoader = true;
+                searchService.getComments(parameters).then(function(moreComments) {
+                    $scope.comments.items = $scope.comments.items.concat(moreComments.items);
+                    $scope.comments.nextPageToken = moreComments.nextPageToken;
+                    $scope.commentsLoader = false;
                 });
-                
+            }
+
+            $scope.sortComments = function(){
+                var parameters = {
+                    'videoId': $scope.videoId,
+                    'order': $scope.order
+                }
+                $scope.commentsLoader = true;
+                $scope.comments = null;
+                searchService.getComments(parameters).then(function(comments) {
+                    $scope.comments = comments;
+                    $scope.commentsLoader = false;
+                }, function(reason){
+                    if(reason.error.errors[0].reason = "commentsDisabled"){
+                        $scope.commentsEnabled = false;
+                    }
+                });
+            }
+
+            $scope.init = function() {
+                angular.element(document).scrollTo(0, 0, 700);
+                $scope.videoId = $stateParams.id;
+                $scope.order='relevance';
+                $scope.commentsEnabled = true;
+                $scope.commentsLoader = true;
                 $(window).resize(function() {
                     $scope.$apply(function() {
                         if (window.innerWidth < 993) {

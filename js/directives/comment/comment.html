@@ -1,16 +1,24 @@
-<li class="collection-item avatar">
+<li class="collection-item avatar" style="border-bottom: 1px solid #e0e0e0; min-height: 0px;">
+    <a href="{{::comment.snippet.topLevelComment.snippet.authorChannelUrl}}">
     <img class="circle" ng-src="{{::comment.snippet.topLevelComment.snippet.authorProfileImageUrl}}">
-    <strong class="title">{{::comment.snippet.topLevelComment.snippet.authorDisplayName}}</strong>
-    <span style="font-size: .85em; color: #727272;">&nbsp;&nbsp;&nbsp;{{::comment.snippet.topLevelComment.snippet.updatedAt}}</span>
+    </a>
+    <a href="{{::comment.snippet.topLevelComment.snippet.authorChannelUrl}}">
+        <strong style="font-size: .95em;" class="title">{{::comment.snippet.topLevelComment.snippet.authorDisplayName}}</strong>
+    </a>
+    <span title="{{::comment.snippet.topLevelComment.snippet.updatedAtFull}}" style="font-size: .85em; color: #727272; cursor: pointer;">&nbsp;&nbsp;&nbsp;{{::comment.snippet.topLevelComment.snippet.updatedAt}}</span>
     <br>
-    <span ng-bind-html="comment.snippet.topLevelComment.snippet.textDisplay"></span>
-    <ul class="collection" ng-if="comment.replies">
+    <span style="font-size: .90em;" ng-bind-html="comment.snippet.topLevelComment.snippet.textDisplay"></span>
+    <ul class="collection" ng-if="comment.replies" style="border:none; margin-bottom: -10px;">
         <li class="collection-item avatar" ng-repeat="reply in comment.replies.comments">
+            <a href="{{::reply.snippet.authorChannelUrl}}">
             <img class="circle" ng-src="{{::reply.snippet.authorProfileImageUrl}}">
-            <strong class="title">{{::reply.snippet.authorDisplayName}}</strong>
-            <span style="font-size: .85em; color: #727272;">&nbsp;&nbsp;&nbsp;{{::reply.snippet.updatedAt}}</span>
+            </a>
+            <a href="{{::reply.snippet.authorChannelUrl}}">
+            <strong style="font-size: .95em;" class="title">{{::reply.snippet.authorDisplayName}}</strong>
+            </a>
+            <span title="{{::reply.snippet.updatedAtFull}}" style="font-size: .85em; color: #727272; cursor: pointer;">&nbsp;&nbsp;&nbsp;{{::reply.snippet.updatedAt}}</span>
             <br>
-            <span ng-bind-html="reply.snippet.textDisplay"></span>
+            <span style="font-size: .90em;" ng-bind-html="reply.snippet.textDisplay"></span>
         </li>
     </ul>
 </li>

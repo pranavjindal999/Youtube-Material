@@ -240,11 +240,14 @@ main {
     overflow: hidden;
     height: auto;
     max-height: 205px;
+    transition: max-height .2s ease;
 }
 .expanded-description{
-    max-height: 20000px;    
+    max-height: 20000px; 
+    transition: max-height 1s ease;
 }
 .expand-description-button{
+    line-height: 3;
     text-align: center;
     background-color: lightgrey;
     cursor: pointer;

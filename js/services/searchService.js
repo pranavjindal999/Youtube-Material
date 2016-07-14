@@ -95,15 +95,20 @@ youtubeApp.factory('searchService', function($q, $http) {
         return data.promise;
     }
 
-    service.getComments = function(videoId, fields) {        
+    service.getComments = function(parameters) {        
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.commentThreads.list({
                 'part': 'snippet,replies',
-                'videoId': videoId,
-                'fields': 'items(replies(comments(snippet(authorDisplayName,authorProfileImageUrl,publishedAt,textDisplay,updatedAt))),snippet(topLevelComment(snippet(authorDisplayName,authorProfileImageUrl,publishedAt,textDisplay,updatedAt))))'
+                'videoId': parameters.videoId,
+                'pageToken': parameters.pageToken,
+                'maxResults':8,
+                'order' : parameters.order,
+                'fields': 'items(id,replies(comments(id,snippet(authorChannelUrl,authorDisplayName,authorGoogleplusProfileUrl,authorProfileImageUrl,canRate,likeCount,publishedAt,textDisplay,updatedAt))),snippet(canReply,topLevelComment(snippet(authorChannelUrl,authorDisplayName,authorGoogleplusProfileUrl,authorProfileImageUrl,canRate,likeCount,publishedAt,textDisplay,updatedAt)),totalReplyCount)),nextPageToken'
             }).then(function(response) {
-                data.resolve(response.result.items);
+                data.resolve(response.result);
+            }, function(reason){
+                data.reject(reason.result);
             });
         })
         return data.promise;
