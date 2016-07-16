@@ -1,15 +1,17 @@
 youtubeApp.factory('searchService', function($q, $http) {
     var service = {};
-    service.getVideos = function(pageToken, query, relatedToVideoId) {
+    service.getVideos = function(parameters) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.search.list({
+                'channelId':parameters.channelId,
+                'order' : parameters.order,
                 'part': 'snippet',
                 'type': 'video',
-                'maxResults': '12',
-                'relatedToVideoId': relatedToVideoId,
-                'q': query,
-                'pageToken': pageToken
+                'maxResults': (parameters.maxResults)?parameters.maxResults:12,
+                'relatedToVideoId': parameters.relatedToVideoId,
+                'q': parameters.query,
+                'pageToken': parameters.pageToken
             }).then(function(response) {
                 data.resolve(response.result);
             });
@@ -49,13 +51,13 @@ youtubeApp.factory('searchService', function($q, $http) {
     }
 
 
-    service.getVideoDetails = function(videos, part, fields) {
+    service.getVideoDetails = function(parameters) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.videos.list({
-                'part': part,
-                'id': getVideoIds(videos),
-                'fields': fields
+                'part': parameters.part,
+                'id': getVideoIds(parameters.videos),
+                'fields': parameters.fields
             }).then(function(response) {
                 for (var i = 0; i < response.result.items.length; i++) {
                     response.result.items[i].contentDetails.duration = moment.duration(response.result.items[i].contentDetails.duration).format();
@@ -66,30 +68,44 @@ youtubeApp.factory('searchService', function($q, $http) {
         return data.promise;
     }
 
-    service.getMappedChannels = function(videosToMap, fields) {        
+    service.getMappedChannels = function(parameters) {        
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.channels.list({
                 'part': 'snippet',
-                'id': getChannelIds(videosToMap),
-                'fields': fields
+                'id': getChannelIds(parameters.videosToMap),
+                'fields': parameters.fields
             }).then(function(response) {
-                var mappedChannels = mapChannelstoVideos(videosToMap, response.result.items);
+                var mappedChannels = mapChannelstoVideos(parameters.videosToMap, response.result.items);
                 data.resolve(mappedChannels);
             });
         })
         return data.promise;
     }
 
-    service.getChannel = function(channelId, fields) {        
+    service.getChannel = function(parameters) {        
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.channels.list({
-                'part': 'snippet',
-                'id': channelId,
-                'fields': fields
+                'part': parameters.part,
+                'id': parameters.channelId,
+                'fields': parameters.fields
             }).then(function(response) {
                 data.resolve(response.result.items[0]);
+            });
+        })
+        return data.promise;
+    }
+
+    service.getChannels = function(parameters) {        
+        var data = $q.defer();
+        youtubeApi.then(function() {
+            gapi.client.youtube.channels.list({
+                'part': parameters.part,
+                'id': parameters.channelIds,
+                'fields': parameters.fields
+            }).then(function(response) {
+                data.resolve(response.result.items);
             });
         })
         return data.promise;

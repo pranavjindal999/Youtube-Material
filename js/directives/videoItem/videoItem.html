@@ -9,12 +9,12 @@
             </div>
         </div>
         <div class="col s6 l7" ">
-                <div class="video-item-title" title="{{::video.snippet.title}}">
+                <div title={{::video.snippet.title}} class="video-item-title" title="{{::video.snippet.title}}">
                     {{::video.snippet.title}}
                 </div>
             <span class="video-item-uploaded">{{::uploaded}}</span>
         </div>
-        <a class="chip channel-chip " href="https://www.youtube.com/channel/{{::video.snippet.channelId}}">
+        <a ng-if="channel" class="chip channel-chip" ui-sref="home.channelPage.home({id: video.snippet.channelId})">
             <img ng-src="{{::channel.channelThumbnail}} ">
             <span class="truncate ">{{::video.snippet.channelTitle}}</span>
         </a>

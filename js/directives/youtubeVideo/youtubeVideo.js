@@ -15,8 +15,6 @@
         return {
             restrict: "E",
             scope: {
-                height: "@?",
-                width: "@?",
                 videoId: "@",
                 autoplay: "@"
             },
@@ -36,18 +34,14 @@
                             modestbranding: 1,
                             showinfo:0
                         },
-                        height: scope.height,
-                        width: scope.width,
                         videoId: scope.videoId
                     });
                 });
-                scope.$watch('height + width', function(newValue, oldValue) {
-                    if (newValue != oldValue)
-                        player.setSize(scope.width, scope.height);
-                });
+
                 scope.$watch('videoId', function(newValue, oldValue) {
-                    if (newValue != oldValue)
-                        player.cueVideoById(scope.videoId);
+                    if (newValue != oldValue){
+                        player.cueVideoById(newValue);
+                    }
                 });
             }
         };

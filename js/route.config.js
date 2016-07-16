@@ -23,13 +23,42 @@ youtubeApp.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRoute
             }
         })
         .state('home.videoPage', {
-            url: "/watch?id",
+            url: "/video/:id",
             views: {
                 'main@': {
                     templateUrl: 'js/modules/videoPage/videoPage.html',
                     controller: 'videoPageController'
                 }
             }
+        })
+        .state('home.channelPage', {
+            url: "/channel/:id",
+            views: {
+                'main@': {
+                    templateUrl: 'js/modules/channelPage/channelPage.html',
+                    controller: 'channelPageController'
+                }
+            }
+        })
+        .state('home.channelPage.home', {
+            url: "/home",
+            templateUrl: 'js/modules/channelPage/channelPageHome/channelPageHome.html',
+            controller: 'channelPageHomeController'
+        })
+        .state('home.channelPage.videos', {
+            url: "/videos",
+            templateUrl: 'js/modules/channelPage/channelPageVideos/channelPageVideos.html',
+            controller: 'channelPageVideosController'
+        })
+        .state('home.channelPage.channels', {
+            url: "/channels",
+            templateUrl: 'js/modules/channelPage/channelPageChannels/channelPageChannels.html',
+            controller: 'channelPageChannelsController'
+        })
+        .state('home.channelPage.about', {
+            url: "/about",
+            templateUrl: 'js/modules/channelPage/channelPageAbout/channelPageAbout.html',
+            controller: 'channelPageAboutController'
         });
     $locationProvider.html5Mode(true);
 })

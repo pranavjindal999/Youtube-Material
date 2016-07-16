@@ -16,12 +16,12 @@
                             </li>
                             <li class="divider"></li>
                             <li style="padding: 11px 10px;">
-                                <div class="chip" style="max-width: 50%">
+                                <a ui-sref="home.channelPage.home({id: channel.id})" class="chip channel-chip-video-page" style="max-width: 50%">
                                     <img ng-src="{{::channel.snippet.thumbnails.default.url}}">
                                     <span class="truncate">
                                         {{::channel.snippet.title}}
                                     </span>
-                                </div>
+                                </a>
                                 <div class="right" style="">
                                     <strong style="top:-17px; position:relative;">{{::viewCount}} Views</strong>
                                     <div style="z-index:10; width: {{::dislikeWidth}}%;height: 3px; background-color: red; position: relative; top: -24px;"></div>
@@ -55,7 +55,7 @@
 
         <div ng-if="commentsEnabled" class="col s12" style="margin-bottom: 10px">
             <ul class="card collection" style="margin-bottom: 0px">
-                <comment comment="comment" ng-repeat="comment in comments.items track by $index"></comment>
+                <comment comment="comment" ng-repeat="comment in comments.items track by comment.id"></comment>
                 <div ng-if="!commentsLoader && comments.nextPageToken" class="expand-description-button"  ng-click="loadMoreComments(comments.nextPageToken)">Load More Comments</div>
             </ul>
             <div ng-if="commentsLoader" class="progress" style="margin-top: 0px;">

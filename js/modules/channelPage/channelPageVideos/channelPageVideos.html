@@ -1,0 +1,12 @@
+<div class="row" ng-init="init()">
+    <div class="col s12 m6 l4" ng-repeat="video in videos track by video.id.videoId">
+        <video-item video="video"></video-item>
+    </div>
+    <div ng-if="loader" class="col s12 center">
+        <spinner></spinner>
+        <br>
+    </div>
+    <div class="col s12 center">
+        <button class="btn" ng-if="nextPageToken" ng-click="loadMoreVideos()">Load More Videos</button>
+    </div>
+</div>

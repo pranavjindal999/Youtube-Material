@@ -1,6 +1,6 @@
 (function(angular) {
-    youtubeApp.controller('headerController', ['$scope', '$state', '$location', 'searchService',
-        function($scope, $state, $location, searchService) {
+    youtubeApp.controller('headerController', ['$rootScope', '$scope', '$state', '$location', 'searchService',
+        function($rootScope, $scope, $state, $location, searchService) {
 
             $scope.fetchSearchSuggestion = function() {
                 if ($scope.query)
@@ -70,6 +70,22 @@
                     $scope.query = "";
                 }
                 $scope.searchBlured();
+
+                $(window).resize(function() {
+                    $scope.$apply(function() {
+                        if (window.innerWidth < 993) {
+                            $rootScope.isMobile = "zero-padding zero-margin";
+                        } else {
+                            $rootScope.isMobile = "";
+                        }
+                    });
+                });
+
+                if (window.innerWidth < 993) {
+                    $rootScope.isMobile = "zero-padding zero-margin";
+                } else {
+                    $rootScope.isMobile = "";
+                }
             }
 
         }

@@ -1,7 +1,7 @@
 <div class="navbar-fixed" ng-init="init()">
     <nav class="red darken-3" role="navigation">
         <div class="nav-wrapper container">
-            <a ng-class="mobileSearchFocus" ui-sref="home.searchVideos({query: null, pageToken:null})" target="_self" class="brand-logo">Youtube</a>
+            <a ng-class="mobileSearchFocus" ui-sref="home.searchVideos({query: null, pageToken:null})" target="_self" class="brand-logo"><img class="brand-logo" style="top:-10px;height:80px;" src="https://www.youtube.com/yt/brand/media/image/YouTube-logo-light.png"></a>
             <ul class="height-100" ng-class="search_ul">
                 <li class="height-100 search-item-li" ng-class="search_li">
                     <div class="height-100">
@@ -18,4 +18,7 @@
             </ul>
         </div>
     </nav>
+</div>
+<div class="progress zero-margin" ng-show="showLoading">
+      <div class="indeterminate"></div>
 </div>
