@@ -1,21 +1,22 @@
 <br>
-<div class="container">
-    <div class="center" ng-if="preloader">
-    <spinner>
-</div>
-<div class="row" ng-if="videos">
-    <div class="col s12 l6" ng-repeat="video in videos">
-        <video-item video="video" video-detail="videoDetails[$index]" channel="channels[$index]">
-        </video-item>
-    </div>
-</div>
 <div>
-    <button class="btn waves-effect waves-light max-width-50" name="action" ng-if="previousPageToken" ng-click="nextOrPrevious(previousPageToken)">Previous
-        <i class="material-icons right">navigate_before</i>
-    </button>
-    <button class="btn waves-effect waves-light right max-width-50" name="action" ng-if="nextPageToken" ng-click="nextOrPrevious(nextPageToken)">Next
-        <i class="material-icons right">navigate_next</i>
-    </button>
-</div>
-
+    <div class="center" ng-if="preloader">
+        <spinner>
+    </div>
+    <div class="row" ng-if="videos">
+        <div class="col s12 m6 l6" ng-repeat="video in videos">
+            <video-item video="video" video-detail="videoDetails[$index]" channel="channels[$index]">
+            </video-item>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <button class="btn waves-effect waves-light max-width-50" name="action" ng-if="previousPageToken" ng-click="nextOrPrevious(previousPageToken)">Previous
+                <i class="material-icons right">navigate_before</i>
+            </button>
+            <button class="btn waves-effect waves-light right max-width-50" name="action" ng-if="nextPageToken" ng-click="nextOrPrevious(nextPageToken)">Next
+                <i class="material-icons right">navigate_next</i>
+            </button>
+        </div>
+    </div>
 </div>

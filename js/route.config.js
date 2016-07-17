@@ -8,6 +8,10 @@ youtubeApp.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRoute
                     templateUrl: "js/modules/header/header.html",
                     controller: 'headerController'
                 },
+                "sidenav" :{
+                    templateUrl: "js/modules/sidenav/sidenav.html",
+                    controller: 'sidenavController'
+                },
                 "footer": {
                     templateUrl: "js/modules/footer/footer.html"
                 }

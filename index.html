@@ -1,5 +1,26 @@
 <!DOCTYPE html>
 <html>
+<div class="center" ng-if="false">
+    <br>
+    <br>
+    <br>
+    <img style="height:200px" src="https://www.youtube.com/yt/brand/media/image/YouTube-logo-full_color.png">
+    <br>
+    <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-red-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+    <h5>Loading</h5>
+</div>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
@@ -40,12 +61,14 @@
     <script type="text/javascript" src="js/modules/channelPage/channelPageAbout/channelPageAboutController.js"></script>
     <script type="text/javascript" src="js/modules/channelPage/channelPageVideos/channelPageVideosController.js"></script>
     <script type="text/javascript" src="js/modules/channelPage/channelPageChannels/channelPageChannelsController.js"></script>
+    <script type="text/javascript" src="js/modules/sidenav/sidenav.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=init"></script>
 </head>
 
 <body>
     <div ui-view="header"></div>
-    <main>
+    <div ui-view="sidenav"></div>
+    <main ng-class="sidenavMargin">
         <div ui-view="main"></div>
     </main>
     <div ui-view="footer"></div>

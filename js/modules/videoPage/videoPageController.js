@@ -47,10 +47,13 @@
                 });
             }
 
-            $scope.sortComments = function(){
+            $scope.sortComments = function(order){
+                if($scope.order==order)
+                    return;
+                $scope.order = order;
                 var parameters = {
                     'videoId': $scope.videoId,
-                    'order': $scope.order
+                    'order': ($scope.order)?$scope.order:'relevance'
                 }
                 $scope.commentsLoader = true;
                 $scope.comments = null;

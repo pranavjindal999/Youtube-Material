@@ -4,6 +4,8 @@
             $scope.init = function() {
                 $('ul.tabs').tabs();
 
+                
+
                 var parameters = {
                     'part': 'snippet,brandingSettings',
                     'channelId': $stateParams.id,
@@ -16,12 +18,19 @@
                     $scope.channel.brandingSettings = channelData.brandingSettings;
                     $scope.channel.snippet = channelData.snippet;
                     $scope.channel.snippet.publishedAt = moment($scope.channel.snippet.publishedAt).format('Do MMMM, YYYY');
+                    if(!$scope.channel.brandingSettings)
+                        $scope.channel.brandingSettings = {};
+                    if(!$scope.channel.brandingSettings.channel)
+                        $scope.channel.brandingSettings.channel = {};
                     $scope.channel.brandingSettings.channel.featuredChannelsTitle = ($scope.channel.brandingSettings.channel.featuredChannelsTitle)?$scope.channel.brandingSettings.channel.featuredChannelsTitle:'Featured Channels';
+                    $scope.channel.snippet.description = ($scope.channel.snippet.description)?$scope.channel.snippet.description:'No Description Available';
                     $scope.deferedChannel.resolve($scope.channel);
                 });
 
+                
                 $document.on('scroll', function() {
-                    if ($document.scrollTop() > ($rootScope.isMobile?175:300)) {
+                    var position = document.getElementById("channel-banner").getBoundingClientRect();
+                    if (position.bottom < (($rootScope.isMobile)?56:64)) {
                         if ($scope.channelTab != "channel-tab-main-div-fixed") { //for reducing digest cycles on scroll.
                             $scope.$apply($scope.channelTab = "channel-tab-main-div-fixed");
                             $scope.$apply($scope.channelTabContent = "channel-tab-content-fixed");

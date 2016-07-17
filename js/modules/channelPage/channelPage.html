@@ -1,10 +1,10 @@
 <img ng-src="{{isMobile?channel.brandingSettings.image.bannerMobileImageUrl:channel.brandingSettings.image.bannerTabletImageUrl}}" style="width: 100%" />
-<div class="channel-main-div">
+<div id="channel-banner" class="channel-main-div">
     <img class="circle channel-main-div-img" ng-src="{{::channel.snippet.thumbnails.medium.url}}">
     <h4 class="channel-main-div-title">{{::channel.snippet.title}}</h4>
 </div>
 <div ng-class="channelTab" ng-init="init()" class="channel-tab-main-div">
-    <div class="hide-on-small-only" ng-show="channelTabContent">
+    <div class="hide-on-med-and-down" ng-show="channelTabContent">
         <img class="circle channel-tab-small-img" ng-src="{{::channel.snippet.thumbnails.medium.url}}">
     </div>
     <div class="channel-tab-ul">

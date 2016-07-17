@@ -7,11 +7,11 @@
                     searchService.getSearchSuggestion($scope.query)
                     .then(function(data) {
                         $scope.selectedIndex = -1;
-                        $scope.items = data;                        
-                        if(data[1].length==0 || !$scope.search_li)
-                            $scope.searchSuggestion=false;
+                        $scope.items = data;
+                        if (data[1].length == 0 || !$scope.search_li)
+                            $scope.searchSuggestion = false;
                         else
-                            $scope.searchSuggestion=true;
+                            $scope.searchSuggestion = true;
                     });
             }
 
@@ -73,18 +73,30 @@
 
                 $(window).resize(function() {
                     $scope.$apply(function() {
-                        if (window.innerWidth < 993) {
+                        if (window.innerWidth < 600) {
                             $rootScope.isMobile = "zero-padding zero-margin";
+                        } else if (window.innerWidth < 991) {
+                            $rootScope.isTablet = true;
                         } else {
                             $rootScope.isMobile = "";
+                            $rootScope.isTablet = false;
+                        }
+
+                        if ($rootScope.isMobile || $rootScope.isTablet) {
+                            $rootScope.sidenavMargin = "side-nav-margin-off";
+                        } else {
+                            $rootScope.sidenavMargin = "side-nav-margin-on";
                         }
                     });
                 });
 
-                if (window.innerWidth < 993) {
+                if (window.innerWidth < 600) {
                     $rootScope.isMobile = "zero-padding zero-margin";
+                } else if (window.innerWidth < 991) {
+                    $rootScope.isTablet = true;
                 } else {
                     $rootScope.isMobile = "";
+                    $rootScope.isTablet = false;
                 }
             }
 

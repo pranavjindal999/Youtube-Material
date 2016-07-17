@@ -1,6 +1,5 @@
-<br ng-if="!isMobile">
 <div ng-init="init()" class="row">
-    <div class="col l8 s12" ng-class="isMobile">
+    <div class="col l8 m6 s12" ng-class="isMobile">
         <div class="col s12" ng-class="isMobile">
             <div class="card" ng-class="isMobile">
                 <div class="card-image">
@@ -47,10 +46,10 @@
             </div>
         </div>
         <div ng-if="commentsEnabled" scroll-fire="sortComments()" class="col s12" style="margin-top: 10px; margin-bottom: 5px; text-align: center;">
-            <input class="with-gap" name="comments" ng-model="order" ng-click="sortComments()" type="radio" id="top" value="relevance"/ checked="true">
+            <input class="with-gap" name="comments" ng-click="sortComments('relevance')" type="radio" id="top" value="relevance" checked="true"/>
             <label for="top">Top Comments</label>
-            <input class="with-gap" name="comments" ng-model="order" ng-click="sortComments()" type="radio" id="newest" value="time"/>
-            <label for="newest">Newest First</label>
+            <input class="with-gap" name="comments" ng-click="sortComments('time')" type="radio" value="time" id="newest"/>
+            <label  for="newest">Newest First</label>
         </div>
 
         <div ng-if="commentsEnabled" class="col s12" style="margin-bottom: 10px">
@@ -66,7 +65,7 @@
         Comments have been disabled on this video.
         </div>
     </div>
-    <div class="col l4 s12">
+    <div class="col l4 m6 s12">
         <video-item video="video" video-detail="videoDetails[$index]" channel="channels[$index]" ng-repeat="video in relatedVideos"></video-item>
     </div>
 </div>

@@ -8,11 +8,8 @@
                 channel: '=channel'
             },
             templateUrl: 'js/directives/videoItem/videoItem.html',
-            link: function(scope, element, attr){
-            	scope.uploaded = moment(scope.video.snippet.publishedAt).fromNow();
-                scope.duration = function(duration){
-                    return moment.duration(duration).format();
-                }                
+            link: function(scope, element, attr) {
+                scope.uploaded = moment(scope.video.snippet.publishedAt).fromNow();
             }
         };
     });

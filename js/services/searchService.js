@@ -60,7 +60,9 @@ youtubeApp.factory('searchService', function($q, $http) {
                 'fields': parameters.fields
             }).then(function(response) {
                 for (var i = 0; i < response.result.items.length; i++) {
-                    response.result.items[i].contentDetails.duration = moment.duration(response.result.items[i].contentDetails.duration).format();
+                    response.result.items[i].contentDetails.duration = moment.duration(response.result.items[i].contentDetails.duration).format('h:m:ss');
+                    response.result.items[i].contentDetails.duration = (response.result.items[i].contentDetails.duration.includes(':'))?response.result.items[i].contentDetails.duration:('0:'+response.result.items[i].contentDetails.duration);
+                    response.result.items[i].statistics.viewCount = parseInt(response.result.items[i].statistics.viewCount).toLocaleString();
                 }
                 data.resolve(response.result.items);
             });
@@ -130,6 +132,25 @@ youtubeApp.factory('searchService', function($q, $http) {
         return data.promise;
     }
 
+    service.getSubscriptions = function(parameters) {        
+        var data = $q.defer();
+        youtubeApi.then(function() {
+            gapi.client.youtube.subscriptions.list({
+                'part': parameters.part,
+                'channelId': parameters.channelId,
+                'maxResults': parameters.maxResults,
+                'order' : parameters.order,
+                'fields': parameters.fields
+            }).then(function(response) {
+                data.resolve(response.result);
+            }, function(reason){
+                data.reject(reason.result);
+            });
+        })
+        return data.promise;
+    }
+
+
     var mapChannelstoVideos = function(videos, channels) {
         var mappedChannels = [];
         for (var i = 0; i < videos.length; i++) {
@@ -154,7 +175,7 @@ youtubeApp.factory('searchService', function($q, $http) {
 
     function getVideoIds(videos) {
         var videoIds = '';
-        for (var i = videos.length - 1; i >= 0; i--) {
+        for (var i = 0; i < videos.length; i++) {
             videoIds += videos[i].id.videoId + ',';
         }
         return videoIds;
