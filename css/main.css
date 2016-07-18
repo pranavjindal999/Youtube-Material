@@ -68,14 +68,14 @@ main {
 
 .side-nav-margin-on{
     margin-left: 220px;
+    transition: margin-left .2s ease;
 }
 .side-nav-margin-off{
     margin-left: 0px;
+    transition: margin-left .2s ease;
 }
 
 .page-footer{
-    position: absolute;
-    z-index: 10;
     width: 100%;
     box-shadow:  0 -2px 5px 0 rgba(0, 0, 0, 0.16), 0 -2px 5px 0 rgba(0, 0, 0, 0.12);
 }
@@ -343,6 +343,7 @@ main {
     z-index: 2 !important;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
 }
+
 
 @media only screen and (min-width: 600px) {
     .channel-tab-main-div-fixed {

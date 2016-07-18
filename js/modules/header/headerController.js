@@ -98,6 +98,18 @@
                     $rootScope.isMobile = "";
                     $rootScope.isTablet = false;
                 }
+
+                NProgress.configure({ showSpinner: false });
+                $rootScope.$on('$stateChangeStart',
+                    function(event, viewConfig) {
+                        NProgress.start();
+                    });
+
+                $scope.$on('$stateChangeSuccess', 
+                    function(event){
+                        NProgress.inc();
+                        setTimeout(NProgress.done,300);
+                    });
             }
 
         }

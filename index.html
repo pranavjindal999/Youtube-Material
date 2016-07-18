@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/nprogress.css">
     <!-- Libraries -->
     <script type="text/javascript" src="js/library/angular.min.js"></script>
     <script type="text/javascript" src="js/library/angular-ui-router.min.js"></script>
@@ -39,7 +40,8 @@
     <script type="text/javascript" src="js/library/moment.min.js"></script>
     <script type="text/javascript" src="js/library/moment-format.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/library/materialize.min.js"></script>
+    <script type="text/javascript" src="js/library/nprogress.js"></script>
     <script type="text/javascript" src="js/library/angular-materialize.min.js"></script>
     <!-- Configurations -->
     <script type="text/javascript" src="js/app.js"></script>
@@ -71,7 +73,7 @@
     <main ng-class="sidenavMargin">
         <div ui-view="main"></div>
     </main>
-    <div ui-view="footer"></div>
+    <div ng-class="sidenavMargin" ui-view="footer"></div>
 </body>
 
 </html>

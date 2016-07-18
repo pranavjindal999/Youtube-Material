@@ -1,4 +1,4 @@
-<div ng-init="init()" class="sidenavmy" style="float:left; background-color:white; width:220px; height:100%; position: fixed; z-index: 10; top: 50px; box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)">
+<div ng-init="init()" ng-class="sidenavLeft" style="float:left; background-color:white; width:220px; height:100%; position: fixed; z-index: 10; top: 50px; box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)">
     <ul>
         <li class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons red-text">home</i>Home
@@ -44,12 +44,14 @@
 .li-side:hover {
     background-color: #f5f5f5;
 }
-.sidenavmy{
+
+.sidenav-off {
     left: -220px;
+    transition: left .2s ease;
 }
-@media only screen and (min-width: 992px) {
-    .sidenavmy {
-        left:0px;
-    }
+
+.sidenav-on {
+    left: 0px;
+    transition: left .2s ease;
 }
 </style>
