@@ -14,9 +14,11 @@
                     if ($rootScope.sidenavMargin != "side-nav-margin-off") {
                         $rootScope.sidenavMargin = "side-nav-margin-off";
                         $rootScope.sidenavLeft = "sidenav-off";
+                        $rootScope.isSideNavOn = false;
                     } else {
                         $rootScope.sidenavMargin = "side-nav-margin-on";
                         $rootScope.sidenavLeft = "sidenav-on";
+                        $rootScope.isSideNavOn = true;
                     }
                 }
             }

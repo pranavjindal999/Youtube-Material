@@ -1,8 +1,8 @@
 <div class="navbar-fixed" ng-init="init()">
     <nav class="red darken-3" role="navigation">
         <div class="nav-wrapper container">
-            <i class="material-icons waves-effect waves-light" style="display:inline-block; position: relative; left:-10px; cursor: pointer" ng-click="toggleSidenav()">menu</i>
-            <a ng-class="mobileSearchFocus" ui-sref="home.searchVideos({query: null, pageToken:null})" target="_self" class="brand-logo"><img class="brand-logo" style="top:-10px;height:80px;" src="https://www.youtube.com/yt/brand/media/image/YouTube-logo-light.png"></a>
+            <i ng-class="mobileSearchFocus" class="material-icons waves-effect waves-light" style="display:inline-block; position: relative; left:-10px; cursor: pointer; transition:left .5s ease" ng-click="toggleSidenav()">menu</i>
+            <a style="transition:left .5s ease" ng-class="mobileSearchFocus" ui-sref="home.searchVideos({query: null, pageToken:null})" target="_self" class="brand-logo"><img class="brand-logo" style="top:-10px;height:80px;" src="https://www.youtube.com/yt/brand/media/image/YouTube-logo-light.png"></a>
             <ul class="height-100" ng-class="search_ul">
                 <li class="height-100 search-item-li" ng-class="search_li">
                     <div class="height-100">

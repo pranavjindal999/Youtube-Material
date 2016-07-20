@@ -50,6 +50,7 @@ main {
 .height-100 {
     height: 100%;
 }
+
 .width-100 {
     width: 100%;
 }
@@ -66,18 +67,19 @@ main {
     position: relative;
 }
 
-.side-nav-margin-on{
+.side-nav-margin-on {
     margin-left: 220px;
     transition: margin-left .2s ease;
 }
-.side-nav-margin-off{
+
+.side-nav-margin-off {
     margin-left: 0px;
     transition: margin-left .2s ease;
 }
 
-.page-footer{
+.page-footer {
     width: 100%;
-    box-shadow:  0 -2px 5px 0 rgba(0, 0, 0, 0.16), 0 -2px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.16), 0 -2px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 @media only screen and (max-width: 992px)and (min-width: 600px) {
@@ -85,6 +87,7 @@ main {
         padding: 0 0.20rem !important;
     }
 }
+
 
 /*video item classes*/
 
@@ -109,6 +112,7 @@ main {
         left: 52%;
     }
 }
+
 
 /*nav items classes*/
 
@@ -143,7 +147,7 @@ main {
 
 @media only screen and (max-width: 992px) {
     .brand-logo {
-        left: 0% !important;
+        left: 2% !important;
         -webkit-transform: translateX(0%) !important;
         transform: translateX(0%) !important;
     }
@@ -314,19 +318,22 @@ main {
     display: inherit;
 }
 
-.video-item-channel-title{
+.video-item-channel-title {
     position: relative;
     left: 0px;
 }
-.video-item-channel-title:hover{
+
+.video-item-channel-title:hover {
     text-decoration: underline;
 }
+
 @media only screen and (min-width: 992px) {
-   .video-item-channel-title{
-    position: relative;
-    left: 10px;
+    .video-item-channel-title {
+        position: relative;
+        left: 10px;
+    }
 }
-}
+
 .socicon {
     padding: 0px 10px;
     float: right;
@@ -343,7 +350,6 @@ main {
     z-index: 2 !important;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
 }
-
 
 @media only screen and (min-width: 600px) {
     .channel-tab-main-div-fixed {
@@ -468,4 +474,20 @@ main {
 
 .channel-description {
     white-space: pre-line;
+}
+
+@media screen and (max-width: 600px) {
+    .mobile-search-focus {
+        position: fixed !important;
+        left: -200px !important;
+    }
+}
+
+.mobile-sidenav-overlay{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    z-index: 9;
+    opacity: .2;
 }

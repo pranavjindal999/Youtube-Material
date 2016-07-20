@@ -23,7 +23,7 @@
             $scope.searchFocused = function() {
                 $scope.search_ul = "nav-items-focus right";
                 $scope.search_li = "search-item-li-focus";
-                $scope.mobileSearchFocus = "hide-on-small-only";
+                $scope.mobileSearchFocus = "mobile-search-focus";
                 $scope.searchSuggestion = true;
                 $scope.crossSign = true;
                 $scope.fetchSearchSuggestion();
@@ -69,47 +69,43 @@
                 } else {
                     $scope.query = "";
                 }
+
                 $scope.searchBlured();
 
-                $(window).resize(function() {
-                    $scope.$apply(function() {
-                        if (window.innerWidth < 600) {
-                            $rootScope.isMobile = "zero-padding zero-margin";
-                        } else if (window.innerWidth < 991) {
-                            $rootScope.isTablet = true;
-                        } else {
-                            $rootScope.isMobile = "";
-                            $rootScope.isTablet = false;
-                        }
-
-                        if ($rootScope.isMobile || $rootScope.isTablet) {
-                            $rootScope.sidenavMargin = "side-nav-margin-off";
-                        } else {
-                            $rootScope.sidenavMargin = "side-nav-margin-on";
-                        }
-                    });
-                });
-
-                if (window.innerWidth < 600) {
-                    $rootScope.isMobile = "zero-padding zero-margin";
-                } else if (window.innerWidth < 991) {
-                    $rootScope.isTablet = true;
-                } else {
-                    $rootScope.isMobile = "";
-                    $rootScope.isTablet = false;
-                }
-
-                NProgress.configure({ showSpinner: false });
                 $rootScope.$on('$stateChangeStart',
                     function(event, viewConfig) {
                         NProgress.start();
                     });
 
-                $scope.$on('$stateChangeSuccess', 
-                    function(event){
+                $rootScope.$on('$stateChangeSuccess',
+                    function(event) {
                         NProgress.inc();
-                        setTimeout(NProgress.done,300);
+                        setTimeout(NProgress.inc, 300);
+                        setTimeout(NProgress.done, 600);
                     });
+
+                var windowResize = function() {
+                    if (window.innerWidth < 600) {
+                        $rootScope.isMobile = true;
+                        $rootScope.isTablet = false;
+                        $rootScope.mobilePaddingMargin = "zero-padding zero-margin";
+                    } else if (window.innerWidth < 991) {
+                        $rootScope.isMobile = false;
+                        $rootScope.isTablet = true;
+                        $rootScope.mobilePaddingMargin = "";
+                    } else {
+                        $rootScope.isMobile = false;
+                        $rootScope.isTablet = false;
+                        $rootScope.mobilePaddingMargin = "";
+                    }
+                }
+
+                $(window).resize(function() {
+                    $scope.$apply(function() {
+                        windowResize();
+                    });
+                });
+                windowResize();
             }
 
         }

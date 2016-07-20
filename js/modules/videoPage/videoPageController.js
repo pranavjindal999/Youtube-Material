@@ -47,21 +47,21 @@
                 });
             }
 
-            $scope.sortComments = function(order){
-                if($scope.order==order)
+            $scope.sortComments = function(order) {
+                if ($scope.order == order)
                     return;
                 $scope.order = order;
                 var parameters = {
                     'videoId': $scope.videoId,
-                    'order': ($scope.order)?$scope.order:'relevance'
+                    'order': ($scope.order) ? $scope.order : 'relevance'
                 }
                 $scope.commentsLoader = true;
                 $scope.comments = null;
                 searchService.getComments(parameters).then(function(comments) {
                     $scope.comments = comments;
                     $scope.commentsLoader = false;
-                }, function(reason){
-                    if(reason.error.errors[0].reason = "commentsDisabled"){
+                }, function(reason) {
+                    if (reason.error.errors[0].reason = "commentsDisabled") {
                         $scope.commentsEnabled = false;
                     }
                 });
@@ -70,17 +70,17 @@
             $scope.init = function() {
                 angular.element(document).scrollTo(0, 0, 700);
                 $scope.videoId = $stateParams.id;
-                $scope.order='relevance';
+                $scope.order = 'relevance';
                 $scope.commentsEnabled = true;
                 $scope.commentsLoader = true;
                 searchService.getVideo($scope.videoId)
                     .then(function(video) {
                         $scope.video = video;
                         $scope.formatVideoDetails();
-                        var parameters= {
-                            'part':'snippet',
-                            'channelId':video.snippet.channelId,
-                            'fields' : 'items(id,snippet(thumbnails/default,title))'
+                        var parameters = {
+                            'part': 'snippet',
+                            'channelId': video.snippet.channelId,
+                            'fields': 'items(id,snippet(thumbnails/default,title))'
                         }
                         searchService.getChannel(parameters)
                             .then(function(channel) {
@@ -88,16 +88,17 @@
                             });
                     });
 
-                    var parameters = {
-                        'relatedToVideoId' : $scope.videoId
-                    }
+                var parameters = {
+                    'relatedToVideoId': $scope.videoId,
+                    'maxResults': 20
+                }
                 searchService.getVideos(parameters)
                     .then(function(videos) {
                         $scope.relatedVideos = videos.items;
 
                         var parameters = {
-                            'videos' : $scope.relatedVideos,
-                            'part' : 'statistics,contentDetails'
+                            'videos': $scope.relatedVideos,
+                            'part': 'statistics,contentDetails'
                         }
                         searchService.getVideoDetails(parameters)
                             .then(function(videoDetails) {
@@ -105,8 +106,8 @@
                             });
 
                         var parameters = {
-                            'videosToMap' : $scope.relatedVideos,
-                            'fields' : 'items(id,snippet/thumbnails/default)'
+                            'videosToMap': $scope.relatedVideos,
+                            'fields': 'items(id,snippet/thumbnails/default)'
                         }
                         searchService.getMappedChannels(parameters)
                             .then(function(mappedChannels) {

@@ -1,6 +1,7 @@
 youtubeApp.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(true)
     $urlRouterProvider.otherwise("/search");
+
     $stateProvider
         .state('home', {
             views: {
@@ -8,7 +9,7 @@ youtubeApp.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRoute
                     templateUrl: "js/modules/header/header.html",
                     controller: 'headerController'
                 },
-                "sidenav" :{
+                "sidenav": {
                     templateUrl: "js/modules/sidenav/sidenav.html",
                     controller: 'sidenavController'
                 },
@@ -65,4 +66,6 @@ youtubeApp.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRoute
             controller: 'channelPageAboutController'
         });
     $locationProvider.html5Mode(true);
+
+    NProgress.configure({ showSpinner: false });
 })

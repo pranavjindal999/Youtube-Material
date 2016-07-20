@@ -37,6 +37,7 @@
     <script type="text/javascript" src="js/library/angular.min.js"></script>
     <script type="text/javascript" src="js/library/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="js/library/angular-scroll.min.js"></script>
+    <script type="text/javascript" src="js/library/angular-touch.min.js"></script>
     <script type="text/javascript" src="js/library/moment.min.js"></script>
     <script type="text/javascript" src="js/library/moment-format.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -70,10 +71,11 @@
 <body>
     <div ui-view="header"></div>
     <div ui-view="sidenav"></div>
-    <main ng-class="sidenavMargin">
+    
+    <main ng-swipe-right="toggleSidenav()" ng-class="isMobile?'':sidenavMargin">
         <div ui-view="main"></div>
     </main>
-    <div ng-class="sidenavMargin" ui-view="footer"></div>
+    <div ng-swipe-right="toggleSidenav()" ng-class="isMobile?'':sidenavMargin" ui-view="footer"></div>
 </body>
 
 </html>

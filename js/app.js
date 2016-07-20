@@ -12,4 +12,4 @@ function init() {
     });
 }
 
-var youtubeApp = angular.module('youtube', ['ui.router','duScroll','ui.materialize']);
+var youtubeApp = angular.module('youtube', ['ngTouch','ui.router','duScroll','ui.materialize']);

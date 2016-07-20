@@ -1,7 +1,7 @@
 <div ng-init="init()" class="row">
-    <div class="col l8 m6 s12" ng-class="isMobile">
-        <div class="col s12" ng-class="isMobile">
-            <div class="card" ng-class="isMobile">
+    <div class="col l8 m6 s12" ng-class="mobilePaddingMargin">
+        <div class="col s12" ng-class="mobilePaddingMargin">
+            <div class="card" ng-class="mobilePaddingMargin">
                 <div class="card-image">
                     <div class='embed-container'>
                         <youtube-video autoplay="false" video-id={{::videoId}}></youtube-video>
@@ -23,7 +23,7 @@
                                 </a>
                                 <div class="right" style="">
                                     <strong style="top:-17px; position:relative;">{{::viewCount}} Views</strong>
-                                    <div style="z-index:10; width: {{::dislikeWidth}}%;height: 3px; background-color: red; position: relative; top: -24px;"></div>
+                                    <div style="z-index:9; width: {{::dislikeWidth}}%;height: 3px; background-color: red; position: relative; top: -24px;"></div>
                                     <div style="height: 3px; background-color: green; position: relative; top: -27px"></div>
                                     <div style="display:inline-block; position:relative; top:-32px">
                                         <i class="material-icons" style="margin-right: 2px;">thumb_down</i>{{::dislikeCount}}
