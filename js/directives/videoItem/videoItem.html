@@ -14,7 +14,7 @@
                 </div>
             <span class="video-item-uploaded">{{::uploaded}}</span>
         </div>
-        <a ng-if="channel" class="chip channel-chip" ui-sref="home.channelPage.home({id: video.snippet.channelId})">
+        <a ng-if="channel" class="chip channel-chip hoverable" ui-sref="home.channelPage.home({id: video.snippet.channelId})">
             <img ng-src="{{::channel.channelThumbnail}} ">
             <span class="truncate ">{{::video.snippet.channelTitle}}</span>
         </a>

@@ -82,7 +82,7 @@ main {
     box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.16), 0 -2px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-@media only screen and (max-width: 992px)and (min-width: 600px) {
+@media only screen and (max-width: 992px)and (min-width: 601px) {
     .row .col {
         padding: 0 0.20rem !important;
     }
@@ -327,7 +327,7 @@ main {
     text-decoration: underline;
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 993px) {
     .video-item-channel-title {
         position: relative;
         left: 10px;
@@ -371,7 +371,7 @@ main {
     top: -6px;
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 993px) {
     .channel-tab-content {
         top: 0px;
         width: 87%;
@@ -403,7 +403,7 @@ main {
     left: 0px
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 993px) {
     .channel-tab-ul {
         width: 50%;
         padding-left: 50px;
@@ -427,7 +427,7 @@ main {
     box-shadow: 0 -4px 10px 0 rgba(0, 0, 0, 0.16), 0 -4px 15px 0 rgba(0, 0, 0, 0.12);
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 993px) {
     .channel-main-div {
         height: 80px;
     }
@@ -441,7 +441,7 @@ main {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 993px) {
     .channel-main-div-img {
         position: relative;
         top: -70px;
@@ -461,7 +461,7 @@ main {
     font-size: 24px;
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 993px) {
     .channel-main-div-title {
         font-size: 32px;
         position: relative;

@@ -1,13 +1,18 @@
-youtubeApp.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider) {
+youtubeApp.config(function($compileProvider,$stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(true)
-    $urlRouterProvider.otherwise("/search");
-
+    $urlRouterProvider.otherwise("/");
+    $compileProvider.debugInfoEnabled(false);
     $stateProvider
         .state('home', {
+            url: "/",
             views: {
                 "header": {
                     templateUrl: "js/modules/header/header.html",
                     controller: 'headerController'
+                },
+                "main" : {
+                    templateUrl : "js/modules/homePage/homePage.html",
+                    controller : 'homePageController'
                 },
                 "sidenav": {
                     templateUrl: "js/modules/sidenav/sidenav.html",
@@ -19,7 +24,7 @@ youtubeApp.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRoute
             }
         })
         .state('home.searchVideos', {
-            url: "/search?query&pageToken",
+            url: "search?query&pageToken",
             views: {
                 'main@': {
                     templateUrl: 'js/modules/searchVideos/searchVideos.html',
@@ -28,7 +33,7 @@ youtubeApp.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRoute
             }
         })
         .state('home.videoPage', {
-            url: "/video/:id",
+            url: "video/:id",
             views: {
                 'main@': {
                     templateUrl: 'js/modules/videoPage/videoPage.html',
@@ -37,7 +42,7 @@ youtubeApp.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRoute
             }
         })
         .state('home.channelPage', {
-            url: "/channel/:id",
+            url: "channel/:id",
             views: {
                 'main@': {
                     templateUrl: 'js/modules/channelPage/channelPage.html',
@@ -66,6 +71,5 @@ youtubeApp.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRoute
             controller: 'channelPageAboutController'
         });
     $locationProvider.html5Mode(true);
-
     NProgress.configure({ showSpinner: false });
 })

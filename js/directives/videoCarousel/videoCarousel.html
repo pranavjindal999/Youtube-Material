@@ -1,0 +1,16 @@
+<div scroll-fire="scrollFireLoad()" class="section">
+    <h5>{{::category.snippet.title}}</h5>
+    <div class="row zero-margin">
+        <div class="col s6 m4 l2" ng-repeat="video in videos">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" ng-src="{{video.snippet.thumbnails.medium.url}}">
+                </div>
+                <div class="card-content" style="padding:10px 10px">
+                    <span style="height: 32px" class="card-title activator video-item-title grey-text text-darken-4">{{video.snippet.title}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="divider"></div>

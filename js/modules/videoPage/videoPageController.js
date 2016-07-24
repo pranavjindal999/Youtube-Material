@@ -10,12 +10,15 @@
                         .format("Do MMMM YYYY");
                 }
 
+                $rootScope.$$childHead.query = "";
                 $scope.viewCount = parseInt($scope.video.statistics.viewCount).toLocaleString();
                 var likes = parseInt($scope.video.statistics.likeCount);
                 var dislikes = parseInt($scope.video.statistics.dislikeCount);
                 $scope.likeCount = likes.toLocaleString();
                 $scope.dislikeCount = dislikes.toLocaleString();
-                $scope.dislikeWidth = (dislikes / (likes + dislikes)) * 100;
+                $scope.dislikeWidth = {
+                    'width' : ((dislikes / (likes + dislikes)) * 100) + '%'
+                };
 
                 if ($scope.video.snippet.description.length > 300) {
                     $scope.isExpandable = true;
@@ -73,13 +76,18 @@
                 $scope.order = 'relevance';
                 $scope.commentsEnabled = true;
                 $scope.commentsLoader = true;
-                searchService.getVideo($scope.videoId)
+                var parameters = {
+                    'videoId' : $scope.videoId,
+                    'part' : 'snippet,statistics',
+                    'fields' : 'items(snippet(publishedAt,channelId,description,title),statistics(commentCount,dislikeCount,likeCount,viewCount))'
+                }
+                searchService.getVideos(parameters)
                     .then(function(video) {
-                        $scope.video = video;
+                        $scope.video = video.items[0];
                         $scope.formatVideoDetails();
                         var parameters = {
                             'part': 'snippet',
-                            'channelId': video.snippet.channelId,
+                            'channelId': $scope.video.snippet.channelId,
                             'fields': 'items(id,snippet(thumbnails/default,title))'
                         }
                         searchService.getChannel(parameters)
@@ -92,7 +100,7 @@
                     'relatedToVideoId': $scope.videoId,
                     'maxResults': 20
                 }
-                searchService.getVideos(parameters)
+                searchService.searchVideos(parameters)
                     .then(function(videos) {
                         $scope.relatedVideos = videos.items;
 

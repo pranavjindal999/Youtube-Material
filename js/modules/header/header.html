@@ -2,14 +2,15 @@
     <nav class="red darken-3" role="navigation">
         <div class="nav-wrapper container">
             <i ng-class="mobileSearchFocus" class="material-icons waves-effect waves-light" style="display:inline-block; position: relative; left:-10px; cursor: pointer; transition:left .5s ease" ng-click="toggleSidenav()">menu</i>
-            <a style="transition:left .5s ease" ng-class="mobileSearchFocus" ui-sref="home.searchVideos({query: null, pageToken:null})" target="_self" class="brand-logo"><img class="brand-logo" style="top:-10px;height:80px;" src="https://www.youtube.com/yt/brand/media/image/YouTube-logo-light.png"></a>
-            <ul class="height-100" ng-class="search_ul">
+            <a style="transition:left .5s ease" ng-class="mobileSearchFocus" ui-sref="home" target="_self" class="brand-logo"><img class="brand-logo" style="top:-10px;height:80px;" src="https://www.youtube.com/yt/brand/media/image/YouTube-logo-light.png"></a>
+            <ul class="height-100" ng-class="search_ul" >
                 <li class="height-100 search-item-li" ng-class="search_li">
                     <div class="height-100">
                         <label for="search"> <i class="material-icons search-item-input-icon">search</i></label>
                         <input ng-trim="false" ng-focus="searchFocused()" class="search-item-input" id="search" ng-model="query" ng-blur="searchBlured()" ng-change="fetchSearchSuggestion()" ng-keydown="inputKeypress($event)" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                     </div>
-                    <div ng-show="searchSuggestion && query && items" class="collection suggestion">
+                    <div style="overflow: auto;
+    max-height: calc(100vh - 57px);" ng-show="searchSuggestion && query && items" class="collection suggestion">
                         <a ng-class="(selectedIndex==$index)?'suggestion-item-hover':''" ng-repeat="item in items[1]" ng-mousedown="suggestionClick(item)" ng-mouseover="mouseOver($index)" class="collection-item">{{item}}</a>
                     </div>
                 </li>

@@ -17,7 +17,7 @@
                 searchService.getChannel(parameters).then(function(channelData) {
                     $scope.channel.brandingSettings = channelData.brandingSettings;
                     $scope.channel.snippet = channelData.snippet;
-                    $scope.channel.snippet.publishedAt = moment($scope.channel.snippet.publishedAt).format('Do MMMM, YYYY');
+                    $scope.channel.snippet.publishedAt = moment($scope.channel.snippet.publishedAt).format('Do MMM, YYYY');
                     if(!$scope.channel.brandingSettings)
                         $scope.channel.brandingSettings = {};
                     if(!$scope.channel.brandingSettings.channel)

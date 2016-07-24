@@ -12,7 +12,7 @@
                     'pageToken': $stateParams.pageToken,
                     'query': $stateParams.query
                 }
-                searchService.getVideos(parameters)
+                searchService.searchVideos(parameters)
                     .then(function(videos) {
                         $scope.videos = videos.items;
                         $scope.nextPageToken = videos.nextPageToken;

@@ -1,6 +1,6 @@
 youtubeApp.factory('searchService', function($q, $http) {
     var service = {};
-    service.getVideos = function(parameters) {
+    service.searchVideos = function(parameters) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.search.list({
@@ -36,15 +36,20 @@ youtubeApp.factory('searchService', function($q, $http) {
         return q.promise;
     }
 
-    service.getVideo = function(videoId) {
+    service.getVideos = function(parameters) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.videos.list({
-                'part': 'snippet,statistics',
-                'id': videoId,
-                'fields': 'items(snippet(publishedAt,channelId,description,title),statistics(commentCount,dislikeCount,likeCount,viewCount))'
+                'regionCode' : 'IN',
+                'chart' : parameters.chart,
+                'maxResults' : parameters.maxResults,
+                'pageToken' : parameters.pageToken,
+                'part': parameters.part,
+                'id': parameters.videoId,
+                'videoCategoryId' : parameters.videoCategoryId,
+                'fields' : parameters.fields
             }).then(function(response) {
-                data.resolve(response.result.items[0]);
+                data.resolve(response.result);
             });
         })
         return data.promise;
@@ -94,6 +99,19 @@ youtubeApp.factory('searchService', function($q, $http) {
                 'fields': parameters.fields
             }).then(function(response) {
                 data.resolve(response.result.items[0]);
+            });
+        })
+        return data.promise;
+    }
+
+    service.getVideoCategories = function() {        
+        var data = $q.defer();
+        youtubeApi.then(function() {
+            gapi.client.youtube.videoCategories.list({
+                'part': 'snippet',
+                'regionCode' : 'IN'
+            }).then(function(response) {
+                data.resolve(response.result.items);
             });
         })
         return data.promise;

@@ -12,7 +12,7 @@
                     'maxResults': 24
                 }
 
-                searchService.getVideos(parameters).then(function(videos) {
+                searchService.searchVideos(parameters).then(function(videos) {
                     $scope.videos = videos.items;
                     $scope.loaderVideos = false;
                     $scope.nextPageToken = videos.nextPageToken;
@@ -36,7 +36,7 @@
 
                     $scope.loaderVideos = true;
                     $scope.nextPageToken = false;
-                    searchService.getVideos(parameters).then(function(nextVideos) {
+                    searchService.searchVideos(parameters).then(function(nextVideos) {
                         $scope.videos = $scope.videos.concat(nextVideos.items);
                         $scope.loaderVideos = false;
                         $scope.nextPageToken = nextVideos.nextPageToken;

@@ -53,6 +53,7 @@
     <script type="text/javascript" src="js/directives/videoItem/videoItem.js"></script>
     <script type="text/javascript" src="js/directives/youtubeVideo/youtubeVideo.js"></script>
     <script type="text/javascript" src="js/directives/comment/comment.js"></script>
+    <script type="text/javascript" src="js/directives/videoCarousel/videoCarousel.js"></script>
     <!-- Services -->
     <script type="text/javascript" src="js/services/searchService.js"></script>
     <!-- Controllers -->
@@ -64,6 +65,7 @@
     <script type="text/javascript" src="js/modules/channelPage/channelPageAbout/channelPageAboutController.js"></script>
     <script type="text/javascript" src="js/modules/channelPage/channelPageVideos/channelPageVideosController.js"></script>
     <script type="text/javascript" src="js/modules/channelPage/channelPageChannels/channelPageChannelsController.js"></script>
+    <script type="text/javascript" src="js/modules/homePage/homePage.js"></script>
     <script type="text/javascript" src="js/modules/sidenav/sidenav.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=init"></script>
 </head>
@@ -71,11 +73,10 @@
 <body>
     <div ui-view="header"></div>
     <div ui-view="sidenav"></div>
-    
-    <main ng-swipe-right="toggleSidenav()" ng-class="isMobile?'':sidenavMargin">
+    <main ng-swipe-right="isMobile && toggleSidenav()" ng-class="isMobile?'':sidenavMargin">
         <div ui-view="main"></div>
     </main>
-    <div ng-swipe-right="toggleSidenav()" ng-class="isMobile?'':sidenavMargin" ui-view="footer"></div>
+    <div ng-swipe-right="isMobile && toggleSidenav()" ng-class="isMobile?'':sidenavMargin" ui-view="footer"></div>
 </body>
 
 </html>
