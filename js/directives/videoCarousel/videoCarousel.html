@@ -1,16 +1,72 @@
-<div scroll-fire="scrollFireLoad()" class="section">
+<div scroll-fire="scrollFireLoad()" class="section section-carousel">
     <h5>{{::category.snippet.title}}</h5>
-    <div class="row zero-margin">
+    <div class="row zero-margin pos-rel">
+        <div class="prev-carousel pointer"><i class="material-icons">keyboard_arrow_left</i></div>
         <div class="col s6 m4 l2" ng-repeat="video in videos">
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" ng-src="{{video.snippet.thumbnails.medium.url}}">
+            <div class="card waves-effect waves-block waves-light">
+                <div class="card-image ">
+                <a ui-sref="home.videoPage({id: video.id})"><img ng-src="{{video.snippet.thumbnails.medium.url}}">                    
+                    <div class="video-info-bar-carousel">
+                        <div class="video-duration-carousel">
+                            <span>
+                        {{::video.snippet.publishedAt}}
+                            </span>
+                            <span style="float:right">
+                         {{::video.contentDetails.duration}}
+                            </span>
+                        </div>
+                    </div>
+                    </a>
                 </div>
-                <div class="card-content" style="padding:10px 10px">
-                    <span style="height: 32px" class="card-title activator video-item-title grey-text text-darken-4">{{video.snippet.title}}</span>
-                </div>
+                <a ui-sref="home.videoPage({id: video.id})" style="display:block;padding:5px 6px 2px 6px" class="card-content">
+                    <span style="height: 32px" class="card-title video-title-carousel">{{video.snippet.title}}</span>
+                    <div class="video-views-carousel">
+                        {{::video.statistics.viewCount}} Views
+                    </div>
+                </a>
+                <a ui-sref="home.channelPage.home({id: video.snippet.channelId})" class="video-channel-carousel truncate">
+                   {{::video.snippet.channelTitle}}
+                </a>
             </div>
         </div>
+        <div class="next-carousel pointer"><i class="material-icons">keyboard_arrow_right</i></div>
     </div>
 </div>
 <div class="divider"></div>
+
+
+<style type="text/css">
+    .next-carousel{
+    height: 80px;
+    padding-top: 30px;
+    border-radius: 2px;
+    position: absolute;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    z-index: 9;
+    right: -15px;
+    top: 35%;
+    width:20px;
+    background-color: white;
+    transition: width .2s ease
+    }
+    .next-carousel:hover{
+        width: 30px;
+    }
+
+    .prev-carousel{
+    border-radius: 2px;
+    height: 80px;
+    background-color: white;
+    padding-top: 30px;
+    position: absolute;
+    z-index: 9;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    left: -15px;
+    top: 35%;
+    width: 20px;
+    transition: width .2s ease
+    }
+    .prev-carousel:hover{
+        width: 30px;
+    }
+</style>

@@ -1,7 +1,7 @@
 youtubeApp.config(function($compileProvider,$stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(true)
     $urlRouterProvider.otherwise("/");
-    $compileProvider.debugInfoEnabled(false);
+    $compileProvider.debugInfoEnabled(true);
     $stateProvider
         .state('home', {
             url: "/",

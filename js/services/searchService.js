@@ -4,11 +4,11 @@ youtubeApp.factory('searchService', function($q, $http) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.search.list({
-                'channelId':parameters.channelId,
-                'order' : parameters.order,
+                'channelId': parameters.channelId,
+                'order': parameters.order,
                 'part': 'snippet',
                 'type': 'video',
-                'maxResults': (parameters.maxResults)?parameters.maxResults:12,
+                'maxResults': (parameters.maxResults) ? parameters.maxResults : 12,
                 'relatedToVideoId': parameters.relatedToVideoId,
                 'q': parameters.query,
                 'pageToken': parameters.pageToken
@@ -40,14 +40,14 @@ youtubeApp.factory('searchService', function($q, $http) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.videos.list({
-                'regionCode' : 'IN',
-                'chart' : parameters.chart,
-                'maxResults' : parameters.maxResults,
-                'pageToken' : parameters.pageToken,
+                'regionCode': 'IN',
+                'chart': parameters.chart,
+                'maxResults': parameters.maxResults,
+                'pageToken': parameters.pageToken,
                 'part': parameters.part,
                 'id': parameters.videoId,
-                'videoCategoryId' : parameters.videoCategoryId,
-                'fields' : parameters.fields
+                'videoCategoryId': parameters.videoCategoryId,
+                'fields': parameters.fields
             }).then(function(response) {
                 data.resolve(response.result);
             });
@@ -64,18 +64,24 @@ youtubeApp.factory('searchService', function($q, $http) {
                 'id': getVideoIds(parameters.videos),
                 'fields': parameters.fields
             }).then(function(response) {
-                for (var i = 0; i < response.result.items.length; i++) {
-                    response.result.items[i].contentDetails.duration = moment.duration(response.result.items[i].contentDetails.duration).format('h:m:ss');
-                    response.result.items[i].contentDetails.duration = (response.result.items[i].contentDetails.duration.includes(':'))?response.result.items[i].contentDetails.duration:('0:'+response.result.items[i].contentDetails.duration);
-                    response.result.items[i].statistics.viewCount = parseInt(response.result.items[i].statistics.viewCount).toLocaleString();
+                try {
+                    for (var i = 0; i < response.result.items.length; i++) {
+                        response.result.items[i].contentDetails.duration = moment.duration(response.result.items[i].contentDetails.duration).format('h:m:ss');
+                        response.result.items[i].contentDetails.duration = (response.result.items[i].contentDetails.duration.includes(':')) ? response.result.items[i].contentDetails.duration : ('0:' + response.result.items[i].contentDetails.duration);
+                        response.result.items[i].statistics.viewCount = parseInt(response.result.items[i].statistics.viewCount).toLocaleString();
+                    }
+
+                } catch (err) {
+
                 }
+
                 data.resolve(response.result.items);
             });
         })
         return data.promise;
     }
 
-    service.getMappedChannels = function(parameters) {        
+    service.getMappedChannels = function(parameters) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.channels.list({
@@ -90,7 +96,7 @@ youtubeApp.factory('searchService', function($q, $http) {
         return data.promise;
     }
 
-    service.getChannel = function(parameters) {        
+    service.getChannel = function(parameters) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.channels.list({
@@ -104,12 +110,12 @@ youtubeApp.factory('searchService', function($q, $http) {
         return data.promise;
     }
 
-    service.getVideoCategories = function() {        
+    service.getVideoCategories = function() {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.videoCategories.list({
                 'part': 'snippet',
-                'regionCode' : 'IN'
+                'regionCode': 'IN'
             }).then(function(response) {
                 data.resolve(response.result.items);
             });
@@ -117,7 +123,7 @@ youtubeApp.factory('searchService', function($q, $http) {
         return data.promise;
     }
 
-    service.getChannels = function(parameters) {        
+    service.getChannels = function(parameters) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.channels.list({
@@ -131,37 +137,37 @@ youtubeApp.factory('searchService', function($q, $http) {
         return data.promise;
     }
 
-    service.getComments = function(parameters) {        
+    service.getComments = function(parameters) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.commentThreads.list({
                 'part': 'snippet,replies',
                 'videoId': parameters.videoId,
                 'pageToken': parameters.pageToken,
-                'maxResults':8,
-                'order' : parameters.order,
+                'maxResults': 8,
+                'order': parameters.order,
                 'fields': 'items(id,replies(comments(id,snippet(authorChannelUrl,authorDisplayName,authorGoogleplusProfileUrl,authorProfileImageUrl,canRate,likeCount,publishedAt,textDisplay,updatedAt))),snippet(canReply,topLevelComment(snippet(authorChannelUrl,authorDisplayName,authorGoogleplusProfileUrl,authorProfileImageUrl,canRate,likeCount,publishedAt,textDisplay,updatedAt)),totalReplyCount)),nextPageToken'
             }).then(function(response) {
                 data.resolve(response.result);
-            }, function(reason){
+            }, function(reason) {
                 data.reject(reason.result);
             });
         })
         return data.promise;
     }
 
-    service.getSubscriptions = function(parameters) {        
+    service.getSubscriptions = function(parameters) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.subscriptions.list({
                 'part': parameters.part,
                 'channelId': parameters.channelId,
                 'maxResults': parameters.maxResults,
-                'order' : parameters.order,
+                'order': parameters.order,
                 'fields': parameters.fields
             }).then(function(response) {
                 data.resolve(response.result);
-            }, function(reason){
+            }, function(reason) {
                 data.reject(reason.result);
             });
         })
