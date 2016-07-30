@@ -33,6 +33,14 @@
     <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/nprogress.css">
+    <!-- Set Country -->
+     <script type="text/javascript">
+        var country = null;
+        var setCountry = function(data) {
+            country = data.country_code;
+        }
+    </script>
+    <script type="text/javascript" src="http://freegeoip.net/json/?callback=setCountry"></script>
     <!-- Libraries -->
     <script type="text/javascript" src="js/library/angular.min.js"></script>
     <script type="text/javascript" src="js/library/angular-ui-router.min.js"></script>

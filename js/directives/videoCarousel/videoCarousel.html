@@ -4,9 +4,9 @@
 
 <div style="overflow-x: hidden">
     <div ng-class="loader?(isNextClicked?'slide-left':'slide-right'):''" class="zero-left row zero-margin pos-rel">
-        <div class="col s6 m4 l2" ng-repeat="video in videos">
-            <div class="card-click hoverable card waves-effect waves-block waves-light">
-                <div class="card-image" style="padding-top: 56.25%">
+        <div ng-swipe-right="prevPageToken && nextOrPrev(false)" ng-swipe-left="nextPageToken && nextOrPrev(true)" class="col s6 m4 l2" ng-repeat="video in videos">
+            <div class="card-click hoverable card ">
+                <div class="card-image waves-effect waves-block waves-light" style="padding-top: 56.25%">
                     <a style="position: absolute;  top: 0; bottom: 0; left: 0; right: 0;" ui-sref="home.videoPage({id: video.id})"><img ng-src="{{video.snippet.thumbnails.medium.url}}">
                         <div class="video-info-bar-carousel">
                             <div class="video-duration-carousel">

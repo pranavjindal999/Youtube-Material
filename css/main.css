@@ -453,12 +453,13 @@ main {
 
 .channel-main-div-title {
     font-weight: 300;
-    position: relative;
-    top: -10px;
-    left: 40px;
+    position: absolute;
+    top: -7px;
+    left: 85px;
     display: inline-block;
     color: white;
-    font-size: 24px;
+    font-size: 22px;
+    white-space: pre-line;
 }
 
 @media only screen and (min-width: 993px) {

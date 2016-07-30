@@ -1,5 +1,6 @@
 youtubeApp.factory('searchService', function($q, $http) {
     var service = {};
+
     service.searchVideos = function(parameters) {
         var data = $q.defer();
         youtubeApi.then(function() {
@@ -8,6 +9,7 @@ youtubeApp.factory('searchService', function($q, $http) {
                 'order': parameters.order,
                 'part': 'snippet',
                 'type': 'video',
+                'regionCode' : country,
                 'maxResults': (parameters.maxResults) ? parameters.maxResults : 12,
                 'relatedToVideoId': parameters.relatedToVideoId,
                 'q': parameters.query,
@@ -40,7 +42,7 @@ youtubeApp.factory('searchService', function($q, $http) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.videos.list({
-                'regionCode': 'IN',
+                'regionCode': country,
                 'chart': parameters.chart,
                 'maxResults': parameters.maxResults,
                 'pageToken': parameters.pageToken,
@@ -115,7 +117,7 @@ youtubeApp.factory('searchService', function($q, $http) {
         youtubeApi.then(function() {
             gapi.client.youtube.videoCategories.list({
                 'part': 'snippet',
-                'regionCode': 'IN'
+                'regionCode': country
             }).then(function(response) {
                 data.resolve(response.result.items);
             });
