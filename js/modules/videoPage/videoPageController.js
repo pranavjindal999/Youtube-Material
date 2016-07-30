@@ -12,8 +12,8 @@
 
                 $rootScope.$$childHead.query = "";
                 $scope.viewCount = parseInt($scope.video.statistics.viewCount).toLocaleString();
-                var likes = parseInt($scope.video.statistics.likeCount);
-                var dislikes = parseInt($scope.video.statistics.dislikeCount);
+                var likes = isNaN(parseInt($scope.video.statistics.likeCount))?0:parseInt($scope.video.statistics.likeCount);
+                var dislikes = isNaN(parseInt($scope.video.statistics.dislikeCount))?0:parseInt($scope.video.statistics.dislikeCount);
                 $scope.likeCount = likes.toLocaleString();
                 $scope.dislikeCount = dislikes.toLocaleString();
                 $scope.dislikeWidth = {
@@ -51,8 +51,6 @@
             }
 
             $scope.sortComments = function(order) {
-                if ($scope.order == order)
-                    return;
                 $scope.order = order;
                 var parameters = {
                     'videoId': $scope.videoId,

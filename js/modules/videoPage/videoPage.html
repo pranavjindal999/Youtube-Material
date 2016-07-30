@@ -23,8 +23,9 @@
                                 </a>
                                 <div class="right" style="">
                                     <strong style="top:-17px; position:relative;">{{::viewCount}} Views</strong>
-                                    <div ng-style="dislikeWidth" style="z-index:9;height: 3px; background-color: red; position: relative; top: -24px;"></div>
-                                    <div style="height: 3px; background-color: green; position: relative; top: -27px"></div>
+                                    <div ng-if="likeCount+dislikeCount==0" style="z-index:9;height: 3px; background-color: grey; position: relative; top: -24px;"></div>
+                                    <div ng-if="likeCount+dislikeCount!=0" ng-style="dislikeWidth" style="z-index:9;height: 3px; background-color: red; position: relative; top: -24px;"></div>
+                                    <div ng-if="likeCount+dislikeCount!=0" style="height: 3px; background-color: green; position: relative; top: -27px"></div>
                                     <div style="display:inline-block; position:relative; top:-32px">
                                         <i class="material-icons" style="margin-right: 2px;">thumb_down</i>{{::dislikeCount}}
                                     </div>
@@ -45,24 +46,23 @@
                 </ul>
             </div>
         </div>
-        <div ng-if="commentsEnabled" scroll-fire="sortComments()" class="col s12" style="margin-top: 10px; margin-bottom: 5px; text-align: center;">
-            <input class="with-gap" name="comments" ng-click="sortComments('relevance')" type="radio" id="top" value="relevance" checked="true"/>
-            <label for="top">Top Comments</label>
-            <input class="with-gap" name="comments" ng-click="sortComments('time')" type="radio" value="time" id="newest"/>
-            <label  for="newest">Newest First</label>
+        <div ng-if="commentsEnabled" scroll-fire="sortComments('relevance')" class="col s12" style="margin-top: 10px; margin-bottom: 5px; text-align: center;">
+            <input class="with-gap" name="comments" ng-click="order!='relevance'?sortComments('relevance'):return" type="radio" id="relevance" checked="true" />
+            <label for="relevance">Top Comments</label>
+            <input class="with-gap" name="comments" ng-click="order!='time'?sortComments('time'):return" type="radio" id="time" />
+            <label for="time">Newest First</label>
         </div>
-
         <div ng-if="commentsEnabled" class="col s12" style="margin-bottom: 10px">
             <ul class="card collection" style="margin-bottom: 0px">
                 <comment comment="comment" ng-repeat="comment in comments.items track by comment.id"></comment>
-                <div ng-if="!commentsLoader && comments.nextPageToken" class="expand-description-button"  ng-click="loadMoreComments(comments.nextPageToken)">Load More Comments</div>
+                <div ng-if="!commentsLoader && comments.nextPageToken" class="expand-description-button" ng-click="loadMoreComments(comments.nextPageToken)">Load More Comments</div>
             </ul>
             <div ng-if="commentsLoader" class="progress" style="margin-top: 0px;">
                 <div class="indeterminate"></div>
             </div>
         </div>
         <div ng-if="!commentsEnabled" class="col s12 card" style="line-height: 3; text-align: center;">
-        Comments have been disabled on this video.
+            Comments have been disabled on this video.
         </div>
     </div>
     <div class="col l4 m6 s12">

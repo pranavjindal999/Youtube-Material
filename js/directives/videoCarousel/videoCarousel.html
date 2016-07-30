@@ -1,21 +1,23 @@
-<div scroll-fire="scrollFireLoad()" class="section section-carousel">
+<div scroll-fire="scrollFireLoad()" class="section section-carousel pos-rel">
     <h5>{{::category.snippet.title}}</h5>
-    <div class="row zero-margin pos-rel">
-        <div class="prev-carousel pointer"><i class="material-icons">keyboard_arrow_left</i></div>
+    <div ng-if="prevPageToken" ng-click="nextOrPrev(false)" class="hoverable prev-carousel pointer"><i class="material-icons">keyboard_arrow_left</i></div>
+
+<div style="overflow-x: hidden">
+    <div ng-class="loader?(isNextClicked?'slide-left':'slide-right'):''" class="zero-left row zero-margin pos-rel">
         <div class="col s6 m4 l2" ng-repeat="video in videos">
-            <div class="card waves-effect waves-block waves-light">
-                <div class="card-image ">
-                <a ui-sref="home.videoPage({id: video.id})"><img ng-src="{{video.snippet.thumbnails.medium.url}}">                    
-                    <div class="video-info-bar-carousel">
-                        <div class="video-duration-carousel">
-                            <span>
+            <div class="card-click hoverable card waves-effect waves-block waves-light">
+                <div class="card-image" style="padding-top: 56.25%">
+                    <a style="position: absolute;  top: 0; bottom: 0; left: 0; right: 0;" ui-sref="home.videoPage({id: video.id})"><img ng-src="{{video.snippet.thumbnails.medium.url}}">
+                        <div class="video-info-bar-carousel">
+                            <div class="video-duration-carousel">
+                                <span>
                         {{::video.snippet.publishedAt}}
                             </span>
-                            <span style="float:right">
+                                <span style="float:right">
                          {{::video.contentDetails.duration}}
                             </span>
+                            </div>
                         </div>
-                    </div>
                     </a>
                 </div>
                 <a ui-sref="home.videoPage({id: video.id})" style="display:block;padding:5px 6px 2px 6px" class="card-content">
@@ -29,44 +31,21 @@
                 </a>
             </div>
         </div>
-        <div class="next-carousel pointer"><i class="material-icons">keyboard_arrow_right</i></div>
     </div>
+
+     <div ng-if="loader" style="position: absolute;bottom: 30%;left: 46%;" class="preloader-wrapper small active">
+    <div class="spinner-layer spinner-red-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+    <div ng-if="nextPageToken" ng-click="nextOrPrev(true)" class="hoverable next-carousel pointer"><i class="material-icons">keyboard_arrow_right</i></div>
 </div>
 <div class="divider"></div>
-
-
-<style type="text/css">
-    .next-carousel{
-    height: 80px;
-    padding-top: 30px;
-    border-radius: 2px;
-    position: absolute;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    z-index: 9;
-    right: -15px;
-    top: 35%;
-    width:20px;
-    background-color: white;
-    transition: width .2s ease
-    }
-    .next-carousel:hover{
-        width: 30px;
-    }
-
-    .prev-carousel{
-    border-radius: 2px;
-    height: 80px;
-    background-color: white;
-    padding-top: 30px;
-    position: absolute;
-    z-index: 9;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    left: -15px;
-    top: 35%;
-    width: 20px;
-    transition: width .2s ease
-    }
-    .prev-carousel:hover{
-        width: 30px;
-    }
-</style>

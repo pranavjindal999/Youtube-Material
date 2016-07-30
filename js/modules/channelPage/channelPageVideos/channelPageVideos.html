@@ -1,6 +1,6 @@
 <div class="row" ng-init="init()">
 <h5 style="position: relative; left: 20px;">Uploaded Videos</h5>
-    <div class="col s12 m6 l4" ng-repeat="video in videos track by video.id.videoId">
+    <div class="col s12 m6 l4" ng-repeat="video in videos track by $index">
         <video-item video-detail="videoDetails[$index]" video="video"></video-item>
     </div>
     <div ng-if="loaderVideos" class="col s12 center">
