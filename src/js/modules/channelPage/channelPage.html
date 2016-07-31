@@ -1,0 +1,39 @@
+<img ng-src="{{isMobile?channel.brandingSettings.image.bannerMobileImageUrl:channel.brandingSettings.image.bannerTabletImageUrl}}" style="width: 100%;min-height:75px" />
+<div id="channel-banner" class="channel-main-div">
+    <img class="circle channel-main-div-img" ng-src="{{::channel.snippet.thumbnails.medium.url}}">
+    <h4 class="channel-main-div-title">{{::channel.snippet.title}}</h4>
+</div>
+<div ng-class="channelTab" ng-init="init()" class="channel-tab-main-div">
+    <div class="hide-on-med-and-down" ng-show="channelTabContent">
+        <img class="circle channel-tab-small-img" ng-src="{{::channel.snippet.thumbnails.medium.url}}">
+    </div>
+    <div class="channel-tab-ul">
+        <ul class="tabs pointer">
+            <li ng-click="changeState(0)" ng-style="border.home" class="waves-effect waves-block waves-light tab channel-tab-bg">
+                <a class="white-text" ng-class="homeTab">
+                    <i class="material-icons channel-tab-icons">home</i> <span class="hide-on-small-only">Home</span>
+                </a>
+            </li>
+            <li ng-click="changeState(1)" ng-style="border.videos" class="waves-effect waves-block waves-light tab channel-tab-bg">
+                <a class="white-text" ng-class="videosTab">
+                    <i class="material-icons channel-tab-icons">video_library</i> <span class="hide-on-small-only">Videos</span>
+                </a>
+            </li>
+            <li ng-click="changeState(2)" ng-style="border.channels" class="waves-effect waves-block waves-light tab channel-tab-bg">
+                <a class="white-text" ng-class="channelsTab">
+                    <i class="material-icons channel-tab-icons">tv</i> <span class="hide-on-small-only">Channels</span>
+                </a>
+            </li>
+            <li ng-click="changeState(3)" ng-style="border.about" class="waves-effect waves-block waves-light tab channel-tab-bg">
+                <a class="white-text" ng-class="aboutTab">
+                    <i class="material-icons channel-tab-icons">info_outline</i> <span class="hide-on-small-only">About</span>
+                </a>
+            </li>
+           <!--  <li class="tab channel-tab-bg">
+                <label for="searchChannel"><i style="top: 6px;" class="material-icons channel-tab-icons white-text">search</i></label>
+                <input id="searchChannel" style="max-width:78%;box-shadow:none;border-bottom:none;bottom:2px;position:relative" type="text" class="white-text" placeholder="Search">
+            </li> -->
+        </ul>
+    </div>
+</div>
+<div class="channel-tab-content" ng-class="channelTabContent" ui-view></div>

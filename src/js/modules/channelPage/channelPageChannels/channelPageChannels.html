@@ -1,0 +1,49 @@
+<div ng-init="init()">
+    <div class="row">
+        <div class="col s12 row">
+        <br>
+            <span style="font-size:24px;position: relative; left: 10px;max-width: calc(100% - 12px);">{{::channel.brandingSettings.channel.featuredChannelsTitle}}</span>
+            <br>
+            <a ui-sref="home.channelPage.home({id: featuredChannel.id})" class="col s6 m3 l2" ng-repeat="featuredChannel in featuredChannels">
+                <div class="card">
+                    <div class="card-image  waves-effect waves-block waves-light">
+                        <img ng-src="{{::featuredChannel.snippet.thumbnails.medium.url}}">
+                    </div>
+                    <div class="card-content">
+                        <span class="truncate grey-text text-darken-4">{{::featuredChannel.snippet.title}}</span>
+                    </div>
+                </div>
+            </a>
+            <div ng-if="loaderFeatured" class="col s12 center">
+                <spinner></spinner>
+                <br>
+            </div>
+            <div ng-hide="featuredChannels || loaderFeatured" class="center" style="margin: 30px 0px 10px 0px;">
+                <i class="material-icons channel-tab-icons">error</i>
+                <span>No Featured Channels Available</span>
+            </div>
+        </div>
+        <div class="col s12 row" ng-if="subscriptionsAllowed">
+            <span style="font-size:24px;position: relative; left: 12px;max-width: calc(100% - 12px);">Subscriptions</span>
+            <br>
+            <a ui-sref="home.channelPage.home({id: subscribedChannel.snippet.resourceId.channelId})" class="col s6 m3 l2" ng-repeat="subscribedChannel in subscribedChannels">
+                <div class="card">
+                    <div class="card-image  waves-effect waves-block waves-light">
+                        <img ng-src="{{::subscribedChannel.snippet.thumbnails.medium.url}}">
+                    </div>
+                    <div class="card-content">
+                        <span class="truncate grey-text text-darken-4">{{::subscribedChannel.snippet.title}}</span>
+                    </div>
+                </div>
+            </a>
+            <div ng-if="loaderSubscribed" class="col s12 center">
+                <spinner></spinner>
+                <br>
+            </div>
+            <div ng-hide="subscribedChannels || loaderSubscribed" class="center" style="margin: 30px 0px 10px 0px;">
+                <i class="material-icons channel-tab-icons">error</i>
+                <span>No Channels Subscribed</span>
+            </div>
+        </div>
+    </div>
+</div>

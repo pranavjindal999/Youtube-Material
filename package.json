@@ -1,0 +1,33 @@
+{
+  "name": "youtube-material",
+  "version": "1.0.0",
+  "description": "Attempt at making material SPA of youtube using AngularJS.",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pranavjindal999/Youtube-Material.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-purifycss": "^0.1.1"
+  },
+  "keywords": [
+    "Youtube",
+    "material",
+    "design",
+    "angular",
+    "materialize",
+    "css"
+  ],
+  "author": "Pranav Jindal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pranavjindal999/Youtube-Material/issues"
+  },
+  "homepage": "https://github.com/pranavjindal999/Youtube-Material#readme"
+}

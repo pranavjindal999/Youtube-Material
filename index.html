@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <div class="center" ng-if="false">
     <br>
     <br>
@@ -19,6 +20,7 @@
             </div>
         </div>
     </div>
+    <br>
     <h5>Loading</h5>
 </div>
 
@@ -27,12 +29,9 @@
     <meta name="theme-color" content="#c62828">
     <title>Youtube</title>
     <base href="/">
-    <!-- CSS  -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-    <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/nprogress.css">
+    
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <!-- Set Country -->
      <script type="text/javascript">
         var country = null;
@@ -41,40 +40,50 @@
         }
     </script>
     <script type="text/javascript" src="http://freegeoip.net/json/?callback=setCountry"></script>
-    <!-- Libraries -->
-    <script type="text/javascript" src="js/library/angular.min.js"></script>
-    <script type="text/javascript" src="js/library/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="js/library/angular-scroll.min.js"></script>
-    <script type="text/javascript" src="js/library/angular-touch.min.js"></script>
-    <script type="text/javascript" src="js/library/moment.min.js"></script>
-    <script type="text/javascript" src="js/library/moment-format.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/library/materialize.min.js"></script>
-    <script type="text/javascript" src="js/library/nprogress.js"></script>
-    <script type="text/javascript" src="js/library/angular-materialize.min.js"></script>
-    <!-- Configurations -->
-    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/route.config.js"></script>
-    <!-- Directives -->
-    <script type="text/javascript" src="js/directives/imgLoader/imgLoader.js"></script>
-    <script type="text/javascript" src="js/directives/spinner/spinner.js"></script>
-    <script type="text/javascript" src="js/directives/videoItem/videoItem.js"></script>
-    <script type="text/javascript" src="js/directives/youtubeVideo/youtubeVideo.js"></script>
-    <script type="text/javascript" src="js/directives/comment/comment.js"></script>
-    <script type="text/javascript" src="js/directives/videoCarousel/videoCarousel.js"></script>
-    <!-- Services -->
-    <script type="text/javascript" src="js/services/searchService.js"></script>
-    <!-- Controllers -->
-    <script type="text/javascript" src="js/modules/searchVideos/searchVideosController.js"></script>
-    <script type="text/javascript" src="js/modules/header/headerController.js"></script>
-    <script type="text/javascript" src="js/modules/videoPage/videoPageController.js"></script>
-    <script type="text/javascript" src="js/modules/channelPage/channelPageController.js"></script>
-    <script type="text/javascript" src="js/modules/channelPage/channelPageHome/channelPageHomeController.js"></script>
-    <script type="text/javascript" src="js/modules/channelPage/channelPageAbout/channelPageAboutController.js"></script>
-    <script type="text/javascript" src="js/modules/channelPage/channelPageVideos/channelPageVideosController.js"></script>
-    <script type="text/javascript" src="js/modules/channelPage/channelPageChannels/channelPageChannelsController.js"></script>
-    <script type="text/javascript" src="js/modules/homePage/homePage.js"></script>
-    <script type="text/javascript" src="js/modules/sidenav/sidenav.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="dist/css/style.purified.min.css">
+    <script type="text/javascript" src="dist/js/youtube.min.js"></script>
+    
+
+
+<!-- <link rel="stylesheet" type="text/css" href="src/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="src/css/icons.css">
+    <link rel="stylesheet" type="text/css" href="src/css/main.css">
+    <link rel="stylesheet" type="text/css" href="src/css/nprogress.css">
+
+    <script type="text/javascript" src="src/js/library/angular.min.js"></script>
+    <script type="text/javascript" src="src/js/library/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="src/js/library/angular-scroll.min.js"></script>
+    <script type="text/javascript" src="src/js/library/angular-touch.min.js"></script>
+    <script type="text/javascript" src="src/js/library/moment.min.js"></script>
+    <script type="text/javascript" src="src/js/library/moment-format.min.js"></script>
+    <script type="text/javascript" src="src/js/library/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="src/js/library/materialize.min.js"></script>
+    <script type="text/javascript" src="src/js/library/nprogress.js"></script>
+    <script type="text/javascript" src="src/js/library/angular-materialize.min.js"></script>
+
+    <script type="text/javascript" src="src/js/app.config.js"></script>
+
+    <script type="text/javascript" src="src/js/directives/spinner/spinner.js"></script>
+    <script type="text/javascript" src="src/js/directives/videoItem/videoItem.js"></script>
+    <script type="text/javascript" src="src/js/directives/youtubeVideo/youtubeVideo.js"></script>
+    <script type="text/javascript" src="src/js/directives/comment/comment.js"></script>
+    <script type="text/javascript" src="src/js/directives/videoCarousel/videoCarousel.js"></script>
+
+    <script type="text/javascript" src="src/js/services/searchService.js"></script>
+
+    <script type="text/javascript" src="src/js/modules/searchVideos/searchVideosController.js"></script>
+    <script type="text/javascript" src="src/js/modules/header/headerController.js"></script>
+    <script type="text/javascript" src="src/js/modules/videoPage/videoPageController.js"></script>
+    <script type="text/javascript" src="src/js/modules/channelPage/channelPageController.js"></script>
+    <script type="text/javascript" src="src/js/modules/channelPage/channelPageHome/channelPageHomeController.js"></script>
+    <script type="text/javascript" src="src/js/modules/channelPage/channelPageAbout/channelPageAboutController.js"></script>
+    <script type="text/javascript" src="src/js/modules/channelPage/channelPageVideos/channelPageVideosController.js"></script>
+    <script type="text/javascript" src="src/js/modules/channelPage/channelPageChannels/channelPageChannelsController.js"></script>
+    <script type="text/javascript" src="src/js/modules/homePage/homePage.js"></script>
+    <script type="text/javascript" src="src/js/modules/sidenav/sidenav.js"></script>
+ -->
+
     <script src="https://apis.google.com/js/client.js?onload=init"></script>
 </head>
 

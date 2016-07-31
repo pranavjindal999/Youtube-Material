@@ -1,0 +1,58 @@
+<div ng-swipe-left="toggleSidenav()" class="mobile-sidenav-overlay" ng-show="isMobile && isSideNavOn" ng-click="toggleSidenav()"></div>
+<div ng-init="init()" ng-class="sidenavLeft" style="float:left; background-color:white; width:220px; height:100%; position: fixed; z-index: 10; overflow:auto; height:calc(100% - 56px); top: 56px; box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)">
+    <ul style="margin-top: 10px">
+        <li ui-sref="home" ng-click="isMobile && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons red-text">home</i>Home
+        </li>
+        <li class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons green-text">trending_up</i>Trending
+        </li>
+        <li class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons blue-text">subscriptions</i>My Subscriptions
+        </li>
+        <li class="divider">
+        </li>
+        <li class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons orange-text">music_video</i>Music
+        </li>
+        <li class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons purple-text">directions_run</i>Sports
+        </li>
+        <li class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons cyan-text">videogame_asset</i>Gaming
+        </li>
+        <li class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons teal-text">movie</i>Movies
+        </li>
+        <li class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons braon-text">class</i>News
+        </li>
+        <li class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons pink-text">tv</i>TV Shows
+        </li>
+        <li class="divider">
+        </li>
+    </ul>
+</div>
+<style type="text/css">
+.li-side {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 30px;
+}
+
+.li-side:hover {
+    background-color: #f5f5f5;
+}
+
+.sidenav-off {
+    left: -220px;
+    transition: left .2s ease;
+}
+
+.sidenav-on {
+    left: 0px;
+    transition: left .2s ease;
+}
+</style>
