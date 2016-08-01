@@ -1388,6 +1388,10 @@ i.right {
   margin-left: 15px;
 }
 
+i.tiny {
+  font-size: 1rem;
+}
+
 i.small {
   font-size: 2rem;
 }
@@ -6076,7 +6080,7 @@ main {
   padding: 0!important;
   line-height: 16px!important;
   font-size: 14px!important;
-  font-weight: 300!important;
+  font-weight: 400!important;
   color: #000;
   display: block;
   display: -webkit-box;
@@ -6125,7 +6129,7 @@ main {
   padding: 3px 4px;
   font-size: .9em;
   display: block;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .video-channel-carousel:hover {
@@ -6147,9 +6151,9 @@ main {
   height: 80px;
   background-color: #fff;
   padding-top: 30px;
-  position: absolute;
   z-index: 1;
   top: 40%;
+  position: absolute;
 }
 
 .card-click:active {
@@ -6242,4 +6246,41 @@ main {
   .search-page-margin {
     margin: 0 85px;
   }
+}
+
+@keyframes tiny-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes tiny-spinner {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.tiny-spinner {
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.tiny-spinner:before {
+  content: 'Loading…';
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+.tiny-spinner:not(:required):before {
+  content: '';
+  border-radius: 50%;
+  border: 2px solid #C12828;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  animation: tiny-spinner .6s linear infinite;
+  -webkit-animation: tiny-spinner .6s linear infinite;
 }

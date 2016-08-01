@@ -4,8 +4,11 @@
 
             $scope.fetchSearchSuggestion = function() {
                 if ($scope.query)
+                {
+                    $scope.tinySpinner = true;
                     searchService.getSearchSuggestion($scope.query)
                     .then(function(data) {
+                        $scope.tinySpinner = false;
                         $scope.selectedIndex = -1;
                         $scope.items = data;
                         if (data[1].length == 0 || !$scope.search_li)
@@ -13,6 +16,7 @@
                         else
                             $scope.searchSuggestion = true;
                     });
+                }
             }
 
             $scope.suggestionClick = function(query) {

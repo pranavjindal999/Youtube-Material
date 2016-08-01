@@ -457,7 +457,7 @@ main {
     padding: 0px !important;
     line-height: 16px !important;
     font-size: 14px !important;
-    font-weight: 300 !important;
+    font-weight: 400 !important;
     color: black;
     display: block;
     /* Fallback for non-webkit */
@@ -511,7 +511,7 @@ main {
     padding: 3px 4px;
     font-size: .9em;
     display: block;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .video-channel-carousel:hover {
@@ -623,4 +623,37 @@ main {
     .search-page-margin {
         margin: 0px 85px
     }
+}
+
+@keyframes tiny-spinner {
+    to {transform: rotate(360deg);}
+}
+ 
+@-webkit-keyframes tiny-spinner {
+    to {-webkit-transform: rotate(360deg);}
+}
+ 
+.tiny-spinner {
+    min-width: 24px;
+    min-height: 24px;
+}
+ 
+.tiny-spinner:before {
+    content: 'Loading…';
+    position: absolute;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+ 
+.tiny-spinner:not(:required):before {
+    content: '';
+    border-radius: 50%;
+    border: 2px solid #C12828;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    animation: tiny-spinner .6s linear infinite;
+    -webkit-animation: tiny-spinner .6s linear infinite;
 }

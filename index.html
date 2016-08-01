@@ -1,29 +1,6 @@
 <!DOCTYPE html>
 <html>
 
-<div class="center" ng-if="false">
-    <br>
-    <br>
-    <br>
-    <img style="height:200px" src="https://www.youtube.com/yt/brand/media/image/YouTube-logo-full_color.png">
-    <br>
-    <div class="preloader-wrapper active">
-        <div class="spinner-layer spinner-red-only">
-            <div class="circle-clipper left">
-                <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-                <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-                <div class="circle"></div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <h5>Loading</h5>
-</div>
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <meta name="theme-color" content="#c62828">
@@ -31,26 +8,50 @@
     <base href="/">
     
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
     <!-- Set Country -->
-     <script type="text/javascript">
-        var country = null;
-        var setCountry = function(data) {
-            country = data.country_code;
-        }
+    <script type="text/javascript">
+    var country = null;
+    var setCountry = function(data) {
+        country = data.country_code;
+    }
     </script>
     <script type="text/javascript" src="http://freegeoip.net/json/?callback=setCountry"></script>
-
-    <link rel="stylesheet" type="text/css" href="dist/css/style.purified.min.css">
-    <script type="text/javascript" src="dist/js/youtube.min.js"></script>
     
 
+    <link rel="stylesheet" type="text/css" href="dist/css/style.purified.min.css">
 
-<!-- <link rel="stylesheet" type="text/css" href="src/css/materialize.min.css">
+   <!--  <link rel="stylesheet" type="text/css" href="src/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="src/css/icons.css">
     <link rel="stylesheet" type="text/css" href="src/css/main.css">
-    <link rel="stylesheet" type="text/css" href="src/css/nprogress.css">
+    <link rel="stylesheet" type="text/css" href="src/css/nprogress.css"> -->
 
+
+    <div class="center" ng-if="false">
+        <br>
+        <br>
+        <br>
+        <img style="height:200px" src="src/image/logo_color.png">
+        <br>
+        <div class="preloader-wrapper active">
+            <div class="spinner-layer spinner-red-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h5>Loading</h5>
+    </div>
+
+    <script type="text/javascript" src="dist/js/youtube.min.js"></script>
+
+<!-- 
     <script type="text/javascript" src="src/js/library/angular.min.js"></script>
     <script type="text/javascript" src="src/js/library/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="src/js/library/angular-scroll.min.js"></script>
@@ -61,17 +62,13 @@
     <script type="text/javascript" src="src/js/library/materialize.min.js"></script>
     <script type="text/javascript" src="src/js/library/nprogress.js"></script>
     <script type="text/javascript" src="src/js/library/angular-materialize.min.js"></script>
-
     <script type="text/javascript" src="src/js/app.config.js"></script>
-
     <script type="text/javascript" src="src/js/directives/spinner/spinner.js"></script>
     <script type="text/javascript" src="src/js/directives/videoItem/videoItem.js"></script>
     <script type="text/javascript" src="src/js/directives/youtubeVideo/youtubeVideo.js"></script>
     <script type="text/javascript" src="src/js/directives/comment/comment.js"></script>
     <script type="text/javascript" src="src/js/directives/videoCarousel/videoCarousel.js"></script>
-
     <script type="text/javascript" src="src/js/services/searchService.js"></script>
-
     <script type="text/javascript" src="src/js/modules/searchVideos/searchVideosController.js"></script>
     <script type="text/javascript" src="src/js/modules/header/headerController.js"></script>
     <script type="text/javascript" src="src/js/modules/videoPage/videoPageController.js"></script>
@@ -83,7 +80,7 @@
     <script type="text/javascript" src="src/js/modules/homePage/homePage.js"></script>
     <script type="text/javascript" src="src/js/modules/sidenav/sidenav.js"></script>
  -->
-
+    
     <script src="https://apis.google.com/js/client.js?onload=init"></script>
 </head>
 
