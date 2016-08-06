@@ -3,9 +3,9 @@
         return {
             restrict: 'E',
             scope: {
-                video: '=video',
-                videoDetail: '=videoDetail',
-                channel: '=channel'
+                video: '=',
+                videoDetail: '=',
+                hideChannel: '='
             },
             templateUrl: 'src/js/directives/videoItem/videoItem.html',
             link: function(scope, element, attr) {

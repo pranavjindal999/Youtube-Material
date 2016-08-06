@@ -1,6 +1,6 @@
 (function(angular) {
-    youtubeApp.controller('youtubeController', ['$scope', '$state', 'searchService', '$stateParams',
-        function($scope, $state, searchService, $stateParams) {
+    youtubeApp.controller('youtubeController', ['$rootScope','$scope', '$state', 'searchService', '$stateParams',
+        function($rootScope, $scope, $state, searchService, $stateParams) {
             $scope.submit = function() {
                 $scope.preloader = true;
                 $scope.videos = false;
@@ -34,7 +34,14 @@
             $scope.nextOrPrevious = function(pageToken) {
                 $state.go('home.searchVideos', { query: $stateParams.query, pageToken: pageToken });
             }
-            $scope.submit();
+
+            $scope.init = function(){
+                $scope.submit();
+                $scope.$on('$destroy', function () {
+                    $rootScope.$$childHead.query = "";
+                })
+            }
+            
         }
     ]);
 })(window.angular);

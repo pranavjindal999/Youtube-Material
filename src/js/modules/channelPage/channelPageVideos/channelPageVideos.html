@@ -2,8 +2,8 @@
 <br>
 <span style="font-size:24px;position: relative; left: 8px;max-width: calc(100% - 12px);">Uploaded Videos</span>
 <br>
-    <div class="col s6 m4 l3" ng-repeat="video in videos track by $index">
-        <video-item video-detail="videoDetails[$index]" video="video" no-channel></video-item>
+    <div class="col s6 m3 l3" ng-repeat="video in videos track by $index">
+        <video-item video-detail="videoDetails[$index]" video="video" hide-channel="true"></video-item>
     </div>
     <div ng-if="loaderVideos" class="col s12 center">
         <spinner></spinner>

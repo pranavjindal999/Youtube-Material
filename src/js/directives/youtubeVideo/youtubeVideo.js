@@ -32,7 +32,8 @@
                         playerVars: {
                             autoplay: (scope.autoplay=="true")?1:0,
                             modestbranding: 1,
-                            showinfo:0
+                            showinfo:0,
+                            rel:0
                         },
                         videoId: scope.videoId
                     });

@@ -89,11 +89,11 @@
                     });
 
                 var windowResize = function() {
-                    if (window.innerWidth < 600) {
+                    if (window.innerWidth < 601) {
                         $rootScope.isMobile = true;
                         $rootScope.isTablet = false;
                         $rootScope.mobilePaddingMargin = "zero-padding zero-margin";
-                    } else if (window.innerWidth < 991) {
+                    } else if (window.innerWidth < 993) {
                         $rootScope.isMobile = false;
                         $rootScope.isTablet = true;
                         $rootScope.mobilePaddingMargin = "";

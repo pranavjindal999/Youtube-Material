@@ -147,9 +147,31 @@ main {
 
 @media only screen and (max-width: 992px) {
     .brand-logo {
-        left: 2% !important;
+        left: 4% !important;
         -webkit-transform: translateX(0%) !important;
         transform: translateX(0%) !important;
+    }
+}
+
+.youtube-logo {
+    transition: left .5s ease;
+    background: url('../image/logo_white.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 100px;
+    margin: 8px 0px 8px 20px;
+}
+
+@media only screen and (min-width: 601px) {
+    .youtube-logo {
+        transition: left .5s ease;
+        background: url('../image/logo_white.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 44px;
+        width: 100px;
+        margin: 10px 0px 10px 15px;
     }
 }
 
@@ -159,6 +181,7 @@ main {
 .search-item-li {
     padding: 8px;
     width: 65%;
+    margin-left: 15px;
     transition: width .5s;
 }
 
@@ -205,6 +228,10 @@ main {
     margin: 0px !important;
     width: 90% !important;
     transition: width .5s !important;
+}
+
+.search-item-input]::-ms-clear {
+    display: none;
 }
 
 .search-item-input:focus {
@@ -303,6 +330,7 @@ main {
     width: 100% !important;
     background-color: #e53935;
     z-index: 2 !important;
+    transition: box-shadow .5s ease;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
@@ -543,7 +571,7 @@ main {
     width: 20px;
     background-color: white;
     transition: width .2s ease;
-    transition: box-shadow .1 ease;
+    transition: box-shadow .1s ease;
 }
 
 .next-carousel:hover {
@@ -566,8 +594,8 @@ main {
     left: 5px;
     top: 40%;
     width: 20px;
-    transition: box-shadow .1 ease;
-    transition: width .s ease
+    transition: box-shadow .1s ease;
+    transition: width .2s ease
 }
 
 .prev-carousel:hover {
@@ -626,18 +654,22 @@ main {
 }
 
 @keyframes tiny-spinner {
-    to {transform: rotate(360deg);}
+    to {
+        transform: rotate(360deg);
+    }
 }
- 
+
 @-webkit-keyframes tiny-spinner {
-    to {-webkit-transform: rotate(360deg);}
+    to {
+        -webkit-transform: rotate(360deg);
+    }
 }
- 
+
 .tiny-spinner {
     min-width: 24px;
     min-height: 24px;
 }
- 
+
 .tiny-spinner:before {
     content: 'Loading…';
     position: absolute;
@@ -647,7 +679,7 @@ main {
     margin-top: -10px;
     margin-left: -10px;
 }
- 
+
 .tiny-spinner:not(:required):before {
     content: '';
     border-radius: 50%;

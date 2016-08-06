@@ -14,7 +14,7 @@
                     if ($rootScope.isMobile) {
                         return 2;
                     } else if ($rootScope.isTablet) {
-                        return 3;
+                        return 4;
                     } else {
                         return 6;
                     }

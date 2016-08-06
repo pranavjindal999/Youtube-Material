@@ -1,10 +1,10 @@
-<br>
+<br ng-init="init()">
 <div class="search-page-margin">
     <div class="center" ng-if="preloader">
         <spinner>
     </div>
     <div class="row" ng-if="videos">
-        <div class="col s6 m4 l3" ng-repeat="video in videos">
+        <div class="col s6 m3 l3" ng-repeat="video in videos">
             <video-item video="video" video-detail="videoDetails[$index]" channel="channels[$index]">
             </video-item>
         </div>

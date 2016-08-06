@@ -4,12 +4,12 @@
         <br>
             <span style="font-size:24px;position: relative; left: 10px;max-width: calc(100% - 12px);">{{::channel.brandingSettings.channel.featuredChannelsTitle}}</span>
             <br>
-            <a ui-sref="home.channelPage.home({id: featuredChannel.id})" class="col s6 m3 l2" ng-repeat="featuredChannel in featuredChannels">
+            <a ui-sref="home.channelPage.home({id: featuredChannel.id})" class="col s4 m3 l2" ng-repeat="featuredChannel in featuredChannels">
                 <div class="card">
                     <div class="card-image  waves-effect waves-block waves-light">
                         <img ng-src="{{::featuredChannel.snippet.thumbnails.medium.url}}">
                     </div>
-                    <div class="card-content">
+                    <div class="card-content" style="padding-left: 10px;padding-right: 10px">
                         <span class="truncate grey-text text-darken-4">{{::featuredChannel.snippet.title}}</span>
                     </div>
                 </div>
@@ -26,12 +26,12 @@
         <div class="col s12 row" ng-if="subscriptionsAllowed">
             <span style="font-size:24px;position: relative; left: 12px;max-width: calc(100% - 12px);">Subscriptions</span>
             <br>
-            <a ui-sref="home.channelPage.home({id: subscribedChannel.snippet.resourceId.channelId})" class="col s6 m3 l2" ng-repeat="subscribedChannel in subscribedChannels">
+            <a ui-sref="home.channelPage.home({id: subscribedChannel.snippet.resourceId.channelId})" class="col s4 m3 l2" ng-repeat="subscribedChannel in subscribedChannels">
                 <div class="card">
                     <div class="card-image  waves-effect waves-block waves-light">
                         <img ng-src="{{::subscribedChannel.snippet.thumbnails.medium.url}}">
                     </div>
-                    <div class="card-content">
+                    <div class="card-content" style="padding-left: 10px;padding-right: 10px">
                         <span class="truncate grey-text text-darken-4">{{::subscribedChannel.snippet.title}}</span>
                     </div>
                 </div>

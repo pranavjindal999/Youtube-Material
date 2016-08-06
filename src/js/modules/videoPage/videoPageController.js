@@ -10,7 +10,6 @@
                         .format("Do MMMM YYYY");
                 }
 
-                $rootScope.$$childHead.query = "";
                 $scope.likeCount = isNaN(parseInt($scope.video.statistics.likeCount))?0:parseInt($scope.video.statistics.likeCount);
                 $scope.dislikeCount = isNaN(parseInt($scope.video.statistics.dislikeCount))?0:parseInt($scope.video.statistics.dislikeCount);                
                 $scope.dislikeWidth = {

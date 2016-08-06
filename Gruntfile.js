@@ -7,12 +7,12 @@ module.exports = function(grunt) {
             },
             build: {
                 files: {
-                    'dist/js/_temp/service/service.min.js': 'src/js/services/**/*.js',
-                    'dist/js/_temp/controllers/controller.min.js': 'src/js/modules/**/*.js',
-                    'dist/js/_temp/directives/directive.min.js': 'src/js/directives/**/*.js',
-                    'dist/js/_temp/library/lib.min.js': ['src/js/library/angular.min.js', 'src/js/library/angular-ui-router.min.js', 'src/js/library/angular-scroll.min.js', 'src/js/library/angular-touch.min.js', 'src/js/library/jquery-2.1.1.min.js', 'src/js/library/materialize.min.js', 'src/js/library/angular-materialize.min.js', 'src/js/library/moment.min.js', 'src/js/library/moment-format.min.js', 'src/js/library/nprogress.js'],
+                    'dist/js/_temp/services.min.js': 'src/js/services/**/*.js',
+                    'dist/js/_temp/controllers.min.js': 'src/js/modules/**/*.js',
+                    'dist/js/_temp/directives.min.js': 'src/js/directives/**/*.js',
+                    'dist/js/_temp/libs.min.js': ['src/js/library/angular.js', 'src/js/library/angular-ui-router.js', 'src/js/library/angular-scroll.js', 'src/js/library/angular-touch.js', 'src/js/library/jquery-2.1.1.js', 'src/js/library/materialize.js', 'src/js/library/angular-materialize.js', 'src/js/library/moment.js', 'src/js/library/moment-duration-format.js', 'src/js/library/nprogress.js'],
                     'dist/js/_temp/app.config.min.js': 'src/js/app.config.js',
-                    'dist/js/youtube.min.js': ['dist/js/_temp/library/lib.min.js', 'dist/js/_temp/app.config.min.js', 'dist/js/_temp/directives/directive.min.js', 'dist/js/_temp/service/service.min.js', 'dist/js/_temp/controllers/controller.min.js']
+                    'dist/js/youtube.min.js': ['dist/js/_temp/libs.min.js', 'dist/js/_temp/app.config.min.js', 'dist/js/_temp/directives.min.js', 'dist/js/_temp/services.min.js', 'dist/js/_temp/controllers.min.js']
                 }
             }
         },
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
             },
             build: {
                 files: {
-                    'dist/css/style.min.css': ['src/css/materialize.min.css', 'src/css/icons.css', 'src/css/nprogress.css', 'src/css/main.css']
+                    'dist/css/style.min.css': ['src/css/materialize.css', 'src/css/icons.css', 'src/css/nprogress.css', 'src/css/main.css']
                 }
             }
         },
