@@ -94,6 +94,8 @@
                 $scope.order = 'relevance';
                 $scope.commentsEnabled = true;
                 $scope.commentsLoader = true;
+                $scope.loaderVideos = true;
+                $scope.nextPageToken = false;
                 var parameters = {
                     'videoId' : $scope.videoId,
                     'part' : 'snippet,statistics',
@@ -122,7 +124,7 @@
                     .then(function(videos) {
                         $scope.relatedVideos = videos.items;
                         $scope.nextPageToken = videos.nextPageToken;
-
+                        $scope.loaderVideos = false;
                         var parameters = {
                             'videos': $scope.relatedVideos,
                             'part': 'statistics,contentDetails'

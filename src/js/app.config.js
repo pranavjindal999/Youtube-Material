@@ -17,7 +17,7 @@ var youtubeApp = angular.module('youtube', ['ngTouch', 'ui.router', 'duScroll', 
 youtubeApp.config(['$compileProvider', '$stateProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider', '$locationProvider', function($compileProvider, $stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(true)
     $urlRouterProvider.otherwise("/");
-    $compileProvider.debugInfoEnabled(true);
+    $compileProvider.debugInfoEnabled(false);
     $stateProvider
         .state('home', {
             url: "/",
