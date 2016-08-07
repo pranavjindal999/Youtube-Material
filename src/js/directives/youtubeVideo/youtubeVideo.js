@@ -1,12 +1,13 @@
 (function(angular) {
     youtubeApp.factory("iframeApiService", ['$q', '$window', function($q, $window) {
         var service = {};
-        var deferred = $q.defer();
+        var apiReadyDef = $q.defer();
         $window.onYouTubeIframeAPIReady = function() {
-            deferred.resolve();
+            apiReadyDef.resolve();
         }
-        service.onReady = function(successCallback) {
-            deferred.promise.then(successCallback);
+
+        service.onApiReady = function(successCallback) {
+            apiReadyDef.promise.then(successCallback);
         }
         return service;
     }]);
@@ -27,20 +28,20 @@
 
                 var player;
 
-                iframeApiService.onReady(function() {
+                iframeApiService.onApiReady(function() {
                     player = new YT.Player(element.children()[0], {
                         playerVars: {
-                            autoplay: (scope.autoplay=="true")?1:0,
+                            autoplay: (scope.autoplay == "true") ? 1 : 0,
                             modestbranding: 1,
-                            showinfo:0,
-                            rel:0
+                            showinfo: 0,
+                            rel: 0
                         },
                         videoId: scope.videoId
                     });
                 });
 
                 scope.$watch('videoId', function(newValue, oldValue) {
-                    if (newValue != oldValue){
+                    if (newValue != oldValue) {
                         player.cueVideoById(newValue);
                     }
                 });
