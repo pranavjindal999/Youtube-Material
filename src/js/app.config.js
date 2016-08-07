@@ -17,7 +17,7 @@ var youtubeApp = angular.module('youtube', ['ngTouch', 'ui.router', 'duScroll', 
 youtubeApp.config(['$compileProvider', '$stateProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider', '$locationProvider', function($compileProvider, $stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(true)
     $urlRouterProvider.otherwise("/");
-    $compileProvider.debugInfoEnabled(false);
+    $compileProvider.debugInfoEnabled(true);
     $stateProvider
         .state('home', {
             url: "/",
@@ -66,6 +66,15 @@ youtubeApp.config(['$compileProvider', '$stateProvider', '$urlMatcherFactoryProv
                 }
             }
         })
+        .state('home.trending', {
+            url: "trending/:category?pageToken",
+            views: {
+                'main@': {
+                    templateUrl: 'src/js/modules/trendingPage/trendingPage.html',
+                    controller: 'trendingPageController'
+                }
+            }
+        })
         .state('home.channelPage.home', {
             url: "/home",
             templateUrl: 'src/js/modules/channelPage/channelPageHome/channelPageHome.html',
@@ -86,6 +95,7 @@ youtubeApp.config(['$compileProvider', '$stateProvider', '$urlMatcherFactoryProv
             templateUrl: 'src/js/modules/channelPage/channelPageAbout/channelPageAbout.html',
             controller: 'channelPageAboutController'
         });
+
     $locationProvider.html5Mode(true);
     NProgress.configure({ showSpinner: false });
 }])

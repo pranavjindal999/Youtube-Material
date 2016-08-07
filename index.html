@@ -39,7 +39,7 @@
 <body>
     <div ui-view="header"></div>
     <div ui-view="sidenav"></div>
-    <main ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-class="(isMobile || isTablet)?'':sidenavMargin">
+    <main ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-style="opacityOnStateChange" ng-class="(isMobile || isTablet)?'':sidenavMargin">
         <div ui-view="main"></div>
     </main>
     <div ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-class="(isMobile || isTablet)?'':sidenavMargin" ui-view="footer"></div>

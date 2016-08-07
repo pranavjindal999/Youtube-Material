@@ -4,31 +4,31 @@
         <li ui-sref="home" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons red-text">home</i>Home
         </li>
-        <li class="li-side waves-effect waves-teal pointer">
+        <li ui-sref="home.trending({category: ''})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons green-text">trending_up</i>Trending
         </li>
-        <li class="li-side waves-effect waves-teal pointer">
+        <!-- <li class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons blue-text">subscriptions</i>My Subscriptions
-        </li>
+        </li> -->
         <li class="divider">
         </li>
-        <li class="li-side waves-effect waves-teal pointer">
+        <li ui-sref="home.trending({category: 'music'})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons orange-text">music_video</i>Music
         </li>
-        <li class="li-side waves-effect waves-teal pointer">
-            <i class="material-icons channel-tab-icons purple-text">directions_run</i>Sports
-        </li>
-        <li class="li-side waves-effect waves-teal pointer">
-            <i class="material-icons channel-tab-icons cyan-text">videogame_asset</i>Gaming
-        </li>
-        <li class="li-side waves-effect waves-teal pointer">
+        <li ui-sref="home.trending({category: 'movies'})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons teal-text">movie</i>Movies
         </li>
-        <li class="li-side waves-effect waves-teal pointer">
-            <i class="material-icons channel-tab-icons braon-text">class</i>News
+        <li ui-sref="home.trending({category: 'sports'})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons purple-text">directions_run</i>Sports
         </li>
-        <li class="li-side waves-effect waves-teal pointer">
-            <i class="material-icons channel-tab-icons pink-text">tv</i>TV Shows
+        <li ui-sref="home.trending({category: 'technology'})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons cyan-text">devices_other</i>Technology
+        </li>
+        <li ui-sref="home.trending({category: 'comedy'})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons brown-text">insert_emoticon</i>Comedy
+        </li>
+        <li ui-sref="home.trending({category: 'education'})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
+            <i class="material-icons channel-tab-icons pink-text">school</i>Education
         </li>
         <li class="divider">
         </li>

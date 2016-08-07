@@ -79,6 +79,10 @@
                 $rootScope.$on('$stateChangeStart',
                     function(event, viewConfig) {
                         NProgress.start();
+                        $rootScope.opacityOnStateChange = {
+                            'transition': 'all .2s ease',
+                            'opacity' : '.5'
+                        }
                     });
 
                 $rootScope.$on('$stateChangeSuccess',
@@ -86,6 +90,10 @@
                         NProgress.inc();
                         setTimeout(NProgress.inc, 300);
                         setTimeout(NProgress.done, 600);
+                        $rootScope.opacityOnStateChange = {
+                            'transition': 'all .2s ease',
+                            'opacity' : '1'
+                        }
                     });
 
                 var windowResize = function() {

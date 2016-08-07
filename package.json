@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "grunt": "~0.4.4",
+    "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-cssmin": "latest",
     "grunt-contrib-uglify": "latest",
     "grunt-purifycss": "^0.1.1"

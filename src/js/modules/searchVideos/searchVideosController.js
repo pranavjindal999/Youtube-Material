@@ -5,7 +5,7 @@
                 $scope.preloader = true;
                 $scope.videos = false;
                 $scope.nextPageToken = false;
-                $scope.previousPageToken = false;
+                $scope.prevPageToken = false;
 
                 var parameters = {
                     'pageToken': $stateParams.pageToken,
@@ -16,7 +16,7 @@
                     .then(function(videos) {
                         $scope.videos = videos.items;
                         $scope.nextPageToken = videos.nextPageToken;
-                        $scope.previousPageToken = videos.prevPageToken;
+                        $scope.prevPageToken = videos.prevPageToken;
                         $scope.preloader = false;
 
                         var parameters = {
@@ -31,7 +31,7 @@
                     });
             }
 
-            $scope.nextOrPrevious = function(pageToken) {
+            $scope.nextOrPrev = function(pageToken) {
                 $state.go('home.searchVideos', { query: $stateParams.query, pageToken: pageToken });
             }
 

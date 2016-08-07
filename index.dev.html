@@ -62,14 +62,15 @@
     <script type="text/javascript" src="src/js/modules/channelPage/channelPageAbout/channelPageAboutController.js"></script>
     <script type="text/javascript" src="src/js/modules/channelPage/channelPageVideos/channelPageVideosController.js"></script>
     <script type="text/javascript" src="src/js/modules/channelPage/channelPageChannels/channelPageChannelsController.js"></script>
-    <script type="text/javascript" src="src/js/modules/homePage/homePage.js"></script>
+    <script type="text/javascript" src="src/js/modules/homePage/homePageController.js"></script>
+    <script type="text/javascript" src="src/js/modules/trendingPage/trendingPageController.js"></script>
     <script type="text/javascript" src="src/js/modules/sidenav/sidenav.js"></script>
 </head>
 
 <body>
     <div ui-view="header"></div>
     <div ui-view="sidenav"></div>
-    <main ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-class="(isMobile || isTablet)?'':sidenavMargin">
+    <main ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-style="opacityOnStateChange" ng-class="(isMobile || isTablet)?'':sidenavMargin">
         <div ui-view="main"></div>
     </main>
     <div ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-class="(isMobile || isTablet)?'':sidenavMargin" ui-view="footer"></div>

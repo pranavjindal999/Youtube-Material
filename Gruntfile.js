@@ -22,7 +22,7 @@ module.exports = function(grunt) {
             },
             build: {
                 files: {
-                    'dist/css/style.min.css': ['src/css/materialize.css', 'src/css/icons.css', 'src/css/nprogress.css', 'src/css/main.css']
+                    'dist/css/style.purified.min.css': ['dist/css/style.purified.css']
                 }
             }
         },
@@ -30,13 +30,15 @@ module.exports = function(grunt) {
             options: {},
             target: {
                 src: ['dist/js/youtube.min.js', 'src/**/*.html'],
-                css: ['dist/css/style.min.css'],
-                dest: 'dist/css/style.purified.min.css'
+                css: ['src/css/materialize.css', 'src/css/icons.css', 'src/css/nprogress.css', 'src/css/main.css'],
+                dest: 'dist/css/style.purified.css'
             },
-        }
+        },
+        clean: ['dist/js/_temp/','dist/css/style.purified.css']
     });
-    grunt.registerTask('default', ['uglify', 'cssmin', 'purifycss']);
+    grunt.registerTask('default', ['uglify', 'purifycss', 'cssmin', 'clean']);
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-purifycss');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 };

@@ -27,9 +27,9 @@
                     'title': 'Sports'
                 }
             }, {
-                'id': 24,
+                'id': 28,
                 'snippet': {
-                    'title': 'Entertainment'
+                    'title': 'Technology'
                 }
             }, {
                 'id': 19,
@@ -37,9 +37,9 @@
                     'title': 'Travel & Events'
                 }
             }, {
-                'id': 20,
+                'id': 27,
                 'snippet': {
-                    'title': 'Gaming'
+                    'title': 'Education'
                 }
             }, {
                 'id': 22,

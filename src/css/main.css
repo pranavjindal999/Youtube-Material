@@ -230,7 +230,7 @@ main {
     transition: width .5s !important;
 }
 
-.search-item-input]::-ms-clear {
+.search-item-input::-ms-clear {
     display: none;
 }
 

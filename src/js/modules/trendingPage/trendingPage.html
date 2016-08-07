@@ -1,11 +1,12 @@
 <br ng-init="init()">
 <div class="search-page-margin">
-    <div class="center" ng-if="preloader">
+<span style="font-size:24px;">{{::title}}</span>
+    <div class="center" ng-if="loader">
         <spinner>
     </div>
     <div class="row" ng-if="videos">
         <div class="col s6 m3 l3" ng-repeat="video in videos">
-            <video-item video="video" video-detail="videoDetails[$index]"">
+            <video-item video="video" video-detail="{statistics: video.statistics, contentDetails : video.contentDetails}">
             </video-item>
         </div>
     </div>
