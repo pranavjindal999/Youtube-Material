@@ -42,46 +42,6 @@
                 $scope.$on("$destroy", function() {
                     $document.unbind('scroll');
                 });
-
-                $scope.border = {};
-            }
-
-            $scope.selectBorder = function() {
-
-            }
-
-            $scope.changeState = function(pageNumber) {
-                switch (pageNumber) {
-                    case 0:
-                        $state.go("home.channelPage.home");
-                        $scope.border = {};
-                        $scope.border.home = {
-                            'border-bottom': '3px solid #FBB'
-                        }
-                        break;
-                    case 1:
-                        $state.go("home.channelPage.videos");
-                        $scope.border = {};
-                        $scope.border.videos = {
-                            'border-bottom': '3px solid #FBB'
-                        }
-                        break;
-                    case 2:
-                        $state.go("home.channelPage.channels");
-                        $scope.border = {};
-                        $scope.border.channels = {
-                            'border-bottom': '3px solid #FBB'
-                        }
-                        break;
-                    case 3:
-                        $state.go("home.channelPage.about");
-                        $scope.border = {};
-                        $scope.border.about = {
-                            'border-bottom': '3px solid #FBB'
-                        }
-                        break;
-                }
-
             }
         }
     ]);

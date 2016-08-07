@@ -9,23 +9,23 @@
     </div>
     <div class="channel-tab-ul">
         <ul class="tabs pointer">
-            <li ng-click="changeState(0)" ng-style="border.home" class="waves-effect waves-block waves-light tab channel-tab-bg">
-                <a class="white-text" ng-class="homeTab">
+            <li ui-sref-active="channel-tab-highlight" ui-sref="home.channelPage.home" class="waves-effect waves-block waves-light tab channel-tab-bg">
+                <a class="white-text">
                     <i class="material-icons channel-tab-icons">home</i> <span class="hide-on-small-only">Home</span>
                 </a>
             </li>
-            <li ng-click="changeState(1)" ng-style="border.videos" class="waves-effect waves-block waves-light tab channel-tab-bg">
-                <a class="white-text" ng-class="videosTab">
+            <li ui-sref-active="channel-tab-highlight" ui-sref="home.channelPage.videos" class="waves-effect waves-block waves-light tab channel-tab-bg">
+                <a class="white-text">
                     <i class="material-icons channel-tab-icons">video_library</i> <span class="hide-on-small-only">Videos</span>
                 </a>
             </li>
-            <li ng-click="changeState(2)" ng-style="border.channels" class="waves-effect waves-block waves-light tab channel-tab-bg">
-                <a class="white-text" ng-class="channelsTab">
+            <li ui-sref-active="channel-tab-highlight" ui-sref="home.channelPage.channels" class="waves-effect waves-block waves-light tab channel-tab-bg">
+                <a class="white-text">
                     <i class="material-icons channel-tab-icons">tv</i> <span class="hide-on-small-only">Channels</span>
                 </a>
             </li>
-            <li ng-click="changeState(3)" ng-style="border.about" class="waves-effect waves-block waves-light tab channel-tab-bg">
-                <a class="white-text" ng-class="aboutTab">
+            <li ui-sref-active="channel-tab-highlight" ui-sref="home.channelPage.about" class="waves-effect waves-block waves-light tab channel-tab-bg">
+                <a class="white-text">
                     <i class="material-icons channel-tab-icons">info_outline</i> <span class="hide-on-small-only">About</span>
                 </a>
             </li>

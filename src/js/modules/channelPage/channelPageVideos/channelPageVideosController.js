@@ -3,10 +3,7 @@
         function($scope, $state, $stateParams, searchService) {
             $scope.init = function() {
                 angular.element(document).scrollTo(0, 0, 700);
-                $scope.$parent.border ={};
-                $scope.$parent.border.videos = {
-                    'border-bottom': '3px solid #FBB'
-                }
+                
                 $scope.loaderVideos = true;
                 var parameters = {
                     'channelId': $stateParams.id,

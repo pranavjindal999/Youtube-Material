@@ -324,6 +324,10 @@ main {
     min-width: 0px;
 }
 
+.channel-tab-highlight{
+    border-bottom: 3px solid #FBB;
+}
+
 .channel-tab-main-div-fixed {
     position: fixed !important;
     top: 56px !important;
