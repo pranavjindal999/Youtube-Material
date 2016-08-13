@@ -1,6 +1,6 @@
 (function(angular) {
-    youtubeApp.controller('videoPageController', ['$rootScope', '$scope', '$state', '$stateParams', 'searchService',
-        function($rootScope, $scope, $state, $stateParams, searchService) {
+    youtubeApp.controller('videoPageController', ['$sce','$rootScope', '$scope', '$state', '$stateParams', 'searchService',
+        function($sce, $rootScope, $scope, $state, $stateParams, searchService) {
             $scope.formatVideoDetails = function() {
                 if (moment().format("M D YY") == moment($scope.video.snippet.publishedAt).format("M D YY")) {
                     $scope.uploadedTime = moment($scope.video.snippet.publishedAt)
@@ -10,10 +10,10 @@
                         .format("Do MMMM YYYY");
                 }
 
-                $scope.likeCount = isNaN(parseInt($scope.video.statistics.likeCount))?0:parseInt($scope.video.statistics.likeCount);
-                $scope.dislikeCount = isNaN(parseInt($scope.video.statistics.dislikeCount))?0:parseInt($scope.video.statistics.dislikeCount);                
+                $scope.likeCount = isNaN(parseInt($scope.video.statistics.likeCount)) ? 0 : parseInt($scope.video.statistics.likeCount);
+                $scope.dislikeCount = isNaN(parseInt($scope.video.statistics.dislikeCount)) ? 0 : parseInt($scope.video.statistics.dislikeCount);
                 $scope.dislikeWidth = {
-                    'width' : (($scope.dislikeCount / ($scope.likeCount + $scope.dislikeCount)) * 100) + '%'
+                    'width': (($scope.dislikeCount / ($scope.likeCount + $scope.dislikeCount)) * 100) + '%'
                 };
 
                 if ($scope.video.snippet.description.length > 300) {
@@ -39,7 +39,7 @@
                     'order': $scope.order
                 }
                 $scope.commentsLoader = true;
-                searchService.getComments(parameters).then(function(moreComments) {
+                searchService.getCommentThreads(parameters).then(function(moreComments) {
                     $scope.comments.items = $scope.comments.items.concat(moreComments.items);
                     $scope.comments.nextPageToken = moreComments.nextPageToken;
                     $scope.commentsLoader = false;
@@ -54,7 +54,7 @@
                 }
                 $scope.commentsLoader = true;
                 $scope.comments = null;
-                searchService.getComments(parameters).then(function(comments) {
+                searchService.getCommentThreads(parameters).then(function(comments) {
                     $scope.comments = comments;
                     $scope.commentsLoader = false;
                 }, function(reason) {
@@ -64,11 +64,12 @@
                 });
             }
 
-            $scope.loadMoreVideos = function(){
-                  var parameters = {
+            $scope.loadMoreVideos = function() {
+
+                var parameters = {
                     'relatedToVideoId': $scope.videoId,
                     'maxResults': 8,
-                    'pageToken' : $scope.nextPageToken
+                    'pageToken': $scope.nextPageToken
                 }
                 $scope.loaderVideos = true;
                 $scope.nextPageToken = false;
@@ -88,34 +89,9 @@
                     });
             }
 
-            $scope.init = function() {
-                angular.element(document).scrollTo(0, 0, 700);
-                $scope.videoId = $stateParams.id;
-                $scope.order = 'relevance';
-                $scope.commentsEnabled = true;
-                $scope.commentsLoader = true;
+            $scope.loadRelatedVideos = function() {
                 $scope.loaderVideos = true;
                 $scope.nextPageToken = false;
-                var parameters = {
-                    'videoId' : $scope.videoId,
-                    'part' : 'snippet,statistics',
-                    'fields' : 'items(snippet(publishedAt,channelId,description,title),statistics(commentCount,dislikeCount,likeCount,viewCount))'
-                }
-                searchService.getVideos(parameters)
-                    .then(function(video) {
-                        $scope.video = video.items[0];
-                        $scope.formatVideoDetails();
-                        var parameters = {
-                            'part': 'snippet',
-                            'channelId': $scope.video.snippet.channelId,
-                            'fields': 'items(id,snippet(thumbnails/default,title))'
-                        }
-                        searchService.getChannel(parameters)
-                            .then(function(channel) {
-                                $scope.channel = channel;
-                            });
-                    });
-
                 var parameters = {
                     'relatedToVideoId': $scope.videoId,
                     'maxResults': 20
@@ -132,6 +108,35 @@
                         searchService.getVideoDetails(parameters)
                             .then(function(videoDetails) {
                                 $scope.videoDetails = videoDetails;
+                            });
+                    });
+            }
+
+            $scope.init = function() {
+                angular.element(document).scrollTo(0, 0, 700);
+                $scope.videoId = $stateParams.id;
+                $scope.order = 'relevance';
+                $scope.commentsEnabled = true;
+
+                var parameters = {
+                    'videoId': $scope.videoId,
+                    'part': 'snippet,statistics',
+                    'fields': 'items(snippet(publishedAt,channelId,description,title),statistics(commentCount,dislikeCount,likeCount,viewCount))'
+                }
+                searchService.getVideos(parameters)
+                    .then(function(video) {
+                        $scope.video = video.items[0];
+
+                        $scope.video.snippet.descriptionHTML = $sce.trustAsHtml(autolinker.link($scope.video.snippet.description));
+                        $scope.formatVideoDetails();
+                        var parameters = {
+                            'part': 'snippet',
+                            'channelId': $scope.video.snippet.channelId,
+                            'fields': 'items(id,snippet(thumbnails/default,title))'
+                        }
+                        searchService.getChannel(parameters)
+                            .then(function(channel) {
+                                $scope.channel = channel;
                             });
                     });
             }

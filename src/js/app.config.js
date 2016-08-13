@@ -100,6 +100,44 @@ youtubeApp.config(['$compileProvider', '$stateProvider', '$urlMatcherFactoryProv
 }])
 
 
+
+var autolinker = new Autolinker({
+    urls: {
+        schemeMatches: true,
+        wwwMatches: true,
+        tldMatches: true
+    },
+    email: true,
+    phone: false,
+    twitter: false,
+    hashtag: false,
+
+    stripPrefix: false,
+    newWindow: true,
+
+    truncate: {
+        length: 0,
+        location: 'end'
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var gapi = window.gapi = window.gapi || {};
 gapi._bs = new Date().getTime();
 (function() {

@@ -101,7 +101,7 @@
                         $rootScope.isMobile = true;
                         $rootScope.isTablet = false;
                         $rootScope.mobilePaddingMargin = "zero-padding zero-margin";
-                    } else if (window.innerWidth < 993) {
+                    } else if (window.innerWidth < 1025) {
                         $rootScope.isMobile = false;
                         $rootScope.isTablet = true;
                         $rootScope.mobilePaddingMargin = "";

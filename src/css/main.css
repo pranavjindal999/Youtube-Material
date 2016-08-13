@@ -15,7 +15,7 @@ main {
 
 /*change of default continer width*/
 
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 1025px) {
     .container {
         width: 90%;
     }
@@ -82,7 +82,7 @@ main {
     box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.16), 0 -2px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-@media only screen and (max-width: 992px)and (min-width: 601px) {
+@media only screen and (max-width: 1024px)and (min-width: 601px) {
     .row .col {
         padding: 0 0.20rem !important;
     }
@@ -106,7 +106,7 @@ main {
     color: white;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1024px) {
     .channel-chip {
         width: 45%;
         left: 52%;
@@ -127,7 +127,7 @@ main {
     }
 }
 
-@media only screen and (min-width:601px) and (max-width: 992px) {
+@media only screen and (min-width:601px) and (max-width: 1024px) {
     .nav-items {
         width: 70%;
     }
@@ -145,7 +145,7 @@ main {
     }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1024px) {
     .brand-logo {
         left: 4% !important;
         -webkit-transform: translateX(0%) !important;
@@ -191,7 +191,7 @@ main {
     }
 }
 
-@media only screen and (min-width:601px) and (max-width: 992px) {
+@media only screen and (min-width:601px) and (max-width: 1024px) {
     .search-item-li {
         width: 60%;
     }
@@ -248,7 +248,7 @@ main {
     }
 }
 
-@media only screen and (min-width:601px) and (max-width: 992px) {
+@media only screen and (min-width:601px) and (max-width: 1024px) {
     .search-item-input {
         width: 80% !important;
     }
@@ -358,7 +358,7 @@ main {
     top: -6px;
 }
 
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 1025px) {
     .channel-tab-content {
         top: 0px;
         width: 87%;
@@ -390,9 +390,9 @@ main {
     left: 0px
 }
 
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 1025px) {
     .channel-tab-ul {
-        width: 50%;
+        width: 65%;
         padding-left: 50px;
         position: relative;
         left: 50px
@@ -414,7 +414,7 @@ main {
     box-shadow: 0 -4px 10px 0 rgba(0, 0, 0, 0.16), 0 -4px 15px 0 rgba(0, 0, 0, 0.12);
 }
 
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 1025px) {
     .channel-main-div {
         height: 80px;
     }
@@ -428,7 +428,7 @@ main {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 1025px) {
     .channel-main-div-img {
         position: relative;
         top: -70px;
@@ -449,7 +449,7 @@ main {
     white-space: pre-line;
 }
 
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 1025px) {
     .channel-main-div-title {
         font-size: 32px;
         position: relative;
@@ -550,7 +550,7 @@ main {
     text-decoration: underline;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1024px) {
     .row .col {
         padding: 0 0.25rem;
     }
@@ -632,7 +632,7 @@ main {
     }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1024px) {
     .slide-left {
         left: -1300px !important;
         transition: left .4s ease;
@@ -651,7 +651,7 @@ main {
     margin: 0px 10px
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1024px) {
     .search-page-margin {
         margin: 0px 85px
     }

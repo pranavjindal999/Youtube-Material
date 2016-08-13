@@ -149,7 +149,7 @@ youtubeApp.factory('searchService', ['$q', '$http', function($q, $http) {
         return data.promise;
     }
 
-    service.getComments = function(parameters) {
+    service.getCommentThreads = function(parameters) {
         var data = $q.defer();
         youtubeApi.then(function() {
             gapi.client.youtube.commentThreads.list({
@@ -159,6 +159,23 @@ youtubeApp.factory('searchService', ['$q', '$http', function($q, $http) {
                 'maxResults': 8,
                 'order': parameters.order,
                 'fields': 'items(id,replies(comments(id,snippet(authorChannelUrl,authorDisplayName,authorGoogleplusProfileUrl,authorProfileImageUrl,canRate,likeCount,publishedAt,textDisplay,updatedAt))),snippet(canReply,topLevelComment(snippet(authorChannelUrl,authorDisplayName,authorGoogleplusProfileUrl,authorProfileImageUrl,canRate,likeCount,publishedAt,textDisplay,updatedAt)),totalReplyCount)),nextPageToken'
+            }).then(function(response) {
+                data.resolve(response.result);
+            }, function(reason) {
+                data.reject(reason.result);
+            });
+        })
+        return data.promise;
+    }
+
+    service.getReplies = function(parameters) {
+        var data = $q.defer();
+        youtubeApi.then(function() {
+            gapi.client.youtube.comments.list({
+                'part': 'snippet',
+                'parentId': parameters.parentId,
+                'pageToken': parameters.pageToken,
+                'maxResults': parameters.maxResults
             }).then(function(response) {
                 data.resolve(response.result);
             }, function(reason) {
