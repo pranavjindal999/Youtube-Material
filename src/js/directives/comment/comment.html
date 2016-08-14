@@ -8,8 +8,8 @@
     <span title="{{::comment.snippet.topLevelComment.snippet.updatedAtFull}}" style="font-size: .85em; color: #727272; cursor: default;">&nbsp;&nbsp;&nbsp;{{::comment.snippet.topLevelComment.snippet.updatedAt}}</span>
     <br>
     <span style="font-size: .90em;" ng-bind-html="comment.snippet.topLevelComment.snippet.textDisplay"></span>
-    <ul class="collection" ng-if="comment.replies" style="border:none; margin-bottom: -10px;">
-        <li class="collection-item avatar" ng-repeat="reply in comment.replies.comments">
+    <ul class="collection" ng-if="comment.replies" style="border:none; margin-bottom: -10px;left: -30px;width: calc(100% + 50px);">
+        <li style="min-height:60px" class="collection-item avatar" ng-repeat="reply in comment.replies.comments">
             <a ui-sref="home.channelPage.home({id: reply.snippet.authorChannelUrl.substring(31)})">
                 <img class="circle" ng-src="{{::reply.snippet.authorProfileImageUrl}}">
             </a>
@@ -20,8 +20,9 @@
             <br>
             <span style="font-size: .90em;" ng-bind-html="reply.snippet.textDisplay"></span>
         </li>
-        <span ng-click="loadMoreReplies()" style="color: #039be5;cursor: pointer;margin: 10px 0px;display: block;" ng-if="comment.snippet.totalReplyCount>comment.replies.comments.length">Show {{comment.snippet.totalReplyCount-comment.replies.comments.length}} More {{replyText}} 
-        <span style="position: relative;left: 20px;" ng-show="moreRepliesLoader" class="tiny-spinner"></span>
+        <span ng-hide="moreRepliesSpinner" ng-click="loadMoreReplies()" class="more-replies" ng-if="comment.snippet.totalReplyCount>comment.replies.comments.length">Show {{comment.snippet.totalReplyCount-comment.replies.comments.length}} More {{replyText}} 
+        </span>
+        <span class="tiny-spinner more-replies-spinner" ng-show="moreRepliesSpinner" class="">
         </span>
     </ul>
 </li>

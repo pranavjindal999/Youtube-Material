@@ -1,6 +1,6 @@
 (function(angular) {
-    youtubeApp.controller('channelPageVideosController', ['$scope', '$state', '$stateParams', 'searchService',
-        function($scope, $state, $stateParams, searchService) {
+    youtubeApp.controller('channelPageVideosController', ['$document','$scope', '$state', '$stateParams', 'searchService',
+        function($document, $scope, $state, $stateParams, searchService) {
             $scope.init = function() {
                 angular.element(document).scrollTo(0, 0, 700);
                 

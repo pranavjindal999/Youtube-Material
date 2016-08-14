@@ -1,8 +1,8 @@
 (function(angular) {
-    youtubeApp.controller('channelPageAboutController', ['$scope', '$state', '$stateParams', 'searchService',
-        function($scope, $state, $stateParams, searchService) {
+    youtubeApp.controller('channelPageAboutController', ['$document','$scope', '$state', '$stateParams', 'searchService',
+        function($document, $scope, $state, $stateParams, searchService) {
             $scope.init = function() {
-                angular.element(document).scrollTo(0, 0, 700);
+                angular.element($document).scrollTo(0, 0, 700);
                 
                 var parameters = {
                     'part': 'statistics',

@@ -1,6 +1,6 @@
 (function(angular) {
-    youtubeApp.controller('videoPageController', ['$sce','$rootScope', '$scope', '$state', '$stateParams', 'searchService',
-        function($sce, $rootScope, $scope, $state, $stateParams, searchService) {
+    youtubeApp.controller('videoPageController', ['$document','$sce','$rootScope', '$scope', '$state', '$stateParams', 'searchService',
+        function($document, $sce, $rootScope, $scope, $state, $stateParams, searchService) {
             $scope.formatVideoDetails = function() {
                 if (moment().format("M D YY") == moment($scope.video.snippet.publishedAt).format("M D YY")) {
                     $scope.uploadedTime = moment($scope.video.snippet.publishedAt)
@@ -23,7 +23,7 @@
                         if ($scope.description == "expanded-description") {
                             $scope.description = "";
                             $scope.expandDescriptionBar = "Expand Description";
-                            angular.element(document).scrollToElementAnimated(videoInfo);
+                            angular.element($document).scrollToElementAnimated(videoInfo);
                         } else {
                             $scope.description = "expanded-description";
                             $scope.expandDescriptionBar = "Collapse Description";
@@ -38,7 +38,6 @@
                     'pageToken': pageToken,
                     'order': $scope.order
                 }
-                $scope.commentsLoader = true;
                 searchService.getCommentThreads(parameters).then(function(moreComments) {
                     $scope.comments.items = $scope.comments.items.concat(moreComments.items);
                     $scope.comments.nextPageToken = moreComments.nextPageToken;
@@ -65,7 +64,6 @@
             }
 
             $scope.loadMoreVideos = function() {
-
                 var parameters = {
                     'relatedToVideoId': $scope.videoId,
                     'maxResults': 8,
@@ -113,10 +111,11 @@
             }
 
             $scope.init = function() {
-                angular.element(document).scrollTo(0, 0, 700);
+                angular.element($document).scrollTo(0, 0, 700);
                 $scope.videoId = $stateParams.id;
                 $scope.order = 'relevance';
-                $scope.commentsEnabled = true;
+                $scope.commentsEnabled = true;                
+                $scope.commentsLoader = true;
 
                 var parameters = {
                     'videoId': $scope.videoId,

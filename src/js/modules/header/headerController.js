@@ -1,6 +1,6 @@
 (function(angular) {
-    youtubeApp.controller('headerController', ['$rootScope', '$scope', '$state', '$location', 'searchService',
-        function($rootScope, $scope, $state, $location, searchService) {
+    youtubeApp.controller('headerController', ['$timeout','$window','$rootScope', '$scope', '$state', '$location', 'searchService',
+        function($timeout, $window, $rootScope, $scope, $state, $location, searchService) {
 
             $scope.fetchSearchSuggestion = function() {
                 if ($scope.query)
@@ -88,8 +88,8 @@
                 $rootScope.$on('$stateChangeSuccess',
                     function(event) {
                         NProgress.inc();
-                        setTimeout(NProgress.inc, 300);
-                        setTimeout(NProgress.done, 600);
+                        $timeout(NProgress.inc, 300);
+                        $timeout(NProgress.done, 600);
                         $rootScope.opacityOnStateChange = {
                             'transition': 'all .2s ease',
                             'opacity' : '1'
@@ -97,11 +97,11 @@
                     });
 
                 var windowResize = function() {
-                    if (window.innerWidth < 601) {
+                    if ($window.innerWidth < 601) {
                         $rootScope.isMobile = true;
                         $rootScope.isTablet = false;
                         $rootScope.mobilePaddingMargin = "zero-padding zero-margin";
-                    } else if (window.innerWidth < 1025) {
+                    } else if ($window.innerWidth < 1025) {
                         $rootScope.isMobile = false;
                         $rootScope.isTablet = true;
                         $rootScope.mobilePaddingMargin = "";
@@ -112,7 +112,7 @@
                     }
                 }
 
-                $(window).resize(function() {
+                angular.element($window).on('resize',function() {
                     $scope.$apply(function() {
                         windowResize();
                     });

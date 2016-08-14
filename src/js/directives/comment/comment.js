@@ -33,7 +33,7 @@
                         maxResults: $scope.moreRepliesNextPageToken ? 4 : 8,
                         pageToken: $scope.moreRepliesNextPageToken
                     }
-                    $scope.moreRepliesLoader = true;
+                    $scope.moreRepliesSpinner = true;
                     searchService.getReplies(parameters).then(function(replies) {
 
                         for (var i = 0; i < replies.items.length; i++) {
@@ -51,7 +51,7 @@
                             $scope.replyText = 'Replies';
                         else
                             $scope.replyText = 'Reply';
-                        $scope.moreRepliesLoader = false;
+                        $scope.moreRepliesSpinner = false;
                     })
                 }
             }]

@@ -693,3 +693,19 @@ main {
     animation: tiny-spinner .6s linear infinite;
     -webkit-animation: tiny-spinner .6s linear infinite;
 }
+
+.more-replies{
+    color: #039be5;
+    cursor: pointer;
+    margin: 10px 0px;
+    display: block;
+}
+.more-replies:hover{
+    text-decoration: underline;
+}
+.more-replies-spinner{
+    display:block;
+    margin:10px;
+    position: relative;
+    left: 20px;
+}
