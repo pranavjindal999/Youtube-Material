@@ -36,13 +36,23 @@
                             showinfo: 0,
                             rel: 0
                         },
-                        videoId: scope.videoId
+                        videoId: scope.videoId,
+                        events: {
+                            'onReady': onPlayerReady
+                        }
                     });
                 });
+
+                var onPlayerReady = function() {
+                    if (scope.autoplay == "true")
+                        player.playVideo();
+                }
 
                 scope.$watch('videoId', function(newValue, oldValue) {
                     if (newValue != oldValue) {
                         player.cueVideoById(newValue);
+                        if (scope.autoplay == "true")
+                            player.playVideo();
                     }
                 });
             }

@@ -1,5 +1,5 @@
 (function(angular) {
-    youtubeApp.controller('videoPageController', ['$document','$sce','$rootScope', '$scope', '$state', '$stateParams', 'searchService',
+    youtubeApp.controller('videoPageController', ['$document', '$sce', '$rootScope', '$scope', '$state', '$stateParams', 'searchService',
         function($document, $sce, $rootScope, $scope, $state, $stateParams, searchService) {
             $scope.formatVideoDetails = function() {
                 if (moment().format("M D YY") == moment($scope.video.snippet.publishedAt).format("M D YY")) {
@@ -29,6 +29,8 @@
                             $scope.expandDescriptionBar = "Collapse Description";
                         }
                     }
+                } else {
+                    $scope.isExpandable = false;
                 }
             }
 
@@ -38,6 +40,7 @@
                     'pageToken': pageToken,
                     'order': $scope.order
                 }
+                $scope.commentsLoader = true;
                 searchService.getCommentThreads(parameters).then(function(moreComments) {
                     $scope.comments.items = $scope.comments.items.concat(moreComments.items);
                     $scope.comments.nextPageToken = moreComments.nextPageToken;
@@ -46,7 +49,9 @@
             }
 
             $scope.sortComments = function(order) {
-                $scope.order = order;
+                if (order) {
+                    $scope.order = order;
+                }
                 var parameters = {
                     'videoId': $scope.videoId,
                     'order': ($scope.order) ? $scope.order : 'relevance'
@@ -113,9 +118,9 @@
             $scope.init = function() {
                 angular.element($document).scrollTo(0, 0, 700);
                 $scope.videoId = $stateParams.id;
-                $scope.order = 'relevance';
-                $scope.commentsEnabled = true;                
+                $scope.commentsEnabled = true;
                 $scope.commentsLoader = true;
+                $scope.autoplay = autoplay;
 
                 var parameters = {
                     'videoId': $scope.videoId,
@@ -136,8 +141,23 @@
                         searchService.getChannel(parameters)
                             .then(function(channel) {
                                 $scope.channel = channel;
+                                NProgress.done();
                             });
                     });
+            }
+
+            $scope.changeVideo = function(videoId) {
+                NProgress.start();
+                $scope.videoId = videoId;
+                $state.go('home.videoPage', { id: videoId }, { notify: false });
+                $stateParams.id = videoId;
+                $scope.init();
+                $scope.loadRelatedVideos();
+                $scope.sortComments();
+                $scope.commentsEnabled = true;
+                if($scope.expandDescriptionBar == "Collapse Description")
+                    $scope.expandDescription();
+
             }
         }
     ]);

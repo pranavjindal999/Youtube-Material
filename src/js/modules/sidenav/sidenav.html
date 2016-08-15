@@ -4,7 +4,7 @@
         <li ui-sref="home" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons red-text">home</i>Home
         </li>
-        <li  ui-sref-active="grey lighten-4" ui-sref="home.trending({category: ''})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
+        <li  ui-sref-active="grey lighten-4" ui-sref="home.trending({category: '',pageToken:''})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons green-text">trending_up</i>Trending
         </li>
         <!-- <li class="li-side waves-effect waves-teal pointer">
@@ -12,22 +12,22 @@
         </li> -->
         <li class="divider">
         </li>
-        <li ui-sref-active="grey lighten-4" ui-sref="home.trending({category: 'music'})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
+        <li ui-sref-active="grey lighten-4" ui-sref="home.trending({category: 'music',pageToken:''})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons orange-text">music_video</i>Music
         </li>
-        <li  ui-sref-active="grey lighten-4" ui-sref="home.trending({category: 'movies'})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
+        <li  ui-sref-active="grey lighten-4" ui-sref="home.trending({category: 'movies',pageToken:''})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons teal-text">movie</i>Movies
         </li>
-        <li  ui-sref-active="grey lighten-4" ui-sref="home.trending({category: 'sports'})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
+        <li  ui-sref-active="grey lighten-4" ui-sref="home.trending({category: 'sports',pageToken:''})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons purple-text">directions_run</i>Sports
         </li>
-        <li  ui-sref-active="grey lighten-4" ui-sref="home.trending({category: 'technology'})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
+        <li  ui-sref-active="grey lighten-4" ui-sref="home.trending({category: 'technology',pageToken:''})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons cyan-text">devices_other</i>Technology
         </li>
-        <li  ui-sref-active="grey lighten-4" ui-sref="home.trending({category: 'comedy'})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
+        <li  ui-sref-active="grey lighten-4" ui-sref="home.trending({category: 'comedy',pageToken:''})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons brown-text">insert_emoticon</i>Comedy
         </li>
-        <li  ui-sref-active="grey lighten-4" ui-sref="home.trending({category: 'education'})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
+        <li  ui-sref-active="grey lighten-4" ui-sref="home.trending({category: 'education',pageToken:''})" ng-click="(isMobile || isTablet) && toggleSidenav()" class="li-side waves-effect waves-teal pointer">
             <i class="material-icons channel-tab-icons pink-text">school</i>Education
         </li>
         <li class="divider">

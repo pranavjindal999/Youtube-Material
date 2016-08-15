@@ -13,10 +13,9 @@ function init() {
 
 var youtubeApp = angular.module('youtube', ['ngTouch', 'ui.router', 'duScroll']);
 
-youtubeApp.config(['$compileProvider', '$stateProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider', '$locationProvider', function($compileProvider, $stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider) {
-    $urlMatcherFactoryProvider.caseInsensitive(true)
-    $urlRouterProvider.otherwise("/");
-    $compileProvider.debugInfoEnabled(true);
+youtubeApp.config(['$stateProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider) {
+    $urlMatcherFactoryProvider.caseInsensitive(true);
+    $urlRouterProvider.otherwise("/");   
     $stateProvider
         .state('home', {
             url: "/",
@@ -111,7 +110,7 @@ var autolinker = new Autolinker({
     email: true,
     phone: false,
     twitter: false,
-    hashtag: false,
+    hashtag: 'twitter',
 
     stripPrefix: false,
     newWindow: true,

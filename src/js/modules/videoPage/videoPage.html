@@ -4,7 +4,7 @@
             <div class="card" ng-class="mobilePaddingMargin">
                 <div class="card-image">
                     <div class='embed-container'>
-                        <youtube-video autoplay="false" video-id={{::videoId}}></youtube-video>
+                        <youtube-video autoplay={{autoplay}} video-id={{videoId}}></youtube-video>
                     </div>
                 </div>
                 <ul id="videoInfo" class="collapsible zero-margin video-accordion">
@@ -16,27 +16,27 @@
                             <li class="divider"></li>
                             <li style="padding: 11px 10px;">
                                 <a ui-sref="home.channelPage.home({id: video.snippet.channelId})" class="chip channel-chip-video-page" style="max-width: 50%">
-                                    <img ng-src="{{::channel.snippet.thumbnails.default.url}}">
+                                    <img ng-src="{{channel.snippet.thumbnails.default.url}}">
                                     <span class="truncate">
-                                        {{::channel.snippet.title}}
+                                        {{channel.snippet.title}}
                                     </span>
                                 </a>
                                 <div class="right" style="">
-                                    <strong style="top:-17px; position:relative;">{{::video.statistics.viewCount | number}} Views</strong>
+                                    <strong style="top:-17px; position:relative;">{{video.statistics.viewCount | number}} Views</strong>
                                     <div ng-if="likeCount+dislikeCount==0" style="z-index:9;height: 3px; background-color: grey; position: relative; top: -24px;"></div>
                                     <div ng-if="likeCount+dislikeCount!=0" ng-style="dislikeWidth" style="z-index:9;height: 3px; background-color: red; position: relative; top: -24px;"></div>
                                     <div ng-if="likeCount+dislikeCount!=0" style="height: 3px; background-color: green; position: relative; top: -27px"></div>
                                     <div style="display:inline-block; position:relative; top:-32px">
-                                        <i class="material-icons" style="margin-right: 2px;">thumb_down</i>{{::dislikeCount | number}}
+                                        <i class="material-icons" style="margin-right: 2px;">thumb_down</i>{{dislikeCount | number}}
                                     </div>
                                     <div style="display: inline-block; position:relative; top:-32px">
-                                        <i class="material-icons" style="margin-right: 2px;  margin-left: 5px;">thumb_up</i>{{::likeCount | number}}
+                                        <i class="material-icons" style="margin-right: 2px;  margin-left: 5px;">thumb_up</i>{{likeCount | number}}
                                     </div>
                                 </div>
                             </li>
                         </ul>
                         <div class="collapsible-body" style="display:block;">
-                            <blockquote> <strong>Uploaded: {{::uploadedTime}}</strong> </blockquote>
+                            <blockquote> <strong>Uploaded: {{uploadedTime}}</strong> </blockquote>
                             <p class="video-description" ng-class="description" ng-bind-html="video.snippet.descriptionHTML"></p>
                             <div class="expand-description-button" ng-if="isExpandable" ng-click="expandDescription()">
                                 <div>{{expandDescriptionBar}}</div>
@@ -67,7 +67,7 @@
     </div>
     <div scroll-fire="loadRelatedVideos()" class="col l4 m3 s12 zero-padding">
         <div class="row">
-            <video-item class="col s6 m12 l6" video="video" video-detail="videoDetails[$index]" channel="channels[$index]" ng-repeat="video in relatedVideos track by $index"></video-item>
+            <video-item ng-click="changeVideo(video.id.videoId)" class="col s6 m12 l6" video="video" video-detail="videoDetails[$index]" channel="channels[$index]" ng-repeat="video in relatedVideos track by $index"></video-item>
         </div>
         <div ng-if="loaderVideos" class="col s12 center">
             <spinner></spinner>

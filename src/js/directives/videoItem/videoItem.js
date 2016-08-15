@@ -9,7 +9,9 @@
             },
             templateUrl: 'src/js/directives/videoItem/videoItem.html',
             link: function(scope, element, attr) {
-                scope.video.snippet.publishedAt = moment(scope.video.snippet.publishedAt).fromNow();
+                scope.$watch('video',function(){
+                    scope.video.snippet.publishedAt = moment(scope.video.snippet.publishedAt).fromNow();
+                })   
             }
         };
     });

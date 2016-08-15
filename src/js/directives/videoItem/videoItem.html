@@ -4,10 +4,10 @@
             <div class="video-info-bar-carousel">
                 <div class="video-duration-carousel">
                     <span>
-                        {{::video.snippet.publishedAt}}
+                        {{video.snippet.publishedAt}}
                             </span>
                     <span style="float:right">
-                         {{::videoDetail.contentDetails.duration}}
+                         {{videoDetail.contentDetails.duration}}
                             </span>
                 </div>
             </div>
@@ -16,10 +16,10 @@
     <a ui-sref="home.videoPage({id: video.id.videoId})" style="display:block;padding:5px 6px 2px 6px" class="card-content">
         <span style="height: 32px" class="card-title video-title-carousel">{{video.snippet.title}}</span>
         <div class="video-views-carousel">
-            {{::videoDetail.statistics.viewCount}} Views
+            {{videoDetail.statistics.viewCount}} Views
         </div>
     </a>
     <a ng-hide="hideChannel" ui-sref="home.channelPage.home({id: video.snippet.channelId})" class="video-channel-carousel truncate">
-                   {{::video.snippet.channelTitle}}
+                   {{video.snippet.channelTitle}}
                 </a>
 </div>

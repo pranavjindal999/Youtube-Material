@@ -12,7 +12,7 @@ module.exports = function(grunt) {
                     'dist/js/_temp/controllers.min.js': 'src/js/modules/**/*.js',
                     'dist/js/_temp/directives.min.js': 'src/js/directives/**/*.js',
                     'dist/js/_temp/libs.min.js': ['src/js/library/angular.js', 'src/js/library/angular-ui-router.js', 'src/js/library/angular-scroll.js', 'src/js/library/angular-touch.js', 'src/js/library/waves.js', 'src/js/library/moment.js', 'src/js/library/moment-duration-format.js', 'src/js/library/nprogress.js', 'src/js/library/Autolinker.js'],
-                    'dist/js/_temp/app.config.min.js': ['src/js/devKey.js','src/js/app.config.js', 'src/js/gapi.js'],
+                    'dist/js/_temp/app.config.min.js': ['src/js/prodKey.js','src/js/app.config.js', 'src/js/app.config.prod.js', 'src/js/gapi.js'],
                     'dist/js/youtube.min.js': ['dist/js/_temp/libs.min.js', 'dist/js/_temp/app.config.min.js', 'dist/js/_temp/directives.min.js', 'dist/js/_temp/services.min.js', 'dist/js/_temp/controllers.min.js']
                 }
             }

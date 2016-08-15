@@ -1,21 +1,20 @@
 (function(angular) {
-    youtubeApp.controller('headerController', ['$timeout','$window','$rootScope', '$scope', '$state', '$location', 'searchService',
+    youtubeApp.controller('headerController', ['$timeout', '$window', '$rootScope', '$scope', '$state', '$location', 'searchService',
         function($timeout, $window, $rootScope, $scope, $state, $location, searchService) {
 
             $scope.fetchSearchSuggestion = function() {
-                if ($scope.query)
-                {
+                if ($scope.query) {
                     $scope.tinySpinner = true;
                     searchService.getSearchSuggestion($scope.query)
-                    .then(function(data) {
-                        $scope.tinySpinner = false;
-                        $scope.selectedIndex = -1;
-                        $scope.items = data;
-                        if (data[1].length == 0 || !$scope.search_li)
-                            $scope.searchSuggestion = false;
-                        else
-                            $scope.searchSuggestion = true;
-                    });
+                        .then(function(data) {
+                            $scope.tinySpinner = false;
+                            $scope.selectedIndex = -1;
+                            $scope.items = data;
+                            if (data[1].length == 0 || !$scope.search_li)
+                                $scope.searchSuggestion = false;
+                            else
+                                $scope.searchSuggestion = true;
+                        });
                 }
             }
 
@@ -81,7 +80,7 @@
                         NProgress.start();
                         $rootScope.opacityOnStateChange = {
                             'transition': 'all .2s ease',
-                            'opacity' : '.5'
+                            'opacity': '.5'
                         }
                     });
 
@@ -92,7 +91,7 @@
                         $timeout(NProgress.done, 600);
                         $rootScope.opacityOnStateChange = {
                             'transition': 'all .2s ease',
-                            'opacity' : '1'
+                            'opacity': '1'
                         }
                     });
 
@@ -112,14 +111,13 @@
                     }
                 }
 
-                angular.element($window).on('resize',function() {
+                angular.element($window).on('resize', function() {
                     $scope.$apply(function() {
                         windowResize();
                     });
                 });
                 windowResize();
             }
-
         }
     ]);
 })(window.angular);
