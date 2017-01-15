@@ -7,19 +7,11 @@
     <title>Youtube</title>
     <base href="/">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <!-- Set Country -->
-    <script type="text/javascript">
-    var country = null;
-    var setCountry = function(data) {
-        country = data.countryCode;
-    }
-    </script>
-    <script type="text/javascript" src="http://ip-api.com/json/?callback=setCountry"></script>
     <link rel="stylesheet" type="text/css" href="src/css/materialize.css">
     <link rel="stylesheet" type="text/css" href="src/css/icons.css">
     <link rel="stylesheet" type="text/css" href="src/css/main.css">
     <link rel="stylesheet" type="text/css" href="src/css/nprogress.css">
-    <div class="center" ng-if="false">
+    <div class="center" ng-if="hideAppLoader">
         <div style="background: url('dist/image/logo_color.png');background-repeat: no-repeat;background-size: contain;background-position: 50%;height: 100px;margin: 30vh 0vh 50px 0vh;"></div>
         <div class="preloader-wrapper active">
             <div class="spinner-layer spinner-red-only">
@@ -48,7 +40,7 @@
     <script type="text/javascript" src="src/js/library/Autolinker.js"></script>
     <script type="text/javascript" src="src/js/devKey.js"></script>
     <script type="text/javascript" src="src/js/app.config.js"></script>
-    <script type="text/javascript" src="src//js/gapi.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
     <script type="text/javascript" src="src/js/directives/spinner/spinner.js"></script>
     <script type="text/javascript" src="src/js/directives/videoItem/videoItem.js"></script>
     <script type="text/javascript" src="src/js/directives/youtubeVideo/youtubeVideo.js"></script>
@@ -72,10 +64,9 @@
 <body>
     <div ui-view="header"></div>
     <div ui-view="sidenav"></div>
-    <main ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-style="opacityOnStateChange" ng-class="(isMobile || isTablet)?'':sidenavMargin">
-        <div ui-view="main"></div>
+    <main ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-class="(isMobile || isTablet)?'':sidenavMargin">        
+        <div ui-view="videoBar"></div>
     </main>
-    <div ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-class="(isMobile || isTablet)?'':sidenavMargin" ui-view="footer"></div>
 </body>
 
 </html>

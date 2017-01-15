@@ -1,6 +1,6 @@
 (function(angular) {
-    youtubeApp.controller('videoPageController', ['$document', '$sce', '$rootScope', '$scope', '$state', '$stateParams', 'searchService',
-        function($document, $sce, $rootScope, $scope, $state, $stateParams, searchService) {
+    youtubeApp.controller('videoPageController', ['$document', '$sce', '$rootScope', '$scope', '$state', '$stateParams', '$timeout', 'searchService', '$interval',
+        function($document, $sce, $rootScope, $scope, $state, $stateParams, $timeout, searchService, $interval) {
             $scope.formatVideoDetails = function() {
                 if (moment().format("M D YY") == moment($scope.video.snippet.publishedAt).format("M D YY")) {
                     $scope.uploadedTime = moment($scope.video.snippet.publishedAt)
@@ -40,6 +40,7 @@
                     'pageToken': pageToken,
                     'order': $scope.order
                 }
+
                 $scope.commentsLoader = true;
                 searchService.getCommentThreads(parameters).then(function(moreComments) {
                     $scope.comments.items = $scope.comments.items.concat(moreComments.items);
@@ -49,6 +50,9 @@
             }
 
             $scope.sortComments = function(order) {
+                if (!$scope.videoId)
+                    return;
+
                 if (order) {
                     $scope.order = order;
                 }
@@ -115,22 +119,61 @@
                     });
             }
 
+            $rootScope.$on('$stateChangeStart',
+                function(event, viewConfig) {
+                    if (viewConfig.name == "home.videoPage") {
+                        $scope.barModeAfterSlide = false;
+                        $timeout(function() { $scope.barMode = false; }, 0);
+                        angular.element($document).scrollTo(0, 0, 0);
+
+                    } else {
+                        NProgress.start();
+                        $timeout(function() { $scope.barModeAfterSlide = true; }, 400);
+                        $timeout(function() { $scope.barMode = true; }, 0);
+                    }
+                });
+
+            $rootScope.$on('$stateChangeSuccess',
+                function(event, viewConfig, params) {
+                    if (viewConfig.name == "home.videoPage") {
+                        if (params.id != $stateParams.id) {
+                            $scope.changeVideo(params.id);
+                            NProgress.inc();
+                            $timeout(NProgress.inc, 300);
+                            $timeout(NProgress.done, 600);
+                        } else {
+                            NProgress.done();
+                        }
+                    } else {
+                        NProgress.inc();
+                        $timeout(NProgress.inc, 300);
+                        $timeout(NProgress.done, 600);
+                    }
+                });
+
+            if(!$state.params.id){
+                $scope.barMode = true;
+                $scope.barModeAfterSlide = true;
+            }
+            
             $scope.init = function() {
                 angular.element($document).scrollTo(0, 0, 700);
-                $scope.videoId = $stateParams.id;
+                $scope.videoId = $state.params.id;
                 $scope.commentsEnabled = true;
                 $scope.commentsLoader = true;
-                $scope.autoplay = autoplay;
+
+                if (!$scope.videoId)
+                    return;
 
                 var parameters = {
                     'videoId': $scope.videoId,
-                    'part': 'snippet,statistics',
-                    'fields': 'items(snippet(publishedAt,channelId,description,title),statistics(commentCount,dislikeCount,likeCount,viewCount))'
+                    'part': 'snippet,statistics,contentDetails',
+                    'fields': 'items(contentDetails(duration),snippet(publishedAt,channelId,description,title,thumbnails(medium/url,standard/url)),statistics(commentCount,dislikeCount,likeCount,viewCount))'
                 }
                 searchService.getVideos(parameters)
                     .then(function(video) {
                         $scope.video = video.items[0];
-
+                        updateTimerCallback(true);
                         $scope.video.snippet.descriptionHTML = $sce.trustAsHtml(autolinker.link($scope.video.snippet.description));
                         $scope.formatVideoDetails();
                         var parameters = {
@@ -155,8 +198,66 @@
                 $scope.loadRelatedVideos();
                 $scope.sortComments();
                 $scope.commentsEnabled = true;
-                if($scope.expandDescriptionBar == "Collapse Description")
+                if ($scope.expandDescriptionBar == "Collapse Description")
                     $scope.expandDescription();
+
+            }
+
+            $scope.playPauseVideo = function() {
+                if ($scope.isPlaying) {
+                    $scope.player.pauseVideo();
+                } else {
+                    $scope.player.playVideo();
+                }
+                $scope.isPlaying = !$scope.isPlaying;
+            }
+
+            $scope.onPlayerStateChange = function(event) {
+                var playerState = event.data;
+                if (playerState == YT.PlayerState.PLAYING) {
+                    $scope.isPlaying = true;
+                    $scope.isBuffering = false;
+                    $scope.cleanupPromise = $interval(updateTimerCallback, 1000);
+                } else {
+                    $interval.cancel($scope.cleanupPromise);
+                    if (playerState == YT.PlayerState.BUFFERING)
+                        $scope.isBuffering = true;
+                    else
+                        $scope.isBuffering = false;
+
+                    $scope.isPlaying = false;
+                }
+
+                $scope.$apply();
+            }
+
+            function updateTimerCallback(firstTime) {
+                if(firstTime==true){
+                    $scope.progressBarWidth = {
+                        'width': '0%'
+                    }
+                    $scope.bufferBarWidth = {
+                        'width': '0%'
+                    }
+                    $scope.video.currentTime = '0:00';
+                    return;
+                }
+                try {
+                    var progressBarWidth = ($scope.player.getCurrentTime() / $scope.player.getDuration()) * 100;
+                    $scope.progressBarWidth = {
+                        'width': isNaN(progressBarWidth) ? 0 : progressBarWidth + '%'
+                    }
+
+                    var bufferBarWidth = $scope.player.getVideoLoadedFraction() * 100;
+                    $scope.bufferBarWidth = {
+                        'width': bufferBarWidth + '%'
+                    }
+
+                    $scope.video.currentTime = moment.duration({ 'seconds': $scope.player.getCurrentTime() }).format('hh:mm:ss');
+                    if ($scope.video.currentTime.indexOf(':') == -1)
+                        $scope.video.currentTime = '0:' + $scope.video.currentTime;
+
+                } catch (e) {}
 
             }
         }

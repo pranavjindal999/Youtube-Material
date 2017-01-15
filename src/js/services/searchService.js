@@ -158,7 +158,7 @@ youtubeApp.factory('searchService', ['$q', '$http', function($q, $http) {
                 'pageToken': parameters.pageToken,
                 'maxResults': 8,
                 'order': parameters.order,
-                'fields': 'items(id,replies(comments(id,snippet(authorChannelUrl,authorDisplayName,authorGoogleplusProfileUrl,authorProfileImageUrl,canRate,likeCount,publishedAt,textDisplay,updatedAt))),snippet(canReply,topLevelComment(snippet(authorChannelUrl,authorDisplayName,authorGoogleplusProfileUrl,authorProfileImageUrl,canRate,likeCount,publishedAt,textDisplay,updatedAt)),totalReplyCount)),nextPageToken'
+                'fields': 'items(id,replies(comments(id,snippet(authorChannelUrl,authorProfileImageUrl,authorDisplayName,canRate,likeCount,publishedAt,textDisplay,updatedAt))),snippet(canReply,topLevelComment(snippet(authorChannelUrl,authorDisplayName,authorProfileImageUrl,canRate,likeCount,publishedAt,textDisplay,updatedAt)),totalReplyCount)),nextPageToken'
             }).then(function(response) {
                 data.resolve(response.result);
             }, function(reason) {

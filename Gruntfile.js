@@ -4,7 +4,7 @@ module.exports = function(grunt) {
         uglify: {
             options: {
                 banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n',
-                ASCIIOnly : true
+                ASCIIOnly: true
             },
             build: {
                 files: {
@@ -12,8 +12,8 @@ module.exports = function(grunt) {
                     'dist/js/_temp/controllers.min.js': 'src/js/modules/**/*.js',
                     'dist/js/_temp/directives.min.js': 'src/js/directives/**/*.js',
                     'dist/js/_temp/libs.min.js': ['src/js/library/angular.js', 'src/js/library/angular-ui-router.js', 'src/js/library/angular-scroll.js', 'src/js/library/angular-touch.js', 'src/js/library/waves.js', 'src/js/library/moment.js', 'src/js/library/moment-duration-format.js', 'src/js/library/nprogress.js', 'src/js/library/Autolinker.js'],
-                    'dist/js/_temp/app.config.min.js': ['src/js/prodKey.js','src/js/app.config.js', 'src/js/app.config.prod.js', 'src/js/gapi.js'],
-                    'dist/js/youtube.min.js': ['dist/js/_temp/libs.min.js', 'dist/js/_temp/app.config.min.js', 'dist/js/_temp/directives.min.js', 'dist/js/_temp/services.min.js', 'dist/js/_temp/controllers.min.js']
+                    'dist/js/_temp/app.config.min.js': ['src/js/prodKey.js', 'src/js/app.config.js', 'src/js/app.config.prod.js'],
+                    'dist/js/youtube.min.js': ['dist/js/_temp/libs.min.js', 'dist/js/_temp/app.config.min.js', 'dist/js/_temp/directives.min.js', 'dist/js/_temp/services.min.js', 'dist/js/_temp/controllers.min.js', 'dist/js/_temp/templates.js']
                 }
             }
         },
@@ -35,11 +35,31 @@ module.exports = function(grunt) {
                 dest: 'dist/css/style.purified.css'
             },
         },
-        clean: ['dist/js/_temp/','dist/css/style.purified.css']
+        ngtemplates: {
+            app: {                
+                src: 'src/**/*.html',
+                dest: 'dist/js/_temp/templates.js',
+                options: {
+                    module: 'youtube',
+                    htmlmin: {
+                        collapseBooleanAttributes: true,
+                        collapseWhitespace: true,
+                        removeAttributeQuotes: true,
+                        removeComments: true,
+                        removeEmptyAttributes: true,
+                        removeRedundantAttributes: true,
+                        removeScriptTypeAttributes: true,
+                        removeStyleLinkTypeAttributes: true
+                    }
+                }
+            }
+        },
+        clean: ['dist/js/_temp/', 'dist/css/style.purified.css']
     });
-    grunt.registerTask('default', ['uglify', 'purifycss', 'cssmin', 'clean']);
+    grunt.registerTask('default', ['ngtemplates', 'uglify', 'purifycss', 'cssmin','clean']);
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-purifycss');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-angular-templates');
 };

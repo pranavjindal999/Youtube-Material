@@ -28,13 +28,13 @@
                     var position = document.getElementById("channel-banner").getBoundingClientRect();
                     if (position.bottom < (($rootScope.isMobile) ? 56 : 64)) {
                         if ($scope.channelTab != "channel-tab-main-div-fixed") { //for reducing digest cycles on scroll.
-                            $scope.$apply($scope.channelTab = "channel-tab-main-div-fixed");
-                            $scope.$apply($scope.channelTabContent = "channel-tab-content-fixed");
+                            $scope.$digest($scope.channelTab = "channel-tab-main-div-fixed");
+                            $scope.$digest($scope.channelTabContent = "channel-tab-content-fixed");
                         }
                     } else {
                         if ($scope.channelTab != "channel-tab-main-div") { //for reducing digest cycles on scroll.
-                            $scope.$apply($scope.channelTab = "channel-tab-main-div");
-                            $scope.$apply($scope.channelTabContent = "");
+                            $scope.$digest($scope.channelTab = "channel-tab-main-div");
+                            $scope.$digest($scope.channelTabContent = "");
                         }
                     }
                 });

@@ -27,8 +27,8 @@
                 $scope.search_ul = "nav-items-focus right";
                 $scope.search_li = "search-item-li-focus";
                 $scope.mobileSearchFocus = "mobile-search-focus";
+                $timeout(function() { $scope.crossSign = true; }, 400);
                 $scope.searchSuggestion = true;
-                $scope.crossSign = true;
                 $scope.fetchSearchSuggestion();
                 $scope.items = [];
             }
@@ -36,7 +36,7 @@
             $scope.searchBlured = function() {
                 $scope.search_ul = "right nav-items";
                 $scope.search_li = "";
-                $scope.mobileSearchFocus = "";
+                $timeout(function() { $scope.mobileSearchFocus = ""; }, 100);
                 $scope.crossSign = false;
                 $scope.searchSuggestion = false;
                 $scope.selectedIndex = -1;
@@ -77,23 +77,15 @@
 
                 $rootScope.$on('$stateChangeStart',
                     function(event, viewConfig) {
-                        NProgress.start();
-                        $rootScope.opacityOnStateChange = {
-                            'transition': 'all .2s ease',
-                            'opacity': '.5'
-                        }
+
                     });
 
                 $rootScope.$on('$stateChangeSuccess',
                     function(event) {
-                        NProgress.inc();
-                        $timeout(NProgress.inc, 300);
-                        $timeout(NProgress.done, 600);
-                        $rootScope.opacityOnStateChange = {
-                            'transition': 'all .2s ease',
-                            'opacity': '1'
-                        }
+
                     });
+
+                $rootScope.hideAppLoader = false;
 
                 var windowResize = function() {
                     if ($window.innerWidth < 601) {

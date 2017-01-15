@@ -3,7 +3,7 @@
     <div ng-if="prevPageToken" ng-click="nextOrPrev(false)" class="hoverable prev-carousel pointer"><i class="material-icons">keyboard_arrow_left</i></div>
 
 <div style="overflow-x: hidden">
-    <div ng-class="loader?(isNextClicked?'slide-left':'slide-right'):''" class="zero-left row zero-margin pos-rel">
+    <div ng-class="loader?(isNextClicked?'slide-left':'slide-right'):''" class="row zero-margin">
             <div ng-if="!loader && !videos.length" class="center" style="margin: 30px 0px 10px 0px;">
                 <i class="material-icons channel-tab-icons">error</i>
                 <span>No Videos Available</span>

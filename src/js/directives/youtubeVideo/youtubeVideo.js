@@ -17,10 +17,11 @@
             restrict: "E",
             scope: {
                 videoId: "@",
-                autoplay: "@"
+                player: "=",
+                stateChangeCallback: "&"
             },
             template: '<div></div>',
-            link: function(scope, element, attrs) {
+            link: function($scope, element, attrs) {
                 var tag = document.createElement('script');
                 tag.src = "https://www.youtube.com/iframe_api";
                 var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -31,28 +32,28 @@
                 iframeApiService.onApiReady(function() {
                     player = new YT.Player(element.children()[0], {
                         playerVars: {
-                            autoplay: (scope.autoplay == "true") ? 1 : 0,
+                            autoplay: 1,
                             modestbranding: 1,
                             showinfo: 0,
                             rel: 0
                         },
-                        videoId: scope.videoId,
+                        videoId: $scope.videoId,
                         events: {
-                            'onReady': onPlayerReady
+                            'onReady': onPlayerReady,
+                            'onStateChange': $scope.stateChangeCallback()
                         }
                     });
                 });
 
                 var onPlayerReady = function() {
-                    if (scope.autoplay == "true")
-                        player.playVideo();
+                    player.playVideo();
+                    $scope.player = player;
                 }
 
-                scope.$watch('videoId', function(newValue, oldValue) {
+                $scope.$watch('videoId', function(newValue, oldValue) {
                     if (newValue != oldValue) {
                         player.cueVideoById(newValue);
-                        if (scope.autoplay == "true")
-                            player.playVideo();
+                        player.playVideo();
                     }
                 });
             }

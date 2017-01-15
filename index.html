@@ -6,15 +6,9 @@
     <meta name="theme-color" content="#c62828">
     <title>Youtube</title>
     <base href="/">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script type="text/javascript">
-    var country = null;
-    var setCountry = function(data) {
-        country = data.countryCode;
-    }
-    </script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">    
     <link rel="stylesheet" type="text/css" href="dist/css/style.purified.min.css">
-    <div class="center" ng-if="false">
+    <div class="center" ng-if="hideAppLoader">
         <div style="background: url('dist/image/logo_color.png');background-repeat: no-repeat;background-size: contain;background-position: 50%;height: 100px;margin: 30vh 0vh 50px 0vh;"></div>
         <div class="preloader-wrapper active">
             <div class="spinner-layer spinner-red-only">
@@ -32,17 +26,16 @@
         <br>
         <h5>Loading</h5>
     </div>
-    <script type="text/javascript" src="http://ip-api.com/json/?callback=setCountry"></script>
     <script type="text/javascript" src="dist/js/youtube.min.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
 </head>
 
 <body>
     <div ui-view="header"></div>
     <div ui-view="sidenav"></div>
-    <main ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-style="opacityOnStateChange" ng-class="(isMobile || isTablet)?'':sidenavMargin">
-        <div ui-view="main"></div>
+    <main ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-class="(isMobile || isTablet)?'':sidenavMargin">
+        <div ui-view="videoBar"></div>
     </main>
-    <div ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-class="(isMobile || isTablet)?'':sidenavMargin" ui-view="footer"></div>
 </body>
 
 <script>
