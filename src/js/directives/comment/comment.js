@@ -5,7 +5,7 @@
             scope: {
                 comment: "="
             },
-            templateUrl: 'src/js/directives/comment/comment.html',
+            templateUrl: 'js/directives/comment/comment.html',
             controller: ['$scope', '$sce', 'searchService', function($scope, $sce, searchService) {
 
                 $scope.comment.snippet.topLevelComment.snippet.updatedAtFull = moment($scope.comment.snippet.topLevelComment.snippet.updatedAt).format('h:mm:ss A, MMMM Do YYYY');

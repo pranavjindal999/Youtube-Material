@@ -7,14 +7,12 @@
         <div class="channel-title truncate">{{channel.snippet.title}}</div>
         <div class="channel-title truncate">{{video.currentTime}} / {{video.contentDetails.duration}}</div>
         </span>
-            <div class="progress-bar-bg" ng-class="{'adjust-width' : isSideNavOn}">
-                 <div ng-style="bufferBarWidth" class="progress-bar buffered"></div>
-                 <div ng-style="progressBarWidth" class="progress-bar"></div>
-            </div>
-       
-        
+        <div class="progress-bar-bg" ng-class="{'adjust-width' : isSideNavOn}">
+            <div ng-style="bufferBarWidth" class="progress-bar buffered"></div>
+            <div ng-style="progressBarWidth" class="progress-bar"></div>
+        </div>
         <i ng-show="!isBuffering" ng-click="playPauseVideo()" class="material-icons play-pause-btn">{{isPlaying?'pause_circle_filled':'play_circle_filled'}}</i>
-         <spinner ng-show="isBuffering"></spinner>
+        <spinner ng-show="isBuffering"></spinner>
     </div>
     <div ng-class="{'slide-up-video-page' : !barMode, 'slide-down-video-page' : barMode, 'hide' : barModeAfterSlide}" class="row transform-transition">
         <div class="col l8 m9 s12" ng-class="mobilePaddingMargin">
@@ -64,11 +62,15 @@
                     </ul>
                 </div>
             </div>
-            <div ng-if="commentsEnabled" scroll-fire="sortComments('relevance')" class="col s12" style="margin-top: 10px; margin-bottom: 5px; text-align: center;">
+            <div ng-if="commentsEnabled" scroll-fire="sortComments('relevance')" class="col s12 center" style="margin-top: 10px; margin-bottom: 5px;">
+                <span style="margin-left: -26px;margin-right: 13px;">
                 <input class="with-gap" name="comments" ng-click="order!='relevance'?sortComments('relevance'):return" type="radio" id="relevance" checked="true" />
                 <label for="relevance">Top Comments</label>
-                <input class="with-gap" name="comments" ng-click="order!='time'?sortComments('time'):return" type="radio" id="time" />
+            </span>
+                <span style="margin-left: 13px;">
+                    <input class="with-gap" name="comments" ng-click="order!='time'?sortComments('time'):return" type="radio" id="time" />
                 <label for="time">Newest First</label>
+                </span>
             </div>
             <div ng-if="commentsEnabled" class="col s12" style="margin-bottom: 10px">
                 <ul class="card collection" style="margin-bottom: 0px">

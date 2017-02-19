@@ -32,10 +32,11 @@
                 iframeApiService.onApiReady(function() {
                     player = new YT.Player(element.children()[0], {
                         playerVars: {
-                            autoplay: 1,
+                            autoplay: 0,
                             modestbranding: 1,
                             showinfo: 0,
-                            rel: 0
+                            rel: 0,
+                            origin: "https://www.youtube.com"
                         },
                         videoId: $scope.videoId,
                         events: {

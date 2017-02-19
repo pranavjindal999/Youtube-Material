@@ -7,7 +7,7 @@
                 channelId: '=?',
                 order: '=?'
             },
-            templateUrl: 'src/js/directives/videoCarousel/videoCarousel.html',
+            templateUrl: 'js/directives/videoCarousel/videoCarousel.html',
             controller: ['$rootScope', '$scope', '$sce', 'searchService', function($rootScope, $scope, $sce, searchService) {
 
                 var maxResults = function() {

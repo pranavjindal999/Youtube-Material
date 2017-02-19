@@ -75,18 +75,6 @@
 
                 $scope.searchBlured();
 
-                $rootScope.$on('$stateChangeStart',
-                    function(event, viewConfig) {
-
-                    });
-
-                $rootScope.$on('$stateChangeSuccess',
-                    function(event) {
-
-                    });
-
-                $rootScope.hideAppLoader = false;
-
                 var windowResize = function() {
                     if ($window.innerWidth < 601) {
                         $rootScope.isMobile = true;

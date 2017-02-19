@@ -151,7 +151,10 @@
                     }
                 });
 
-            if(!$state.params.id){
+            if($state.params.id && $state.current.name == "home.videoPage"){
+                $scope.barMode = false;
+                $scope.barModeAfterSlide = false;
+            } else {
                 $scope.barMode = true;
                 $scope.barModeAfterSlide = true;
             }
@@ -162,7 +165,7 @@
                 $scope.commentsEnabled = true;
                 $scope.commentsLoader = true;
 
-                if (!$scope.videoId)
+                if (!$scope.videoId || $state.current.name != "home.videoPage")
                     return;
 
                 var parameters = {

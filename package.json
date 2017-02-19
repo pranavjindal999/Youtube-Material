@@ -11,12 +11,17 @@
     "url": "git+https://github.com/pranavjindal999/Youtube-Material.git"
   },
   "devDependencies": {
-    "grunt": "~0.4.4",
-    "grunt-angular-templates": "^1.1.0",
-    "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-cssmin": "latest",
-    "grunt-contrib-uglify": "latest",
-    "grunt-purifycss": "^0.1.1"
+    "browser-sync": "^2.18.7",
+    "connect-history-api-fallback": "^1.3.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-if": "^2.0.2",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-ng-template": "^0.2.3",
+    "gulp-uglify": "^2.0.1",
+    "gulp-useref": "^3.1.2",
+    "run-sequence": "^1.2.2"
   },
   "keywords": [
     "Youtube",

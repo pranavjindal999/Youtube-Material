@@ -2,7 +2,7 @@
     youtubeApp.directive('spinner', function() {
         return {
             restrict: 'E',
-            templateUrl: 'src/js/directives/spinner/spinner.html',
+            templateUrl: 'js/directives/spinner/spinner.html',
         };
     });
 })(window.angular);

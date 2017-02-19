@@ -1,11 +1,9 @@
 var youtubeApi = null;
 var country = 'IN';
-// initializing google api for youtube..
 
 function init() {
     gapi.client.setApiKey(browserKey);
     youtubeApi = gapi.client.load('youtube', 'v3');
-    // bootstraping angular after gapi is loaded..
     angular.element(document).ready(function() {
         angular.bootstrap(document, ['youtube']);
     });
@@ -13,34 +11,38 @@ function init() {
 
 var youtubeApp = angular.module('youtube', ['ngTouch', 'ui.router', 'duScroll']);
 
-youtubeApp.config(['$stateProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider) {
+youtubeApp.config(['$stateProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider', '$locationProvider','$compileProvider', function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(true);
     $urlRouterProvider.otherwise("/");
+    $locationProvider.html5Mode(true);
+    $compileProvider.debugInfoEnabled(false);
+
+
     $stateProvider
         .state('home', {
             views: {
                 "header": {
-                    templateUrl: "src/js/modules/header/header.html",
+                    templateUrl: "js/modules/header/header.html",
                     controller: 'headerController'
                 },
                 "sidenav": {
-                    templateUrl: "src/js/modules/sidenav/sidenav.html",
+                    templateUrl: "js/modules/sidenav/sidenav.html",
                     controller: 'sidenavController'
                 },
                 "videoBar": {
-                    templateUrl: "src/js/modules/videoPage/videoPage.html",
+                    templateUrl: "js/modules/videoPage/videoPage.html",
                     controller: 'videoPageController'
                 }
             }
         })
         .state('home.homePage', {
             url: "/",
-            templateUrl: 'src/js/modules/homePage/homePage.html',
+            templateUrl: 'js/modules/homePage/homePage.html',
             controller: 'homePageController'
         })
         .state('home.searchVideos', {
             url: "/search?query&pageToken",
-            templateUrl: 'src/js/modules/searchVideos/searchVideos.html',
+            templateUrl: 'js/modules/searchVideos/searchVideos.html',
             controller: 'youtubeController'
         })
         .state('home.videoPage', {
@@ -48,42 +50,40 @@ youtubeApp.config(['$stateProvider', '$urlMatcherFactoryProvider', '$urlRouterPr
         })
         .state('home.channelPage', {
             url: "/channel/:id",
-            templateUrl: 'src/js/modules/channelPage/channelPage.html',
-            controller: 'channelPageController'
+            templateUrl: 'js/modules/channelPage/channelPage.html',
+            controller: 'channelPageController',
+            abstract:true
         })
         .state('home.trending', {
             url: "/trending/:category?pageToken",
-            templateUrl: 'src/js/modules/trendingPage/trendingPage.html',
+            templateUrl: 'js/modules/trendingPage/trendingPage.html',
             controller: 'trendingPageController'
         })
         .state('home.about', {
             url: "/about/",
-            templateUrl: 'src/js/modules/about/about.html'
+            templateUrl: 'js/modules/about/about.html'
         })
         .state('home.channelPage.home', {
-            url: "/home",
-            templateUrl: 'src/js/modules/channelPage/channelPageHome/channelPageHome.html',
+            url: "",
+            templateUrl: 'js/modules/channelPage/channelPageHome/channelPageHome.html',
             controller: 'channelPageHomeController'
         })
         .state('home.channelPage.videos', {
             url: "/videos",
-            templateUrl: 'src/js/modules/channelPage/channelPageVideos/channelPageVideos.html',
+            templateUrl: 'js/modules/channelPage/channelPageVideos/channelPageVideos.html',
             controller: 'channelPageVideosController'
         })
         .state('home.channelPage.channels', {
             url: "/channels",
-            templateUrl: 'src/js/modules/channelPage/channelPageChannels/channelPageChannels.html',
+            templateUrl: 'js/modules/channelPage/channelPageChannels/channelPageChannels.html',
             controller: 'channelPageChannelsController'
         })
         .state('home.channelPage.about', {
             url: "/about",
-            templateUrl: 'src/js/modules/channelPage/channelPageAbout/channelPageAbout.html',
+            templateUrl: 'js/modules/channelPage/channelPageAbout/channelPageAbout.html',
             controller: 'channelPageAboutController'
         });
-
-    $locationProvider.html5Mode(true);
-
-}])
+}]);
 
 NProgress.configure({ showSpinner: false });
 
