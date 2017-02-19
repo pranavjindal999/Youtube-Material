@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <meta name="theme-color" content="#c62828">
+    <title>Youtube</title>
+    <base href="/">
+    <link rel="stylesheet" href="css/loader.min.css">
+</head>
+
+<body>
+    <div class="center" ng-if="::false">
+        <div class="loader-logo"></div>
+        <div class="loader"></div>
+    </div>
+
+    <div ui-view="header"></div>
+    <div ui-view="sidenav"></div>
+    <main ng-swipe-right="(isMobile || isTablet) && toggleSidenav()" ng-class="(isMobile || isTablet)?'':sidenavMargin">
+        <div ui-view="videoBar"></div>
+    </main>
+
+    <script src="js/app.min.js"></script>
+    <script type="text/javascript" src="js/apikey.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
+    <script type="text/javascript" src="js/templates.js"></script>
+    <script type="text/javascript" src="js/analytics.js" async></script>
+    
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/main.min.css">
+</body>
+
+</html>
