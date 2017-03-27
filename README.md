@@ -12,9 +12,10 @@ http://youtube-material.bitballoon.com
 
 Get node dependencies:
 `npm install`
+`npm install -g gulp-cli`
 
 For minified build and run:
-`npm build`
+`gulp build`
 
 For uniminified build with angular debug data:
-`npm`
+`gulp`
