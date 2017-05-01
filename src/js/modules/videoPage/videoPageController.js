@@ -177,6 +177,7 @@
                     .then(function(video) {
                         $scope.video = video.items[0];
                         updateTimerCallback(true);
+                        document.title = 'Youtube - ' + $scope.video.snippet.title;
                         $scope.video.snippet.descriptionHTML = $sce.trustAsHtml(autolinker.link($scope.video.snippet.description));
                         $scope.formatVideoDetails();
                         var parameters = {
