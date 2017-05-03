@@ -10,6 +10,7 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var minifyHtml = require('gulp-minify-html')
 var ngTemplate = require('gulp-ng-template')
+var bb = require('bitballoon');
  
 gulp.task('templates', function() {
   gulp.src('src/js/**/*.html')
@@ -85,6 +86,16 @@ gulp.task('clean:dist', function() {
   return del.sync('dist');
 });
 
+gulp.task('deploy', ['balloon'], function() {
+  bb.deploy({
+    access_token: 'bd37bcb861d7833affac3e828462f4b112a59dbbcb79720bca0c8f3cfb25dad31',
+    site_id: "youtube-material.bitballoon.com",
+    dir: "dist"
+  }, function(err, deploy) {
+    if (err) { throw(err) }
+  });
+});
+
 gulp.task('default', ['browserSyncDEBUG']);
 
 gulp.task('build', function (callback) {
@@ -92,5 +103,5 @@ gulp.task('build', function (callback) {
 });
 
 gulp.task('balloon', function (callback) {
-  runSequence('clean:dist', 'templates', ['useref', 'fontscopy', 'imgcopy','favicon','redirects', 'distjscopy:bitballoon', 'browserSyncMIN'], callback)
+  runSequence('clean:dist', 'templates', ['useref', 'fontscopy', 'imgcopy','favicon','redirects', 'distjscopy:bitballoon'], callback)
 });
