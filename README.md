@@ -1,21 +1,9 @@
-# youtube-material
+# Youtube-Material
 
-## Project setup
-```
-yarn install
-```
+My naïve attempt at making a material version of Youtube.
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+> You are on `vuetube` branch which is Vue version of this project. This project was originally written using AngularJS and MaterializeCSS and code for the is present in `ngtube` branch.
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+This branch is still under development. Come back later for more.
 
-### Lints and fixes files
-```
-yarn run lint
-```
+Thanks for visiting!
