@@ -4,6 +4,9 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const fs = require("fs");
 
+const isDev = process.env.NODE_ENV === "development";
+const isProd = process.env.NODE_ENV === "production";
+
 module.exports = {
   runtimeCompiler: false,
   pwa: {
@@ -14,8 +17,8 @@ module.exports = {
   devServer: {
     open: true,
     https: {
-      key: fs.readFileSync("key.pem"),
-      cert: fs.readFileSync("cert.pem")
+      key: isDev && fs.readFileSync("key.pem"),
+      cert: isDev && fs.readFileSync("cert.pem")
     }
   },
 
@@ -44,11 +47,11 @@ module.exports = {
         });
       });
 
-    if (process.env.NODE_ENV === "development") {
+    if (isDev) {
       // config.devtool("eval-source-map");
     }
 
-    if (process.env.NODE_ENV === "production") {
+    if (isProd) {
       config.plugin("webpack-report").use(BundleAnalyzerPlugin, [
         {
           analyzerMode: "static",
