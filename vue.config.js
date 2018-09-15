@@ -7,6 +7,16 @@ const fs = require("fs");
 const isDev = process.env.NODE_ENV === "development";
 const isProd = process.env.NODE_ENV === "production";
 
+let httpsOptions;
+if (fs.existsSync("key.pem") && fs.existsSync("cert.pem")) {
+  httpsOptions = {
+    key: fs.readFileSync("key.pem"),
+    cert: fs.readFileSync("cert.pem")
+  };
+} else {
+  httpsOptions = true;
+}
+
 module.exports = {
   runtimeCompiler: false,
   pwa: {
@@ -16,10 +26,7 @@ module.exports = {
   },
   devServer: {
     open: true,
-    https: {
-      key: isDev && fs.readFileSync("key.pem"),
-      cert: isDev && fs.readFileSync("cert.pem")
-    }
+    https: httpsOptions
   },
 
   chainWebpack: config => {

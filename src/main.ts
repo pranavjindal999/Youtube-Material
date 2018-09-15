@@ -1,13 +1,11 @@
+import "./init";
 import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-import "./registerServiceWorker";
-
-Vue.config.productionTip = false;
+import { $store } from "@/store";
+import { $router } from "@/router";
+import Root from "./app/Root.vue";
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount("#app");
+  router: $router,
+  store: $store,
+  render: h => h(Root)
+}).$mount("#ytmat");
