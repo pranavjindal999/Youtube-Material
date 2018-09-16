@@ -7,64 +7,31 @@ import VNavigationDrawer from "vuetify/es5/components/VNavigationDrawer";
 import * as VToolbar from "vuetify/es5/components/VToolbar";
 import VBtn from "vuetify/es5/components/VBtn";
 import VIcon from "vuetify/es5/components/VIcon";
+import VAutocomplete from "vuetify/es5/components/VAutocomplete";
 import * as VGrid from "vuetify/es5/components/VGrid";
-import VFooter from "vuetify/es5/components/VFooter";
-import VTextField from "vuetify/es5/components/VTextField";
-import * as VCard from "vuetify/es5/components/VCard";
-import VForm from "vuetify/es5/components/VForm";
-import VDivider from "vuetify/es5/components/VDivider";
-import VDialog from "vuetify/es5/components/VDialog";
-import VTooltip from "vuetify/es5/components/VTooltip";
-import VProgressCircular from "vuetify/es5/components/VProgressCircular";
-import VProgressLinear from "vuetify/es5/components/VProgressLinear";
-import VAlert from "vuetify/es5/components/VAlert";
-import VSelect from "vuetify/es5/components/VSelect";
-import VAvatar from "vuetify/es5/components/VAvatar";
-import * as VTabs from "vuetify/es5/components/VTabs";
-import * as VExpansionPanel from "vuetify/es5/components/VExpansionPanel";
 import * as VList from "vuetify/es5/components/VList";
-import VMenu from "vuetify/es5/components/VMenu";
-import VStepper from "vuetify/es5/components/VStepper";
+import * as VForm from "vuetify/es5/components/VForm";
+import VCombobox from "vuetify/es5/components/VCombobox";
+import VDivider from "vuetify/es5/components/VDivider";
+import VBottomNav from "vuetify/es5/components/VBottomNav";
+
 import transitions from "vuetify/es5/components/transitions";
 import directives from "vuetify/es5/directives";
-import VBtnToggle from "vuetify/es5/components/VBtnToggle";
-import VCarousel from "vuetify/es5/components/VCarousel";
-import VCheckbox from "vuetify/es5/components/VCheckbox";
-import VDataTable from "vuetify/es5/components/VDataTable";
-import VPagination from "vuetify/es5/components/VPagination";
-import VDatePicker from "vuetify/es5/components/VDatePicker";
 
 Vue.use(Vuetify, {
   components: {
     VApp,
     VNavigationDrawer,
-    VTextField,
-    VDialog,
-    VProgressCircular,
-    VProgressLinear,
-    VDivider,
-    VTooltip,
     ...VToolbar,
-    ...VCard,
-    ...VTabs,
-    VForm,
+    VCombobox,
+    VDivider,
     VBtn,
     VIcon,
-    ...VList,
-    VMenu,
-    ...VExpansionPanel,
+    VBottomNav,
+    VAutocomplete,
     ...VGrid,
-    VFooter,
-    VAlert,
-    VBtnToggle,
-    VSelect,
-    VCarousel,
-    VCheckbox,
-    VAvatar,
-    VStepper,
-    VDataTable,
-    VPagination,
-    VDatePicker
+    ...VForm,
+    ...VList
   },
   theme: {
     primary: "#4385f3",
@@ -74,8 +41,8 @@ Vue.use(Vuetify, {
     warning: "#FF9100",
     info: "#2196f3",
     success: "#4caf50",
-    grey: "#FAFAFA",
-    darkGrey: "#9c9c9c"
+    youtubeRed: "#ff0000",
+    white: "#ffffff"
   },
   directives,
   transitions

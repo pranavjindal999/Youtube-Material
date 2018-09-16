@@ -1,4 +1,4 @@
-import Toast from "@/services/Toast";
+import { Toast } from "@/services/Toast";
 
 window.addEventListener("offline", offlineHandler, false);
 window.addEventListener("online", onlineHandler, false);

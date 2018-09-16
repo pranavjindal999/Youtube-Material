@@ -16,7 +16,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["node", "vuetify"],
+    "types": ["node", "vuetify", "gapi", "youtube"],
     "paths": {
       "@/*": ["src/*"]
     },

@@ -1,5 +1,6 @@
 <template>
-  <v-app id="ytmat">
+  <v-app 
+    id="ytmat">
     <Header/>
     <Navigation/>
     <v-content >
@@ -7,6 +8,7 @@
         <router-view id="main-content"/>
       </v-container>
     </v-content>
+    <VideoBar/>
   </v-app>
 </template>
 

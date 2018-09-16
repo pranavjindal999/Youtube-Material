@@ -22,8 +22,11 @@
     "vuetify"
   ],
   "dependencies": {
+    "@types/gapi": "^0.0.36",
     "axios": "^0.18.0",
     "js-sha256": "^0.9.0",
+    "jsonp": "^0.2.1",
+    "load-js": "^3.0.2",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "ms": "^2.1.1",
@@ -39,8 +42,10 @@
     "vuex-persist": "^1.5.3"
   },
   "devDependencies": {
+    "@types/jsonp": "^0.2.0",
     "@types/lodash": "^4.14.116",
     "@types/ms": "^0.7.30",
+    "@types/youtube": "^0.0.34",
     "@vue/cli-plugin-babel": "^3.0.3",
     "@vue/cli-plugin-eslint": "^3.0.3",
     "@vue/cli-plugin-pwa": "^3.0.3",

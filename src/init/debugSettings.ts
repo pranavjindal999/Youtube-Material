@@ -1,5 +1,6 @@
 import Vue from "vue";
 import config from "@/config";
+import { escape } from "lodash";
 
 if (sessionStorage.getItem("debug")) {
   (config.debugInfo as any) = true;
@@ -9,15 +10,14 @@ Vue.config.productionTip = config.debugInfo;
 Vue.config.devtools = config.debugInfo;
 
 if (config.debugInfo) {
-  Vue.config.errorHandler = function(err, vm, info) {
-    showError(`You have an error in console. Please fix it. <br>
-    -----ERROR------<br>
-    ${err.toString()}<br>
-    -----STACK TRACE-----<br>
-    ${err.stack}<br>
-    `);
-  };
-
+  // Vue.config.errorHandler = function(err, vm, info) {
+  //   showError(`You have an error in console. Please fix it. <br>
+  //   -----ERROR------<br>
+  //   ${err.toString()}<br>
+  //   -----STACK TRACE-----<br>
+  //   ${err.stack}<br>
+  //   `);
+  // };
   Vue.config.warnHandler = function(msg, vm, trace) {
     showError(`You have Vue warning in console. Please fix it.<br>
     -----WARNING------<br>
@@ -46,14 +46,14 @@ if (config.debugInfo) {
  * @returns {void}
  */
 function showError(errorMessage: string, isWarning?: boolean): void {
-  if (document.getElementById("__w-error-div")) {
-    let errorDiv = document.getElementById("__w-error-div") as HTMLDivElement;
+  if (document.getElementById("__yt-error-div")) {
+    let errorDiv = document.getElementById("__yt-error-div") as HTMLDivElement;
 
     return appendErrorP(errorMessage, errorDiv, isWarning);
   }
 
   let errorDiv = document.createElement("div");
-  errorDiv.id = "__w-error-div";
+  errorDiv.id = "__yt-error-div";
   errorDiv.style.position = "fixed";
   errorDiv.style.right = "0";
   errorDiv.style.top = "0";
@@ -97,6 +97,6 @@ function appendErrorP(
   if (isWarning) {
     errorP.style.background = "#dccb79";
   }
-  errorP.innerHTML = errorMessage;
+  errorP.innerHTML = escape(errorMessage);
   divToAppend.appendChild(errorP);
 }

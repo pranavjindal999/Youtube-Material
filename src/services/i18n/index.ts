@@ -4,11 +4,10 @@ import VueI18n from "vue-i18n";
 import { $store } from "@/store";
 import config from "@/config";
 import en from "@/translations/en";
-import { merge } from "lodash";
 
 Vue.use(VueI18n);
 
-const i18nInstance = new VueI18n({
+const i18n = new VueI18n({
   fallbackLocale: config.defaultLanguage,
   messages: { en }
 });
@@ -16,8 +15,7 @@ const i18nInstance = new VueI18n({
 const loadedLanguages: Language[] = [config.defaultLanguage];
 setLanguage($store.state.currentLang);
 
-const i18n = merge(i18nInstance, { setLanguage });
-export { i18n };
+export { i18n, setLanguage };
 
 /**
  * Changes language of app dynamically fetching language file from translations folder
@@ -26,11 +24,11 @@ export { i18n };
  * @returns
  */
 function setLanguage(lang: Language) {
-  if (i18nInstance.locale !== lang) {
+  if (i18n.locale !== lang) {
     if (!loadedLanguages.includes(lang)) {
       return import(/* webpackChunkName: "lang-[request]" */ `@/translations/${lang}`).then(
         msgs => {
-          i18nInstance.setLocaleMessage(lang, msgs.default);
+          i18n.setLocaleMessage(lang, msgs.default);
           loadedLanguages.push(lang);
           return setLanguageInternal(lang);
         }
@@ -48,7 +46,7 @@ function setLanguage(lang: Language) {
  * @returns
  */
 function setLanguageInternal(lang: string) {
-  i18nInstance.locale = lang;
+  i18n.locale = lang;
   document.documentElement.setAttribute("lang", lang);
   $store.commit("updateLang", lang);
   return lang;
