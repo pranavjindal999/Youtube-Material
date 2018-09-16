@@ -5,6 +5,8 @@ import { $router } from "@/router";
 import Root from "./app/Root.vue";
 import { i18n } from "@/services/i18n";
 
+import "./directives/AsyncBind";
+
 new Vue({
   router: $router,
   store: $store,

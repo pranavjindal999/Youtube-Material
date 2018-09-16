@@ -1,6 +1,8 @@
 <template>
-  <YoutubePlayer video-id="M7lc1UVf-VE"/>
+  <YoutubePlayer :video-id="id"/>
 </template>
+
+
 
 <style scoped>
 </style>

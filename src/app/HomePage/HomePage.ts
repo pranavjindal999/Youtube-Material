@@ -1,9 +1,14 @@
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 import YoutubePlayer from "../shared/YoutubePlayer/YoutubePlayer.vue";
+import VideoTile from "@/app/shared/VideoTile/VideoTile.vue";
 
 @Component({
   components: {
-    YoutubePlayer
+    YoutubePlayer,
+    VideoTile
   }
 })
-export default class HomePage extends Vue {}
+export default class HomePage extends Vue {
+  @Prop()
+  id!: string;
+}

@@ -29,6 +29,7 @@
     "load-js": "^3.0.2",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
+    "moment-duration-format": "^2.2.2",
     "ms": "^2.1.1",
     "register-service-worker": "^1.0.0",
     "store2": "^2.7.0",
@@ -44,6 +45,7 @@
   "devDependencies": {
     "@types/jsonp": "^0.2.0",
     "@types/lodash": "^4.14.116",
+    "@types/moment-duration-format": "^2.2.2",
     "@types/ms": "^0.7.30",
     "@types/youtube": "^0.0.34",
     "@vue/cli-plugin-babel": "^3.0.3",

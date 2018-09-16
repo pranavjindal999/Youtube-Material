@@ -8,10 +8,12 @@
     :height="64"
     app
   >
-    <v-toolbar-side-icon @click="$store.commit('toggleDrawer')"/>
-    <img 
-      class="logo" 
-      src="@/assets/images/logo_white.png">
+    <v-toolbar-side-icon @click="toggleDrawer"/>
+    <router-link :to="{name: 'home'}">
+      <img 
+        class="logo" 
+        src="@/assets/images/logo_white.png">
+    </router-link>
 
     <v-form @submit.prevent="searchVideos">
       <v-combobox

@@ -1,8 +1,13 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { asyncYoutubeIframeAPI } from "@/services/youtube/youtubeIframe";
 import { randomString } from "lodash";
+import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 
-@Component
+@Component({
+  components: {
+    FloatingDiv
+  }
+})
 export default class YoutubePlayer extends Vue {
   player: YT.Player | null = null;
   isPlayerReady = false;
@@ -24,7 +29,7 @@ export default class YoutubePlayer extends Vue {
       events: {
         onReady: () => {
           this.isPlayerReady = true;
-          // this.player!.playVideo();
+          this.player!.playVideo();
         }
       }
     });

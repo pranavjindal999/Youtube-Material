@@ -4,7 +4,9 @@
     <Header/>
     <Navigation/>
     <v-content >
-      <v-container fill-height>
+      <v-container 
+        fluid 
+        grid-list-lg>
         <router-view id="main-content"/>
       </v-container>
     </v-content>

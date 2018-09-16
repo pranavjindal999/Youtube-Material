@@ -13,5 +13,6 @@ export default {
   sports: "Sports",
   technology: "Technology",
   comedy: "Comedy",
-  about: "About"
+  about: "About",
+  views: "views"
 };

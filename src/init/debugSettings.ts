@@ -10,14 +10,14 @@ Vue.config.productionTip = config.debugInfo;
 Vue.config.devtools = config.debugInfo;
 
 if (config.debugInfo) {
-  // Vue.config.errorHandler = function(err, vm, info) {
-  //   showError(`You have an error in console. Please fix it. <br>
-  //   -----ERROR------<br>
-  //   ${err.toString()}<br>
-  //   -----STACK TRACE-----<br>
-  //   ${err.stack}<br>
-  //   `);
-  // };
+  Vue.config.errorHandler = function(err, vm, info) {
+    showError(`You have an error in console. Please fix it. <br>
+    -----ERROR------<br>
+    ${err.toString()}<br>
+    -----STACK TRACE-----<br>
+    ${err.stack}<br>
+    `);
+  };
   Vue.config.warnHandler = function(msg, vm, trace) {
     showError(`You have Vue warning in console. Please fix it.<br>
     -----WARNING------<br>

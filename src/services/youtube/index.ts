@@ -24,6 +24,18 @@ class YoutubeService {
       });
   }
 
+  async getVideoDetails(videoIds: string[]) {
+    await asyncYoutubeClientAPI;
+    return gapi.client.youtube.videos
+      .list({
+        part: "statistics,contentDetails",
+        id: videoIds.join(",")
+      })
+      .then(({ result }) => {
+        return result;
+      });
+  }
+
   async getAllRegions() {
     await asyncYoutubeClientAPI;
     return gapi.client.youtube.i18nRegions

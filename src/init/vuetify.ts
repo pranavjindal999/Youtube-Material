@@ -14,6 +14,10 @@ import * as VForm from "vuetify/es5/components/VForm";
 import VCombobox from "vuetify/es5/components/VCombobox";
 import VDivider from "vuetify/es5/components/VDivider";
 import VBottomNav from "vuetify/es5/components/VBottomNav";
+import * as VCard from "vuetify/es5/components/VCard";
+import VImg from "vuetify/es5/components/VImg";
+import VHover from "vuetify/es5/components/VHover";
+import VProgressCircular from "vuetify/es5/components/VProgressCircular";
 
 import transitions from "vuetify/es5/components/transitions";
 import directives from "vuetify/es5/directives";
@@ -29,6 +33,10 @@ Vue.use(Vuetify, {
     VIcon,
     VBottomNav,
     VAutocomplete,
+    VProgressCircular,
+    VHover,
+    VImg,
+    ...VCard,
     ...VGrid,
     ...VForm,
     ...VList
@@ -42,7 +50,8 @@ Vue.use(Vuetify, {
     info: "#2196f3",
     success: "#4caf50",
     youtubeRed: "#ff0000",
-    white: "#ffffff"
+    white: "#ffffff",
+    captionGrey: "#909090"
   },
   directives,
   transitions
