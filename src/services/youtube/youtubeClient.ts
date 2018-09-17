@@ -36,6 +36,6 @@ deferred.promise.catch(() => {
 
 setTimeout(() => {
   deferred.reject();
-}, 10000);
+}, config.xhrTimeout);
 
 export const asyncYoutubeClientAPI = deferred.promise;

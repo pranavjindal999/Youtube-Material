@@ -13,17 +13,17 @@ if (config.debugInfo) {
   Vue.config.errorHandler = function(err, vm, info) {
     showError(`You have an error in console. Please fix it. <br>
     -----ERROR------<br>
-    ${err.toString()}<br>
+    ${escape(err.toString())}<br>
     -----STACK TRACE-----<br>
-    ${err.stack}<br>
+    ${escape(err.stack)}<br>
     `);
   };
   Vue.config.warnHandler = function(msg, vm, trace) {
     showError(`You have Vue warning in console. Please fix it.<br>
     -----WARNING------<br>
-    ${msg}<br>
+    ${escape(msg)}<br>
     -----COMPONENT TRACE-----<br>
-    ${trace}<br>
+    ${escape(trace)}<br>
     `);
   };
 }
@@ -97,6 +97,6 @@ function appendErrorP(
   if (isWarning) {
     errorP.style.background = "#dccb79";
   }
-  errorP.innerHTML = escape(errorMessage);
+  errorP.innerHTML = errorMessage;
   divToAppend.appendChild(errorP);
 }

@@ -7,8 +7,10 @@
     clipped
     app
   >
-    <v-list>
-      <v-list-tile>
+    <v-list subheader="">
+      <v-list-tile 
+        :to="homeRoute" 
+        exact>
         <v-list-tile-action>
           <v-icon color="youtubeRed">home</v-icon>
         </v-list-tile-action>
@@ -16,7 +18,9 @@
           <v-list-tile-title>{{ $t('home') }}</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
-      <v-list-tile>
+      <v-list-tile 
+        :to="trendingRoute" 
+        exact>
         <v-list-tile-action>
           <v-icon color="youtubeRed">trending_up</v-icon>
         </v-list-tile-action>
@@ -25,48 +29,25 @@
         </v-list-tile-content>
       </v-list-tile>
       <v-divider/>
-      <v-list-tile>
+      <v-subheader>Top Categories</v-subheader>
+
+      <v-list-tile 
+        :to="category.route" 
+        :key="$index"
+        v-for="(category, $index) in categories"
+        exact>
         <v-list-tile-action>
-          <v-icon color="youtubeRed">music_video</v-icon>
+          <v-icon color="youtubeRed">{{ category.icon }}</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title>{{ $t('music') }}</v-list-tile-title>
+          <v-list-tile-title>{{ $t(category.labelKey) }}</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
-      <v-list-tile>
-        <v-list-tile-action>
-          <v-icon color="youtubeRed">movie</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{ $t('movies') }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-list-tile>
-        <v-list-tile-action>
-          <v-icon color="youtubeRed">directions_run</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{ $t('sports') }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-list-tile>
-        <v-list-tile-action>
-          <v-icon color="youtubeRed">devices_other</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{ $t('technology') }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-list-tile>
-        <v-list-tile-action>
-          <v-icon color="youtubeRed">insert_emoticon</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{ $t('comedy') }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+
       <v-divider/>
-      <v-list-tile>
+      <v-list-tile 
+        :to="aboutRoute" 
+        exact>
         <v-list-tile-action>
           <v-icon color="youtubeRed">info_outline</v-icon>
         </v-list-tile-action>

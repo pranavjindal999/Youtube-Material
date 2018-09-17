@@ -1,5 +1,7 @@
 <template>
-  <div class="floating-animation"/>
+  <div class="floating-animation">
+    <slot/>
+  </div>
 </template>
 
 <style scoped>
@@ -21,6 +23,8 @@
   background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   background-size: 1000px 104px;
   overflow: hidden;
+  height: 100%;
+  width: 100%;
 }
 </style>
 

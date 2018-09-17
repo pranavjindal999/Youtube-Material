@@ -1,5 +1,5 @@
 <template>
-  <v-hover>
+  <v-hover v-if="video">
     <v-card 
       :to="videoRoute"
       class="video-tile"
@@ -9,14 +9,11 @@
         :src="thumbnail"
         :aspect-ratio="16/9">
         <div class="time-bar">
-          <span 
-            class="duration" 
-            v-async-bind="duration"/>
+          <span class="duration">{{ duration }}</span>
           <span class="uploaded">{{ uploaded }}</span>
         </div>
         <FloatingDiv 
-          slot="placeholder" 
-          class="loader-div"/>
+          slot="placeholder"/>
       </v-img>
       
       <v-card-title 
@@ -25,9 +22,7 @@
         <div class="title-div">
           <h3 class="font-weight-light title body-1">{{ title }}</h3>
         </div>
-        <div 
-          class="caption caption-grey" 
-          v-async-bind="views"/>
+        <div class="caption caption-grey">{{ views }}</div>
       </v-card-title>
       <router-link 
         :to="channelRoute" 
@@ -36,9 +31,43 @@
       </router-link>
     </v-card>
   </v-hover>
+  <v-responsive 
+    v-else
+    aspect-ratio="1">
+    <FloatingDiv class="fl-img"/>
+    <FloatingDiv class="fl-title1"/>
+    <FloatingDiv class="fl-title2"/>
+    <FloatingDiv class="fl-views"/>
+    <FloatingDiv class="fl-channel"/>
+  </v-responsive>
 </template>
 
 <style scoped>
+.fl-img {
+  height: 60%;
+}
+.fl-title1 {
+  height: 5%;
+  margin-top: 5%;
+  width: 80%;
+  padding: 2%;
+}
+.fl-title2 {
+  height: 5%;
+  margin-top: 2%;
+  width: 30%;
+}
+.fl-views {
+  height: 3%;
+  margin-top: 2%;
+  width: 20%;
+}
+.fl-channel {
+  margin-top: 5%;
+  height: 5%;
+  width: 50%;
+}
+
 .video-tile {
   cursor: pointer;
 }
@@ -88,10 +117,6 @@
 .time-bar .uploaded {
   position: absolute;
   right: 4px;
-}
-.loader-div {
-  height: 100%;
-  width: 100%;
 }
 </style>
 

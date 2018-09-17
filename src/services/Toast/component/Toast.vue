@@ -1,5 +1,7 @@
 <template>
-  <v-app id="toast">
+  <v-app 
+    id="toast" 
+    class="toast">
     <div 
       @mouseout="isMouseOver = false" 
       @mouseover="isMouseOver = true"

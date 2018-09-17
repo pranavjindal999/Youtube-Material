@@ -2,6 +2,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 import moment from "moment";
 import { routes } from "@/router/routeNames";
+import { Location } from "vue-router";
 
 @Component({
   components: {
@@ -10,48 +11,58 @@ import { routes } from "@/router/routeNames";
 })
 export default class VideoTile extends Vue {
   @Prop({ type: Boolean, default: false })
-  channelLink!: boolean;
+  hideChannelLink!: boolean;
 
-  @Prop({ type: Object, required: true })
-  video!: GoogleApiYouTubeSearchResource & {
-    videoDetails: Promise<GoogleApiYouTubeVideoResource>;
-  };
+  @Prop({ type: Object, required: false })
+  video?: GoogleApiYouTubeVideoResource;
 
   get duration() {
-    return this.video.videoDetails.then(d => {
-      return moment.duration(d.contentDetails.duration).format("h:m:ss");
-    });
+    return (
+      this.video &&
+      moment.duration(this.video.contentDetails.duration).format("h:m:ss")
+    );
   }
 
   get uploaded() {
-    return moment(this.video.snippet.publishedAt).fromNow();
+    return this.video && moment(this.video.snippet.publishedAt).fromNow();
   }
 
   get thumbnail() {
-    return this.video.snippet.thumbnails.medium.url;
+    return this.video && this.video.snippet.thumbnails.medium.url;
   }
 
   get views() {
-    return this.video.videoDetails.then(d => {
-      return `${Number(d.statistics.viewCount).toLocaleString()} ${this.$t(
+    return (
+      this.video &&
+      `${Number(this.video.statistics.viewCount).toLocaleString()} ${this.$t(
         "views"
-      )}`;
-    });
+      )}`
+    );
   }
 
   get title() {
-    return this.video.snippet.title;
+    return this.video && this.video.snippet.title;
   }
 
   get channelName() {
-    return this.video.snippet.channelTitle;
+    return this.video && this.video.snippet.channelTitle;
   }
 
-  get videoRoute() {
-    return { name: routes.home.name, params: { id: this.video.id.videoId } };
+  get videoRoute(): Location | undefined {
+    if (this.video)
+      return {
+        name: routes.home.name,
+        params: { id: this.video.id }
+      };
   }
 
-  get channelRoute() {
-    return {};
+  get channelRoute(): Location | undefined {
+    if (this.video)
+      return {
+        name: routes.channel.name,
+        params: {
+          [routes.channel.params.id]: this.video.snippet.channelId
+        }
+      };
   }
 }

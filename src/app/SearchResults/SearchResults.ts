@@ -8,12 +8,15 @@ import { Deferred } from "@/extras/Deferred";
   components: { VideoTile }
 })
 export default class SearchResults extends Vue {
-  @Prop({ type: String, required: true })
+  @Prop({
+    type: String,
+    required: true
+  })
   query!: string;
 
   videos?: (GoogleApiYouTubeSearchResource & {
-    videoDetails?: Promise<GoogleApiYouTubeVideoResource>;
-    _deferred?: Deferred<GoogleApiYouTubeVideoResource>;
+    videoDetails: Promise<GoogleApiYouTubeVideoResource>;
+    _deferred: Deferred<GoogleApiYouTubeVideoResource>;
   })[] = [];
 
   nextPageToken?: string;
@@ -26,7 +29,7 @@ export default class SearchResults extends Vue {
         query: this.query
       })
       .then(result => {
-        this.videos = result.items;
+        this.videos = result.items as any;
         this.updateVideoDetails();
         this.nextPageToken = result.nextPageToken;
         this.previousPageToken = result.prevPageToken;
@@ -43,7 +46,7 @@ export default class SearchResults extends Vue {
     youtubeService.getVideoDetails(ids).then(result => {
       this.videos!.forEach(i => {
         let videoDetails = find(result.items, { id: i.id.videoId })!;
-        i._deferred!.resolve(videoDetails);
+        i._deferred.resolve(videoDetails);
       });
     });
   }

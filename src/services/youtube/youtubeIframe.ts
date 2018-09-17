@@ -1,6 +1,7 @@
 import loadJs from "load-js";
 import { Deferred } from "@/extras/Deferred";
 import { Toast } from "@/services/Toast";
+import config from "@/config";
 
 let deferred = new Deferred<boolean>();
 
@@ -14,7 +15,7 @@ loadJs(["https://www.youtube.com/iframe_api"]).catch(() => {
 
 setTimeout(() => {
   deferred.reject();
-}, 10000);
+}, config.xhrTimeout);
 
 deferred.promise.catch(() => {
   Toast.show({

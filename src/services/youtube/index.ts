@@ -53,6 +53,40 @@ class YoutubeService {
       });
   }
 
+  async getAllCategories() {
+    await asyncYoutubeClientAPI;
+    return gapi.client.youtube.videoCategories
+      .list({
+        part: "snippet",
+        hl: i18n.locale,
+        regionCode: await $store.state.regionCode,
+        fields: "eventId,items(id,snippet)"
+      })
+      .then(({ result }) => {
+        return result.items;
+      });
+  }
+
+  async getPopularVideos(params: {
+    pageToken?: string;
+    videoCategoryId?: string;
+  }) {
+    await asyncYoutubeClientAPI;
+    return gapi.client.youtube.videos
+      .list({
+        part: "snippet,statistics,contentDetails",
+        hl: i18n.locale,
+        regionCode: await $store.state.regionCode,
+        chart: "mostPopular",
+        maxResults: 18,
+        pageToken: params.pageToken,
+        videoCategoryId: params.videoCategoryId
+      })
+      .then(({ result }) => {
+        return result;
+      });
+  }
+
   async getSuggestions(query: string) {
     return new Promise<string[]>((resolve, reject) => {
       jsonp(

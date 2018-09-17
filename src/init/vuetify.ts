@@ -18,9 +18,11 @@ import * as VCard from "vuetify/es5/components/VCard";
 import VImg from "vuetify/es5/components/VImg";
 import VHover from "vuetify/es5/components/VHover";
 import VProgressCircular from "vuetify/es5/components/VProgressCircular";
+import VSubheader from "vuetify/es5/components/VSubheader";
+import VResponsive from "vuetify/es5/components/VResponsive";
 
 import transitions from "vuetify/es5/components/transitions";
-import directives from "vuetify/es5/directives";
+import * as directives from "vuetify/es5/directives";
 
 Vue.use(Vuetify, {
   components: {
@@ -28,6 +30,7 @@ Vue.use(Vuetify, {
     VNavigationDrawer,
     ...VToolbar,
     VCombobox,
+    VResponsive,
     VDivider,
     VBtn,
     VIcon,
@@ -35,6 +38,7 @@ Vue.use(Vuetify, {
     VAutocomplete,
     VProgressCircular,
     VHover,
+    VSubheader,
     VImg,
     ...VCard,
     ...VGrid,

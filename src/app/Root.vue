@@ -10,7 +10,7 @@
         <router-view id="main-content"/>
       </v-container>
     </v-content>
-    <VideoBar/>
+    <!-- <VideoBar/> -->
   </v-app>
 </template>
 
