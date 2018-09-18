@@ -1,16 +1,11 @@
 <template>
-  <div 
-    :class="{height: haveMore}"
-    ref="el">
-    <!-- <v-btn 
-      v-if="haveMore" 
-      @click="$emit('fire')">Load More</v-btn> -->
-  </div>
+  <div :class="{'scroll-fire-div': haveMore}"/>
 </template>
 
 <style scoped>
-.height {
-  height: 300px;
+.scroll-fire-div {
+  height: 100px;
+  width: 100%;
 }
 </style>
 

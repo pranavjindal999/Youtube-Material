@@ -8,28 +8,32 @@ export default class ScrollFire extends Vue {
   @Prop({ type: Boolean, required: true })
   haveMore!: true;
 
-  inViewPort: boolean = false;
+  isInViewPort: boolean = false;
+  onScroll!: () => void;
 
-  $refs!: {
-    el: HTMLDivElement;
-  };
-
-  @Watch("inViewPort")
-  fire(newV: boolean, oldV: boolean) {
-    if (newV && !oldV && this.haveMore) {
+  @Watch("isInViewPort")
+  fire(isInViewPort: boolean, wasPreviouslyInViewPort: boolean) {
+    if (isInViewPort && !wasPreviouslyInViewPort && this.haveMore) {
       this.$emit("fire");
+      this.isInViewPort = false;
     }
   }
 
-  onScroll() {
-    if (
-      this.$refs.el.getBoundingClientRect().bottom <
-      document.documentElement.clientHeight
-    ) {
-      this.inViewPort = true;
-    } else {
-      this.inViewPort = false;
-    }
+  created() {
+    /**
+     * Assigning throttled scroll handler in created hook.
+     * Doing the same during construction binds a different this (which is partially constructed component).
+     */
+    this.onScroll = throttle(() => {
+      if (
+        this.$el.getBoundingClientRect().top + 20 <
+        document.documentElement.clientHeight
+      ) {
+        this.isInViewPort = true;
+      } else {
+        this.isInViewPort = false;
+      }
+    }, 250);
   }
 
   mounted() {
