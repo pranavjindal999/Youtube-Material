@@ -17,10 +17,16 @@ export default class VideoTile extends Vue {
   video?: GoogleApiYouTubeVideoResource;
 
   get duration() {
-    return (
-      this.video &&
-      moment.duration(this.video.contentDetails.duration).format("h:m:ss")
-    );
+    if (this.video) {
+      let duration = moment
+        .duration(this.video.contentDetails.duration)
+        .format("h:m:ss");
+      if (duration.includes(":")) {
+        return duration;
+      } else {
+        return `0:${duration}`;
+      }
+    }
   }
 
   get uploaded() {

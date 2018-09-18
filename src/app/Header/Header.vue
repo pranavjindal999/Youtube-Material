@@ -17,6 +17,8 @@
 
     <v-form @submit.prevent="searchVideos">
       <v-combobox
+        :menu-props="{
+        transition: 'slide-y-transition'}"
         clearable
         class="mx-3"
         no-filter

@@ -1,25 +1,23 @@
+import { DeferredObservale } from "./../../extras/DeferredObservale";
+import InfiniteVideoList from "./../shared/InfiniteVideoList/InfiniteVideoList.vue";
 import { trendingCategories } from "./../Navigation/TrendingCategories";
-import VideoTile from "@/app/shared/VideoTile/VideoTile.vue";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { keyBy } from "lodash";
 import { youtubeService } from "@/services/youtube";
-import ScrollFire from "@/app/shared/ScrollFire/ScrollFire.vue";
+import { VideoFetcher } from "@/app/shared/InfiniteVideoList/InfiniteVideoList";
 
 @Component({
   components: {
-    VideoTile,
-    ScrollFire
+    InfiniteVideoList
   }
 })
 export default class Trending extends Vue {
   @Prop({ type: String, default: "" })
   category!: string;
 
-  nextPageToken?: string = "";
-  haveMore = true;
-  videos: GoogleApiYouTubeVideoResource[] = [];
+  getTrendingVideos!: VideoFetcher;
 
-  currentRequest?: Promise<any>;
+  resetDeferredObservable = new DeferredObservale();
 
   get categoryId() {
     if (this.category)
@@ -27,29 +25,28 @@ export default class Trending extends Vue {
     else return "";
   }
 
+  created() {
+    this.setVideoFetcher();
+  }
+
+  setVideoFetcher() {
+    this.getTrendingVideos = (nextPageToken?: string) => {
+      return youtubeService
+        .getPopularVideos({
+          videoCategoryId: this.categoryId,
+          pageToken: nextPageToken
+        })
+        .then(result => {
+          return {
+            nextPageToken: result.nextPageToken,
+            videos: result.items
+          };
+        });
+    };
+  }
+
   @Watch("categoryId")
-  async getVideos(newCategoryId?: string, oldCategoryId?: string) {
-    await Promise.resolve(this.currentRequest);
-    if (newCategoryId !== oldCategoryId) {
-      this.videos = [];
-      this.haveMore = true;
-      this.nextPageToken = "";
-    }
-    if (!this.haveMore) {
-      return;
-    }
-    this.videos.splice(this.videos.length, 0, ...new Array(18));
-    this.currentRequest = youtubeService
-      .getPopularVideos({
-        videoCategoryId: this.categoryId,
-        pageToken: this.nextPageToken
-      })
-      .then(result => {
-        if (!result.nextPageToken) {
-          this.haveMore = false;
-        }
-        this.nextPageToken = result.nextPageToken;
-        this.videos.splice(this.videos.length - 18, 18, ...result.items);
-      });
+  categoryWatch() {
+    this.resetDeferredObservable.next();
   }
 }

@@ -1,21 +1,7 @@
 <template>
-  <v-layout
-    id="trending" 
-    row 
-    wrap>
-    <v-flex 
-      xs6 
-      md3
-      lg2
-      :key="$index"
-      v-for="(video, $index) in videos">
-      <VideoTile 
-        :video="video"/>
-    </v-flex>
-    <ScrollFire 
-      :have-more="haveMore" 
-      @fire="getVideos"/>
-  </v-layout>
+  <InfiniteVideoList 
+    :reset-onable="resetDeferredObservable.onable"
+    :video-fetcher="getTrendingVideos"/>
 </template>
 
 <style scoped>

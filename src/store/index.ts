@@ -10,7 +10,8 @@ Vue.use(Vuex);
 export const globalMutations = {
   updateLang: "updateLang",
   updateDrawer: "updateDrawer",
-  toggleDrawer: "toggleDrawer"
+  toggleDrawer: "toggleDrawer",
+  updateMaxResults: "updateMaxResults"
 };
 
 const vuexPersist = new VuexPersistence({
@@ -24,7 +25,8 @@ const $store = new Vuex.Store<AppState>({
   state: {
     currentLang: config.defaultLanguage,
     regionCode: asyncRegionCode,
-    drawer: true
+    drawer: true,
+    maxResults: 18
   },
   getters: {},
   mutations: {
@@ -37,6 +39,9 @@ const $store = new Vuex.Store<AppState>({
     },
     [globalMutations.toggleDrawer](state) {
       state.drawer = !state.drawer;
+    },
+    [globalMutations.updateMaxResults](state, maxResults: number) {
+      state.maxResults = maxResults;
     }
   }
 });
@@ -45,6 +50,7 @@ interface AppState {
   currentLang: Language;
   regionCode: Promise<string>;
   drawer: boolean;
+  maxResults: number;
 }
 
 export { $store };

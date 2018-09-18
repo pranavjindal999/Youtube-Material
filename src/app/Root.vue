@@ -1,5 +1,6 @@
 <template>
   <v-app 
+    v-resize="onResize"
     id="ytmat">
     <Header/>
     <Navigation/>

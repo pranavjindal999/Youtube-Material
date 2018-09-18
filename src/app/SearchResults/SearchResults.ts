@@ -1,11 +1,12 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import VideoTile from "@/app/shared/VideoTile/VideoTile.vue";
 import { youtubeService } from "@/services/youtube";
-import { map, find } from "lodash";
-import { Deferred } from "@/extras/Deferred";
+import { map } from "lodash";
+import InfiniteVideoList from "@/app/shared/InfiniteVideoList/InfiniteVideoList.vue";
+import { VideoFetcher } from "@/app/shared/InfiniteVideoList/InfiniteVideoList";
+import { DeferredObservale } from "@/extras/DeferredObservale";
 
 @Component({
-  components: { VideoTile }
+  components: { InfiniteVideoList }
 })
 export default class SearchResults extends Vue {
   @Prop({
@@ -14,44 +15,38 @@ export default class SearchResults extends Vue {
   })
   query!: string;
 
-  videos?: (GoogleApiYouTubeSearchResource & {
-    videoDetails: Promise<GoogleApiYouTubeVideoResource>;
-    _deferred: Deferred<GoogleApiYouTubeVideoResource>;
-  })[] = [];
+  getSearchResults!: VideoFetcher;
 
-  nextPageToken?: string;
-  previousPageToken?: string;
+  resetDeferredObservable = new DeferredObservale();
+
+  created() {
+    this.setVideoFetcher();
+  }
+
+  setVideoFetcher() {
+    this.getSearchResults = (nextPageToken?: string) => {
+      return youtubeService
+        .searchVideos({
+          query: this.query,
+          pageToken: nextPageToken
+        })
+        .then(result => {
+          let searchResults = result.items;
+          let ids = map(searchResults, v => v.id.videoId);
+          let nextPageToken = result.nextPageToken;
+
+          return youtubeService.getVideoDetails(ids).then(result => {
+            return {
+              nextPageToken: nextPageToken,
+              videos: result.items
+            };
+          });
+        });
+    };
+  }
 
   @Watch("query")
-  search() {
-    youtubeService
-      .searchVideos({
-        query: this.query
-      })
-      .then(result => {
-        this.videos = result.items as any;
-        this.updateVideoDetails();
-        this.nextPageToken = result.nextPageToken;
-        this.previousPageToken = result.prevPageToken;
-      });
-  }
-
-  updateVideoDetails() {
-    this.videos!.forEach(v => {
-      v._deferred = new Deferred<GoogleApiYouTubeVideoResource>();
-      v.videoDetails = v._deferred.promise;
-    });
-
-    let ids = map(this.videos, v => v.id.videoId);
-    youtubeService.getVideoDetails(ids).then(result => {
-      this.videos!.forEach(i => {
-        let videoDetails = find(result.items, { id: i.id.videoId })!;
-        i._deferred.resolve(videoDetails);
-      });
-    });
-  }
-
-  mounted() {
-    this.search();
+  async search() {
+    this.resetDeferredObservable.next();
   }
 }

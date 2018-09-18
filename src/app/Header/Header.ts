@@ -26,13 +26,14 @@ export default class Header extends Vue {
 
   searchVideos() {
     this.$nextTick(() => {
-      if (this.searchSelectedValue)
+      if (this.searchSelectedValue) {
         this.$router.push({
           name: routes.search.name,
           params: {
-            query: this.searchSelectedValue.replace(" ", "+")
+            query: this.searchSelectedValue.replace(/\s/g, "+")
           }
         });
+      }
     });
   }
 
