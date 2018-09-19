@@ -1,5 +1,5 @@
 <template>
-  <div/>
+  <div>ChannelVideos component here! </div>
 </template>
 
 <style scoped>

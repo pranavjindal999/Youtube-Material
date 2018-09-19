@@ -4,14 +4,9 @@
     id="ytmat">
     <Header/>
     <Navigation/>
-    <v-content >
-      <v-container 
-        id="main-content"
-        fluid 
-        grid-list-lg>
-        <router-view />
-        <VideoBar/>
-      </v-container>
+    <v-content id="main-content">
+      <router-view />
+      <VideoBar/>
     </v-content>
   </v-app>
 </template>

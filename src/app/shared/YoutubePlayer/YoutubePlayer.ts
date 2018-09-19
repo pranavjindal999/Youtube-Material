@@ -13,8 +13,8 @@ export default class YoutubePlayer extends Vue {
   elementToAttach = randomString();
   isPlayerReady: boolean = false;
 
-  @Prop({ validator: value => typeof value === "string" || value === null })
-  videoId: string | null = null;
+  @Prop({ type: String, required: true })
+  videoId!: string;
 
   async mounted() {
     await this.makePlayerReady();
@@ -25,12 +25,9 @@ export default class YoutubePlayer extends Vue {
     await this.asyncPlayerState;
 
     let player = this.player!;
-    if (this.videoId) {
-      if (newId !== oldId) {
-        player.loadVideoById(this.videoId);
-      }
-    } else {
-      player.stopVideo();
+
+    if (newId !== oldId) {
+      player.loadVideoById(this.videoId);
     }
   }
 
@@ -40,7 +37,7 @@ export default class YoutubePlayer extends Vue {
       this.player = new YT.Player(this.elementToAttach, {
         height: "390",
         width: "640",
-        videoId: this.videoId || "",
+        videoId: this.videoId,
         events: {
           onReady: () => {
             this.isPlayerReady = true;

@@ -7,6 +7,6 @@ import { Vue, Component, Prop } from "vue-property-decorator";
   }
 })
 export default class VideoPage extends Vue {
-  @Prop({ validator: value => typeof value === "string" || value === null })
-  videoId: string | null = null;
+  @Prop({ type: String, required: true })
+  videoId!: string;
 }

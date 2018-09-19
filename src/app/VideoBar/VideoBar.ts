@@ -12,7 +12,7 @@ import { youtubeService } from "@/services/youtube";
 })
 export default class VideoBar extends Vue {
   barMode: boolean = true;
-  videoId: string | null = null;
+  videoId: string = "";
   video: GoogleApiYouTubeVideoResource | null = null;
 
   get videoThumbnal() {
@@ -64,11 +64,7 @@ export default class VideoBar extends Vue {
   afterEachHook(to: Route) {
     if (to.name === routes.video.name) {
       let videoId = to.params[routes.video.params.id];
-      if (videoId) {
-        this.updateVideoId(videoId);
-      } else {
-        this.$router.push({ name: routes.home.name });
-      }
+      this.updateVideoId(videoId);
       this.barMode = false;
     } else {
       this.barMode = true;

@@ -14,5 +14,7 @@ export default {
   technology: "Technology",
   comedy: "Comedy",
   about: "About",
-  views: "views"
+  views: "views",
+  videos: "Videos",
+  channels: "Channels"
 };

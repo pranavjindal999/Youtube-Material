@@ -1,5 +1,9 @@
 <template>
-  <div>About</div>
+  <v-container 
+    fluid 
+    grid-list-lg>
+    <div>About</div>
+  </v-container>
 </template>
 
 <style scoped>

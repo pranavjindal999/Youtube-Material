@@ -1,6 +1,10 @@
 <template>
-  <YoutubePlayer 
-    :video-id="videoId"/>
+  <v-container 
+    fluid 
+    grid-list-lg>
+    <YoutubePlayer 
+      :video-id="videoId"/>
+  </v-container>
 </template>
 
 <style scoped>

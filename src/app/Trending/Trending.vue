@@ -1,7 +1,11 @@
 <template>
-  <InfiniteVideoList 
-    :reset-onable="resetDeferredObservable.onable"
-    :video-fetcher="getTrendingVideos"/>
+  <v-container 
+    fluid 
+    grid-list-lg>
+    <InfiniteVideoList 
+      :reset-onable="resetDeferredObservable.onable"
+      :video-fetcher="getTrendingVideos"/>
+  </v-container>
 </template>
 
 <style scoped>

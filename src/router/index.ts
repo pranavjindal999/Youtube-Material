@@ -44,8 +44,8 @@ const $router = new Router({
     },
     {
       name: routes.channel.name,
-      path: `/channel/:${routes.channel.params.id}?`,
-      redirect: routes.channel.children.home.name,
+      path: `/channel/:${routes.channel.params.id}/`,
+      redirect: { name: routes.channel.children.home.name },
       props: true,
       component: Channel,
       children: [
@@ -75,6 +75,10 @@ const $router = new Router({
       name: routes.about.name,
       path: "/about",
       component: About
+    },
+    {
+      path: "*",
+      redirect: { name: routes.home.name }
     }
   ]
 });

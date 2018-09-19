@@ -1,5 +1,9 @@
 <template>
-  <div>HomePage component here! </div>
+  <v-container 
+    fluid 
+    grid-list-lg>
+    <div>HomePage component here! </div>
+  </v-container>
 </template>
 
 <style scoped>

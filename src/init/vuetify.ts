@@ -20,6 +20,8 @@ import VHover from "vuetify/es5/components/VHover";
 import VProgressLinear from "vuetify/es5/components/VProgressLinear";
 import VSubheader from "vuetify/es5/components/VSubheader";
 import VResponsive from "vuetify/es5/components/VResponsive";
+import VAvatar from "vuetify/es5/components/VAvatar";
+import * as VTabs from "vuetify/es5/components/VTabs";
 
 import transitions from "vuetify/es5/components/transitions";
 import * as directives from "vuetify/es5/directives";
@@ -37,9 +39,11 @@ Vue.use(Vuetify, {
     VBottomNav,
     VAutocomplete,
     VProgressLinear,
+    VAvatar,
     VHover,
     VSubheader,
     VImg,
+    ...VTabs,
     ...VCard,
     ...VGrid,
     ...VForm,
@@ -53,7 +57,7 @@ Vue.use(Vuetify, {
     warning: "#FF9100",
     info: "#2196f3",
     success: "#4caf50",
-    youtubeRed: "#ff0000",
+    youtubeRed: "#d23b3b",
     white: "#ffffff",
     captionGrey: "#909090"
   },
