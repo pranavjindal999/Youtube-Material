@@ -1,12 +1,9 @@
 <template>
-  <YoutubePlayer :video-id="id"/>
+  <div>HomePage component here! </div>
 </template>
-
-
 
 <style scoped>
 </style>
-
 
 <script>
 import HomePage from "./HomePage.ts";

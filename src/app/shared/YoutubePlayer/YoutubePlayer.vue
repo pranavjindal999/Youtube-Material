@@ -9,7 +9,7 @@
       <FloatingDiv class="bar"/>
     </div>
     <div v-show="isPlayerReady">
-      <div :id="id"/>
+      <div :id="elementToAttach"/>
     </div>
   </div>
 </template>

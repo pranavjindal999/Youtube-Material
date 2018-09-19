@@ -17,7 +17,7 @@ import VBottomNav from "vuetify/es5/components/VBottomNav";
 import * as VCard from "vuetify/es5/components/VCard";
 import VImg from "vuetify/es5/components/VImg";
 import VHover from "vuetify/es5/components/VHover";
-import VProgressCircular from "vuetify/es5/components/VProgressCircular";
+import VProgressLinear from "vuetify/es5/components/VProgressLinear";
 import VSubheader from "vuetify/es5/components/VSubheader";
 import VResponsive from "vuetify/es5/components/VResponsive";
 
@@ -36,7 +36,7 @@ Vue.use(Vuetify, {
     VIcon,
     VBottomNav,
     VAutocomplete,
-    VProgressCircular,
+    VProgressLinear,
     VHover,
     VSubheader,
     VImg,

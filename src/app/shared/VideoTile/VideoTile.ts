@@ -57,7 +57,7 @@ export default class VideoTile extends Vue {
   get videoRoute(): Location | undefined {
     if (this.video)
       return {
-        name: routes.home.name,
+        name: routes.video.name,
         params: { id: this.video.id }
       };
   }

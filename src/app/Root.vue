@@ -6,12 +6,13 @@
     <Navigation/>
     <v-content >
       <v-container 
+        id="main-content"
         fluid 
         grid-list-lg>
-        <router-view id="main-content"/>
+        <router-view />
+        <VideoBar/>
       </v-container>
     </v-content>
-    <!-- <VideoBar/> -->
   </v-app>
 </template>
 
