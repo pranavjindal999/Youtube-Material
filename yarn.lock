@@ -4319,9 +4319,9 @@ listr@^0.14.1:
     p-map "^1.1.1"
     rxjs "^6.1.0"
 
-load-js@^3.0.2:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/load-js/-/load-js-3.0.3.tgz#9a5dd937de72fa789a0e696f7e917ecfe970de8a"
+load-js@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/load-js/-/load-js-3.0.2.tgz#3eb5c0a0f1fd1fc45567030d9f2622534b75462c"
 
 loader-fs-cache@^1.0.0:
   version "1.0.1"
