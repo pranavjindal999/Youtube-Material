@@ -22,9 +22,12 @@
         <div class="title-div">
           <h3 class="font-weight-light title body-1">{{ title }}</h3>
         </div>
-        <div class="caption caption-grey">{{ views }}</div>
+        <div 
+          :class="{'mb-2':hideChannelLink}" 
+          class="caption caption-grey">{{ views }}</div>
       </v-card-title>
       <router-link 
+        v-if="!hideChannelLink"
         :to="channelRoute" 
         class="channel-name text-truncate">
         {{ channelName }}
@@ -33,7 +36,7 @@
   </v-hover>
   <v-responsive 
     v-else
-    aspect-ratio="1">
+    :aspect-ratio="hideChannelLink?1.1:1">
     <FloatingDiv class="fl-img"/>
     <FloatingDiv class="fl-title1"/>
     <FloatingDiv class="fl-title2"/>
@@ -102,7 +105,7 @@
 }
 .time-bar {
   background: black;
-  opacity: 0.6;
+  opacity: 0.7;
   position: absolute;
   width: 100%;
   height: 20px;

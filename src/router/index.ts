@@ -57,7 +57,8 @@ const $router = new Router({
         {
           name: routes.channel.children.videos.name,
           path: "videos",
-          component: ChannelVideos
+          component: ChannelVideos,
+          props: true
         },
         {
           name: routes.channel.children.channels.name,

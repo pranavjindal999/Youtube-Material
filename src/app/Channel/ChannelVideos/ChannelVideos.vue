@@ -1,5 +1,12 @@
 <template>
-<InfiniteVideoList video-fetcher="getChannelVideos"/></template>
+  <v-container 
+    fluid 
+    grid-list-lg>
+    <InfiniteVideoList 
+      hide-channel-link 
+      :video-fetcher="getChannelVideos"/>
+  </v-container>
+</template>
 
 <style scoped>
 </style>

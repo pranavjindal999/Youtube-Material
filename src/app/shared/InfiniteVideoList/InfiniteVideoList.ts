@@ -8,6 +8,9 @@ import { $store } from "@/store";
   components: { ScrollFire, VideoTile }
 })
 export default class InfiniteVideoList extends Vue {
+  @Prop({ type: Boolean, default: false })
+  hideChannelLink!: boolean;
+
   @Prop({ type: Function, required: true })
   videoFetcher!: VideoFetcher;
 

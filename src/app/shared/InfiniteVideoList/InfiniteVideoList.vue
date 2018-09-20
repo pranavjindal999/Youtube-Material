@@ -9,6 +9,7 @@
       :key="$index"
       v-for="(video, $index) in videos">
       <VideoTile 
+        :hide-channel-link="hideChannelLink"
         :video="video"/>
     </v-flex>
     <ScrollFire 

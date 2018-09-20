@@ -2,14 +2,15 @@
   <div>
     <v-img 
       :src="coverUrl" 
-      :lazy-src="lazyCoverUrl"
       :aspect-ratio="coverAspect">
       <FloatingDiv 
         slot="placeholder"/>
     </v-img>
     <v-toolbar
+      ref="tabBar"
       dark
       color="youtubeRed"
+      :class="stickyTabsClass"
       tabs>
       <v-avatar 
         class="thumbnail elevation-6" 
@@ -25,17 +26,20 @@
       <v-tabs 
         slot="extension" 
         color="youtubeRed" 
-        slider-color="white">
+        slider-color="white"
+        grow>
         <v-tab
           v-for="tab in tabs"
           :key="tab.labelKey"
           :to="tab.route">
           <v-icon class="icon">{{ tab.icon }}</v-icon>
-          {{ $t(tab.labelKey) }}
+          <span v-if="isTabTitleVisible">{{ $t(tab.labelKey) }}</span>
         </v-tab> 
       </v-tabs>
     </v-toolbar>
-    <router-view/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 
@@ -47,6 +51,22 @@
 
 .icon {
   margin-right: 12px;
+}
+
+.sticky-tab {
+  position: sticky;
+  top: 16px;
+  z-index: 1;
+}
+.sticky-mobile {
+  position: sticky;
+  top: 10px;
+  z-index: 1;
+}
+.sticky-normal {
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 </style>
 

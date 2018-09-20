@@ -10,8 +10,14 @@ export default class Header extends Vue {
   searchSuggestions: string[] = [];
   searchSelectedValue = "";
 
+  preventNextSearch = false;
+
   @Watch("query")
   onSearch() {
+    if (this.preventNextSearch) {
+      this.preventNextSearch = false;
+      return;
+    }
     if (this.query) {
       this.searching = true;
       youtubeService.getSuggestions(this.query).then(suggestions => {
@@ -25,16 +31,15 @@ export default class Header extends Vue {
   }
 
   searchVideos() {
-    this.$nextTick(() => {
-      if (this.searchSelectedValue) {
-        this.$router.push({
-          name: routes.search.name,
-          params: {
-            query: this.searchSelectedValue.replace(/\s/g, "+")
-          }
-        });
-      }
-    });
+    if (this.searchSelectedValue) {
+      this.$router.push({
+        name: routes.search.name,
+        params: {
+          query: this.searchSelectedValue.replace(/\s/g, "+")
+        }
+      });
+      this.preventNextSearch = true;
+    }
   }
 
   toggleDrawer() {

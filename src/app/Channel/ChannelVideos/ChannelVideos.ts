@@ -22,6 +22,7 @@ export default class ChannelVideos extends Vue {
     this.getChannelVideos = (nextPageToken?: string) => {
       return youtubeService
         .searchVideos({
+          order: "date",
           channelId: this.id,
           pageToken: nextPageToken
         })

@@ -20,6 +20,10 @@ export default class Channel extends Vue {
 
   channel: GoogleApiYouTubeChannelResource | null = null;
 
+  $refs!: {
+    tabBar: Vue;
+  };
+
   tabs: TabsListItem[] = [
     {
       labelKey: "home",
@@ -73,12 +77,6 @@ export default class Channel extends Vue {
     }
   }
 
-  get lazyCoverUrl() {
-    if (this.channel) {
-      return this.channel.brandingSettings.image.bannerMobileLowImageUrl;
-    }
-  }
-
   get title() {
     if (this.channel) {
       return this.channel.snippet.title;
@@ -88,6 +86,20 @@ export default class Channel extends Vue {
   get thumbnail() {
     if (this.channel) {
       return this.channel.snippet.thumbnails.medium.url;
+    }
+  }
+
+  get isTabTitleVisible() {
+    return this.$vuetify.breakpoint.mdAndUp;
+  }
+
+  get stickyTabsClass() {
+    if (this.$vuetify.breakpoint.xs) {
+      return "sticky-mobile";
+    } else if (this.$vuetify.breakpoint.smAndDown) {
+      return "sticky-tab";
+    } else {
+      return "sticky-normal";
     }
   }
 
