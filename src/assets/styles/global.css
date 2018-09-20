@@ -1,3 +1,13 @@
 .caption-grey {
   color: #909090 !important;
 }
+
+.router-enter-active,
+.router-leave-active {
+  transition: all 0.2s;
+}
+.router-enter,
+.router-leave-to {
+  transform: translateX(5px);
+  opacity: 0;
+}

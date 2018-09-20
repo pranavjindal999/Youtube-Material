@@ -1,10 +1,9 @@
-import { DeferredObservale } from "./../../extras/DeferredObservale";
+import { DeferredObservable } from "./../../extras/DeferredObservable";
 import InfiniteVideoList from "./../shared/InfiniteVideoList/InfiniteVideoList.vue";
 import { trendingCategories } from "./../Navigation/TrendingCategories";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { keyBy } from "lodash";
 import { youtubeService } from "@/services/youtube";
-import { VideoFetcher } from "@/app/shared/InfiniteVideoList/InfiniteVideoList";
 
 @Component({
   components: {
@@ -15,9 +14,9 @@ export default class Trending extends Vue {
   @Prop({ type: String, default: "" })
   category!: string;
 
-  getTrendingVideos!: VideoFetcher;
+  getTrendingVideos!: VideoListFetcher;
 
-  resetDeferredObservable = new DeferredObservale();
+  resetDeferredObservable = new DeferredObservable();
 
   get categoryId() {
     if (this.category)
@@ -25,23 +24,29 @@ export default class Trending extends Vue {
     else return "";
   }
 
+  get categoryIcon() {
+    if (this.category)
+      return keyBy(trendingCategories, "name")[this.category].icon;
+    else return "trending_up";
+  }
+
+  get categoryLabelKey() {
+    if (this.category)
+      return keyBy(trendingCategories, "name")[this.category].labelKey;
+    else return "trending";
+  }
+
   created() {
     this.setVideoFetcher();
   }
 
   setVideoFetcher() {
-    this.getTrendingVideos = (nextPageToken?: string) => {
-      return youtubeService
-        .getPopularVideos({
-          videoCategoryId: this.categoryId,
-          pageToken: nextPageToken
-        })
-        .then(result => {
-          return {
-            nextPageToken: result.nextPageToken,
-            videos: result.items
-          };
-        });
+    this.getTrendingVideos = (maxResults, pageToken) => {
+      return youtubeService.getCategoryTrendingVideos({
+        videoCategoryId: this.categoryId,
+        pageToken,
+        maxResults
+      });
     };
   }
 

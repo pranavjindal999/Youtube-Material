@@ -4,6 +4,6 @@ import { Vue, Component, Prop } from "vue-property-decorator";
   components: {}
 })
 export default class ChannelChannels extends Vue {
-  @Prop({ type: String, default: "" })
-  someProp!: string;
+  @Prop({ type: String, required: true })
+  id!: string;
 }

@@ -5,7 +5,11 @@
     <Header/>
     <Navigation/>
     <v-content id="main-content">
-      <router-view />
+      <transition 
+        name="router" 
+        mode="out-in">
+        <router-view />
+      </transition>
       <VideoBar/>
     </v-content>
   </v-app>

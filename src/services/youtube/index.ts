@@ -14,7 +14,7 @@ class YoutubeService {
         part: "snippet",
         type: "video",
         regionCode: $store.state.regionCode,
-        maxResults: $store.state.maxResults,
+        maxResults: parameters.maxResults,
         relatedToVideoId: parameters.relatedToVideoId,
         q: parameters.query,
         pageToken: parameters.pageToken
@@ -79,9 +79,10 @@ class YoutubeService {
       });
   }
 
-  async getPopularVideos(params: {
+  async getCategoryTrendingVideos(params: {
     pageToken?: string;
     videoCategoryId?: string;
+    maxResults: number;
   }) {
     await asyncYoutubeClientAPI;
     return gapi.client.youtube.videos
@@ -90,7 +91,7 @@ class YoutubeService {
         hl: i18n.locale,
         regionCode: $store.state.regionCode,
         chart: "mostPopular",
-        maxResults: $store.state.maxResults,
+        maxResults: params.maxResults,
         pageToken: params.pageToken,
         videoCategoryId: params.videoCategoryId
       })

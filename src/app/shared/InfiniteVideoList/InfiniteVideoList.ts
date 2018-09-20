@@ -1,4 +1,4 @@
-import { Onable } from "./../../../extras/DeferredObservale";
+import { Onable } from "./../../../extras/DeferredObservable";
 import VideoTile from "@/app/shared/VideoTile/VideoTile.vue";
 import { Vue, Component, Prop } from "vue-property-decorator";
 import ScrollFire from "@/app/shared/ScrollFire/ScrollFire.vue";
@@ -12,7 +12,7 @@ export default class InfiniteVideoList extends Vue {
   hideChannelLink!: boolean;
 
   @Prop({ type: Function, required: true })
-  videoFetcher!: VideoFetcher;
+  videoFetcher!: VideoListFetcher;
 
   @Prop({ type: Onable, required: false })
   resetOnable?: Onable;
@@ -49,25 +49,19 @@ export default class InfiniteVideoList extends Vue {
       ...new Array($store.state.maxResults)
     );
 
-    this.currentRequest = this.videoFetcher(this.nextPageToken).then(
-      response => {
-        if (!response.nextPageToken) {
-          this.haveMore = false;
-        }
-        this.nextPageToken = response.nextPageToken;
-        this.videos.splice(
-          this.videos.length - $store.state.maxResults,
-          $store.state.maxResults,
-          ...response.videos
-        );
+    this.currentRequest = this.videoFetcher(
+      $store.state.maxResults,
+      this.nextPageToken
+    ).then(response => {
+      if (!response.nextPageToken) {
+        this.haveMore = false;
       }
-    );
+      this.nextPageToken = response.nextPageToken;
+      this.videos.splice(
+        this.videos.length - $store.state.maxResults,
+        $store.state.maxResults,
+        ...response.items
+      );
+    });
   }
 }
-
-export type VideoFetcher = (
-  nextPageToken?: string
-) => Promise<{
-  nextPageToken: string;
-  videos: GoogleApiYouTubeVideoResource[];
-}>;

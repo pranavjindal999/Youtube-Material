@@ -38,7 +38,11 @@
       </v-tabs>
     </v-toolbar>
     <keep-alive>
-      <router-view/>
+      <transition 
+        name="router" 
+        mode="out-in">
+        <router-view />
+      </transition>
     </keep-alive>
   </div>
 </template>

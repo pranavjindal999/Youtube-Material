@@ -1,4 +1,4 @@
-export class DeferredObservale<T = any> {
+export class DeferredObservable<T = any> {
   onable: Onable<T>;
   next!: (data?: T) => void;
 

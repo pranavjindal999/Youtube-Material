@@ -1,8 +1,7 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
 import InfiniteVideoList from "@/app/shared/InfiniteVideoList/InfiniteVideoList.vue";
-import { VideoFetcher } from "@/app/shared/InfiniteVideoList/InfiniteVideoList";
-import { DeferredObservale } from "@/extras/DeferredObservale";
+import { DeferredObservable } from "@/extras/DeferredObservable";
 
 @Component({
   components: { InfiniteVideoList }
@@ -14,30 +13,28 @@ export default class SearchResults extends Vue {
   })
   query!: string;
 
-  getSearchResults!: VideoFetcher;
+  getSearchResults!: VideoListFetcher;
 
-  resetDeferredObservable = new DeferredObservale();
+  resetDeferredObservable = new DeferredObservable();
 
   created() {
     this.setVideoFetcher();
   }
 
   setVideoFetcher() {
-    this.getSearchResults = (nextPageToken?: string) => {
+    this.getSearchResults = (maxResults, pageToken) => {
       return youtubeService
         .searchVideos({
           query: this.query,
-          pageToken: nextPageToken
+          pageToken,
+          maxResults
         })
         .then(result => {
           let ids = result.items.map(v => v.id.videoId);
-          let nextPageToken = result.nextPageToken;
-
-          return youtubeService.getVideoDetails(ids).then(result => {
-            return {
-              nextPageToken: nextPageToken,
-              videos: result.items
-            };
+          return youtubeService.getVideoDetails(ids).then(videoResult => {
+            videoResult.nextPageToken = result.nextPageToken;
+            videoResult.prevPageToken = result.prevPageToken;
+            return videoResult;
           });
         });
     };

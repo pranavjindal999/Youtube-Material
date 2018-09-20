@@ -2,7 +2,7 @@ import { $store, globalMutations } from "@/store";
 import Header from "./Header/Header.vue";
 import Navigation from "./Navigation/Navigation.vue";
 import VideoBar from "./VideoBar/VideoBar.vue";
-import { Watch, Vue, Component } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 
 @Component({
   components: {

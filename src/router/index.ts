@@ -52,7 +52,8 @@ const $router = new Router({
         {
           name: routes.channel.children.home.name,
           path: ``,
-          component: ChannelHome
+          component: ChannelHome,
+          props: true
         },
         {
           name: routes.channel.children.videos.name,
@@ -63,12 +64,14 @@ const $router = new Router({
         {
           name: routes.channel.children.channels.name,
           path: "channels",
-          component: ChannelChannels
+          component: ChannelChannels,
+          props: true
         },
         {
           name: routes.channel.children.about.name,
           path: "about",
-          component: ChannelAbout
+          component: ChannelAbout,
+          props: true
         }
       ]
     },

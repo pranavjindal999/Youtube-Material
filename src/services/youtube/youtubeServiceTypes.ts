@@ -10,4 +10,5 @@ type SearchParams = {
   relatedToVideoId?: string;
   query?: string;
   pageToken?: string;
+  maxResults: number;
 };

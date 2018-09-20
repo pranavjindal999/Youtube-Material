@@ -36,7 +36,7 @@
   </v-hover>
   <v-responsive 
     v-else
-    :aspect-ratio="hideChannelLink?1.1:1">
+    :aspect-ratio="hideChannelLink?1.05:.93">
     <FloatingDiv class="fl-img"/>
     <FloatingDiv class="fl-title1"/>
     <FloatingDiv class="fl-title2"/>
