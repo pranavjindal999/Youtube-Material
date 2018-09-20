@@ -13,7 +13,7 @@ class YoutubeService {
         order: parameters.order,
         part: "snippet",
         type: "video",
-        regionCode: await $store.state.regionCode,
+        regionCode: $store.state.regionCode,
         maxResults: $store.state.maxResults,
         relatedToVideoId: parameters.relatedToVideoId,
         q: parameters.query,
@@ -71,7 +71,7 @@ class YoutubeService {
       .list({
         part: "snippet",
         hl: i18n.locale,
-        regionCode: await $store.state.regionCode,
+        regionCode: $store.state.regionCode,
         fields: "eventId,items(id,snippet)"
       })
       .then(({ result }) => {
@@ -88,7 +88,7 @@ class YoutubeService {
       .list({
         part: "snippet,statistics,contentDetails",
         hl: i18n.locale,
-        regionCode: await $store.state.regionCode,
+        regionCode: $store.state.regionCode,
         chart: "mostPopular",
         maxResults: $store.state.maxResults,
         pageToken: params.pageToken,
