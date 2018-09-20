@@ -22,7 +22,10 @@ module.exports = {
   pwa: {
     name: "Youtube Material",
     themeColor: "#ff0000",
-    msTileColor: "#ff0000"
+    msTileColor: "#ff0000",
+    workboxOptions: {
+      skipWaiting: true
+    }
   },
   devServer: {
     open: true,
