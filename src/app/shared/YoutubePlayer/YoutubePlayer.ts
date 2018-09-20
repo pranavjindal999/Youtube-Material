@@ -1,7 +1,7 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { asyncYoutubeIframeAPI } from "@/services/youtube/youtubeIframe";
-import { randomString } from "lodash";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
+import { randomString } from "@/extras/utils";
 @Component({
   components: {
     FloatingDiv

@@ -1,6 +1,5 @@
 import Vue from "vue";
 import config from "@/config";
-import { escape } from "lodash";
 
 if (sessionStorage.getItem("debug")) {
   (config.debugInfo as any) = true;
@@ -11,20 +10,27 @@ Vue.config.devtools = config.debugInfo;
 
 if (config.debugInfo) {
   Vue.config.errorHandler = function(err, vm, info) {
-    showError(`You have an error in console. Please fix it. <br>
-    -----ERROR------<br>
-    ${escape(err.toString())}<br>
-    -----STACK TRACE-----<br>
-    ${escape(err.stack)}<br>
+    showError(`You have an error in console. Please fix it. 
+
+    -----ERROR------
+    ${err.toString()}
+
+    -----TRACE-----
+    ${err.stack!}
     `);
   };
   Vue.config.warnHandler = function(msg, vm, trace) {
-    showError(`You have Vue warning in console. Please fix it.<br>
-    -----WARNING------<br>
-    ${escape(msg)}<br>
-    -----COMPONENT TRACE-----<br>
-    ${escape(trace)}<br>
-    `);
+    showError(
+      `You have Vue warning in console. Please fix it.
+
+    -----WARNING------
+    ${msg}
+    
+    -----TRACE-----
+    ${trace}
+    `,
+      true
+    );
   };
 }
 
@@ -97,6 +103,6 @@ function appendErrorP(
   if (isWarning) {
     errorP.style.background = "#dccb79";
   }
-  errorP.innerHTML = errorMessage;
+  errorP.innerText = errorMessage;
   divToAppend.appendChild(errorP);
 }

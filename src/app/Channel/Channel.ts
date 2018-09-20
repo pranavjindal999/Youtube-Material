@@ -53,7 +53,29 @@ export default class Channel extends Vue {
 
   get coverUrl() {
     if (this.channel) {
-      return this.channel.brandingSettings.image.bannerImageUrl;
+      if (this.$vuetify.breakpoint.smAndDown) {
+        return this.channel.brandingSettings.image.bannerMobileImageUrl;
+      } else if (this.$vuetify.breakpoint.lgAndDown) {
+        return this.channel.brandingSettings.image.bannerTabletImageUrl;
+      } else {
+        return this.channel.brandingSettings.image.bannerTabletExtraHdImageUrl;
+      }
+    }
+  }
+
+  get coverAspect() {
+    if (this.$vuetify.breakpoint.smAndDown) {
+      return 640 / 175;
+    } else if (this.$vuetify.breakpoint.lgAndDown) {
+      return 1707 / 283;
+    } else {
+      return 2560 / 424;
+    }
+  }
+
+  get lazyCoverUrl() {
+    if (this.channel) {
+      return this.channel.brandingSettings.image.bannerMobileLowImageUrl;
     }
   }
 

@@ -1,11 +1,11 @@
 import { $store } from "@/store";
 import { asyncYoutubeClientAPI } from "@/services/youtube/youtubeClient";
-import { toQueryString } from "lodash";
 import { i18n } from "@/services/i18n";
 import jsonp from "jsonp";
+import { toQueryString } from "@/extras/utils";
 
 class YoutubeService {
-  async searchVideos(parameters: any) {
+  async searchVideos(parameters: SearchParams) {
     await asyncYoutubeClientAPI;
     return gapi.client.youtube.search
       .list({

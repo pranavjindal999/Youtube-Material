@@ -7,6 +7,7 @@ let base: IConfig = {
   defaultLanguage: Language.en,
   local: false,
   production: false,
+  staging: false,
   xhrTimeout: 1000 * 10
 };
 

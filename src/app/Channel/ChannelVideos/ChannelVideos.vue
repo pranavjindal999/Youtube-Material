@@ -1,6 +1,5 @@
 <template>
-  <div>ChannelVideos component here! </div>
-</template>
+<InfiniteVideoList video-fetcher="getChannelVideos"/></template>
 
 <style scoped>
 </style>

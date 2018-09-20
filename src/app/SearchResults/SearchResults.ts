@@ -1,6 +1,5 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
-import { map } from "lodash";
 import InfiniteVideoList from "@/app/shared/InfiniteVideoList/InfiniteVideoList.vue";
 import { VideoFetcher } from "@/app/shared/InfiniteVideoList/InfiniteVideoList";
 import { DeferredObservale } from "@/extras/DeferredObservale";
@@ -31,8 +30,7 @@ export default class SearchResults extends Vue {
           pageToken: nextPageToken
         })
         .then(result => {
-          let searchResults = result.items;
-          let ids = map(searchResults, v => v.id.videoId);
+          let ids = result.items.map(v => v.id.videoId);
           let nextPageToken = result.nextPageToken;
 
           return youtubeService.getVideoDetails(ids).then(result => {

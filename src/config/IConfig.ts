@@ -4,7 +4,8 @@ export interface IConfig {
   apiKey: string;
   local?: boolean;
   production?: boolean;
-  environment?: "production" | "local";
+  staging?: boolean;
+  environment?: "production" | "local" | "staging";
   xhrTimeout: number;
   defaultLanguage: Language;
   debugInfo: boolean;

@@ -2,7 +2,8 @@
   <div>
     <v-img 
       :src="coverUrl" 
-      :aspect-ratio="1060/175">
+      :lazy-src="lazyCoverUrl"
+      :aspect-ratio="coverAspect">
       <FloatingDiv 
         slot="placeholder"/>
     </v-img>
@@ -36,7 +37,6 @@
     </v-toolbar>
     <router-view/>
   </div>
-  
 </template>
 
 <style scoped>
