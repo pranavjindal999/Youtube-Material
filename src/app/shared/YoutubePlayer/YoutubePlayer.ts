@@ -35,8 +35,13 @@ export default class YoutubePlayer extends Vue {
     this.asyncPlayerState = new Promise(async resolve => {
       await asyncYoutubeIframeAPI;
       this.player = new YT.Player(this.elementToAttach, {
-        height: "390",
-        width: "640",
+        playerVars: {
+          autoplay: 0,
+          modestbranding: 1,
+          showinfo: 0,
+          rel: 0,
+          origin: "https://www.youtube.com"
+        },
         videoId: this.videoId,
         events: {
           onReady: () => {
