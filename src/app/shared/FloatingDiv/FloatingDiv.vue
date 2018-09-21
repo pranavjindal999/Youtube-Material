@@ -14,14 +14,15 @@
   }
 }
 .floating-animation {
+  animation-delay: 0.5s;
   animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
   animation-name: placeHolderShimmer;
   animation-timing-function: linear;
-  background: #f6f7f8;
   background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   background-size: 1000px 104px;
+  will-change: background-position;
   overflow: hidden;
   height: 100%;
   width: 100%;

@@ -16,5 +16,9 @@ export default {
   about: "About",
   views: "views",
   videos: "Videos",
-  channels: "Channels"
+  channels: "Channels",
+  description: "description",
+  joined: "Joined",
+  totalViews: "Total Views",
+  subscribers: "Subscribers"
 };

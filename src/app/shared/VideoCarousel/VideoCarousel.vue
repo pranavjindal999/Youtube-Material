@@ -10,7 +10,7 @@
       <v-icon dark>navigate_before</v-icon>
     </v-btn>
     <v-layout 
-      class="mx-4"
+      class="mx-2"
       row 
       align-center
       v-touch="{left: next, right: previous}">
@@ -46,7 +46,7 @@
   height: 80px;
   border-radius: 4px;
   width: 20px;
-  left: -10px;
+  left: -18px;
   top: 25%;
 }
 
@@ -55,7 +55,7 @@
   height: 80px;
   border-radius: 4px;
   width: 20px;
-  right: -10px;
+  right: -18px;
   top: 25%;
 }
 </style>

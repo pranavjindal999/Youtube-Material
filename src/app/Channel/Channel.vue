@@ -37,13 +37,13 @@
         </v-tab> 
       </v-tabs>
     </v-toolbar>
-    <keep-alive>
-      <transition 
-        name="router" 
-        mode="out-in">
-        <router-view />
-      </transition>
-    </keep-alive>
+    <transition 
+      name="router" 
+      mode="out-in">
+      <keep-alive>
+        <router-view v-bind="{channel}"/>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 

@@ -59,7 +59,8 @@ Vue.use(Vuetify, {
     success: "#4caf50",
     youtubeRed: "#d23b3b",
     white: "#ffffff",
-    captionGrey: "#909090"
+    captionGrey: "#909090",
+    lightGrey: "#efefef"
   },
   directives,
   transitions

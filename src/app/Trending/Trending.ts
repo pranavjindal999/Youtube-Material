@@ -4,6 +4,7 @@ import { trendingCategories } from "./../Navigation/TrendingCategories";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { keyBy } from "lodash";
 import { youtubeService } from "@/services/youtube";
+import { LangKeys } from "@/translations";
 
 @Component({
   components: {
@@ -18,22 +19,23 @@ export default class Trending extends Vue {
 
   resetDeferredObservable = new DeferredObservable();
 
+  get categoryObj() {
+    if (this.category) {
+      return keyBy(trendingCategories, "name")[this.category];
+    }
+  }
+
   get categoryId() {
-    if (this.category)
-      return keyBy(trendingCategories, "name")[this.category].id;
-    else return "";
+    return this.categoryObj ? this.categoryObj.id : "";
   }
 
   get categoryIcon() {
-    if (this.category)
-      return keyBy(trendingCategories, "name")[this.category].icon;
-    else return "trending_up";
+    return this.categoryObj ? this.categoryObj.icon : "trending_up";
   }
 
   get categoryLabelKey() {
-    if (this.category)
-      return keyBy(trendingCategories, "name")[this.category].labelKey;
-    else return "trending";
+    console.log(LangKeys);
+    return this.categoryObj ? this.categoryObj.labelKey : LangKeys.trending;
   }
 
   created() {

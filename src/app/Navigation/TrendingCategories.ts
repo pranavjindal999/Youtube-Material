@@ -1,3 +1,4 @@
+import { LangKeys } from "@/translations";
 import { routes } from "@/router/routeNames";
 import { Location } from "vue-router";
 
@@ -5,7 +6,7 @@ export const trendingCategories = [
   {
     id: "10",
     name: "music",
-    labelKey: "music",
+    labelKey: LangKeys.music,
     icon: "music_video",
     get route(): Location {
       return {
@@ -17,7 +18,7 @@ export const trendingCategories = [
   {
     id: "1",
     name: "movies",
-    labelKey: "movies",
+    labelKey: LangKeys.movies,
     icon: "movie",
     get route(): Location {
       return {
@@ -29,7 +30,7 @@ export const trendingCategories = [
   {
     id: "17",
     name: "sports",
-    labelKey: "sports",
+    labelKey: LangKeys.sports,
     icon: "directions_run",
     get route(): Location {
       return {
@@ -41,7 +42,7 @@ export const trendingCategories = [
   {
     id: "28",
     name: "tech",
-    labelKey: "technology",
+    labelKey: LangKeys.technology,
     icon: "devices_other",
     get route(): Location {
       return {
@@ -53,7 +54,7 @@ export const trendingCategories = [
   {
     id: "23",
     name: "comedy",
-    labelKey: "comedy",
+    labelKey: LangKeys.comedy,
     icon: "insert_emoticon",
     get route(): Location {
       return {

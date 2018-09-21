@@ -3,6 +3,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 import { Location } from "vue-router";
 import { youtubeService } from "@/services/youtube";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
+import { LangKeys } from "@/translations";
 
 type TabsListItem = {
   labelKey: string;
@@ -26,28 +27,28 @@ export default class Channel extends Vue {
 
   tabs: TabsListItem[] = [
     {
-      labelKey: "home",
+      labelKey: LangKeys.home,
       icon: "home",
       route: {
         name: routes.channel.children.home.name
       }
     },
     {
-      labelKey: "videos",
+      labelKey: LangKeys.videos,
       icon: "video_library",
       route: {
         name: routes.channel.children.videos.name
       }
     },
     {
-      labelKey: "channels",
+      labelKey: LangKeys.channels,
       icon: "tv",
       route: {
         name: routes.channel.children.channels.name
       }
     },
     {
-      labelKey: "about",
+      labelKey: LangKeys.about,
       icon: "info_outline",
       route: {
         name: routes.channel.children.about.name
