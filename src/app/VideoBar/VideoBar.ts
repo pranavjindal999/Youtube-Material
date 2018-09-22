@@ -4,6 +4,8 @@ import { Vue, Watch, Component } from "vue-property-decorator";
 import { Route } from "vue-router";
 import VideoPage from "@/app/VideoBar/VideoPage/VideoPage.vue";
 import { youtubeService } from "@/services/youtube";
+import { EventBus, EventNames } from "@/services/eventBus";
+import { humarizeDuration } from "@/extras/utils";
 
 @Component({
   components: {
@@ -14,6 +16,7 @@ export default class VideoBar extends Vue {
   barMode: boolean = true;
   videoId: string = "";
   video: GoogleApiYouTubeVideoResource | null = null;
+  playerRef: YT.Player | null = null;
 
   get videoThumbnal() {
     if (this.video) {
@@ -32,14 +35,7 @@ export default class VideoBar extends Vue {
   }
   get duration() {
     if (this.video) {
-      let duration = moment
-        .duration(this.video.contentDetails.duration)
-        .format("h:m:ss");
-      if (duration.includes(":")) {
-        return duration;
-      } else {
-        return `0:${duration}`;
-      }
+      return humarizeDuration(this.video.contentDetails.duration);
     }
   }
   get elapsedPercent() {
@@ -54,14 +50,15 @@ export default class VideoBar extends Vue {
   }
 
   created() {
-    this.$router.afterEach(this.afterEachHook);
+    EventBus.$on(EventNames.playerReady, this.savePlayerRef);
+    this.$router.afterEach(this.sniffVideoPage);
   }
 
   mounted() {
-    this.afterEachHook(this.$route);
+    this.sniffVideoPage(this.$route);
   }
 
-  afterEachHook(to: Route) {
+  sniffVideoPage(to: Route) {
     if (to.name === routes.video.name) {
       let videoId = to.params[routes.video.params.id];
       this.updateVideoId(videoId);
@@ -69,6 +66,10 @@ export default class VideoBar extends Vue {
     } else {
       this.barMode = true;
     }
+  }
+
+  savePlayerRef(player: YT.Player) {
+    this.playerRef = player;
   }
 
   updateVideoId(videoId: string) {

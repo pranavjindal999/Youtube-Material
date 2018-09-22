@@ -1,3 +1,4 @@
+import { EventNames, EventBus } from "./../../../services/eventBus/index";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { asyncYoutubeIframeAPI } from "@/services/youtube/youtubeIframe";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
@@ -39,14 +40,14 @@ export default class YoutubePlayer extends Vue {
           autoplay: 0,
           modestbranding: 1,
           showinfo: 0,
-          rel: 0,
-          origin: "https://www.youtube.com"
+          rel: 0
         },
         videoId: this.videoId,
         events: {
           onReady: () => {
             this.isPlayerReady = true;
             this.player!.playVideo();
+            EventBus.$emit(EventNames.playerReady, this.player);
             resolve();
           }
         }

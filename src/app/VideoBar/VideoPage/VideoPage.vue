@@ -1,10 +1,35 @@
 <template>
-  <v-container 
-    fluid 
-    grid-list-lg>
-    <YoutubePlayer 
-      :video-id="videoId"/>
-  </v-container>
+  <div>
+    <VideoCard 
+      v-if="isVideoOutsideContainer" 
+      :video-id="videoId" 
+      :video="video"/>
+
+    <v-container 
+      fluid 
+      grid-list-lg>
+      <v-layout 
+        row 
+        wrap>
+        <v-flex 
+          xs12 
+          md8>
+          <VideoCard 
+            v-if="!isVideoOutsideContainer" 
+            :video-id="videoId" 
+            :video="video"/>
+        </v-flex>
+        <v-flex 
+          xs12 
+          md4>
+          <InfiniteVideoList 
+            :reset-onable="resetDeferred.onable"
+            :list-fetcher="relatedVideosFetcher" 
+            two-column/>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <style scoped>

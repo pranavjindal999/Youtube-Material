@@ -1,3 +1,5 @@
+import moment from "moment";
+
 type ObjectOf<T> = { [key: string]: T };
 
 export function toQueryString(paramsObject: ObjectOf<string>) {
@@ -17,4 +19,13 @@ export function randomString(length: number = 32) {
     out += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return out;
+}
+
+export function humarizeDuration(durationISO: string) {
+  let duration = moment.duration(durationISO).format("h:m:ss");
+  if (duration.includes(":")) {
+    return duration;
+  } else {
+    return `0:${duration}`;
+  }
 }

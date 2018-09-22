@@ -1,27 +1,45 @@
 <template>
   <div>
-    <div 
-      v-if="!isPlayerReady" 
+    <v-responsive 
+      v-if="!isPlayerReady"
+      :aspect-ratio="16/9"
       class="fake-yt-player">
       <FloatingDiv class="title"/>
       <FloatingDiv class="button1"/>
       <FloatingDiv class="button2"/>
       <FloatingDiv class="bar"/>
-    </div>
-    <div v-show="isPlayerReady">
+    </v-responsive>
+    <div 
+      class="yt-player-iframe-wrapper" 
+      v-show="isPlayerReady">
       <div :id="elementToAttach"/>
     </div>
   </div>
 </template>
 
+<style>
+.yt-player-iframe-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  width: 100%;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.yt-player-iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+
 <style scoped>
 .fake-yt-player {
-  height: 390px;
-  width: 640px;
-  border: 2px solid #f6f7f8;
   position: relative;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
 .title {

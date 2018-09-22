@@ -1,4 +1,4 @@
-import { EventBus, GlobalEvents } from "./../../services/eventBus/index";
+import { EventBus, EventNames } from "./../../services/eventBus/index";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
 import { DeferredObservable } from "@/extras/DeferredObservable";
@@ -40,6 +40,6 @@ export default class SearchResults extends Vue {
   }
 
   destroyed() {
-    EventBus.$emit(GlobalEvents.clearSearchText);
+    EventBus.$emit(EventNames.clearSearchText);
   }
 }

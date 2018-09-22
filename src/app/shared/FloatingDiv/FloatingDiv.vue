@@ -1,7 +1,5 @@
 <template>
-  <div class="floating-animation">
-    <slot/>
-  </div>
+  <div class="floating-animation"/>
 </template>
 
 <style scoped>
@@ -15,7 +13,7 @@
 }
 .floating-animation {
   border-radius: 5px;
-  animation-delay: 100s;
+  animation-delay: 10000s;
   animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;

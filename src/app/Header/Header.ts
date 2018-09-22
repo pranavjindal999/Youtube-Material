@@ -1,4 +1,4 @@
-import { EventBus, GlobalEvents } from "./../../services/eventBus/index";
+import { EventBus, EventNames } from "./../../services/eventBus/index";
 import { globalMutations } from "./../../store/index";
 import { routes } from "./../../router/routeNames";
 import { Vue, Component, Watch } from "vue-property-decorator";
@@ -14,7 +14,7 @@ export default class Header extends Vue {
 
   created() {
     EventBus.$on(
-      GlobalEvents.clearSearchText,
+      EventNames.clearSearchText,
       () => (this.searchSelectedValue = "")
     );
   }

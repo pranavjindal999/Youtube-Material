@@ -3,6 +3,7 @@ import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 import moment from "moment";
 import { routes } from "@/router/routeNames";
 import { Location } from "vue-router";
+import { humarizeDuration } from "@/extras/utils";
 
 @Component({
   components: {
@@ -18,14 +19,7 @@ export default class VideoTile extends Vue {
 
   get duration() {
     if (this.video) {
-      let duration = moment
-        .duration(this.video.contentDetails.duration)
-        .format("h:m:ss");
-      if (duration.includes(":")) {
-        return duration;
-      } else {
-        return `0:${duration}`;
-      }
+      return humarizeDuration(this.video.contentDetails.duration);
     }
   }
 

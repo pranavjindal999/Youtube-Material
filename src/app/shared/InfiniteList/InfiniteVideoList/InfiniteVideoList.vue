@@ -3,9 +3,7 @@
     row 
     wrap>
     <v-flex 
-      xs6 
-      md3
-      lg2
+      v-bind="layoutProps"
       :key="$index"
       v-for="(video, $index) in list">
       <VideoTile 

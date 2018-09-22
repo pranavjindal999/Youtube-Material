@@ -68,6 +68,16 @@ export default class InfiniteList<T> extends Vue {
           resultsToFetch,
           ...response.items
         );
+
+        /**
+         * HACK: This is due to buggy Youtube APIs. APIs sometimes return empty dataset
+         * despite greater maxResults.
+         */
+        if (!response.items.length) {
+          this.haveMore = false;
+          this.nextPageToken = "";
+          this.totalResults = this.list.length;
+        }
       })
       .finally(() => {
         this.isCurrentRequestPending = false;

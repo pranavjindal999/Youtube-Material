@@ -31,7 +31,9 @@
     </v-bottom-nav>
     <transition name="fade">
       <div v-show="!barMode">
-        <VideoPage :video-id="videoId"/>
+        <VideoPage 
+          :video="video" 
+          :video-id="videoId"/>
       </div>
     </transition>
   </div>
