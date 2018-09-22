@@ -34,7 +34,6 @@ export default class Trending extends Vue {
   }
 
   get categoryLabelKey() {
-    console.log(LangKeys);
     return this.categoryObj ? this.categoryObj.labelKey : LangKeys.trending;
   }
 
