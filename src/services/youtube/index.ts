@@ -28,6 +28,8 @@ class YoutubeService {
     await asyncYoutubeClientAPI;
     return gapi.client.youtube.videos
       .list({
+        hl: i18n.locale,
+        regionCode: $store.state.regionCode,
         part: "snippet,statistics,contentDetails",
         id: videoIds.join(",")
       })
@@ -36,12 +38,35 @@ class YoutubeService {
       });
   }
 
-  async getChannelDetails(channelIds: string[]) {
+  async getChannelDetails(
+    channelIds: string[],
+    part = "snippet,statistics,brandingSettings"
+  ) {
     await asyncYoutubeClientAPI;
     return gapi.client.youtube.channels
       .list({
-        part: "snippet,statistics, brandingSettings",
+        hl: i18n.locale,
+        part: part,
         id: channelIds.join(",")
+      })
+      .then(({ result }) => {
+        return result;
+      });
+  }
+
+  async getChannelSubscriptions(params: {
+    channelId: string;
+    pageToken?: string;
+    maxResults: number;
+  }) {
+    await asyncYoutubeClientAPI;
+    return gapi.client.youtube.subscriptions
+      .list({
+        channelId: params.channelId,
+        part: "snippet",
+        order: "alphabetical",
+        pageToken: params.pageToken,
+        maxResults: params.maxResults
       })
       .then(({ result }) => {
         return result;
@@ -52,6 +77,7 @@ class YoutubeService {
     await asyncYoutubeClientAPI;
     return gapi.client.youtube.i18nRegions
       .list({
+        hl: i18n.locale,
         part: "snippet",
         fields: "items/snippet"
       })

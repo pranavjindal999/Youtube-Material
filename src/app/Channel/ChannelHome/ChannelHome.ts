@@ -1,10 +1,13 @@
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { DeferredObservable } from "@/extras/DeferredObservable";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
 import VideoCarousel from "@/app/shared/VideoCarousel/VideoCarousel.vue";
+import IconHeading from "@/app/shared/IconHeading/IconHeading.vue";
 
 @Component({
   components: {
-    VideoCarousel
+    VideoCarousel,
+    IconHeading
   }
 })
 export default class ChannelHome extends Vue {
@@ -14,7 +17,16 @@ export default class ChannelHome extends Vue {
   getPopularVideos = this.getVideoListFetcher("viewCount");
   getRecentVideos = this.getVideoListFetcher("date");
 
-  getVideoListFetcher(order: "date" | "viewCount"): VideoListFetcher {
+  resetDeferred = new DeferredObservable();
+
+  @Watch("id")
+  reset() {
+    this.resetDeferred.next();
+  }
+
+  getVideoListFetcher(
+    order: "date" | "viewCount"
+  ): ListFetcher<GoogleApiYouTubeVideoResource> {
     return (maxResults, pageToken) => {
       return youtubeService
         .searchVideos({
@@ -23,12 +35,11 @@ export default class ChannelHome extends Vue {
           order: order,
           maxResults
         })
-        .then(result => {
-          let ids = result.items.map(v => v.id.videoId);
+        .then(searchResult => {
+          let ids = searchResult.items.map(v => v.id.videoId);
           return youtubeService.getVideoDetails(ids).then(videoResult => {
-            videoResult.nextPageToken = result.nextPageToken;
-            videoResult.prevPageToken = result.prevPageToken;
-            return videoResult;
+            searchResult.items = videoResult.items as any;
+            return searchResult as any;
           });
         });
     };

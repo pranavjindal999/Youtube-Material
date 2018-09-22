@@ -1,5 +1,5 @@
 import { routes } from "./../../router/routeNames";
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { Location } from "vue-router";
 import { youtubeService } from "@/services/youtube";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
@@ -25,36 +25,50 @@ export default class Channel extends Vue {
     tabBar: Vue;
   };
 
-  tabs: TabsListItem[] = [
-    {
-      labelKey: LangKeys.home,
-      icon: "home",
-      route: {
-        name: routes.channel.children.home.name
+  get tabs(): TabsListItem[] {
+    return [
+      {
+        labelKey: LangKeys.home,
+        icon: "home",
+        route: {
+          name: routes.channel.children.home.name,
+          params: {
+            [routes.channel.params.id]: this.id
+          }
+        }
+      },
+      {
+        labelKey: LangKeys.videos,
+        icon: "video_library",
+        route: {
+          name: routes.channel.children.videos.name,
+          params: {
+            [routes.channel.params.id]: this.id
+          }
+        }
+      },
+      {
+        labelKey: LangKeys.channels,
+        icon: "tv",
+        route: {
+          name: routes.channel.children.channels.name,
+          params: {
+            [routes.channel.params.id]: this.id
+          }
+        }
+      },
+      {
+        labelKey: LangKeys.about,
+        icon: "info_outline",
+        route: {
+          name: routes.channel.children.about.name,
+          params: {
+            [routes.channel.params.id]: this.id
+          }
+        }
       }
-    },
-    {
-      labelKey: LangKeys.videos,
-      icon: "video_library",
-      route: {
-        name: routes.channel.children.videos.name
-      }
-    },
-    {
-      labelKey: LangKeys.channels,
-      icon: "tv",
-      route: {
-        name: routes.channel.children.channels.name
-      }
-    },
-    {
-      labelKey: LangKeys.about,
-      icon: "info_outline",
-      route: {
-        name: routes.channel.children.about.name
-      }
-    }
-  ];
+    ];
+  }
 
   get coverUrl() {
     if (this.channel) {
@@ -108,6 +122,7 @@ export default class Channel extends Vue {
     this.getChannelInfo();
   }
 
+  @Watch("id")
   getChannelInfo() {
     youtubeService.getChannelDetails([this.id]).then(result => {
       this.channel = result.items[0];

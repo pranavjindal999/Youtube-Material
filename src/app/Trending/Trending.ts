@@ -1,21 +1,21 @@
+import IconHeading from "@/app/shared/IconHeading/IconHeading.vue";
 import { DeferredObservable } from "./../../extras/DeferredObservable";
-import InfiniteVideoList from "./../shared/InfiniteVideoList/InfiniteVideoList.vue";
 import { trendingCategories } from "./../Navigation/TrendingCategories";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { keyBy } from "lodash";
 import { youtubeService } from "@/services/youtube";
 import { LangKeys } from "@/translations";
+import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/InfiniteVideoList.vue";
 
 @Component({
   components: {
-    InfiniteVideoList
+    InfiniteVideoList,
+    IconHeading
   }
 })
 export default class Trending extends Vue {
   @Prop({ type: String, default: "" })
   category!: string;
-
-  getTrendingVideos!: VideoListFetcher;
 
   resetDeferredObservable = new DeferredObservable();
 
@@ -37,12 +37,8 @@ export default class Trending extends Vue {
     return this.categoryObj ? this.categoryObj.labelKey : LangKeys.trending;
   }
 
-  created() {
-    this.setVideoFetcher();
-  }
-
-  setVideoFetcher() {
-    this.getTrendingVideos = (maxResults, pageToken) => {
+  get trendingVideoFetcher(): ListFetcher<GoogleApiYouTubeVideoResource> {
+    return (maxResults, pageToken) => {
       return youtubeService.getCategoryTrendingVideos({
         videoCategoryId: this.categoryId,
         pageToken,

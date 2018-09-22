@@ -1,4 +1,4 @@
-type VideoListFetcher = (
+type ListFetcher<T> = (
   maxResults: number,
   pageToken?: string
-) => Promise<GoogleApiYouTubePaginationInfo<GoogleApiYouTubeVideoResource>>;
+) => Promise<GoogleApiYouTubePaginationInfo<T>>;

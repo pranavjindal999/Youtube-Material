@@ -16,14 +16,24 @@ export default class Header extends Vue {
   onSearch() {
     if (this.preventNextSearch) {
       this.preventNextSearch = false;
+      this.searchSuggestions = [];
       return;
     }
     if (this.query) {
       this.searching = true;
-      youtubeService.getSuggestions(this.query).then(suggestions => {
-        this.searching = false;
-        this.searchSuggestions = suggestions;
-      });
+      youtubeService
+        .getSuggestions(this.query)
+        .then(suggestions => {
+          if (this.preventNextSearch) {
+            this.preventNextSearch = false;
+            this.searchSuggestions = [];
+            return;
+          }
+          this.searchSuggestions = suggestions;
+        })
+        .finally(() => {
+          this.searching = false;
+        });
     } else {
       this.searching = false;
       this.searchSuggestions = [];

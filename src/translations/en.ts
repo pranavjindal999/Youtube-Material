@@ -20,5 +20,8 @@ export default {
   description: "description",
   joined: "Joined",
   totalViews: "Total Views",
-  subscribers: "Subscribers"
+  subscribers: "Subscribers",
+  subscriptions: "Subscriptions",
+  featuredChannels: "Featured Channels",
+  noChannelsFeatured: "No channels featured!"
 };

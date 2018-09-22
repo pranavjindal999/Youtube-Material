@@ -124,6 +124,7 @@ declare namespace gapi.client.youtube {
        * The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
        */
       pageToken?: string;
+      hl?: string;
     }): HttpRequest<
       GoogleApiYouTubePaginationInfo<GoogleApiYouTubeChannelResource>
     >;
@@ -1099,6 +1100,10 @@ interface GoogleApiYouTubeChannelResource {
      * A map of thumbnail images associated with the channel. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
      */
     thumbnails: GoogleApiYouTubeThumbnailResource;
+    localized: {
+      title: string;
+      description: string;
+    };
   };
   /**
    * The contentDetails object encapsulates information about the channels content.

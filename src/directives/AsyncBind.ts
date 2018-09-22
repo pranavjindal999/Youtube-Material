@@ -1,18 +1,17 @@
 import Vue, { DirectiveOptions } from "vue";
 
 const AsyncBind: DirectiveOptions = {
-  bind(el, binding, vnode) {
+  bind(el, binding) {
     bind(el, binding.value);
   },
-  update(el, binding, vnode) {
+  update(el, binding) {
     bind(el, binding.value);
   }
 };
 
 function bind(el: HTMLElement, binding: Promise<string>) {
   if (binding) {
-    el.innerHTML = "...";
-    binding.then(value => {
+    Promise.resolve(binding).then(value => {
       el.innerHTML = value;
     });
   }

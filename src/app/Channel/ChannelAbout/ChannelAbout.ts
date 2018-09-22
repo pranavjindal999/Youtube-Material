@@ -2,20 +2,23 @@ import moment from "moment";
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { LangKeys } from "@/translations";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
+import { linkify } from "@/services/linkify";
 
 @Component({
   components: { FloatingDiv }
 })
 export default class ChannelAbout extends Vue {
-  @Prop({ required: true })
-  channel: GoogleApiYouTubeChannelResource | null = null;
+  @Prop({ required: true, default: null })
+  channel!: GoogleApiYouTubeChannelResource | null;
 
   get channelName() {
-    if (this.channel) return this.channel.snippet.title;
+    if (this.channel) return this.channel.snippet.localized.title;
   }
 
   get channelDesc() {
-    if (this.channel) return this.channel.snippet.description;
+    if (this.channel) {
+      return linkify(this.channel.snippet.localized.description);
+    }
   }
 
   get channelInfoItems() {
@@ -29,17 +32,17 @@ export default class ChannelAbout extends Vue {
         {
           labelKey: LangKeys.totalViews,
           icon: "visibility",
-          value: this.channel.statistics.viewCount.toLocaleString()
+          value: (+this.channel.statistics.viewCount).toLocaleString()
         },
         {
           labelKey: LangKeys.subscribers,
           icon: "subscriptions",
-          value: this.channel.statistics.subscriberCount.toLocaleString()
+          value: (+this.channel.statistics.subscriberCount).toLocaleString()
         },
         {
           labelKey: LangKeys.videos,
           icon: "video_library",
-          value: this.channel.statistics.videoCount.toLocaleString()
+          value: (+this.channel.statistics.videoCount).toLocaleString()
         }
       ];
   }

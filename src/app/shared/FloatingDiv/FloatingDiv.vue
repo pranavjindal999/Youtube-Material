@@ -14,7 +14,8 @@
   }
 }
 .floating-animation {
-  animation-delay: 0.5s;
+  border-radius: 5px;
+  animation-delay: 100s;
   animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;

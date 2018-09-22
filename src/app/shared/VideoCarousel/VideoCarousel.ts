@@ -1,5 +1,6 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import VideoTile from "@/app/shared/VideoTile/VideoTile";
+import { Onable } from "@/extras/DeferredObservable";
 
 @Component({
   components: { VideoTile }
@@ -9,12 +10,15 @@ export default class VideoCarousel extends Vue {
   hideChannelLink!: boolean;
 
   @Prop({ type: Function, required: true })
-  videoFetcher!: VideoListFetcher;
+  videoFetcher!: ListFetcher<GoogleApiYouTubeVideoResource>;
+
+  @Prop({ type: Onable, required: false })
+  resetOnable?: Onable;
 
   nextPageToken?: string = "";
   prevPageToken?: string = "";
   videos: GoogleApiYouTubeVideoResource[] = [];
-  currentRequest: Promise<any> | null = null;
+  isCurrentRequestPending: boolean = false;
 
   get maxResults() {
     if (this.$vuetify.breakpoint.smAndDown) {
@@ -27,6 +31,15 @@ export default class VideoCarousel extends Vue {
   }
 
   mounted() {
+    this.resetOnable && this.resetOnable.on(this.reset);
+    this.reset();
+  }
+
+  reset() {
+    this.nextPageToken = "";
+    this.prevPageToken = "";
+    this.videos = [];
+    this.isCurrentRequestPending = false;
     this.next();
   }
 
@@ -39,16 +52,21 @@ export default class VideoCarousel extends Vue {
   }
 
   async getVideos(pageToken?: string) {
-    await Promise.resolve(this.currentRequest);
+    if (this.isCurrentRequestPending) {
+      return;
+    }
 
     this.videos = new Array(this.maxResults);
+    this.isCurrentRequestPending = true;
 
-    this.currentRequest = this.videoFetcher(this.maxResults, pageToken).then(
-      response => {
+    this.videoFetcher(this.maxResults, pageToken)
+      .then(response => {
         this.prevPageToken = response.prevPageToken;
         this.nextPageToken = response.nextPageToken;
         this.videos = response.items;
-      }
-    );
+      })
+      .finally(() => {
+        this.isCurrentRequestPending = false;
+      });
   }
 }

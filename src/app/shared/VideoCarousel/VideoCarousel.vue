@@ -3,6 +3,7 @@
     <v-btn 
       @click="previous" 
       class="previous" 
+      :disabled="isCurrentRequestPending"
       v-show="prevPageToken"
       fab 
       small 
@@ -28,6 +29,7 @@
     <v-btn 
       @click="next" 
       class="next" 
+      :disabled="isCurrentRequestPending"
       v-show="nextPageToken"
       fab 
       small 

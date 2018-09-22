@@ -673,6 +673,10 @@
   dependencies:
     any-observable "^0.3.0"
 
+"@types/autolinker@^0.24.28":
+  version "0.24.28"
+  resolved "https://registry.yarnpkg.com/@types/autolinker/-/autolinker-0.24.28.tgz#37976f20c6e0abde283784fdc6b91cc6cb90e8dc"
+
 "@types/gapi@^0.0.36":
   version "0.0.36"
   resolved "https://registry.yarnpkg.com/@types/gapi/-/gapi-0.0.36.tgz#e7fb3d4d4a6fbdbd0a9aef1cbd93d3b115d59a3d"
@@ -1259,6 +1263,10 @@ asynckit@^0.4.0:
 atob@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
+
+autolinker@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/autolinker/-/autolinker-1.7.1.tgz#36397dd0c09c369433142677b5247ed4c9d2d705"
 
 autoprefixer@^8.6.5:
   version "8.6.5"

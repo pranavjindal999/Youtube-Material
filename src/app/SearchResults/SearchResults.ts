@@ -1,7 +1,7 @@
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
-import InfiniteVideoList from "@/app/shared/InfiniteVideoList/InfiniteVideoList.vue";
 import { DeferredObservable } from "@/extras/DeferredObservable";
+import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/InfiniteVideoList.vue";
 
 @Component({
   components: { InfiniteVideoList }
@@ -13,28 +13,21 @@ export default class SearchResults extends Vue {
   })
   query!: string;
 
-  getSearchResults!: VideoListFetcher;
-
   resetDeferredObservable = new DeferredObservable();
 
-  created() {
-    this.setVideoFetcher();
-  }
-
-  setVideoFetcher() {
-    this.getSearchResults = (maxResults, pageToken) => {
+  get searchResultsFetcher(): ListFetcher<GoogleApiYouTubeVideoResource> {
+    return (maxResults, pageToken) => {
       return youtubeService
         .searchVideos({
           query: this.query,
           pageToken,
           maxResults
         })
-        .then(result => {
-          let ids = result.items.map(v => v.id.videoId);
+        .then(searchResult => {
+          let ids = searchResult.items.map(v => v.id.videoId);
           return youtubeService.getVideoDetails(ids).then(videoResult => {
-            videoResult.nextPageToken = result.nextPageToken;
-            videoResult.prevPageToken = result.prevPageToken;
-            return videoResult;
+            searchResult.items = videoResult.items as any;
+            return searchResult as any;
           });
         });
     };

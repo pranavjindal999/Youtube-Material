@@ -4,7 +4,7 @@
     grid-list-lg>
     <InfiniteVideoList 
       :reset-onable="resetDeferredObservable.onable"
-      :video-fetcher="getSearchResults"/>
+      :list-fetcher="searchResultsFetcher"/>
   </v-container>
 </template>
 

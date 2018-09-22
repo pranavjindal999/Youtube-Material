@@ -7,10 +7,9 @@
       md3
       lg2
       :key="$index"
-      v-for="(video, $index) in videos">
-      <VideoTile 
-        :hide-channel-link="hideChannelLink"
-        :video="video"/>
+      v-for="(channel, $index) in list">
+      <ChannelTile 
+        :channel="channel"/>
     </v-flex>
     <ScrollFire 
       :have-more="haveMore" 
@@ -22,6 +21,6 @@
 </style>
 
 <script>
-import InfiniteVideoList from "./InfiniteVideoList.ts";
-export default InfiniteVideoList;
+import InfiniteChannelList from "./InfiniteChannelList.ts";
+export default InfiniteChannelList;
 </script>

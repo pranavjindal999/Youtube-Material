@@ -4,7 +4,8 @@
     grid-list-lg>
     <InfiniteVideoList 
       hide-channel-link 
-      :video-fetcher="getChannelVideos"/>
+      :reset-onable="resetDeferred.onable"
+      :list-fetcher="channelVideosFetcher"/>
   </v-container>
 </template>
 
