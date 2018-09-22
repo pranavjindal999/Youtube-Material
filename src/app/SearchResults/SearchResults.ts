@@ -1,3 +1,4 @@
+import { EventBus, GlobalEvents } from "./../../services/eventBus/index";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
 import { DeferredObservable } from "@/extras/DeferredObservable";
@@ -36,5 +37,9 @@ export default class SearchResults extends Vue {
   @Watch("query")
   async search() {
     this.resetDeferredObservable.next();
+  }
+
+  destroyed() {
+    EventBus.$emit(GlobalEvents.clearSearchText);
   }
 }

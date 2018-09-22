@@ -1,3 +1,4 @@
+import { EventBus, GlobalEvents } from "./../../services/eventBus/index";
 import { globalMutations } from "./../../store/index";
 import { routes } from "./../../router/routeNames";
 import { Vue, Component, Watch } from "vue-property-decorator";
@@ -9,8 +10,14 @@ export default class Header extends Vue {
   searching: boolean = false;
   searchSuggestions: string[] = [];
   searchSelectedValue = "";
-
   preventNextSearch = false;
+
+  created() {
+    EventBus.$on(
+      GlobalEvents.clearSearchText,
+      () => (this.searchSelectedValue = "")
+    );
+  }
 
   @Watch("query")
   onSearch() {
@@ -21,6 +28,7 @@ export default class Header extends Vue {
     }
     if (this.query) {
       this.searching = true;
+      let sentQuery = this.query;
       youtubeService
         .getSuggestions(this.query)
         .then(suggestions => {
@@ -29,7 +37,9 @@ export default class Header extends Vue {
             this.searchSuggestions = [];
             return;
           }
-          this.searchSuggestions = suggestions;
+          if (this.query === sentQuery) {
+            this.searchSuggestions = suggestions;
+          }
         })
         .finally(() => {
           this.searching = false;
@@ -49,6 +59,7 @@ export default class Header extends Vue {
         }
       });
       this.preventNextSearch = true;
+      this.searchSuggestions = [];
     }
   }
 
