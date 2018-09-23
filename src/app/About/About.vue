@@ -47,7 +47,7 @@
               outline 
               fab 
               small
-              class="mr-4"
+              class="mx-2"
               :href="item.href"
               target="_blank"
               color="primary">
