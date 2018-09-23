@@ -1,5 +1,17 @@
-.caption-grey {
-  color: #909090 !important;
+.pre-wrap {
+  white-space: pre-wrap !important;
+}
+
+.pre-line {
+  white-space: pre-line !important;
+}
+
+.cur-p {
+  cursor: pointer !important;
+}
+
+.no-grow {
+  flex-grow: 0 !important;
 }
 
 .router-enter-active,

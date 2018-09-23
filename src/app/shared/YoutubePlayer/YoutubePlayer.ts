@@ -39,13 +39,14 @@ export default class YoutubePlayer extends Vue {
         playerVars: {
           autoplay: 0,
           modestbranding: 1,
-          showinfo: 0,
-          rel: 0
+          rel: 0,
+          hl: this.$i18n.locale,
+          origin: window.location.origin
         },
-        videoId: this.videoId,
         events: {
           onReady: () => {
             this.isPlayerReady = true;
+            this.player!.setPlaybackQuality("small");
             this.player!.playVideo();
             EventBus.$emit(EventNames.playerReady, this.player);
             resolve();

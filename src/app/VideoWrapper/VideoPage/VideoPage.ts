@@ -2,7 +2,7 @@ import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/Infin
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
 import { DeferredObservable } from "@/extras/DeferredObservable";
-import VideoCard from "@/app/VideoBar/VideoCard/VideoCard.vue";
+import VideoCard from "@/app/VideoWrapper/VideoCard/VideoCard.vue";
 
 @Component({
   components: {

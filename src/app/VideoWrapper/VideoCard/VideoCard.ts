@@ -1,3 +1,4 @@
+import moment from "moment";
 import { routes } from "./../../../router/routeNames";
 import { Location } from "vue-router";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
@@ -42,9 +43,19 @@ export default class VideoCard extends Vue {
     }
   }
 
+  get uploaded() {
+    if (this.video) {
+      return `${this.$t(LangKeys.uploaded)}: ${moment(
+        this.video.snippet.publishedAt
+      ).format("Do MMM, YYYY (h:mm A)")}`;
+    }
+  }
+
   get likePercent() {
     if (this.video) {
-      return (this.likeCount! * 100) / (this.dislikeCount! + this.likeCount!);
+      return (
+        (+this.likeCount! * 100) / (+this.dislikeCount! + +this.likeCount!)
+      );
     }
   }
 

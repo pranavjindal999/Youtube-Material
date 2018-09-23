@@ -673,10 +673,6 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@types/autolinker@^0.24.28":
-  version "0.24.28"
-  resolved "https://registry.yarnpkg.com/@types/autolinker/-/autolinker-0.24.28.tgz#37976f20c6e0abde283784fdc6b91cc6cb90e8dc"
-
 "@types/gapi@^0.0.36":
   version "0.0.36"
   resolved "https://registry.yarnpkg.com/@types/gapi/-/gapi-0.0.36.tgz#e7fb3d4d4a6fbdbd0a9aef1cbd93d3b115d59a3d"

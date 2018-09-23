@@ -10,7 +10,7 @@ import ChannelVideos from "@/app/Channel/ChannelVideos/ChannelVideos.vue";
 import ChannelHome from "@/app/Channel/ChannelHome/ChannelHome.vue";
 import Channel from "@/app/Channel/Channel.vue";
 import Trending from "@/app/Trending/Trending.vue";
-import VideoBar from "@/app/VideoBar/VideoBar.vue";
+import VideoWrapper from "@/app/VideoWrapper/VideoWrapper.vue";
 
 Vue.use(Router);
 

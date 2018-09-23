@@ -9,9 +9,22 @@
         :src="thumbnail"
         :aspect-ratio="16/9">
         <div class="time-bar">
-          <span class="duration">{{ duration }}</span>
+          <div 
+            v-if="isLive" 
+            class="live-icon">
+            <v-tooltip top>
+              <v-icon 
+                slot="activator" 
+                color="white" >wifi_tethering</v-icon>
+              <span>{{ $t('liveVideo') }}</span>
+            </v-tooltip>
+          </div>
+          <span 
+            v-if="!isLive" 
+            class="duration">{{ duration }}</span>
           <span class="uploaded">{{ uploaded }}</span>
         </div>
+        
         <FloatingDiv 
           slot="placeholder"/>
       </v-img>
@@ -24,7 +37,7 @@
         </div>
         <div 
           :class="{'mb-2':hideChannelLink}" 
-          class="caption caption-grey">{{ views }}</div>
+          class="caption captionGrey--text">{{ views }}</div>
       </v-card-title>
       <router-link 
         v-if="!hideChannelLink"
@@ -120,6 +133,14 @@
 .time-bar .uploaded {
   position: absolute;
   right: 4px;
+}
+.live-icon {
+  position: absolute;
+  top: -1px;
+  left: 4px;
+}
+.live-icon i {
+  font-size: 20px;
 }
 </style>
 

@@ -6,7 +6,7 @@
       v-bind="layoutProps"
       :key="$index"
       v-for="(video, $index) in list">
-      <VideoTile 
+      <VideoTile
         :hide-channel-link="hideChannelLink"
         :video="video"/>
     </v-flex>

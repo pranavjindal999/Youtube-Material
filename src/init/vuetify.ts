@@ -13,7 +13,6 @@ import * as VList from "vuetify/es5/components/VList";
 import * as VForm from "vuetify/es5/components/VForm";
 import VCombobox from "vuetify/es5/components/VCombobox";
 import VDivider from "vuetify/es5/components/VDivider";
-import VBottomNav from "vuetify/es5/components/VBottomNav";
 import * as VCard from "vuetify/es5/components/VCard";
 import VImg from "vuetify/es5/components/VImg";
 import VHover from "vuetify/es5/components/VHover";
@@ -21,10 +20,11 @@ import VProgressLinear from "vuetify/es5/components/VProgressLinear";
 import VSubheader from "vuetify/es5/components/VSubheader";
 import VResponsive from "vuetify/es5/components/VResponsive";
 import VChip from "vuetify/es5/components/VChip";
+import VTooltip from "vuetify/es5/components/VTooltip";
 import VAvatar from "vuetify/es5/components/VAvatar";
 import * as VTabs from "vuetify/es5/components/VTabs";
 
-import transitions from "vuetify/es5/components/transitions";
+import * as transitions from "vuetify/es5/components/transitions";
 import * as directives from "vuetify/es5/directives";
 
 Vue.use(Vuetify, {
@@ -32,13 +32,13 @@ Vue.use(Vuetify, {
     VApp,
     VNavigationDrawer,
     ...VToolbar,
+    VTooltip,
     VCombobox,
     VResponsive,
     VDivider,
     VBtn,
     VChip,
     VIcon,
-    VBottomNav,
     VAutocomplete,
     VProgressLinear,
     VAvatar,
@@ -49,7 +49,8 @@ Vue.use(Vuetify, {
     ...VCard,
     ...VGrid,
     ...VForm,
-    ...VList
+    ...VList,
+    ...transitions
   },
   theme: {
     primary: "#4385f3",
@@ -64,6 +65,5 @@ Vue.use(Vuetify, {
     captionGrey: "#909090",
     lightGrey: "#efefef"
   },
-  directives,
-  transitions
+  directives
 });

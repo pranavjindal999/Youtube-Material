@@ -3,7 +3,7 @@ import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 import moment from "moment";
 import { routes } from "@/router/routeNames";
 import { Location } from "vue-router";
-import { humarizeDuration } from "@/extras/utils";
+import { humanizeDuration } from "@/extras/utils";
 
 @Component({
   components: {
@@ -19,7 +19,7 @@ export default class VideoTile extends Vue {
 
   get duration() {
     if (this.video) {
-      return humarizeDuration(this.video.contentDetails.duration);
+      return humanizeDuration(this.video.contentDetails.duration);
     }
   }
 
@@ -38,6 +38,10 @@ export default class VideoTile extends Vue {
         "views"
       )}`
     );
+  }
+
+  get isLive() {
+    return this.video && this.video.snippet.liveBroadcastContent === "live";
   }
 
   get title() {

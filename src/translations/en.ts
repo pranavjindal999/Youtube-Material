@@ -17,11 +17,17 @@ export default {
   views: "views",
   videos: "Videos",
   channels: "Channels",
+  uploaded: "Uploaded",
   description: "description",
   joined: "Joined",
   totalViews: "Total Views",
   subscribers: "Subscribers",
   subscriptions: "Subscriptions",
   featuredChannels: "Featured Channels",
-  noChannelsFeatured: "No channels featured!"
+  noChannelsFeatured: "No channels featured!",
+  play: "Play",
+  pause: "Pause",
+  stop: "Stop",
+  repeat: "Repeat",
+  liveVideo: "Live Video"
 };

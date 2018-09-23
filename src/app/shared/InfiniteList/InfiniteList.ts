@@ -33,7 +33,7 @@ export default class InfiniteList<T> extends Vue {
     this.onScrollFire();
   }
 
-  getResultsToFetch() {
+  calcResultsToFetch() {
     if (this.totalResults) {
       return Math.min(
         $store.state.maxResults,
@@ -49,7 +49,7 @@ export default class InfiniteList<T> extends Vue {
       return;
     }
 
-    let resultsToFetch = this.getResultsToFetch();
+    let resultsToFetch = this.calcResultsToFetch();
 
     this.list.splice(this.list.length, 0, ...new Array(resultsToFetch));
 

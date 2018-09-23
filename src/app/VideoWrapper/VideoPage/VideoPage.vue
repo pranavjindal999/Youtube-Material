@@ -23,6 +23,7 @@
           xs12 
           md4>
           <InfiniteVideoList 
+            v-if="videoId"
             :reset-onable="resetDeferred.onable"
             :list-fetcher="relatedVideosFetcher" 
             two-column/>

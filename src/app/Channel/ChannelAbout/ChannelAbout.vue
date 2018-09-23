@@ -8,7 +8,9 @@
           <div class="headline">{{ channelName }}</div>
         </div>
       </v-card-title>
-      <v-card-text v-async-bind="channelDesc"/>
+      <v-card-text 
+        class="subheading font-weight-regular pre-line" 
+        v-async-bind="channelDesc"/>
       <v-divider light/>
       <v-card-actions class="pa-3 lightGrey">
         <v-layout 

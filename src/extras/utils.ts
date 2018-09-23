@@ -21,11 +21,12 @@ export function randomString(length: number = 32) {
   return out;
 }
 
-export function humarizeDuration(durationISO: string) {
-  let duration = moment.duration(durationISO).format("h:m:ss");
+export function humanizeDuration(durationIsoOrMs: string | number) {
+  let duration = moment.duration(durationIsoOrMs).format("h:m:ss");
   if (duration.includes(":")) {
     return duration;
   } else {
+    duration = duration.length === 1 ? "0" + duration : duration;
     return `0:${duration}`;
   }
 }
