@@ -24,7 +24,8 @@ module.exports = {
     themeColor: "#ff0000",
     msTileColor: "#ff0000",
     workboxOptions: {
-      skipWaiting: true
+      skipWaiting: true,
+      clientsClaim: true
     }
   },
   devServer: {
