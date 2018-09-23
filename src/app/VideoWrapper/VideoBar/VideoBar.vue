@@ -1,37 +1,32 @@
 <template>
   <VSlideYReverseTransition>
-    <v-responsive 
-      aspect-ratio="15" 
+    <div 
+      @click="$emit('click')"
       class="bar elevation-12 cur-p"
       v-show="value">
-      <v-layout 
-        justify-space-between
-        row>
-        <v-flex class="pa-0">
-          <v-layout justify-start>
-            <img 
-              class="thumb pr-2"
-              :src="videoThumbnail">  
-            <v-flex class="mt-2">
-              <p 
-                :class="barTitleClass" 
-                class="text-truncate font-weight-light">{{ title }}</p>
-              <p 
-                class="captionGrey--text" 
-                :class="barTimerClass">{{ timeElapsed }} / {{ duration }}</p>
-            </v-flex>
-          </v-layout>
-        </v-flex>
+      <v-layout row>
+        <v-layout row>
+          <img 
+            class="thumb pr-2"
+            :src="videoThumbnail">  
+          <div class="mt-2 text-truncate">
+            <p 
+              :class="barTitleClass" 
+              class="font-weight-light">{{ title }}</p>
+            <p 
+              class="captionGrey--text" 
+              :class="barTimerClass">{{ timeElapsed }} / {{ duration }}</p>
+          </div>
+        </v-layout>
 
-        <v-flex 
-          xs0 
-          d-inline-flex>
+        <div>
           <v-layout 
-            d-inline-flex
-            justify-end
             row 
+            class="btn-adj"
             align-center>
-            <v-tooltip bottom>
+            <v-tooltip 
+              class="hidden-sm-and-down" 
+              bottom>
               <v-btn 
                 slot="activator"
                 fab 
@@ -54,7 +49,9 @@
               </v-btn>
               <span>{{ isPlaying?$t('pause'):$t('play') }}</span>
             </v-tooltip>
-            <v-tooltip bottom>
+            <v-tooltip 
+              class="hidden-sm-and-down" 
+              bottom>
               <v-btn 
                 slot="activator"
                 fab 
@@ -65,7 +62,8 @@
               <span>{{ $t('stop') }}</span>
             </v-tooltip>
           </v-layout>
-        </v-flex>
+        </div>
+        
       </v-layout> 
       
       <v-progress-linear 
@@ -73,9 +71,9 @@
         :value="elapsedPercent"
         :buffer-value="bufferPercent"
         buffer 
-        :height="6"
+        :height="5"
         color="youtubeRed"/>
-    </v-responsive>
+    </div>
   </VSlideYReverseTransition>
 </template>
 
@@ -95,8 +93,12 @@
   margin: 0;
 }
 .thumb {
-  max-height: 90px;
+  max-height: 80px;
   display: inline;
+}
+.btn-adj {
+  position: relative;
+  top: -3px;
 }
 </style>
 

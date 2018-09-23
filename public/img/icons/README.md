@@ -14,12 +14,12 @@ Insert the following code in the `head` section of your pages:
     <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
     <link rel="manifest" href="/img/icons/site.webmanifest">
-    <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#ff0200">
+    <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#d23b3b">
     <link rel="shortcut icon" href="/img/icons/favicon.ico">
     <meta name="apple-mobile-web-app-title" content="Youtube Material">
     <meta name="application-name" content="Youtube Material">
-    <meta name="msapplication-TileColor" content="#ff0200">
+    <meta name="msapplication-TileColor" content="#d23b3b">
     <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
-    <meta name="theme-color" content="#ff0200">
+    <meta name="theme-color" content="#d23b3b">
 
-*Optional* - Check your favicon with the [favicon checker](https://realfavicongenerator.net/favicon_checker)
+_Optional_ - Check your favicon with the [favicon checker](https://realfavicongenerator.net/favicon_checker)

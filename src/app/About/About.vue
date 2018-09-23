@@ -2,7 +2,62 @@
   <v-container 
     fluid 
     grid-list-lg>
-    <div>About</div>
+    <v-card>
+      <v-card-title primary-title>
+        <div>
+          <h3 class="headline mb-0">About Youtube Material</h3>
+          <br>
+          <span>
+            Hi. I'm Pranav Jindal. <br>
+            This project is my naïve attempt aimed at making
+            a simple Material version of YouTube using Google APIs, VueJS and Vuetify. <br>
+            I make this project in my leisure time just to improve my front-end skills. <br>
+            <br>
+            <span class="font-italic">
+              This project was previously written in AngularJS and now has been moved to VueJS.
+            </span>
+            <br>
+          </span>
+          <br>
+          <span>
+            The code for the project is at following repo: <br>
+            <a 
+              target="_blank" 
+              href="https://github.com/pranavjindal999/Youtube-Material/tree/vuetube">
+              Youtube Material - Github
+            </a> 
+          </span>
+          <br>
+          <br>
+          <span>Feel free to contact me via any of the following media.</span>
+        </div>
+      </v-card-title>
+      <v-divider/>
+      <v-card-actions>
+        <v-layout 
+          class="my-4"
+          row 
+          justify-center>
+          <v-tooltip 
+            :key="$index" 
+            v-for="(item, $index) in socials" 
+            bottom>
+            <v-btn 
+              slot="activator" 
+              outline 
+              fab 
+              small
+              class="mr-4"
+              :href="item.href"
+              target="_blank"
+              color="primary">
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-btn>
+            <span>{{ item.label }}</span>
+          </v-tooltip>
+        </v-layout>
+      </v-card-actions>
+    </v-card>
   </v-container>
 </template>
 

@@ -1,10 +1,10 @@
 <template>
   <div 
-    @click="goToVideo" 
     v-show="videoId">
 
     <VideoBar 
-      v-model="barMode"
+      @click="goToVideo" 
+      :value="!!(barMode && videoId)"
       @close="cleanVideoState"
       app
       :video="video"

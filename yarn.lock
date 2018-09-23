@@ -4263,6 +4263,10 @@ launch-editor@^2.2.1:
     chalk "^2.3.0"
     shell-quote "^1.6.1"
 
+lazyload-css@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/lazyload-css/-/lazyload-css-1.0.4.tgz#75632c546749e7040c016840fc058c741d5f3e46"
+
 lcid@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/lcid/-/lcid-2.0.0.tgz#6ef5d2df60e52f82eb228a4c373e8d1f397253cf"
