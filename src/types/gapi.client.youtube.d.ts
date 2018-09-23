@@ -1935,8 +1935,8 @@ interface GoogleApiYouTubeVideoResource {
     /**
      * The YouTube video category associated with the video.
      */
-    categoryId: string;,
-    liveBroadcastContent: "live"| "none" | "upcoming"
+    categoryId: string;
+    liveBroadcastContent: "live" | "none" | "upcoming";
   };
   /**
    * The contentDetails object contains information about the video content, including the length of the video and its aspect ratio.
