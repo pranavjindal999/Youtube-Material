@@ -3,7 +3,7 @@
     <div 
       @click="$emit('click')"
       class="bar elevation-12 cur-p"
-      v-show="value">
+      v-show="active">
       <v-layout row>
         <v-layout row>
           <img 

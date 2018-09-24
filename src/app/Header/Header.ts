@@ -1,5 +1,5 @@
 import { EventBus, EventNames } from "./../../services/eventBus/index";
-import { globalMutations } from "./../../store/index";
+import { globalMutations, $store } from "./../../store/index";
 import { routes } from "./../../router/routeNames";
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
@@ -64,6 +64,6 @@ export default class Header extends Vue {
   }
 
   toggleDrawer() {
-    this.$store.commit(globalMutations.toggleDrawer);
+    $store.commit(globalMutations.toggleDrawer);
   }
 }

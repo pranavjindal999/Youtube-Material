@@ -1,4 +1,4 @@
-import { Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins, Model } from "vue-property-decorator";
 import { EventBus, EventNames } from "@/services/eventBus";
 import { humanizeDuration } from "@/extras/utils";
 import applicationable from "vuetify/es5/mixins/applicationable";
@@ -7,7 +7,7 @@ import applicationable from "vuetify/es5/mixins/applicationable";
   components: {}
 })
 export default class VideoBar extends Mixins(
-  applicationable("bottom", ["height", "value"])
+  applicationable("bottom", ["height", "active"])
 ) {
   @Prop({ type: Number, required: true })
   forceUpdater!: number;
@@ -15,8 +15,8 @@ export default class VideoBar extends Mixins(
   @Prop({ type: Object, default: null })
   video!: GoogleApiYouTubeVideoResource | null;
 
-  @Prop({ type: Boolean, default: false })
-  value!: boolean;
+  @Model("close", { type: Boolean, default: false })
+  active!: boolean;
 
   playerRef: YT.Player | null = null;
   isLooping = false;
@@ -92,9 +92,9 @@ export default class VideoBar extends Mixins(
    * the method a property.
    */
   get updateApplication() {
-    return (): any => (!this.value ? 0 : this.height);
+    return (): any => (!this.active ? 0 : this.height);
   }
-  set updateApplication(value) {}
+  set updateApplication(fn) {}
 
   created() {
     EventBus.$on(EventNames.playerReady, this.savePlayerRef);
@@ -115,7 +115,6 @@ export default class VideoBar extends Mixins(
   }
 
   close() {
-    this.$emit("input", false);
     this.$emit("close", false);
   }
 

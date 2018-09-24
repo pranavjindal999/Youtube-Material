@@ -4,7 +4,7 @@
 
     <VideoBar 
       @click="goToVideo" 
-      :value="!!(barMode && videoId)"
+      :active="!!(barMode && videoId)"
       @close="cleanVideoState"
       app
       :video="video"

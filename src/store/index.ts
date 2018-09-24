@@ -25,7 +25,7 @@ const $store = new Vuex.Store<AppState>({
   state: {
     currentLang: config.defaultLanguage,
     regionCode: "IN",
-    drawer: true,
+    drawer: Vue.prototype.$vuetify.breakpoint.smAndDown ? false : true,
     maxResults: 18
   },
   getters: {},

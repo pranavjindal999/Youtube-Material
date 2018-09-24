@@ -1,3 +1,4 @@
+import "@babel/polyfill";
 import "./init";
 import Vue from "vue";
 import { $store } from "@/store";

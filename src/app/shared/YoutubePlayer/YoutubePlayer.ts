@@ -25,10 +25,8 @@ export default class YoutubePlayer extends Vue {
   async changeVideo(newId: string, oldId: string) {
     await this.asyncPlayerState;
 
-    let player = this.player!;
-
     if (newId !== oldId) {
-      player.loadVideoById(this.videoId);
+      this.player!.loadVideoById(this.videoId);
     }
   }
 

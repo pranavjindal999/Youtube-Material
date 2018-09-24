@@ -1,6 +1,6 @@
 import { trendingCategories } from "./TrendingCategories";
 import { routes } from "@/router/routeNames";
-import { globalMutations } from "./../../store/index";
+import { globalMutations, $store } from "./../../store/index";
 import Vue from "vue";
 import Component from "vue-class-component";
 import { Location } from "vue-router";
@@ -24,6 +24,6 @@ export default class Navigation extends Vue {
   };
 
   updateDrawerState($event: boolean) {
-    this.$store.commit(globalMutations.updateDrawer, $event);
+    $store.commit(globalMutations.updateDrawer, $event);
   }
 }

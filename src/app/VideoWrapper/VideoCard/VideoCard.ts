@@ -94,11 +94,7 @@ export default class VideoCard extends Vue {
     }
   }
 
-  created() {
-    this.getChannel();
-  }
-
-  @Watch("video")
+  @Watch("video", { immediate: true })
   getChannel() {
     if (this.video) {
       youtubeService
