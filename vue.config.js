@@ -4,8 +4,9 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const fs = require("fs");
 
-const isDev = process.env.NODE_ENV === "development";
 const isProd = process.env.NODE_ENV === "production";
+
+let isLegacyBuilt = false;
 
 let httpsOptions;
 if (fs.existsSync("key.pem") && fs.existsSync("cert.pem")) {
@@ -21,8 +22,17 @@ module.exports = {
   runtimeCompiler: false,
   pwa: {
     name: "Youtube Material",
-    themeColor: "#ff0000",
-    msTileColor: "#ff0000",
+    themeColor: "#d23b3b",
+    msTileColor: "#d23b3b",
+    appleMobileWebAppCapable: "yes",
+    appleMobileWebAppStatusBarStyle: "black-translucent",
+    iconPaths: {
+      favicon32: "img/icons/favicon-32x32.png",
+      favicon16: "img/icons/favicon-16x16.png",
+      appleTouchIcon: "img/icons/apple-touch-icon.png",
+      maskIcon: "img/icons/safari-pinned-tab.svg",
+      msTileImage: "img/icons/mstile-150x150.png"
+    },
     workboxOptions: {
       skipWaiting: true,
       clientsClaim: true
@@ -58,16 +68,20 @@ module.exports = {
         });
       });
 
-    if (isDev) {
-      // config.devtool("eval-source-map");
-    }
-
     if (isProd) {
       config.plugin("webpack-report").use(BundleAnalyzerPlugin, [
         {
           analyzerMode: "static",
           defaultSizes: "gzip",
-          generateStatsFile: false
+          generateStatsFile: false,
+          get reportFilename() {
+            if (isLegacyBuilt) {
+              return "report-modern.html";
+            } else {
+              isLegacyBuilt = true;
+              return "report-legacy.html";
+            }
+          }
         }
       ]);
     }

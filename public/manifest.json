@@ -1,6 +1,6 @@
 {
-  "name": "youtube-material",
-  "short_name": "youtube-material",
+  "name": "Youtube Material",
+  "short_name": "Youtube Material",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
@@ -8,13 +8,14 @@
       "type": "image/png"
     },
     {
-      "src": "/img/icons/android-chrome-512x512.png",
-      "sizes": "512x512",
+      "src": "/img/icons/android-chrome-256x256.png",
+      "sizes": "256x256",
       "type": "image/png"
     }
   ],
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#4DBA87"
+  "orientation": "portrait",
+  "background_color": "#d23b3b",
+  "theme_color": "#d23b3b"
 }
