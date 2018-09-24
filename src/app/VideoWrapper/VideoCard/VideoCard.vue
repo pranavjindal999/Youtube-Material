@@ -73,9 +73,22 @@
         <v-divider/>
 
         <v-card-text>
-          <div 
-            class="pre-wrap"
-            v-async-bind="desciption"/>
+          <v-responsive 
+            :max-height="isDescriptionExpanded?'':80">
+            <div 
+              class="pre-wrap"
+              v-async-bind="desciption"/>
+          </v-responsive>
+
+          <v-layout 
+            justify-center>
+            <v-btn 
+              icon 
+              @click="isDescriptionExpanded=!isDescriptionExpanded"  
+              small>
+              <v-icon dark>{{ isDescriptionExpanded?'expand_less':'expand_more' }}</v-icon>
+            </v-btn>
+          </v-layout>
         </v-card-text>
       </template>
       <template v-else>

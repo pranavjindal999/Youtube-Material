@@ -25,6 +25,7 @@
         <v-form 
           @submit.prevent="searchVideos">
           <v-combobox
+            ref="searchBox"
             :menu-props="{
               transition: 'slide-y-transition'
             }"

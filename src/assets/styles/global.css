@@ -10,10 +10,6 @@
   cursor: pointer !important;
 }
 
-.no-grow {
-  flex-grow: 0 !important;
-}
-
 .router-enter-active,
 .router-leave-active {
   transition: all 0.2s;

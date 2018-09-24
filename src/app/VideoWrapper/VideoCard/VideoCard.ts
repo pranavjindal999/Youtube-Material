@@ -22,6 +22,7 @@ export default class VideoCard extends Vue {
   video!: GoogleApiYouTubeVideoResource | null;
 
   channel: GoogleApiYouTubeChannelResource | null = null;
+  isDescriptionExpanded = false;
 
   get title() {
     if (this.video) {
@@ -101,6 +102,7 @@ export default class VideoCard extends Vue {
         .getChannelDetails([this.video.snippet.channelId])
         .then(result => {
           this.channel = result.items[0];
+          this.isDescriptionExpanded = false;
         });
     }
   }

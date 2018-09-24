@@ -6,6 +6,7 @@ import Vuetify from "vuetify/es5/components/Vuetify";
 import VNavigationDrawer from "vuetify/es5/components/VNavigationDrawer";
 import * as VToolbar from "vuetify/es5/components/VToolbar";
 import VBtn from "vuetify/es5/components/VBtn";
+import VBtnToggle from "vuetify/es5/components/VBtnToggle";
 import VIcon from "vuetify/es5/components/VIcon";
 import VAutocomplete from "vuetify/es5/components/VAutocomplete";
 import * as VGrid from "vuetify/es5/components/VGrid";
@@ -35,6 +36,7 @@ Vue.use(Vuetify, {
     VTooltip,
     VCombobox,
     VResponsive,
+    VBtnToggle,
     VDivider,
     VBtn,
     VChip,

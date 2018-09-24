@@ -1,10 +1,11 @@
 <template>
   <div>
-    <VideoCard 
-      v-if="isVideoOutsideContainer" 
-      :video-id="videoId" 
-      :video="video"/>
-
+    <template v-if="isMobile">
+      <VideoCard  
+        :video-id="videoId" 
+        :video="video"/>
+      <VideoComments/>
+    </template>
     <v-container 
       fluid 
       grid-list-lg>
@@ -14,10 +15,12 @@
         <v-flex 
           xs12 
           md8>
-          <VideoCard 
-            v-if="!isVideoOutsideContainer" 
-            :video-id="videoId" 
-            :video="video"/>
+          <template v-if="!isMobile">
+            <VideoCard  
+              :video-id="videoId" 
+              :video="video"/>
+            <VideoComments/>
+          </template>
         </v-flex>
         <v-flex 
           xs12 

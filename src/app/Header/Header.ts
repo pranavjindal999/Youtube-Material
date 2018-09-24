@@ -12,6 +12,10 @@ export default class Header extends Vue {
   searchSelectedValue = "";
   preventNextSearch = false;
 
+  $refs!: {
+    searchBox: Vue;
+  };
+
   created() {
     EventBus.$on(
       EventNames.clearSearchText,
@@ -60,6 +64,8 @@ export default class Header extends Vue {
       });
       this.preventNextSearch = true;
       this.searchSuggestions = [];
+      //Following line to close keyboard on mobile
+      this.$refs.searchBox.$el!.querySelector("input")!.blur();
     }
   }
 
