@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const fs = require("fs");
+const path = require("path");
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -34,13 +35,20 @@ module.exports = {
       msTileImage: "img/icons/mstile-150x150.png"
     },
     workboxOptions: {
-      skipWaiting: true,
-      clientsClaim: true
+      skipWaiting: true
     }
   },
   devServer: {
     open: true,
     https: httpsOptions
+  },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        "lodash.merge": path.resolve("./node_modules/lodash/merge.js"),
+        "circular-json": path.resolve("./node_modules/lodash/noop.js")
+      }
+    }
   },
 
   chainWebpack: config => {

@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import createPersistedState from "vuex-persistedstate";
+import VuexPersistence from "vuex-persist";
 import config from "@/config";
 import { Language } from "@/translations";
 import { asyncRegionCode } from "@/services/geolocation";
@@ -15,12 +15,13 @@ export const globalMutations = {
   updateRegionCode: "updateRegionCode"
 };
 
-const vuexPersistPlugin = createPersistedState({
-  key: "ytmat"
+const vuexPersist = new VuexPersistence({
+  key: "ytmat",
+  strictMode: config.local
 });
 
 const $store = new Vuex.Store<AppState>({
-  plugins: [vuexPersistPlugin],
+  plugins: [vuexPersist.plugin],
   strict: config.local,
   state: {
     currentLang: config.defaultLanguage,
@@ -30,6 +31,7 @@ const $store = new Vuex.Store<AppState>({
   },
   getters: {},
   mutations: {
+    RESTORE_MUTATION: vuexPersist.RESTORE_MUTATION,
     [globalMutations.updateLang](state, lang: Language) {
       state.currentLang = lang;
     },
