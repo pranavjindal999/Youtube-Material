@@ -12,7 +12,7 @@ export default class ToastComponent extends Vue {
   private isVisible = false;
   private transitionTime = 0;
   private progress = 0;
-  private intervalId?: NodeJS.Timer;
+  private intervalId?: number;
   private promise?: Promise<undefined>;
   private promiseResolver?: () => void;
   private toShowProgress: boolean = true;

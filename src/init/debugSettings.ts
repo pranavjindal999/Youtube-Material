@@ -44,6 +44,8 @@ if (config.debugInfo) {
   window.location.reload();
 };
 
+(window as any).__COMMITHASH__ = __COMMITHASH__;
+
 /**
  * function to show error overlay.
  *

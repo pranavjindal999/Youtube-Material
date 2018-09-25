@@ -2,6 +2,7 @@ const merge = require("webpack-merge");
 const webpack = require("webpack");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
+const GitRevisionPlugin = new require("git-revision-webpack-plugin");
 const fs = require("fs");
 const path = require("path");
 
@@ -35,7 +36,8 @@ module.exports = {
       msTileImage: "img/icons/mstile-150x150.png"
     },
     workboxOptions: {
-      skipWaiting: true
+      skipWaiting: true,
+      exclude: [/_redirects/]
     }
   },
   devServer: {
@@ -57,6 +59,12 @@ module.exports = {
       .use(webpack.IgnorePlugin, [/^\.\/locale$/, /moment$/]);
 
     config.performance.hints(false);
+
+    config.plugin("git-hash").use(webpack.DefinePlugin, [
+      {
+        __COMMITHASH__: JSON.stringify(new GitRevisionPlugin().commithash())
+      }
+    ]);
 
     config.module
       .rule("eslint")

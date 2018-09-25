@@ -38,10 +38,15 @@ export default class ScrollFire extends Vue {
 
   mounted() {
     this.onScroll();
-    window.addEventListener("scroll", this.onScroll, true);
+    window.addEventListener("scroll", this.onScroll, {
+      passive: true,
+      capture: true
+    });
   }
 
   destroyed() {
-    window.removeEventListener("scroll", this.onScroll, true);
+    window.removeEventListener("scroll", this.onScroll, {
+      capture: true
+    });
   }
 }

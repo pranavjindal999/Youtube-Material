@@ -16,7 +16,7 @@ export default class VideoWrapper extends Vue {
   videoId: string = "";
   video: GoogleApiYouTubeVideoResource | null = null;
   forceUpdater = 1;
-  timer: null | NodeJS.Timer = null;
+  timer: null | number = null;
   videoPageClass = "";
 
   mounted() {

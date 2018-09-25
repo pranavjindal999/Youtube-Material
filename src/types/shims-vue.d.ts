@@ -12,3 +12,5 @@ declare module "lazyload-css" {
 
 declare module "autolinker";
 declare module "vuetify/es5/mixins/*";
+
+declare var __COMMITHASH__: string;
