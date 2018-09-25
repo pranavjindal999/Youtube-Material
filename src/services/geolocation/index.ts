@@ -1,6 +1,8 @@
-let asyncRegionCode = fetch("https://ip-api.io/json/")
-  .then(async response => {
-    let data = await response.json();
+import axios from "axios";
+
+let asyncRegionCode = axios
+  .get("https://ip-api.io/json/")
+  .then(({ data }) => {
     return data.country_code;
   })
   .catch(() => {
