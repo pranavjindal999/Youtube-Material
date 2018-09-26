@@ -15,7 +15,9 @@
       <v-card-title 
         class="px-2 pt-2 pb-0" 
         primary-title>
-        <h3 class="text-truncate lh2 font-weight-light mb-2 title">{{ title }}</h3>
+        <h3 
+          :title="title" 
+          class="text-truncate lh2 font-weight-light mb-2 title">{{ title }}</h3>
       </v-card-title>
     </v-card>
   </v-hover>

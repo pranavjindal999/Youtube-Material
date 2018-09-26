@@ -33,11 +33,14 @@
         class="px-2 pt-2 pb-0" 
         primary-title>
         <div class="title-div">
-          <h3 class="font-weight-light title body-1">{{ title }}</h3>
+          <h3 
+            :title="title" 
+            class="font-weight-light title body-1">{{ title }}</h3>
         </div>
         <div 
           :class="{'mb-2':hideChannelLink}" 
-          class="caption captionGrey--text">{{ views }}</div>
+          :title="csvViews"
+          class="caption success--text">{{ humaizedViews }}</div>
       </v-card-title>
       <router-link 
         v-if="!hideChannelLink"

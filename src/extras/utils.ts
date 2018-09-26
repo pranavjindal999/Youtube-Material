@@ -30,3 +30,16 @@ export function humanizeDuration(durationIsoOrMs: string | number) {
     return `0:${duration}`;
   }
 }
+
+export function humanizeNumber(number: number): string {
+  switch (true) {
+    case number > 999999999:
+      return (number / 1000000000).toFixed(1).toString() + "B";
+    case number > 999999:
+      return (number / 1000000).toFixed(1).toString() + "M";
+    case number > 999:
+      return (number / 1000).toFixed(1).toString() + "K";
+    default:
+      return number.toString();
+  }
+}

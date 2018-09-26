@@ -3,7 +3,7 @@ import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 import moment from "moment";
 import { routes } from "@/router/routeNames";
 import { Location } from "vue-router";
-import { humanizeDuration } from "@/extras/utils";
+import { humanizeDuration, humanizeNumber } from "@/extras/utils";
 
 @Component({
   components: {
@@ -31,10 +31,17 @@ export default class VideoTile extends Vue {
     return this.video && this.video.snippet.thumbnails.medium.url;
   }
 
-  get views() {
+  get humaizedViews() {
     return (
       this.video &&
-      `${Number(this.video.statistics.viewCount).toLocaleString()} ${this.$t(
+      `${humanizeNumber(this.video.statistics.viewCount)} ${this.$t("views")}`
+    );
+  }
+
+  get csvViews() {
+    return (
+      this.video &&
+      `${Number(this.video.statistics.viewCount).toLocaleString()}  ${this.$t(
         "views"
       )}`
     );
