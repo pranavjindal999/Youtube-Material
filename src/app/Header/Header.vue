@@ -9,9 +9,12 @@
     app
   >
     <v-toolbar-side-icon @click="toggleDrawer"/>
-    <router-link :to="{name: 'home'}">
+    <router-link 
+      aria-label="home" 
+      :to="{name: 'home'}">
       <img 
         class="logo" 
+        alt="Youtube Logo"
         src="@/assets/images/logo_white.png">
     </router-link>
 
