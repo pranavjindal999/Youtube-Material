@@ -6,6 +6,12 @@
       class="fake-yt-player">
       <FloatingDiv class="title"/>
       <FloatingDiv class="button1"/>
+      <VProgressCircular 
+        class="spinner" 
+        color="floatingGrey" 
+        indeterminate 
+        :width="10" 
+        :size="80"/>
       <FloatingDiv class="button2"/>
       <FloatingDiv class="bar"/>
     </v-responsive>
@@ -41,6 +47,11 @@
 .fake-yt-player {
   position: relative;
 }
+.spinner {
+  position: absolute;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+}
 
 .title {
   height: 5%;
@@ -68,10 +79,10 @@
 
 .bar {
   height: 3%;
-  width: 100%;
+  width: 90%;
+  left: 5%;
   position: absolute;
   bottom: 0;
-  left: 0;
 }
 </style>
 

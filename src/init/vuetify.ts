@@ -18,6 +18,7 @@ import * as VCard from "vuetify/es5/components/VCard";
 import VImg from "vuetify/es5/components/VImg";
 import VHover from "vuetify/es5/components/VHover";
 import VProgressLinear from "vuetify/es5/components/VProgressLinear";
+import VProgressCircular from "vuetify/es5/components/VProgressCircular";
 import VSubheader from "vuetify/es5/components/VSubheader";
 import VResponsive from "vuetify/es5/components/VResponsive";
 import VChip from "vuetify/es5/components/VChip";
@@ -43,6 +44,7 @@ Vue.use(Vuetify, {
     VIcon,
     VAutocomplete,
     VProgressLinear,
+    VProgressCircular,
     VAvatar,
     VHover,
     VSubheader,
@@ -65,6 +67,7 @@ Vue.use(Vuetify, {
     youtubeRed: "#d23b3b",
     white: "#ffffff",
     captionGrey: "#909090",
+    floatingGrey: "#dddddd",
     lightGrey: "#efefef"
   },
   directives

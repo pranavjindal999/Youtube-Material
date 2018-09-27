@@ -1,9 +1,11 @@
+import { LangKeys } from "./../../../translations/index";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import VideoTile from "@/app/shared/VideoTile/VideoTile";
 import { Onable } from "@/extras/DeferredObservable";
+import ErrorMessage from "@/app/shared/ErrorMessage/ErrorMessage.vue";
 
 @Component({
-  components: { VideoTile }
+  components: { VideoTile, ErrorMessage }
 })
 export default class VideoCarousel extends Vue {
   @Prop({ type: Boolean, default: false })
@@ -14,6 +16,9 @@ export default class VideoCarousel extends Vue {
 
   @Prop({ type: Onable, required: false })
   resetOnable?: Onable;
+
+  @Prop({ type: String, default: LangKeys.noVideoFound })
+  noVideoText?: string;
 
   nextPageToken?: string = "";
   prevPageToken?: string = "";
@@ -27,6 +32,16 @@ export default class VideoCarousel extends Vue {
       return 4;
     } else {
       return 6;
+    }
+  }
+
+  get noDataAspectRatio() {
+    if (this.$vuetify.breakpoint.smAndDown) {
+      return 6;
+    } else if (this.$vuetify.breakpoint.mdAndDown) {
+      return 8;
+    } else {
+      return 10;
     }
   }
 

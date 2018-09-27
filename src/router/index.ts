@@ -87,4 +87,12 @@ const $router = new Router({
   ]
 });
 
+$router.onReady(() => {
+  let loaderDiv = document.getElementById("app-init-loader") as HTMLDivElement;
+  loaderDiv.addEventListener("transitionend", () => {
+    loaderDiv.remove();
+  });
+  loaderDiv.style.opacity = "0";
+});
+
 export { $router };

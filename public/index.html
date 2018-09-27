@@ -24,6 +24,8 @@
   <title>Youtube Material</title>
   <style>
     .yt-init-loader {
+      transition: opacity .5s;
+      z-index: 999;
       position: fixed;
       top: calc(50% - 25px);
       left: calc(50% - 25px);
@@ -74,9 +76,9 @@
     <strong>Are you serious? Who uses web with JS disabled these days?</strong>
   </noscript>
 
+  <div id="app-init-loader" class="yt-init-loader"></div>
+
   <div id="ytmat">
-    <div class="yt-init-loader">
-    </div>
   </div>
   <!-- built files will be auto injected -->
 </body>

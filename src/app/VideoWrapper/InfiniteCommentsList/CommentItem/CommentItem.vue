@@ -1,15 +1,37 @@
 <template>
-  <v-layout 
+  <div 
     v-if="comment" 
-    class="ma-0 pa-2" 
-    row>
-    <v-avatar>
-      <img 
-        :src="commenterAvatar" 
-        alt="avatar">
-    </v-avatar>
-    <slot name="replies"/>
-  </v-layout>
+    class="ma-0 px-4 py-3" >
+    <v-layout 
+      row>
+      <router-link 
+        class="no-link" 
+        :to="commenterChannelRouter">
+        <v-avatar class="mr-2">
+          <v-img 
+            :src="commenterAvatar" 
+            alt="avatar">
+            <FloatingDiv 
+              slot="placeholder"/>
+          </v-img>
+        </v-avatar>
+      </router-link>
+      <div>
+        <router-link 
+          class="no-link" 
+          :to="commenterChannelRouter">
+          <span class="body-2 mr-2">{{ commenterName }}</span>
+        </router-link>
+        <span 
+          class="captionGrey--text caption" 
+          :title="commentTime">{{ humanizedCommentTime }}</span>
+        <p v-async-bind="commentHtml"/>
+      </div>
+    </v-layout>
+    <div class="smaller" >
+      <slot name="replies"/>
+    </div>
+  </div>
   <v-responsive 
     v-else
     :aspect-ratio="10">
@@ -25,6 +47,9 @@
 </template>
 
 <style scoped>
+.smaller {
+  font-size: 0.9em;
+}
 .fl-flex {
   display: flex;
   flex-direction: row;
@@ -52,6 +77,10 @@
   height: 15%;
   width: 50%;
   margin-top: 1%;
+}
+.no-link {
+  text-decoration: none;
+  color: black;
 }
 </style>
 

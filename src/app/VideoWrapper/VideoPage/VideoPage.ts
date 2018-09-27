@@ -50,7 +50,7 @@ export default class VideoPage extends Vue {
       return youtubeService.getVideoComments({
         maxResults,
         pageToken,
-        order: "time",
+        order: "relevance",
         videoId: this.videoId
       });
     };

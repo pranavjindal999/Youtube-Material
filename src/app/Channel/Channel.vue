@@ -1,11 +1,15 @@
 <template>
   <div>
     <v-img 
+      v-if="coverUrl"
       :src="coverUrl" 
       :aspect-ratio="coverAspect">
       <FloatingDiv 
         slot="placeholder"/>
     </v-img>
+    <v-responsive 
+      v-else 
+      :aspect-ratio="coverAspect" />
     <v-toolbar
       ref="tabBar"
       dark

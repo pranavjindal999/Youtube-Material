@@ -6,6 +6,7 @@
       icon="movie_filter" 
       :text="$t(featuredChannelsTitle)" />
     <v-layout
+      v-if="featuredChannels.length"
       row 
       wrap>
       <v-flex 
@@ -17,8 +18,12 @@
         <ChannelTile :channel="channel"/>
       </v-flex>
     </v-layout>
+    <v-responsive 
+      v-else 
+      :aspect-ratio="7">
+      <ErrorMessage :text="$t(noFeaturedError)"/>
+    </v-responsive>
 
-    <ErrorMessage :text="$t(noFeaturedError)"/>
 
     <div 
       v-show="isSubsVisible"

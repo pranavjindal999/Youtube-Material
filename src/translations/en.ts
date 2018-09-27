@@ -29,5 +29,7 @@ export default {
   pause: "Pause",
   stop: "Stop",
   repeat: "Repeat",
-  liveVideo: "Live Video"
+  liveVideo: "Live Video",
+  noVideoFound: "No videos found!",
+  loadMoreComments: "Load More Comments"
 };

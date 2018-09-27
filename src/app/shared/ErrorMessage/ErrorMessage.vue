@@ -1,9 +1,13 @@
 <template>
   <v-layout 
     v-if="text" 
+    fill-height
+    align-center
     justify-center>
-    <v-icon class="mr-2">error</v-icon>
-    <span class="title">{{ text }}</span>
+    <v-icon 
+      small 
+      class="mr-2">error</v-icon>
+    <span class="subheading">{{ text }}</span>
   </v-layout>
 </template>
 

@@ -5,7 +5,8 @@
         :video-id="videoId" 
         :video="video"/>
       <InfiniteCommentsList 
-        v-if="false" 
+        manual 
+        class="mt-3"
         :video-id="videoId"
         :list-fetcher="videoCommentsFetcher"
         :reset-onable="resetDeferred.onable"/>
@@ -23,8 +24,8 @@
             <VideoCard  
               :video-id="videoId" 
               :video="video"/>
-            <InfiniteCommentsList  
-              v-if="false"
+            <InfiniteCommentsList 
+              class="mt-3"
               :video-id="videoId" 
               :list-fetcher="videoCommentsFetcher" 
               :reset-onable="resetDeferred.onable"/>

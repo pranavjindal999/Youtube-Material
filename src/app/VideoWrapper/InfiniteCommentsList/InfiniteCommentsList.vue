@@ -6,12 +6,17 @@
       :comment="comment && comment.snippet.topLevelComment">
       <template slot="replies">
         <CommentItem
-          v-for="(comment, $indexReplies) in (comment && comment.replies)" 
+          v-for="(reply, $indexReplies) in (comment && comment.replies && comment.replies.comments)" 
           :key="$indexReplies"
-          :comment="comment"/>
+          :comment="reply"/>
       </template>
     </CommentItem>
+    <v-btn 
+      v-if="manual" 
+      @click="onScrollFire" 
+      block>{{ $t('loadMoreComments') }}</v-btn>
     <ScrollFire 
+      v-if="!manual"
       :have-more="haveMore" 
       @fire="onScrollFire"/>
   </v-card>

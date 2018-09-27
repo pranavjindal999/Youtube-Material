@@ -11,6 +11,7 @@
       <v-icon dark>navigate_before</v-icon>
     </v-btn>
     <v-layout 
+      v-if="videos.length"
       class="mx-2"
       row 
       align-center
@@ -26,6 +27,11 @@
           :video="video"/>
       </v-flex>
     </v-layout>
+    <v-responsive 
+      v-else 
+      :aspect-ratio="noDataAspectRatio">
+      <ErrorMessage :text="$t(noVideoText)"/>
+    </v-responsive>
     <v-btn 
       @click="next" 
       class="next" 
