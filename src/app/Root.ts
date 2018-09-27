@@ -11,18 +11,4 @@ import { Vue, Component } from "vue-property-decorator";
     VideoWrapper
   }
 })
-export default class Root extends Vue {
-  mounted() {
-    this.onResize();
-  }
-
-  onResize() {
-    if (this.$vuetify.breakpoint.smAndDown) {
-      $store.commit(globalMutations.updateMaxResults, 8);
-    } else if (this.$vuetify.breakpoint.mdAndDown) {
-      $store.commit(globalMutations.updateMaxResults, 12);
-    } else {
-      $store.commit(globalMutations.updateMaxResults, 18);
-    }
-  }
-}
+export default class Root extends Vue {}

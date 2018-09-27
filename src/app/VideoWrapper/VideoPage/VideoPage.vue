@@ -4,7 +4,11 @@
       <VideoCard  
         :video-id="videoId" 
         :video="video"/>
-      <VideoComments/>
+      <InfiniteCommentsList 
+        v-if="false" 
+        :video-id="videoId"
+        :list-fetcher="videoCommentsFetcher"
+        :reset-onable="resetDeferred.onable"/>
     </template>
     <v-container 
       fluid 
@@ -19,7 +23,11 @@
             <VideoCard  
               :video-id="videoId" 
               :video="video"/>
-            <VideoComments/>
+            <InfiniteCommentsList  
+              v-if="false"
+              :video-id="videoId" 
+              :list-fetcher="videoCommentsFetcher" 
+              :reset-onable="resetDeferred.onable"/>
           </template>
         </v-flex>
         <v-flex 

@@ -12,8 +12,8 @@
               xs12
               class="headline mb-0 pa-0"> {{ title }}</v-flex>
             <v-flex 
-              class="pa-0 mt-2 subheading success--text"> {{ uploaded }} </v-flex>
-            <span class="pa-0 mt-2 subheading primary--text"> {{ views }}</span>
+              class="pa-0 mt-2 body-1 success--text"> {{ uploaded }} </v-flex>
+            <span class="pa-0 mt-2 body-1 primary--text"> {{ views }}</span>
           </v-layout>
         </v-card-title>
        
@@ -83,8 +83,9 @@
           <v-layout 
             justify-center>
             <v-btn 
+              ref="expandCollapseBtn"
               icon 
-              @click="isDescriptionExpanded=!isDescriptionExpanded"  
+              @click="expandeCollapseDesc"  
               small>
               <v-icon dark>{{ isDescriptionExpanded?'expand_less':'expand_more' }}</v-icon>
             </v-btn>

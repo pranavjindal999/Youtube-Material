@@ -3,6 +3,35 @@
 /// <reference types="gapi" />
 
 declare namespace gapi.client.youtube {
+  const commentThreads: {
+    list(object: {
+      part: string;
+      allThreadsRelatedToChannelId?: string;
+      channelId?: string;
+      id?: string;
+      videoId?: string;
+      maxResults?: number;
+      moderationStatus?: "heldForReview" | "likelySpam" | "published";
+      order?: "time" | "relevance";
+      pageToken?: string;
+      searchTerms?: string;
+      textFormat?: "plainText" | "html";
+    }): HttpRequest<
+      GoogleApiYouTubePaginationInfo<GoogleApiYoutubeCommentThreadResource>
+    >;
+  };
+  const comments: {
+    list(object: {
+      part: "snippet" | "id";
+      id?: string;
+      parentId?: string;
+      maxResults?: number;
+      pageToken?: string;
+      textFormat?: string;
+    }): HttpRequest<
+      GoogleApiYouTubePaginationInfo<GoogleApiYoutubeCommentResource>
+    >;
+  };
   const activities: {
     /**
      * Posts a bulletin for a specific channel.
@@ -2363,4 +2392,46 @@ interface GoogleApiYouTubeVideoGetRatingResponse {
      */
     rating: string;
   }[];
+}
+
+interface GoogleApiYoutubeCommentResource {
+  kind: "youtube#comment";
+  etag: string;
+  id: string;
+  snippet: {
+    authorDisplayName: string;
+    authorProfileImageUrl: string;
+    authorChannelUrl: string;
+    authorChannelId: {
+      value: string;
+    };
+    channelId: string;
+    videoId: string;
+    textDisplay: string;
+    textOriginal: string;
+    parentId: string;
+    canRate: boolean;
+    viewerRating: string;
+    likeCount: number;
+    moderationStatus: string;
+    publishedAt: string;
+    updatedAt: string;
+  };
+}
+
+interface GoogleApiYoutubeCommentThreadResource {
+  kind: "youtube#commentThread";
+  etag: string;
+  id: string;
+  snippet: {
+    channelId: string;
+    videoId: string;
+    topLevelComment: GoogleApiYoutubeCommentResource;
+    canReply: boolean;
+    totalReplyCount: number;
+    isPublic: boolean;
+  };
+  replies: {
+    comments: GoogleApiYoutubeCommentResource[];
+  };
 }

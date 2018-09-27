@@ -1,6 +1,5 @@
 import { Onable } from "./../../../extras/DeferredObservable";
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { $store } from "@/store";
 
 @Component
 export default class InfiniteList<T> extends Vue {
@@ -16,6 +15,21 @@ export default class InfiniteList<T> extends Vue {
   isCurrentRequestPending: boolean = false;
   totalResults: number | null = null;
   resultsFetchedYet: number = 0;
+
+  /**
+   * Few Google APIs result wrong count of total results, like comments thread
+   */
+  ignoreTotalResults?: boolean = false;
+
+  get maxResults(): number {
+    if (this.$vuetify.breakpoint.smAndDown) {
+      return 8;
+    } else if (this.$vuetify.breakpoint.mdAndDown) {
+      return 12;
+    } else {
+      return 18;
+    }
+  }
 
   created() {
     if (this.resetOnable) {
@@ -34,18 +48,18 @@ export default class InfiniteList<T> extends Vue {
   }
 
   calcResultsToFetch() {
-    if (this.totalResults) {
+    if (this.totalResults && !this.ignoreTotalResults) {
       return Math.min(
-        $store.state.maxResults,
+        this.maxResults,
         this.totalResults - this.resultsFetchedYet
       );
     } else {
-      return $store.state.maxResults;
+      return this.maxResults;
     }
   }
 
   async onScrollFire() {
-    if (!this.haveMore || this.isCurrentRequestPending) {
+    if (!this.haveMore || this.isCurrentRequestPending || !navigator.onLine) {
       return;
     }
 
@@ -78,6 +92,9 @@ export default class InfiniteList<T> extends Vue {
           this.nextPageToken = "";
           this.totalResults = this.list.length;
         }
+      })
+      .catch(() => {
+        this.list.splice(this.list.length - resultsToFetch, resultsToFetch);
       })
       .finally(() => {
         this.isCurrentRequestPending = false;

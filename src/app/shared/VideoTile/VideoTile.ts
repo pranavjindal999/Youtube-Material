@@ -4,6 +4,7 @@ import moment from "moment";
 import { routes } from "@/router/routeNames";
 import { Location } from "vue-router";
 import { humanizeDuration, humanizeNumber } from "@/extras/utils";
+import config from "@/config";
 
 @Component({
   components: {
@@ -23,8 +24,15 @@ export default class VideoTile extends Vue {
     }
   }
 
-  get uploaded() {
+  get humaizedUploaded() {
     return this.video && moment(this.video.snippet.publishedAt).fromNow();
+  }
+
+  get uploaded() {
+    return (
+      this.video &&
+      moment(this.video.snippet.publishedAt).format(config.longDateTimeFormat)
+    );
   }
 
   get thumbnail() {

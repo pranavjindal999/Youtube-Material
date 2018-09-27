@@ -9,4 +9,5 @@ export interface IConfig {
   xhrTimeout: number;
   defaultLanguage: Language;
   debugInfo: boolean;
+  longDateTimeFormat: string;
 }

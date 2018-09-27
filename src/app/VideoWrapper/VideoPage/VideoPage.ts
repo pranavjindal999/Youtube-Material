@@ -3,13 +3,13 @@ import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
 import { DeferredObservable } from "@/extras/DeferredObservable";
 import VideoCard from "@/app/VideoWrapper/VideoCard/VideoCard.vue";
-import VideoComments from "@/app/VideoWrapper/VideoComments/VideoComments.vue";
+import InfiniteCommentsList from "@/app/VideoWrapper/InfiniteCommentsList/InfiniteCommentsList.vue";
 
 @Component({
   components: {
     InfiniteVideoList,
     VideoCard,
-    VideoComments
+    InfiniteCommentsList
   }
 })
 export default class VideoPage extends Vue {
@@ -40,6 +40,19 @@ export default class VideoPage extends Vue {
             return searchResult as any;
           });
         });
+    };
+  }
+
+  get videoCommentsFetcher(): ListFetcher<
+    GoogleApiYoutubeCommentThreadResource
+  > {
+    return (maxResults, pageToken) => {
+      return youtubeService.getVideoComments({
+        maxResults,
+        pageToken,
+        order: "time",
+        videoId: this.videoId
+      });
     };
   }
 

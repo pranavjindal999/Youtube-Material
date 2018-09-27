@@ -8,7 +8,8 @@ let base: IConfig = {
   local: false,
   production: false,
   staging: false,
-  xhrTimeout: 1000 * 10
+  xhrTimeout: 1000 * 10,
+  longDateTimeFormat: "Do MMM, YYYY (h:mm A)"
 };
 
 export default base;

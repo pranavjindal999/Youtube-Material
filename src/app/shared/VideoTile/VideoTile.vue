@@ -22,7 +22,9 @@
           <span 
             v-if="!isLive" 
             class="duration">{{ duration }}</span>
-          <span class="uploaded">{{ uploaded }}</span>
+          <span 
+            :title="uploaded" 
+            class="uploaded">{{ humaizedUploaded }}</span>
         </div>
         
         <FloatingDiv 

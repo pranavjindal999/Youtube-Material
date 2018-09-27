@@ -26,8 +26,7 @@ const $store = new Vuex.Store<AppState>({
   state: {
     currentLang: config.defaultLanguage,
     regionCode: "IN",
-    drawer: Vue.prototype.$vuetify.breakpoint.smAndDown ? false : true,
-    maxResults: 18
+    drawer: Vue.prototype.$vuetify.breakpoint.mdAndDown ? false : true
   },
   getters: {},
   mutations: {
@@ -40,9 +39,6 @@ const $store = new Vuex.Store<AppState>({
     },
     [globalMutations.toggleDrawer](state) {
       state.drawer = !state.drawer;
-    },
-    [globalMutations.updateMaxResults](state, maxResults: number) {
-      state.maxResults = maxResults;
     },
     [globalMutations.updateRegionCode](state, regionCode: string) {
       state.regionCode = regionCode;
@@ -58,7 +54,6 @@ interface AppState {
   currentLang: Language;
   regionCode: string;
   drawer: boolean;
-  maxResults: number;
 }
 
 export { $store };

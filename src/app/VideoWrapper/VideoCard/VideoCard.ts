@@ -7,6 +7,7 @@ import YoutubePlayer from "@/app/shared/YoutubePlayer/YoutubePlayer.vue";
 import { LangKeys } from "@/translations";
 import { linkify } from "@/services/linkify";
 import { youtubeService } from "@/services/youtube";
+import config from "@/config";
 
 @Component({
   components: {
@@ -23,6 +24,10 @@ export default class VideoCard extends Vue {
 
   channel: GoogleApiYouTubeChannelResource | null = null;
   isDescriptionExpanded = false;
+
+  $refs!: {
+    expandCollapseBtn: Vue;
+  };
 
   get title() {
     if (this.video) {
@@ -48,7 +53,7 @@ export default class VideoCard extends Vue {
     if (this.video) {
       return `${this.$t(LangKeys.uploaded)}: ${moment(
         this.video.snippet.publishedAt
-      ).format("Do MMM, YYYY (h:mm A)")}`;
+      ).format(config.longDateTimeFormat)}`;
     }
   }
 
@@ -105,5 +110,21 @@ export default class VideoCard extends Vue {
           this.isDescriptionExpanded = false;
         });
     }
+  }
+
+  expandeCollapseDesc() {
+    this.isDescriptionExpanded = !this.isDescriptionExpanded;
+
+    /**
+     * Sometimes the expanded description si so large that
+     * after collapse, the viewport becomes blank.
+     */
+    this.$nextTick(() => {
+      if (!this.isDescriptionExpanded) {
+        this.$refs.expandCollapseBtn.$el.scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+    });
   }
 }
