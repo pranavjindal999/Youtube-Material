@@ -47,14 +47,18 @@
                   <v-icon 
                     small 
                     color="success">thumb_up</v-icon>
-                  <span class="pl-1">{{ (+likeCount).toLocaleString() }}</span>
+                  <span 
+                    :title="(+likeCount).toLocaleString()" 
+                    class="pl-1">{{ humanizedLikeCount }}</span>
                 </div>
                 <div 
                   class="pa-0">
                   <v-icon 
                     small 
                     color="error">thumb_down</v-icon>
-                  <span class="pl-1">{{ (+dislikeCount).toLocaleString() }}</span>
+                  <span 
+                    :title="(+dislikeCount).toLocaleString()" 
+                    class="pl-1">{{ humanizedDislikeCount }}</span>
                 </div>
                 <v-flex 
                   class="pa-0" 

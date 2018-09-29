@@ -24,19 +24,16 @@
             row 
             class="btn-adj"
             align-center>
-            <v-tooltip 
-              class="hidden-sm-and-down" 
-              bottom>
-              <v-btn 
-                slot="activator"
-                fab 
-                small
-                :color="isLooping?'primary':''"
-                @click.stop="toogleLoop">
-                <v-icon>repeat_one</v-icon>
-              </v-btn>
-              <span>{{ $t('repeat') }}</span>
-            </v-tooltip>
+            
+            <v-btn 
+              slot="activator"
+              fab 
+              small
+              :color="isLooping?'primary':''"
+              @click.stop="toogleLoop">
+              <v-icon>repeat_one</v-icon>
+            </v-btn>
+           
             <v-tooltip bottom>
               <v-btn 
                 slot="activator"
@@ -49,18 +46,15 @@
               </v-btn>
               <span>{{ isPlaying?$t('pause'):$t('play') }}</span>
             </v-tooltip>
-            <v-tooltip 
-              class="hidden-sm-and-down" 
-              bottom>
-              <v-btn 
-                slot="activator"
-                fab 
-                small
-                @click.stop="close">
-                <v-icon>clear</v-icon>
-              </v-btn>
-              <span>{{ $t('stop') }}</span>
-            </v-tooltip>
+            
+            <v-btn 
+              slot="activator"
+              fab 
+              small
+              @click.stop="close">
+              <v-icon>clear</v-icon>
+            </v-btn>
+            
           </v-layout>
         </div>
         

@@ -12,6 +12,8 @@
       </template>
     </CommentItem>
     <v-btn 
+      flat
+      color="primary"
       v-if="manual" 
       @click="onScrollFire" 
       block>{{ $t('loadMoreComments') }}</v-btn>

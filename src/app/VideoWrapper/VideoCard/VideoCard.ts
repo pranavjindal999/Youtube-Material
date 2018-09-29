@@ -8,6 +8,7 @@ import { LangKeys } from "@/translations";
 import { linkify } from "@/services/linkify";
 import { youtubeService } from "@/services/youtube";
 import config from "@/config";
+import { humanizeNumber } from "@/extras/utils";
 
 @Component({
   components: {
@@ -74,6 +75,18 @@ export default class VideoCard extends Vue {
   get dislikeCount() {
     if (this.video) {
       return this.video.statistics.dislikeCount;
+    }
+  }
+
+  get humanizedLikeCount() {
+    if (this.video) {
+      return humanizeNumber(this.video.statistics.likeCount);
+    }
+  }
+
+  get humanizedDislikeCount() {
+    if (this.video) {
+      return humanizeNumber(this.video.statistics.dislikeCount);
     }
   }
 

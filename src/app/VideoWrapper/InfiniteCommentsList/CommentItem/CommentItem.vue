@@ -1,8 +1,9 @@
 <template>
   <div 
-    v-if="comment" 
-    class="ma-0 px-4 py-3" >
+    v-if="comment"
+  >
     <v-layout 
+      class="ma-0 px-3 pt-3"
       row>
       <router-link 
         class="no-link" 
@@ -35,13 +36,15 @@
   <v-responsive 
     v-else
     :aspect-ratio="10">
-    <div class="fl-flex pa-3">
-      <FloatingDiv class="fl-img"/>
-      <div class="fl-text">
-        <FloatingDiv class="fl-name"/>
-        <FloatingDiv class="fl-comment"/>
-        <FloatingDiv class="fl-comment1"/>
-      </div>
+    <div class="parent">
+      <v-avatar 
+        class="avatar" 
+        size="56">
+        <FloatingDiv class="fl-img"/>
+      </v-avatar>
+      <FloatingDiv class="fl-name"/>
+      <FloatingDiv class="fl-comment"/>
+      <FloatingDiv class="fl-comment1"/>
     </div>
   </v-responsive>
 </template>
@@ -50,31 +53,29 @@
 .smaller {
   font-size: 0.9em;
 }
-.fl-flex {
-  display: flex;
-  flex-direction: row;
+.parent {
+  padding: 2%;
   height: 100%;
+}
+.avatar {
+  float: left;
+  margin-right: 10px;
 }
 .fl-img {
   border-radius: 50%;
-  height: 100%;
-  width: 7%;
-}
-.fl-text {
-  width: 100%;
-  margin-left: 2%;
 }
 .fl-name {
-  height: 30%;
+  height: 24%;
   width: 30%;
+  margin-top: 1%;
 }
 .fl-comment {
-  height: 15%;
+  height: 12%;
   width: 80%;
   margin-top: 1%;
 }
 .fl-comment1 {
-  height: 15%;
+  height: 12%;
   width: 50%;
   margin-top: 1%;
 }
