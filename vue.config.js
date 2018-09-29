@@ -40,7 +40,7 @@ module.exports = {
       exclude: [/^_redirects$/, /\.map$/, /^manifest.*\.js(?:on)?$/],
       runtimeCaching: [
         {
-          urlPattern: /youtube\/v3/,
+          urlPattern: new RegExp("^https://.*youtube/v3"),
           handler: "cacheFirst",
           options: {
             cacheName: "youtube-api-cache",
