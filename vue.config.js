@@ -37,7 +37,45 @@ module.exports = {
     },
     workboxOptions: {
       skipWaiting: true,
-      exclude: [/_redirects/]
+      exclude: [/^_redirects$/, /\.map$/, /^manifest.*\.js(?:on)?$/],
+      runtimeCaching: [
+        {
+          urlPattern: /youtube\/v3/,
+          handler: "cacheFirst",
+          options: {
+            cacheName: "youtube-api-cache",
+            expiration: {
+              maxEntries: 50,
+              maxAgeSeconds: 20
+            },
+            cacheableResponse: {
+              statuses: [200]
+            },
+            matchOptions: {
+              ignoreSearch: false
+            }
+          }
+        },
+        {
+          urlPattern: /suggestqueries\.google\.com/,
+          handler: "cacheFirst",
+          options: {
+            cacheableResponse: {
+              cacheName: "search-suggestion-cache",
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 20
+              },
+              cacheableResponse: {
+                statuses: [200]
+              },
+              matchOptions: {
+                ignoreSearch: false
+              }
+            }
+          }
+        }
+      ]
     }
   },
   devServer: {
