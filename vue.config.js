@@ -50,26 +50,6 @@ module.exports = {
             },
             cacheableResponse: {
               statuses: [200]
-            },
-            matchOptions: {
-              ignoreSearch: false
-            }
-          }
-        },
-        {
-          urlPattern: /suggestqueries\.google\.com/,
-          handler: "cacheFirst",
-          options: {
-            cacheName: "search-suggestion-cache",
-            expiration: {
-              maxEntries: 20,
-              maxAgeSeconds: 20
-            },
-            cacheableResponse: {
-              statuses: [200]
-            },
-            matchOptions: {
-              ignoreSearch: false
             }
           }
         }

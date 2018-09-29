@@ -6,6 +6,7 @@
         :video="video"/>
       <InfiniteCommentsList 
         manual 
+        v-if="videoId"
         class="mt-3"
         :video-id="videoId"
         :list-fetcher="videoCommentsFetcher"
@@ -25,6 +26,7 @@
               :video-id="videoId" 
               :video="video"/>
             <InfiniteCommentsList 
+              v-if="videoId"
               class="mt-3"
               :video-id="videoId" 
               :list-fetcher="videoCommentsFetcher" 
