@@ -84,4 +84,12 @@ export default class VideoTile extends Vue {
         }
       };
   }
+
+  channelLinkClick() {
+    this.$gaEvent({
+      action: "click",
+      category: "channelLink video tile",
+      label: this.video!.snippet.channelId
+    });
+  }
 }

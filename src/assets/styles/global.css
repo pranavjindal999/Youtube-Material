@@ -10,6 +10,22 @@
   cursor: pointer !important;
 }
 
+.spin {
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: spin;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
 .router-enter-active,
 .router-leave-active {
   transition: all 0.2s;

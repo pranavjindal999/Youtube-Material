@@ -3,6 +3,7 @@ import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { asyncYoutubeIframeAPI } from "@/services/youtube/youtubeIframe";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 import { randomString } from "@/extras/utils";
+import config from "@/config";
 @Component({
   components: {
     FloatingDiv
@@ -17,6 +18,10 @@ export default class YoutubePlayer extends Vue {
   @Prop({ type: String, required: true })
   videoId!: string;
 
+  get computedVideoId(): string {
+    return config.local ? "" : this.videoId;
+  }
+
   async mounted() {
     await this.makePlayerReady();
   }
@@ -26,7 +31,7 @@ export default class YoutubePlayer extends Vue {
     await this.asyncPlayerState;
 
     if (newId !== oldId) {
-      this.player!.loadVideoById(this.videoId);
+      this.player!.loadVideoById(this.computedVideoId);
     }
   }
 
@@ -41,7 +46,7 @@ export default class YoutubePlayer extends Vue {
           hl: this.$i18n.locale,
           origin: window.location.origin
         },
-        videoId: this.videoId,
+        videoId: this.computedVideoId,
         events: {
           onReady: () => {
             this.isPlayerReady = true;

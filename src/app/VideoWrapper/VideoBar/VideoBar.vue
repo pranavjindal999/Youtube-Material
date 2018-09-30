@@ -24,7 +24,6 @@
             row 
             class="btn-adj"
             align-center>
-            
             <v-btn 
               slot="activator"
               fab 
@@ -33,20 +32,15 @@
               @click.stop="toogleLoop">
               <v-icon>repeat_one</v-icon>
             </v-btn>
-           
-            <v-tooltip bottom>
-              <v-btn 
-                slot="activator"
-                fab 
-                large
-                color="youtubeRed"
-                dark
-                @click.stop="playPause">
-                <v-icon>{{ isPlaying?'pause':'play_arrow' }}</v-icon>
-              </v-btn>
-              <span>{{ isPlaying?$t('pause'):$t('play') }}</span>
-            </v-tooltip>
-            
+            <v-btn 
+              slot="activator"
+              fab 
+              large
+              color="youtubeRed"
+              dark
+              @click.stop="playPause">
+              <v-icon>{{ isPlaying?'pause':'play_arrow' }}</v-icon>
+            </v-btn>
             <v-btn 
               slot="activator"
               fab 
@@ -54,7 +48,6 @@
               @click.stop="close">
               <v-icon>clear</v-icon>
             </v-btn>
-            
           </v-layout>
         </div>
         

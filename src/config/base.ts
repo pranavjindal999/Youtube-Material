@@ -9,7 +9,8 @@ let base: IConfig = {
   production: false,
   staging: false,
   xhrTimeout: 1000 * 10,
-  longDateTimeFormat: "Do MMM, YYYY (h:mm A)"
+  longDateTimeFormat: "Do MMM, YYYY (h:mm A)",
+  gaId: ""
 };
 
 export default base;

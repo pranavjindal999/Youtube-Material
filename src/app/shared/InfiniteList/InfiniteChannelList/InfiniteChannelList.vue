@@ -2,15 +2,22 @@
   <v-layout
     row 
     wrap>
-    <v-flex 
-      xs6 
-      md3
-      lg2
-      :key="$index"
-      v-for="(channel, $index) in list">
-      <ChannelTile 
-        :channel="channel"/>
-    </v-flex>
+    <template v-if="list.length">
+      <v-flex 
+        xs6 
+        md3
+        lg2
+        :key="$index"
+        v-for="(channel, $index) in list">
+        <ChannelTile 
+          :channel="channel"/>
+      </v-flex>
+    </template>
+    <v-responsive 
+      v-else 
+      :aspect-ratio="6">
+      <ErrorMessage :text="$t(noChannelText)"/>
+    </v-responsive>
     <ScrollFire 
       :have-more="haveMore" 
       @fire="onScrollFire"/>

@@ -47,6 +47,7 @@
       <router-link 
         v-if="!hideChannelLink"
         :to="channelRoute" 
+        @click="channelLinkClick"
         class="channel-name text-truncate">
         {{ channelName }}
       </router-link>

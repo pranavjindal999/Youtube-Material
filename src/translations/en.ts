@@ -25,11 +25,14 @@ export default {
   subscriptions: "Subscriptions",
   featuredChannels: "Featured Channels",
   noChannelsFeatured: "No channels featured!",
+  noChannelsSubscribed: "No channels subscribed!",
   play: "Play",
   pause: "Pause",
   stop: "Stop",
   repeat: "Repeat",
   liveVideo: "Live Video",
   noVideoFound: "No videos found!",
-  loadMoreComments: "Load More Comments"
+  noChannelFound: "No channel found!",
+  loadMoreComments: "Load More Comments",
+  loadMoreReplies: "Load one more reply | Load {unloadedCount} more replies"
 };

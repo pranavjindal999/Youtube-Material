@@ -29,9 +29,10 @@
         <p v-async-bind="commentHtml"/>
       </div>
     </v-layout>
-    <div class="smaller" >
+    <div class="smaller ml-3" >
       <slot name="replies"/>
     </div>
+    <slot/>
   </div>
   <v-responsive 
     v-else

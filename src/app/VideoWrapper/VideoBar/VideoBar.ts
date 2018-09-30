@@ -21,7 +21,7 @@ export default class VideoBar extends Mixins(
   playerRef: YT.Player | null = null;
   isLooping = false;
 
-  height = 96;
+  height = 80;
 
   get videoThumbnail() {
     if (this.video) {

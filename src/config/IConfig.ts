@@ -10,4 +10,5 @@ export interface IConfig {
   defaultLanguage: Language;
   debugInfo: boolean;
   longDateTimeFormat: string;
+  gaId: string;
 }

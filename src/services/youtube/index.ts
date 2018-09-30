@@ -147,6 +147,24 @@ class YoutubeService {
       });
   }
 
+  async getCommentReplies(params: {
+    commentId: string;
+    maxResults: number;
+    pageToken: string;
+  }) {
+    await asyncYoutubeClientAPI;
+    return gapi.client.youtube.comments
+      .list({
+        part: "snippet",
+        pageToken: params.pageToken,
+        parentId: params.commentId,
+        maxResults: params.maxResults
+      })
+      .then(({ result }) => {
+        return result;
+      });
+  }
+
   async getSuggestions(query: string) {
     return new Promise<string[]>((resolve, reject) => {
       jsonp(
