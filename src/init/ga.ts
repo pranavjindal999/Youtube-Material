@@ -7,7 +7,7 @@ window.gtag = function() {
   window.dataLayer!.push(arguments);
 };
 window.gtag("js", new Date());
-window.gtag("config", "UA-81891151-1");
+window.gtag("config", config.gaId);
 
 Vue.prototype.$gaEvent = (event: {
   action: string;
