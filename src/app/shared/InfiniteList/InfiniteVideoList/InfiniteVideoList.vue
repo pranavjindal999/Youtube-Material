@@ -15,7 +15,7 @@
     </template>
     <v-responsive 
       v-else 
-      :aspect-ratio="6">
+      :aspect-ratio="8">
       <ErrorMessage :text="$t(noVideoText)"/>
     </v-responsive>
     <ScrollFire 

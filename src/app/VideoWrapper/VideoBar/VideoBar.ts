@@ -71,7 +71,7 @@ export default class VideoBar extends Mixins(
 
   get barTitleClass() {
     if (this.$vuetify.breakpoint.smAndDown) {
-      return "subheading mb-1";
+      return "mobile-bar-title mb-1";
     } else {
       return "title mb-2";
     }
@@ -79,10 +79,14 @@ export default class VideoBar extends Mixins(
 
   get barTimerClass() {
     if (this.$vuetify.breakpoint.smAndDown) {
-      return "";
+      return "mobile-bar-duration";
     } else {
       return "subheading";
     }
+  }
+
+  get thumnailBgStyle() {
+    return { background: `url(${this.videoThumbnail})` };
   }
 
   /**

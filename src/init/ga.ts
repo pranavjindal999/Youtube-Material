@@ -13,6 +13,6 @@ Vue.use(VueAnalytics, {
   debug: {
     enabled: config.local,
     trace: config.local,
-    sendHitTask: true
+    sendHitTask: !config.local
   }
 });

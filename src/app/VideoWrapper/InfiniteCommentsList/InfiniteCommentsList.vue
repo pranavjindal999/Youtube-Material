@@ -32,7 +32,7 @@
       flat
       class="mt-0"
       color="primary"
-      v-if="manual" 
+      v-if="manual && haveMore" 
       @click="onScrollFire" 
       block>
       {{ $t('loadMoreComments') }}      

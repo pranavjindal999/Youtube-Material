@@ -29,32 +29,13 @@ const $router = new Router({
       name: routes.trending.name,
       path: `/trending/:${routes.trending.params.category}?`,
       component: Trending,
-      props: true,
-      meta: {
-        analytics: {
-          pageviewTemplate(route: Route) {
-            return {
-              trendingCategory:
-                route.params[routes.trending.params.category] || "all"
-            };
-          }
-        }
-      }
+      props: true
     },
     {
       name: routes.search.name,
       path: `/search/:${routes.search.params.query}`,
       component: SearchResults,
-      props: true,
-      meta: {
-        analytics: {
-          pageviewTemplate(route: Route) {
-            return {
-              searchQuery: route.params[routes.search.params.query]
-            };
-          }
-        }
-      }
+      props: true
     },
     {
       name: routes.video.name,
