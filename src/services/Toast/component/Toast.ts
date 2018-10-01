@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import { i18n } from "@/services/i18n";
+import { sleep } from "@/extras/sleep";
 
 const DEFAULT_TIMEOUT = 5000;
 
@@ -45,7 +46,7 @@ export default class ToastComponent extends Vue {
    * @returns {Promise<undefined>} Returned promise is resolved when toast closes.
    * @memberof ToastComponent
    */
-  public show(options: IToastOptions): Promise<undefined> {
+  public async show(options: IToastOptions): Promise<undefined> {
     this.message = i18n.t(options.message) as string;
     this.intent = options.intent;
     this.noClose = options.noCloseButton || false;
@@ -59,9 +60,8 @@ export default class ToastComponent extends Vue {
       this.hide();
       if (!options.noShake) {
         this.shake = true;
-        setTimeout(() => {
-          this.shake = false;
-        }, 1000);
+        await sleep(1000);
+        this.shake = false;
       }
     }
 
@@ -73,14 +73,15 @@ export default class ToastComponent extends Vue {
     let timesAlreadyRun = 0;
 
     if (this.toShowProgress)
-      this.intervalId = setInterval(() => {
+      this.intervalId = setInterval(async () => {
         this.transitionTime = 0.5;
         if (!document.hidden && !this.isMouseOver) {
           this.progress -= Math.floor(100 / timesCanRun);
           timesAlreadyRun++;
         }
         if (timesCanRun == timesAlreadyRun) {
-          setTimeout(this.hide, 500);
+          await sleep(500);
+          this.hide();
         }
       }, 500);
 

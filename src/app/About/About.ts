@@ -1,9 +1,10 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
+import { sleep } from "@/extras/sleep";
 
-@Component({
-  components: {}
-})
+@Component
 export default class About extends Vue {
+  isIconLoading = true;
+
   socials = [
     {
       href: "https://www.linkedin.com/in/pranavjindal999",
@@ -34,10 +35,16 @@ export default class About extends Vue {
 
   created() {
     import("lazyload-css").then(lazyLoadCSS => {
-      lazyLoadCSS.default(
-        "https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?9ukd8d",
-        "socicon"
-      );
+      lazyLoadCSS
+        .default(
+          "https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?9ukd8d",
+          "socicon"
+        )
+        .then(async () => {
+          //buffer for download time for woffs
+          await sleep(1000);
+          this.isIconLoading = false;
+        });
     });
   }
 }

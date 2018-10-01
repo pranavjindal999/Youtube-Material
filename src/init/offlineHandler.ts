@@ -1,13 +1,13 @@
 import { Toast } from "@/services/Toast";
+import { sleep } from "@/extras/sleep";
 
 window.addEventListener("offline", offlineHandler, false);
 window.addEventListener("online", onlineHandler, false);
 window.addEventListener("load", loadHandler, true);
 
-function loadHandler() {
-  setTimeout(() => {
-    navigator.onLine ? () => null : offlineHandler();
-  }, 500);
+async function loadHandler() {
+  await sleep(500);
+  navigator.onLine ? () => null : offlineHandler();
 }
 
 function onlineHandler() {

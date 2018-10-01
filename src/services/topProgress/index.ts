@@ -1,9 +1,11 @@
+import { sleep } from "@/extras/sleep";
+
 class TopProgressWrapper {
-  private asyncInstance = import("toprogress2").then(module => {
+  private asyncInstance = import("toprogress2").then(async module => {
     let instance = new module.ToProgress({
       color: "#ffffff",
-      height: "3px",
-      duration: 0.5,
+      height: "2px",
+      duration: 0.2,
       position: "top",
       selector: "body"
     });
@@ -11,6 +13,7 @@ class TopProgressWrapper {
     let elem: HTMLDivElement = (instance as any).element;
     elem.style.zIndex = "99999999999999";
 
+    await sleep();
     return instance;
   });
   private noOfPendingRequests = 0;
@@ -19,15 +22,16 @@ class TopProgressWrapper {
     let instance = await this.asyncInstance;
 
     if (!this.noOfPendingRequests) {
-      instance.start(5);
+      instance.start(8);
     }
 
     this.noOfPendingRequests++;
 
     promise
-      .then(() => {
+      .then(async () => {
         this.noOfPendingRequests--;
 
+        await sleep(100);
         if (!this.noOfPendingRequests) {
           instance.finish();
         }

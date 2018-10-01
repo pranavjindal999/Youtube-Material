@@ -51,6 +51,12 @@
               :href="item.href"
               target="_blank"
               color="primary">
+              <v-progress-circular 
+                class="ma-2" 
+                indeterminate 
+                :width="1" 
+                size="20" 
+                v-if="isIconLoading"/>
               <v-icon>{{ item.icon }}</v-icon>
             </v-btn>
             <span>{{ item.label }}</span>
