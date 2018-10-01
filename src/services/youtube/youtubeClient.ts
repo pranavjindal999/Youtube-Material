@@ -1,3 +1,4 @@
+import { TopProgress } from "./../topProgress/index";
 import { Toast } from "@/services/Toast";
 import loadJs from "load-js";
 import config from "@/config";
@@ -38,5 +39,6 @@ setTimeout(() => {
   deferred.reject();
 }, config.xhrTimeout);
 
+TopProgress.startAuto(deferred.promise);
+
 export const asyncYoutubeClientAPI = deferred.promise;
-// export const asyncYoutubeClientAPI = new Promise(() => {});

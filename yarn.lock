@@ -6810,6 +6810,10 @@ toposort@^1.0.0:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/toposort/-/toposort-1.0.7.tgz#2e68442d9f64ec720b8cc89e6443ac6caa950029"
 
+toprogress2@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/toprogress2/-/toprogress2-2.0.0.tgz#c98666972f8c0377aaa2180c1a8ac4005e9715a0"
+
 tough-cookie@>=2.3.3, tough-cookie@~2.4.3:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.4.3.tgz#53f36da3f47783b0925afa06ff9f3b165280f781"

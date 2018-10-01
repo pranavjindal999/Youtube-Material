@@ -2,6 +2,7 @@ import loadJs from "load-js";
 import { Deferred } from "@/extras/Deferred";
 import { Toast } from "@/services/Toast";
 import config from "@/config";
+import { TopProgress } from "@/services/topProgress";
 
 let deferred = new Deferred<boolean>();
 
@@ -23,5 +24,7 @@ deferred.promise.catch(() => {
     intent: "error"
   });
 });
+
+TopProgress.startAuto(deferred.promise);
 
 export const asyncYoutubeIframeAPI = deferred.promise;

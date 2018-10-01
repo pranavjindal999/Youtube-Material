@@ -1,41 +1,44 @@
-import { $store } from "@/store";
+import { asyncRegionCode } from "@/services/geolocation";
 import { asyncYoutubeClientAPI } from "@/services/youtube/youtubeClient";
 import { i18n } from "@/services/i18n";
 import jsonp from "jsonp";
 import { toQueryString } from "@/extras/utils";
+import { gapiWrapper } from "@/services/youtube/gapiWrapper";
 
 class YoutubeService {
   async searchVideos(parameters: SearchParams) {
     await asyncYoutubeClientAPI;
-    return gapi.client.youtube.search
-      .list({
+    return gapiWrapper({
+      method: gapi.client.youtube.search.list,
+      params: {
         channelId: parameters.channelId,
         order: parameters.order,
         part: "snippet",
         type: "video",
-        regionCode: $store.state.regionCode,
+        regionCode: await asyncRegionCode,
         maxResults: parameters.maxResults,
         relatedToVideoId: parameters.relatedToVideoId,
         q: parameters.query,
         pageToken: parameters.pageToken
-      })
-      .then(function(response) {
-        return response.result;
-      });
+      }
+    }).then(result => {
+      return result;
+    });
   }
 
   async getVideoDetails(videoIds: string[]) {
     await asyncYoutubeClientAPI;
-    return gapi.client.youtube.videos
-      .list({
+    return gapiWrapper({
+      method: gapi.client.youtube.videos.list,
+      params: {
         hl: i18n.locale,
-        regionCode: $store.state.regionCode,
+        regionCode: await asyncRegionCode,
         part: "snippet,statistics,contentDetails",
         id: videoIds.join(",")
-      })
-      .then(({ result }) => {
-        return result;
-      });
+      }
+    }).then(result => {
+      return result;
+    });
   }
 
   async getChannelDetails(
@@ -43,15 +46,16 @@ class YoutubeService {
     part = "snippet,statistics,brandingSettings"
   ) {
     await asyncYoutubeClientAPI;
-    return gapi.client.youtube.channels
-      .list({
+    return gapiWrapper({
+      method: gapi.client.youtube.channels.list,
+      params: {
         hl: i18n.locale,
         part: part,
         id: channelIds.join(",")
-      })
-      .then(({ result }) => {
-        return result;
-      });
+      }
+    }).then(result => {
+      return result;
+    });
   }
 
   async getChannelSubscriptions(params: {
@@ -60,49 +64,52 @@ class YoutubeService {
     maxResults: number;
   }) {
     await asyncYoutubeClientAPI;
-    return gapi.client.youtube.subscriptions
-      .list({
+    return gapiWrapper({
+      method: gapi.client.youtube.subscriptions.list,
+      params: {
         channelId: params.channelId,
         part: "snippet",
         order: "alphabetical",
         pageToken: params.pageToken,
         maxResults: params.maxResults
-      })
-      .then(({ result }) => {
-        return result;
-      });
+      }
+    }).then(result => {
+      return result;
+    });
   }
 
   async getAllRegions() {
     await asyncYoutubeClientAPI;
-    return gapi.client.youtube.i18nRegions
-      .list({
+    return gapiWrapper({
+      method: gapi.client.youtube.i18nRegions.list,
+      params: {
         hl: i18n.locale,
         part: "snippet",
         fields: "items/snippet"
-      })
-      .then(({ result }) => {
-        return result.items.map(item => {
-          return {
-            regionCode: item.snippet.gl,
-            regionName: item.snippet.name
-          };
-        });
+      }
+    }).then(result => {
+      return result.items.map(item => {
+        return {
+          regionCode: item.snippet.gl,
+          regionName: item.snippet.name
+        };
       });
+    });
   }
 
   async getAllCategories() {
     await asyncYoutubeClientAPI;
-    return gapi.client.youtube.videoCategories
-      .list({
+    return gapiWrapper({
+      method: gapi.client.youtube.videoCategories.list,
+      params: {
         part: "snippet",
         hl: i18n.locale,
-        regionCode: $store.state.regionCode,
+        regionCode: await asyncRegionCode,
         fields: "eventId,items(id,snippet)"
-      })
-      .then(({ result }) => {
-        return result.items;
-      });
+      }
+    }).then(result => {
+      return result.items;
+    });
   }
 
   async getCategoryTrendingVideos(params: {
@@ -111,19 +118,20 @@ class YoutubeService {
     maxResults: number;
   }) {
     await asyncYoutubeClientAPI;
-    return gapi.client.youtube.videos
-      .list({
+    return gapiWrapper({
+      method: gapi.client.youtube.videos.list,
+      params: {
         part: "snippet,statistics,contentDetails",
         hl: i18n.locale,
-        regionCode: $store.state.regionCode,
+        regionCode: await asyncRegionCode,
         chart: "mostPopular",
         maxResults: params.maxResults,
         pageToken: params.pageToken,
         videoCategoryId: params.videoCategoryId
-      })
-      .then(({ result }) => {
-        return result;
-      });
+      }
+    }).then(result => {
+      return result;
+    });
   }
 
   async getVideoComments(params: {
@@ -133,18 +141,19 @@ class YoutubeService {
     pageToken?: string;
   }) {
     await asyncYoutubeClientAPI;
-    return gapi.client.youtube.commentThreads
-      .list({
+    return gapiWrapper({
+      method: gapi.client.youtube.commentThreads.list,
+      params: {
         part: "snippet,replies",
         videoId: params.videoId,
         maxResults: params.maxResults,
         order: params.order,
         pageToken: params.pageToken,
         textFormat: "plainText"
-      })
-      .then(({ result }) => {
-        return result;
-      });
+      }
+    }).then(result => {
+      return result;
+    });
   }
 
   async getCommentReplies(params: {
@@ -153,16 +162,17 @@ class YoutubeService {
     pageToken: string;
   }) {
     await asyncYoutubeClientAPI;
-    return gapi.client.youtube.comments
-      .list({
+    return gapiWrapper({
+      method: gapi.client.youtube.comments.list,
+      params: {
         part: "snippet",
         pageToken: params.pageToken,
         parentId: params.commentId,
         maxResults: params.maxResults
-      })
-      .then(({ result }) => {
-        return result;
-      });
+      }
+    }).then(result => {
+      return result;
+    });
   }
 
   async getSuggestions(query: string) {

@@ -3,7 +3,6 @@ import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
 import config from "@/config";
 import { Language } from "@/translations";
-import { asyncRegionCode } from "@/services/geolocation";
 
 Vue.use(Vuex);
 
@@ -25,7 +24,7 @@ const $store = new Vuex.Store<AppState>({
   strict: config.local,
   state: {
     currentLang: config.defaultLanguage,
-    regionCode: "IN",
+    regionCode: "",
     drawer: true
   },
   getters: {},
@@ -45,10 +44,6 @@ const $store = new Vuex.Store<AppState>({
     }
   }
 });
-
-(async () => {
-  $store.commit(globalMutations.updateRegionCode, await asyncRegionCode);
-})();
 
 interface AppState {
   currentLang: Language;
