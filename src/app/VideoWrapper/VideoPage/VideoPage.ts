@@ -1,3 +1,4 @@
+import { CommentThreadOrder } from "./../../../services/youtube/youtubeServiceTypes";
 import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/InfiniteVideoList.vue";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
@@ -20,6 +21,10 @@ export default class VideoPage extends Vue {
   video!: GoogleApiYouTubeVideoResource | null;
 
   resetDeferred = new DeferredObservable();
+  resetDeferredComments = new DeferredObservable();
+
+  commentThreadOrder = CommentThreadOrder.RELEVANCE;
+  CommentThreadOrderEnum = CommentThreadOrder;
 
   get isMobile() {
     return this.$vuetify.breakpoint.smAndDown;
@@ -50,7 +55,7 @@ export default class VideoPage extends Vue {
       return youtubeService.getVideoComments({
         maxResults,
         pageToken,
-        order: "relevance",
+        order: this.commentThreadOrder,
         videoId: this.videoId
       });
     };
@@ -59,5 +64,11 @@ export default class VideoPage extends Vue {
   @Watch("videoId")
   reset() {
     this.resetDeferred.next();
+    this.resetDeferredComments.next();
+  }
+
+  @Watch("commentThreadOrder")
+  resetComments() {
+    this.resetDeferredComments.next();
   }
 }

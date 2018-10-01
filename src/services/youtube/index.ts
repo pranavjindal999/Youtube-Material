@@ -1,3 +1,4 @@
+import { CommentThreadOrder, SearchParams } from "./youtubeServiceTypes";
 import { asyncRegionCode } from "@/services/geolocation";
 import { asyncYoutubeClientAPI } from "@/services/youtube/youtubeClient";
 import { i18n } from "@/services/i18n";
@@ -137,7 +138,7 @@ class YoutubeService {
   async getVideoComments(params: {
     videoId: string;
     maxResults: number;
-    order: "relevance" | "time";
+    order: CommentThreadOrder;
     pageToken?: string;
   }) {
     await asyncYoutubeClientAPI;

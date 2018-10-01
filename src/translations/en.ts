@@ -34,5 +34,7 @@ export default {
   noVideoFound: "No videos found!",
   noChannelFound: "No channel found!",
   loadMoreComments: "Load More Comments",
+  topComments: "Top Comments",
+  recentComments: "Recent Comments",
   loadMoreReplies: "Load one more reply | Load {unloadedCount} more replies"
 };

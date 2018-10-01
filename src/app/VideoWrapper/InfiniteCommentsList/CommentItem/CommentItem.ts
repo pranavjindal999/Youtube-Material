@@ -57,4 +57,10 @@ export default class CommentItem extends Vue {
       return linkify(this.comment.snippet.textOriginal);
     }
   }
+
+  get likeCount() {
+    if (this.comment) {
+      return (+this.comment.snippet.likeCount).toLocaleString();
+    }
+  }
 }

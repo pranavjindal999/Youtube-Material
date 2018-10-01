@@ -1,4 +1,4 @@
-type SearchParams = {
+export type SearchParams = {
   channelId?: string;
   order?:
     | "date"
@@ -12,3 +12,8 @@ type SearchParams = {
   pageToken?: string;
   maxResults: number;
 };
+
+export enum CommentThreadOrder {
+  RELEVANCE = "relevance",
+  TIME = "time"
+}

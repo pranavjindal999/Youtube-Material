@@ -1,5 +1,6 @@
 <template>
   <v-card>
+    <slot name="top"/>
     <CommentItem
       v-for="(commentThread, $index) in list" 
       :key="$index"
@@ -53,6 +54,7 @@
   cursor: pointer;
   display: inline-block;
   margin-right: 5px;
+  user-select: none;
 }
 .load-reply-link:hover {
   text-decoration: underline;

@@ -23,9 +23,18 @@
           :to="commenterChannelRouter">
           <span class="body-2 mr-2">{{ commenterName }}</span>
         </router-link>
-        <span 
+        <span
           class="captionGrey--text caption" 
           :title="commentTime">{{ humanizedCommentTime }}</span>
+          
+        <span 
+          v-if="likeCount > 0"
+          class="ml-2 caption">
+          <v-icon 
+            class="mr-1" 
+            size="14">thumb_up</v-icon>
+          <span>{{ likeCount }}</span>
+        </span>
         <p v-async-bind="commentHtml"/>
       </div>
     </v-layout>

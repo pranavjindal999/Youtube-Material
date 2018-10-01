@@ -5,12 +5,33 @@
         :video-id="videoId" 
         :video="video"/>
       <InfiniteCommentsList 
-        manual 
+        manual
         v-if="videoId"
         class="mt-3"
-        :video-id="videoId"
-        :list-fetcher="videoCommentsFetcher"
-        :reset-onable="resetDeferred.onable"/>
+        :video-id="videoId" 
+        :list-fetcher="videoCommentsFetcher" 
+        :reset-onable="resetDeferredComments.onable">
+        <v-layout 
+          slot="top" 
+          class="ma-0 pt-2" 
+          row 
+          justify-center>
+          <v-btn-toggle v-model="commentThreadOrder">
+            <v-btn 
+              flat 
+              :value="CommentThreadOrderEnum.RELEVANCE">
+              <v-icon class="mr-2">thumb_up</v-icon>
+              <span>{{ $t('topComments') }}</span>
+            </v-btn>
+            <v-btn 
+              flat 
+              :value="CommentThreadOrderEnum.TIME">
+              <v-icon class="mr-2">access_time</v-icon>
+              <span>{{ $t('recentComments') }}</span>
+            </v-btn>
+          </v-btn-toggle>
+        </v-layout>
+      </InfiniteCommentsList>
     </template>
     <v-container 
       fluid 
@@ -25,12 +46,36 @@
             <VideoCard  
               :video-id="videoId" 
               :video="video"/>
+              
             <InfiniteCommentsList 
               v-if="videoId"
               class="mt-3"
               :video-id="videoId" 
               :list-fetcher="videoCommentsFetcher" 
-              :reset-onable="resetDeferred.onable"/>
+              :reset-onable="resetDeferredComments.onable">
+              <v-layout 
+                slot="top" 
+                class="ma-0 pt-2" 
+                row 
+                justify-center>
+                <v-btn-toggle v-model="commentThreadOrder">
+                  <v-btn 
+                    color="primary" 
+                    flat 
+                    :value="CommentThreadOrderEnum.RELEVANCE">
+                    <v-icon class="mr-2">thumb_up</v-icon>
+                    <span>{{ $t('topComments') }}</span>
+                  </v-btn>
+                  <v-btn 
+                    color="primary" 
+                    flat 
+                    :value="CommentThreadOrderEnum.TIME">
+                    <v-icon class="mr-2">access_time</v-icon>
+                    <span>{{ $t('recentComments') }}</span>
+                  </v-btn>
+                </v-btn-toggle>
+              </v-layout>
+            </InfiniteCommentsList>
           </template>
         </v-flex>
         <v-flex 
