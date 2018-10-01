@@ -26,7 +26,7 @@ const $store = new Vuex.Store<AppState>({
   state: {
     currentLang: config.defaultLanguage,
     regionCode: "IN",
-    drawer: Vue.prototype.$vuetify.breakpoint.mdAndDown ? false : true
+    drawer: true
   },
   getters: {},
   mutations: {

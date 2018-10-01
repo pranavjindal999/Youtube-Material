@@ -1,27 +1,18 @@
-import loadJs from "load-js";
 import config from "@/config";
 import { Vue } from "vue-property-decorator";
+import VueAnalytics from "vue-analytics";
+import { $router } from "@/router";
 
-window.dataLayer = [];
-window.gtag = function() {
-  window.dataLayer!.push(arguments);
-};
-window.gtag("js", new Date());
-window.gtag("config", config.gaId);
-
-Vue.prototype.$gaEvent = (event: {
-  action: string;
-  category: string;
-  label: string;
-  value: string;
-}) => {
-  window.gtag("event", event.action, {
-    event_category: event.category,
-    event_label: event.label,
-    value: event.value
-  });
-};
-
-if (config.gaId) {
-  loadJs([`https://www.googletagmanager.com/gtag/js?id=${config.gaId}`]);
-}
+Vue.use(VueAnalytics, {
+  id: config.gaId,
+  router: $router,
+  autoTracking: {
+    screenview: true,
+    exception: true
+  },
+  debug: {
+    enabled: config.local,
+    trace: config.local,
+    sendHitTask: true
+  }
+});

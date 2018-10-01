@@ -1,6 +1,6 @@
 import { routes } from "./routeNames";
 import Vue from "vue";
-import Router from "vue-router";
+import Router, { Route } from "vue-router";
 import HomePage from "@/app/HomePage/HomePage.vue";
 import SearchResults from "@/app/SearchResults/SearchResults.vue";
 import About from "@/app/About/About.vue";
@@ -10,7 +10,6 @@ import ChannelVideos from "@/app/Channel/ChannelVideos/ChannelVideos.vue";
 import ChannelHome from "@/app/Channel/ChannelHome/ChannelHome.vue";
 import Channel from "@/app/Channel/Channel.vue";
 import Trending from "@/app/Trending/Trending.vue";
-import VideoWrapper from "@/app/VideoWrapper/VideoWrapper.vue";
 
 Vue.use(Router);
 
@@ -30,13 +29,32 @@ const $router = new Router({
       name: routes.trending.name,
       path: `/trending/:${routes.trending.params.category}?`,
       component: Trending,
-      props: true
+      props: true,
+      meta: {
+        analytics: {
+          pageviewTemplate(route: Route) {
+            return {
+              trendingCategory:
+                route.params[routes.trending.params.category] || "all"
+            };
+          }
+        }
+      }
     },
     {
       name: routes.search.name,
       path: `/search/:${routes.search.params.query}`,
       component: SearchResults,
-      props: true
+      props: true,
+      meta: {
+        analytics: {
+          pageviewTemplate(route: Route) {
+            return {
+              searchQuery: route.params[routes.search.params.query]
+            };
+          }
+        }
+      }
     },
     {
       name: routes.video.name,

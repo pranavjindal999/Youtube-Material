@@ -10,7 +10,7 @@ let base: IConfig = {
   staging: false,
   xhrTimeout: 1000 * 10,
   longDateTimeFormat: "Do MMM, YYYY (h:mm A)",
-  gaId: ""
+  gaId: "UA-81891151-2"
 };
 
 export default base;
