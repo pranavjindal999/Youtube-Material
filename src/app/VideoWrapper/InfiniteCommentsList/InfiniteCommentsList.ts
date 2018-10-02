@@ -3,6 +3,7 @@ import CommentItem from "./CommentItem/CommentItem.vue";
 import InfiniteList from "@/app/shared/InfiniteList/InfiniteList";
 import { Component, Prop } from "vue-property-decorator";
 import ScrollFire from "@/app/shared/ScrollFire/ScrollFire.vue";
+import ErrorMessage from "@/app/shared/ErrorMessage/ErrorMessage.vue";
 
 interface GoogleApiYoutubeCommentThreadResourceExtended
   extends GoogleApiYoutubeCommentThreadResource {
@@ -13,7 +14,8 @@ interface GoogleApiYoutubeCommentThreadResourceExtended
 @Component({
   components: {
     CommentItem,
-    ScrollFire
+    ScrollFire,
+    ErrorMessage
   }
 })
 export default class InfiniteCommentsList extends InfiniteList<

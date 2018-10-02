@@ -124,6 +124,7 @@
 .channel-chip {
   text-decoration: none;
   font-size: 16px !important;
+  margin-left: -8px;
 }
 
 .channel-chip * {

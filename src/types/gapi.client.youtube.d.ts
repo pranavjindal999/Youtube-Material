@@ -2435,3 +2435,31 @@ interface GoogleApiYoutubeCommentThreadResource {
     comments: GoogleApiYoutubeCommentResource[];
   };
 }
+
+interface HttpRequestRejected {
+  result: {
+    error: {
+      errors: [
+        {
+          domain: string;
+          reason: ErrorReason;
+          message: string;
+          locationType: string;
+          location: string;
+        }
+      ];
+      code: number;
+      message: string;
+    };
+  };
+  body: string;
+  headers?: any[];
+  status?: number;
+  statusText?: string;
+}
+
+declare enum ErrorReason {
+  invalidParameter = "invalidParameter",
+  commentsDisabled = "commentsDisabled",
+  somethingWentWrong = "somethingWentWrong"
+}

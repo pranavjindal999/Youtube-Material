@@ -36,5 +36,9 @@ export default {
   loadMoreComments: "Load More Comments",
   topComments: "Top Comments",
   recentComments: "Recent Comments",
-  loadMoreReplies: "Load one more reply | Load {unloadedCount} more replies"
+  loadMoreReplies: "Load one more reply | Load {unloadedCount} more replies",
+  errors: {
+    somethingWentWrong: "Something went wrong, please try again!",
+    commentsDisabled: "Comments for this video have been disabled."
+  }
 };

@@ -15,6 +15,7 @@ export default class InfiniteList<T> extends Vue {
   isCurrentRequestPending: boolean = false;
   totalResults: number | null = null;
   resultsFetchedYet: number = 0;
+  errorMessageKey = "";
 
   /**
    * Few Google APIs result wrong count of total results, like comments thread
@@ -93,7 +94,8 @@ export default class InfiniteList<T> extends Vue {
           this.totalResults = this.list.length;
         }
       })
-      .catch(() => {
+      .catch(err => {
+        this.errorMessageKey = err;
         this.list.splice(this.list.length - resultsToFetch, resultsToFetch);
       })
       .finally(() => {
