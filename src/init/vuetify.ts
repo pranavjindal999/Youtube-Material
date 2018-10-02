@@ -20,6 +20,7 @@ import VHover from "vuetify/es5/components/VHover";
 import VProgressLinear from "vuetify/es5/components/VProgressLinear";
 import VProgressCircular from "vuetify/es5/components/VProgressCircular";
 import VSubheader from "vuetify/es5/components/VSubheader";
+import VSlider from "vuetify/es5/components/VSlider";
 import VResponsive from "vuetify/es5/components/VResponsive";
 import VChip from "vuetify/es5/components/VChip";
 import VTooltip from "vuetify/es5/components/VTooltip";
@@ -41,6 +42,7 @@ Vue.use(Vuetify, {
     VDivider,
     VBtn,
     VChip,
+    VSlider,
     VIcon,
     VAutocomplete,
     VProgressLinear,

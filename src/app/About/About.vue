@@ -55,7 +55,7 @@
                 class="ma-2" 
                 indeterminate 
                 :width="1" 
-                size="20" 
+                size="22" 
                 v-if="isIconLoading"/>
               <v-icon>{{ item.icon }}</v-icon>
             </v-btn>

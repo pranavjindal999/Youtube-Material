@@ -24,33 +24,41 @@
           </div>
         </v-layout>
 
-        <div>
+        <div @click.stop>
           <v-layout 
             row 
             class="btn-adj"
             align-center>
             <v-btn 
-              slot="activator"
               fab 
               small
               :color="isLooping?'primary':''"
-              @click.stop="toogleLoop">
+              @click="toogleLoop">
               <v-icon>repeat_one</v-icon>
             </v-btn>
             <v-btn 
-              slot="activator"
               fab 
               large
               color="youtubeRed"
+              :loading="isBuffering"
+              :class="isBuffering?'force-pointer-events':''"
               dark
-              @click.stop="playPause">
+              @click="playPause">
               <v-icon>{{ isPlaying?'pause':'play_arrow' }}</v-icon>
+              <span slot="loader">
+                <v-progress-circular 
+                  indeterminate 
+                  size="72" 
+                  :width="3" 
+                  color="white">
+                  <v-icon >{{ isPlaying?'pause':'play_arrow' }}</v-icon>
+                </v-progress-circular>
+              </span>
             </v-btn>
             <v-btn 
-              slot="activator"
               fab 
               small
-              @click.stop="close">
+              @click="close">
               <v-icon>clear</v-icon>
             </v-btn>
           </v-layout>
@@ -59,12 +67,32 @@
       </v-layout> 
       
       <v-progress-linear 
+        @click.native.stop
         class="progress"
         :value="elapsedPercent"
         :buffer-value="bufferPercent"
         buffer 
-        :height="5"
+        :height="4"
         color="youtubeRed"/>
+      <v-slider
+        class="seeker seekable" 
+        @click.native.stop
+        :value="elapsedPercent"
+        @change="seekVideo"
+        :height="4"
+        thumb-label
+        color="transparent"
+        track-color="transparent"
+        always-dirty
+        thumb-color="youtubeRed">
+        <template
+          slot="thumb-label"
+          slot-scope="props">
+          <span>
+            {{ getSeekToTime(props.value) }}
+          </span>
+        </template>
+      </v-slider>
     </div>
   </VSlideYReverseTransition>
 </template>
@@ -84,6 +112,17 @@
   bottom: 0;
   width: 100%;
   margin: 0;
+}
+.bar .seeker {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  margin-bottom: -20px;
+  z-index: 1;
+}
+.force-pointer-events {
+  pointer-events: all !important;
 }
 .thumb {
   max-height: 80px;
@@ -119,6 +158,14 @@
   filter: blur(8px) opacity(0.8);
 }
 </style>
+
+<style>
+.seekable,
+.seekable * {
+  cursor: col-resize !important;
+}
+</style>
+
 
 <script>
 import VideoBar from "./VideoBar.ts";

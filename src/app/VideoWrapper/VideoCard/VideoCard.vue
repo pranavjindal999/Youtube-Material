@@ -10,7 +10,7 @@
             wrap>
             <v-flex 
               xs12
-              class="headline mb-0 pa-0"> {{ title }}</v-flex>
+              class="title font-weight-regular mb-0 pa-0"> {{ title }}</v-flex>
             <v-flex 
               class="pa-0 mt-2 body-1 success--text"> {{ uploaded }} </v-flex>
             <span class="pa-0 mt-2 body-1 primary--text"> {{ views }}</span>
@@ -118,6 +118,9 @@
 </template>
 
 <style scoped>
+.title {
+  font-size: 18px;
+}
 .channel-chip {
   text-decoration: none;
   font-size: 16px !important;

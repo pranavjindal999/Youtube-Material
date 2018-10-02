@@ -69,6 +69,12 @@ export default class VideoBar extends Mixins(
     }
   }
 
+  get isBuffering() {
+    if (this.playerRef && this.forceUpdater) {
+      return this.playerRef.getPlayerState() === YT.PlayerState.BUFFERING;
+    }
+  }
+
   get barTitleClass() {
     if (this.$vuetify.breakpoint.smAndDown) {
       return "mobile-bar-title mb-1";
@@ -122,11 +128,25 @@ export default class VideoBar extends Mixins(
     this.$emit("close", false);
   }
 
+  getSeekToTime(percent: number) {
+    if (this.playerRef) {
+      let secondsToSeekTo = (this.playerRef.getDuration() * percent) / 100;
+      return humanizeDuration(secondsToSeekTo * 1000);
+    }
+  }
+
   toogleLoop() {
     if (this.playerRef) {
       this.isLooping = !this.isLooping;
       this.playerRef.setLoop(this.isLooping);
     }
+  }
+
+  seekVideo(seekToPercent: number) {
+    this.playerRef!.seekTo(
+      (seekToPercent * this.playerRef!.getDuration()) / 100,
+      true
+    );
   }
 
   playPause() {
