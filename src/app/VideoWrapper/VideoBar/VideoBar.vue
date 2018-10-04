@@ -16,8 +16,7 @@
             :src="videoThumbnail">  
           <div class="mt-2 ml-2">
             <p 
-              :class="barTitleClass" 
-              class="font-weight-light">{{ title }}</p>
+              :class="barTitleClass">{{ title }}</p>
             <p 
               class="captionGrey--text mb-0" 
               :class="barTimerClass">{{ timeElapsed }} / {{ duration }}</p>
@@ -105,13 +104,14 @@
   left: 0;
   width: 100%;
   background: white;
-  overflow: hidden;
 }
 .bar .progress {
   position: absolute;
   bottom: 0;
   width: 100%;
   margin: 0;
+  background: black;
+  opacity: 0.4;
 }
 .bar .seeker {
   position: absolute;
@@ -136,17 +136,15 @@
   max-height: 44px;
   overflow: hidden;
   font-size: 15px;
-  font-weight: 400 !important;
-  color: black;
-  text-shadow: 1px 1px 4px white;
+  color: white;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  font-weight: 500 !important;
 }
 .mobile-bar-duration {
-  color: black !important;
-  text-shadow: 1px 1px 4px white;
+  color: white !important;
 }
 
 .bar-image-bg {
@@ -154,8 +152,6 @@
   width: 100%;
   position: absolute;
   z-index: -1;
-  overflow: hidden;
-  filter: blur(8px) opacity(0.8);
 }
 </style>
 
