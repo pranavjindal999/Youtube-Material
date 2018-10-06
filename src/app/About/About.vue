@@ -5,7 +5,7 @@
     <v-card>
       <v-card-title primary-title>
         <div>
-          <h3 class="headline mb-0">About Youtube Material</h3>
+          <h3 class="headline mb-0">About vTyoob</h3>
           <br>
           <span>
             Hi. I'm Pranav Jindal. <br>
@@ -20,11 +20,11 @@
           </span>
           <br>
           <span>
-            The code for the project is at following repo: <br>
+            The code for the project can be found at
             <a 
               target="_blank" 
               href="https://github.com/pranavjindal999/Youtube-Material/tree/vuetube">
-              Youtube Material - Github
+              Github
             </a> 
           </span>
           <br>
@@ -32,7 +32,6 @@
           <span>Feel free to contact me via any of the following media.</span>
         </div>
       </v-card-title>
-      <v-divider/>
       <v-card-actions>
         <v-layout 
           class="my-4"
@@ -63,11 +62,22 @@
           </v-tooltip>
         </v-layout>
       </v-card-actions>
+      <v-divider/>
+      <v-layout 
+        row 
+        justify-center>
+        <img 
+          class="developed-yt" 
+          src="@/assets/images/developed-with-youtube.png">
+      </v-layout>
     </v-card>
   </v-container>
 </template>
 
 <style scoped>
+.developed-yt {
+  max-height: 100px;
+}
 </style>
 
 <script>

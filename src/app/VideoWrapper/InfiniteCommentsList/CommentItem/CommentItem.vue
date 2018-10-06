@@ -49,7 +49,7 @@
     <div class="parent">
       <v-avatar 
         class="avatar" 
-        size="56">
+        size="50">
         <FloatingDiv class="fl-img"/>
       </v-avatar>
       <FloatingDiv class="fl-name"/>
@@ -64,7 +64,7 @@
   font-size: 0.9em;
 }
 .parent {
-  padding: 2%;
+  padding: 1.8%;
   height: 100%;
 }
 .avatar {

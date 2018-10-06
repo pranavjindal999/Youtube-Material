@@ -23,9 +23,9 @@ if (fs.existsSync("key.pem") && fs.existsSync("cert.pem")) {
 module.exports = {
   runtimeCompiler: false,
   pwa: {
-    name: "Youtube Material",
-    themeColor: "#d23b3b",
-    msTileColor: "#d23b3b",
+    name: "vTyoob",
+    themeColor: "#cb0000",
+    msTileColor: "#cb0000",
     appleMobileWebAppCapable: "yes",
     appleMobileWebAppStatusBarStyle: "black-translucent",
     iconPaths: {

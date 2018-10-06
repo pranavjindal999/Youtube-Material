@@ -38,7 +38,7 @@
             <v-btn 
               fab 
               large
-              color="youtubeRed"
+              color="vTyoobRed"
               :loading="isBuffering"
               :class="isBuffering?'force-pointer-events':''"
               dark
@@ -72,7 +72,7 @@
         :buffer-value="bufferPercent"
         buffer 
         :height="4"
-        color="youtubeRed"/>
+        color="vTyoobRed"/>
       <v-slider
         class="seeker seekable" 
         @click.native.stop
@@ -83,7 +83,7 @@
         color="transparent"
         track-color="transparent"
         always-dirty
-        thumb-color="youtubeRed">
+        thumb-color="vTyoobRed">
         <template
           slot="thumb-label"
           slot-scope="props">

@@ -18,13 +18,13 @@
             class="mt-1" 
             @click="loadMoreReplies(commentThread)" 
             v-if="hasMoreReplies(commentThread)">
-            <div class="load-reply-link youtubeRed--text">
+            <div class="load-reply-link vTyoobRed--text">
               {{ $tc('loadMoreReplies', getUnloadedRepliesCount(commentThread), 
                      {unloadedCount: getUnloadedRepliesCount(commentThread) }) }}
             </div>
             <v-icon 
               :class="{'spin': commentThread.areRepliesLoading}" 
-              color="youtubeRed" 
+              color="vTyoobRed" 
               size="13">sync</v-icon>
           </div>
         </template> 

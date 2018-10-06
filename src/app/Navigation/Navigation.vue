@@ -12,7 +12,7 @@
         :to="homeRoute" 
         exact>
         <v-list-tile-action>
-          <v-icon color="youtubeRed">home</v-icon>
+          <v-icon color="vTyoobRed">home</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>{{ $t('home') }}</v-list-tile-title>
@@ -22,7 +22,7 @@
         :to="trendingRoute" 
         exact>
         <v-list-tile-action>
-          <v-icon color="youtubeRed">trending_up</v-icon>
+          <v-icon color="vTyoobRed">trending_up</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>{{ $t('trending') }}</v-list-tile-title>
@@ -37,7 +37,7 @@
         v-for="(category, $index) in categories"
         exact>
         <v-list-tile-action>
-          <v-icon color="youtubeRed">{{ category.icon }}</v-icon>
+          <v-icon color="vTyoobRed">{{ category.icon }}</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>{{ $t(category.labelKey) }}</v-list-tile-title>
@@ -49,7 +49,7 @@
         :to="aboutRoute" 
         exact>
         <v-list-tile-action>
-          <v-icon color="youtubeRed">info_outline</v-icon>
+          <v-icon color="vTyoobRed">info_outline</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>{{ $t('about') }}</v-list-tile-title>

@@ -1,15 +1,10 @@
 {
-  "name": "Youtube Material",
-  "short_name": "Youtube",
+  "name": "vTyoob",
+  "short_name": "vTyoob",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/img/icons/android-chrome-256x256.png",
-      "sizes": "256x256",
       "type": "image/png"
     },
     {
@@ -21,6 +16,6 @@
   "start_url": "/index.html",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#d23b3b",
-  "theme_color": "#d23b3b"
+  "background_color": "#cb0000",
+  "theme_color": "#cb0000"
 }

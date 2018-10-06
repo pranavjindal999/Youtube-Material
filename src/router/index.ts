@@ -88,6 +88,7 @@ const $router = new Router({
 
 $router.onReady(() => {
   let loaderDiv = document.getElementById("app-init-loader") as HTMLDivElement;
+  loaderDiv.style.transition = "opacity .4s";
   loaderDiv.addEventListener("transitionend", () => {
     loaderDiv.remove();
   });

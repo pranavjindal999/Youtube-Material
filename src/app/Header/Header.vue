@@ -1,6 +1,6 @@
 <template>
   <v-toolbar
-    color="youtubeRed"
+    color="vTyoobRed"
     dense
     fixed
     dark
@@ -13,9 +13,9 @@
       aria-label="home" 
       :to="{name: 'home'}">
       <img 
-        class="logo" 
+        class="logo mr-2" 
         alt="Youtube Logo"
-        src="@/assets/images/logo_white.png">
+        src="@/assets/images/full-logo-white.png">
     </router-link>
 
     <v-layout 
@@ -59,8 +59,8 @@
 
 <style scoped>
 .logo {
-  height: 42px;
-  margin-top: 4px;
+  height: 28px;
+  margin-top: 8px;
 }
 </style>
 

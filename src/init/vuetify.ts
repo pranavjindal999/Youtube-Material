@@ -66,7 +66,7 @@ Vue.use(Vuetify, {
     warning: "#FF9100",
     info: "#2196f3",
     success: "#4caf50",
-    youtubeRed: "#d23b3b",
+    vTyoobRed: "#cb0000",
     white: "#ffffff",
     captionGrey: "#909090",
     floatingGrey: "#dddddd",
