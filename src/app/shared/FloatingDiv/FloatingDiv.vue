@@ -7,14 +7,16 @@
   0% {
     background-position: -468px 0;
   }
+  40% {
+    background-position: 468px 0;
+  }
   100% {
     background-position: 468px 0;
   }
 }
 .floating-animation {
-  border-radius: 3px;
-  animation-delay: 99999s;
-  animation-duration: 1s;
+  border-radius: 5px;
+  animation-duration: 3s;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
   animation-name: placeHolderShimmer;

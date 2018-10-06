@@ -11,6 +11,9 @@
       <v-icon dark>navigate_before</v-icon>
     </v-btn>
     <v-layout 
+      v-swipable
+      :is-swipable-next="nextPageToken"
+      :is-swipable-prev="prevPageToken"
       v-if="videos.length"
       class="mx-2"
       row 

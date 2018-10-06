@@ -52,40 +52,44 @@
       </router-link>
     </v-card>
   </v-hover>
-  <v-responsive 
-    v-else
-    :aspect-ratio="hideChannelLink?1.05:.96">
-    <FloatingDiv class="fl-img"/>
+  <div
+    v-else>
+    <v-responsive :aspect-ratio="16/9">
+      <FloatingDiv class="fl-img"/>
+    </v-responsive>
     <FloatingDiv class="fl-title1"/>
     <FloatingDiv class="fl-title2"/>
     <FloatingDiv class="fl-views"/>
-    <FloatingDiv class="fl-channel"/>
-  </v-responsive>
+    <FloatingDiv 
+      v-if="!hideChannelLink" 
+      class="fl-channel"/>
+  </div>
 </template>
 
 <style scoped>
 .fl-img {
-  height: 60%;
+  height: 100%;
 }
 .fl-title1 {
-  height: 5%;
-  margin-top: 5%;
+  height: 12px;
+  margin-top: 12px;
   width: 80%;
-  padding: 2%;
 }
 .fl-title2 {
-  height: 5%;
-  margin-top: 2%;
-  width: 30%;
+  height: 10px;
+  margin-top: 9px;
+  width: 40%;
 }
 .fl-views {
-  height: 3%;
-  margin-top: 2%;
+  height: 10px;
+  margin-top: 7px;
+  margin-bottom: 6px;
   width: 20%;
 }
 .fl-channel {
-  margin-top: 5%;
-  height: 5%;
+  margin-top: 10px;
+  height: 12px;
+  margin-bottom: 3px;
   width: 50%;
 }
 

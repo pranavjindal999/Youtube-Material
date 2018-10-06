@@ -55,15 +55,15 @@ export default class VideoCarousel extends Vue {
     this.prevPageToken = "";
     this.videos = [];
     this.isCurrentRequestPending = false;
-    this.next();
+    this.getVideos();
   }
 
   previous() {
-    this.getVideos(this.prevPageToken);
+    if (this.prevPageToken) this.getVideos(this.prevPageToken);
   }
 
   next() {
-    this.getVideos(this.nextPageToken);
+    if (this.nextPageToken) this.getVideos(this.nextPageToken);
   }
 
   async getVideos(pageToken?: string) {

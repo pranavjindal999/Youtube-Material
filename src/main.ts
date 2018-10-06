@@ -7,6 +7,7 @@ import Root from "./app/Root.vue";
 import { i18n } from "@/services/i18n";
 
 import "./directives/AsyncBind";
+import "./directives/Swipable";
 
 new Vue({
   router: $router,
