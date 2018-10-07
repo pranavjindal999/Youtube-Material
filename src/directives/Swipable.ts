@@ -1,5 +1,4 @@
 import Vue, { DirectiveOptions } from "vue";
-import { safeSqRoot } from "@/extras/utils";
 
 interface CustomElement extends HTMLElement {
   __hammerManager?: HammerManager;
