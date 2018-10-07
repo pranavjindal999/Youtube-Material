@@ -1,3 +1,4 @@
+import { SwipableOptions } from "./../../../directives/Swipable";
 import { LangKeys } from "./../../../translations/index";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import VideoTile from "@/app/shared/VideoTile/VideoTile";
@@ -45,11 +46,19 @@ export default class VideoCarousel extends Vue {
     }
   }
 
+  get swipableOptions(): SwipableOptions {
+    return {
+      hasNext: !!this.nextPageToken && !this.isCurrentRequestPending,
+      hasPrev: !!this.prevPageToken && !this.isCurrentRequestPending
+    };
+  }
+
   mounted() {
     this.resetOnable && this.resetOnable.on(this.reset);
     this.reset();
   }
 
+  @Watch("maxResults")
   reset() {
     this.nextPageToken = "";
     this.prevPageToken = "";

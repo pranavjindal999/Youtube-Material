@@ -43,3 +43,13 @@ export function humanizeNumber(number: number): string {
       return number.toString();
   }
 }
+
+export function limitsTo(value: number, limit: number) {
+  let sign = Math.sign(value);
+  let absValue = Math.abs(value);
+  if (absValue >= limit) {
+    return sign * limit;
+  } else {
+    return sign * absValue * (Math.log(absValue) / Math.log(limit));
+  }
+}
