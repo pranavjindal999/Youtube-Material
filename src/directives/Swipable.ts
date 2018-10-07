@@ -1,5 +1,5 @@
 import Vue, { DirectiveOptions } from "vue";
-import { limitsTo } from "@/extras/utils";
+import { safeSqRoot } from "@/extras/utils";
 
 interface CustomElement extends HTMLElement {
   __hammerManager?: HammerManager;
@@ -51,7 +51,7 @@ async function bind(el: CustomElement, binding?: SwipableOptions) {
     }
 
     console.log(e);
-    el.style.transform = `translateX(${limitsTo(e.deltaX, 250)}px)`;
+    el.style.transform = `translateX(${safeSqRoot(e.deltaX)}px)`;
   });
 
   manager.on("panend", e => {
@@ -70,7 +70,7 @@ async function bind(el: CustomElement, binding?: SwipableOptions) {
 
     if (toShift) {
       el.style.transition = "";
-      el.style.transform = `translateX(${-limitsTo(e.deltaX, 250)}px)`;
+      el.style.transform = `translateX(${-safeSqRoot(e.deltaX)}px)`;
     }
     requestAnimationFrame(() => {
       el.style.transition = "transform .5s";
@@ -83,6 +83,12 @@ async function bind(el: CustomElement, binding?: SwipableOptions) {
       el.removeEventListener("transitionend", resetTransition);
     }
   });
+}
+
+function safeSqRoot(value: number) {
+  let sign = Math.sign(value);
+  let absValue = Math.abs(value);
+  return sign * Math.sqrt(absValue * 100);
 }
 
 Vue.directive("swipable", Swipable);
