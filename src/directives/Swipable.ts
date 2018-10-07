@@ -1,4 +1,4 @@
-import Vue, { DirectiveOptions } from "vue";
+import Vue, { DirectiveOptions, VNode } from "vue";
 
 interface CustomElement extends HTMLElement {
   __hammerManager?: HammerManager;
@@ -14,7 +14,7 @@ const Swipable: DirectiveOptions = {
   inserted(el, binding) {
     bind(el, binding.value);
   },
-  update(el, binding, vnode) {
+  update(el, binding) {
     setTimeout(() => {
       unbind(el);
       bind(el, binding.value);
@@ -45,24 +45,26 @@ async function bind(el: CustomElement, binding?: SwipableOptions) {
   el.__hammerManager = manager;
   manager.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL }));
   manager.on("pan", function(e) {
-    if (e.pointerType !== "touch" || !e.velocityX) {
+    console.log("pan left or right: ", isVerticalLike(e.angle));
+    if (e.pointerType !== "touch" || isVerticalLike(e.angle)) {
       return;
     }
 
-    console.log(e);
     el.style.transform = `translateX(${safeSqRoot(e.deltaX)}px)`;
   });
 
   manager.on("panend", e => {
-    if (e.pointerType !== "touch") {
+    if (e.pointerType !== "touch" || isVerticalLike(e.angle)) {
+      el.style.transform = `translateX(0px)`;
       return;
     }
-    console.log("panend");
 
     let toShift = true;
+    let isLeftSwipe = e.offsetDirection == Hammer.DIRECTION_LEFT;
+    let isRightSwipe = e.offsetDirection == Hammer.DIRECTION_RIGHT;
     if (
-      (e.offsetDirection == Hammer.DIRECTION_LEFT && !binding.hasNext) ||
-      (e.offsetDirection == Hammer.DIRECTION_RIGHT && !binding.hasPrev)
+      (isLeftSwipe && !binding.hasNext) ||
+      (isRightSwipe && !binding.hasPrev)
     ) {
       toShift = false;
     }
@@ -70,7 +72,11 @@ async function bind(el: CustomElement, binding?: SwipableOptions) {
     if (toShift) {
       el.style.transition = "";
       el.style.transform = `translateX(${-safeSqRoot(e.deltaX)}px)`;
+
+      isLeftSwipe && el.dispatchEvent(new Event("swipe-left"));
+      isRightSwipe && el.dispatchEvent(new Event("swipe-right"));
     }
+
     requestAnimationFrame(() => {
       el.style.transition = "transform .5s";
       el.style.transform = `translateX(0px)`;
@@ -88,6 +94,15 @@ function safeSqRoot(value: number) {
   let sign = Math.sign(value);
   let absValue = Math.abs(value);
   return sign * Math.sqrt(absValue * 100);
+}
+
+function isVerticalLike(angle: number) {
+  let absAngle = Math.abs(angle);
+  if (absAngle >= 90) {
+    return absAngle < 150;
+  } else {
+    return absAngle > 30;
+  }
 }
 
 Vue.directive("swipable", Swipable);

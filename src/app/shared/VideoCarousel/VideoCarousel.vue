@@ -12,11 +12,12 @@
     </v-btn>
     <v-layout 
       v-swipable="swipableOptions"
+      @swipe-left="next"
+      @swipe-right="previous"
       v-if="videos.length"
       class="mx-2"
       row 
-      align-center
-      v-touch="{left: next, right: previous}">
+      align-center>
       <v-flex 
         xs6 
         md3
