@@ -6,7 +6,7 @@ interface CustomElement extends HTMLElement {
 }
 
 export type SwipableOptions = {
-  disabled: boolean;
+  disabled?: boolean;
   hasNext: boolean;
   hasPrev: boolean;
 };
