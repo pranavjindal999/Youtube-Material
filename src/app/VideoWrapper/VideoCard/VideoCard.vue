@@ -16,24 +16,31 @@
             <span class="pa-0 mt-2 body-1 primary--text"> {{ views }}</span>
           </v-layout>
         </v-card-title>
-       
         <v-divider/>
-
         <v-card-text>
           <v-layout 
             class="pa-0 ma-0" 
             row 
             justify-space-between>
-            <v-flex class="pa-0">
+            <v-flex 
+              id="chip-flex" 
+              xs6 
+              class="pa-0">
               <router-link 
                 class="channel-chip font-weight-light" 
                 :to="channelRoute">
-                <v-chip>
-                  <v-avatar>
-                    <img :src="channelThumbnail">
-                  </v-avatar>
-                  <span class="channel-name">{{ channelName }}</span>
-                </v-chip>
+                <v-hover>
+                  <v-chip 
+                    slot-scope="{ hover }" 
+                    :class="`elevation-${hover ? 3 : 0}`">
+                    <v-avatar>
+                      <img :src="channelThumbnail">
+                    </v-avatar>
+                    <span 
+                      v-sync-width:chip-flex="70" 
+                      class="channel-name text-truncate">{{ channelName }}</span>
+                  </v-chip>
+                </v-hover>
               </router-link>
             </v-flex>
             <div>
@@ -42,16 +49,20 @@
                 row 
                 wrap 
                 justify-space-between>
-                <div 
-                  class="pa-0 mr-4">
+                <v-flex 
+                  xs6 
+                  d-flex 
+                  class="pa-0 pr-3">
                   <v-icon 
                     small 
                     color="success">thumb_up</v-icon>
                   <span 
                     :title="(+likeCount).toLocaleString()" 
                     class="pl-1">{{ humanizedLikeCount }}</span>
-                </div>
-                <div 
+                </v-flex>
+                <v-flex 
+                  xs6 
+                  d-flex 
                   class="pa-0">
                   <v-icon 
                     small 
@@ -59,7 +70,7 @@
                   <span 
                     :title="(+dislikeCount).toLocaleString()" 
                     class="pl-1">{{ humanizedDislikeCount }}</span>
-                </div>
+                </v-flex>
                 <v-flex 
                   class="pa-0" 
                   xs12> 

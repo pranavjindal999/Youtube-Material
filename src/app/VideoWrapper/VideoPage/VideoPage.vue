@@ -27,6 +27,7 @@
                 row 
                 justify-center>
                 <v-btn-toggle 
+                  mandatory
                   class="elevation-0 width100" 
                   v-model="commentThreadOrder">
                   <v-btn 

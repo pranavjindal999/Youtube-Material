@@ -8,6 +8,7 @@ import { i18n } from "@/services/i18n";
 
 import "./directives/AsyncBind";
 import "./directives/Swipable";
+import "./directives/SyncWidth";
 
 new Vue({
   router: $router,
