@@ -1,4 +1,3 @@
-import { DeferredObservable } from "@/extras/DeferredObservable";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
 import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/InfiniteVideoList.vue";
@@ -11,13 +10,6 @@ import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/Infin
 export default class ChannelVideos extends Vue {
   @Prop({ type: String, required: true })
   id!: string;
-
-  resetDeferred = new DeferredObservable();
-
-  @Watch("id")
-  resetPage() {
-    this.resetDeferred.next();
-  }
 
   get channelVideosFetcher(): ListFetcher<GoogleApiYouTubeVideoResource> {
     return (maxResults, pageToken) => {

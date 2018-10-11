@@ -22,7 +22,18 @@ class TopProgressWrapper {
     let instance = await this.asyncInstance;
 
     if (!this.noOfPendingRequests) {
-      instance.start(8);
+      if (!this.noOfPendingRequests) {
+        let raceResult = await Promise.race([
+          promise.then(_ => "noop"),
+          sleep(50).then(_ => "op")
+        ]);
+
+        if (raceResult === "noop") {
+          return;
+        }
+      }
+
+      instance.start(10);
     }
 
     this.noOfPendingRequests++;

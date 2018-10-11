@@ -3,7 +3,6 @@ import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
 import ChannelTile from "@/app/shared/ChannelTile/ChannelTile.vue";
 import IconHeading from "@/app/shared/IconHeading/IconHeading.vue";
-import { DeferredObservable } from "@/extras/DeferredObservable";
 import ErrorMessage from "@/app/shared/ErrorMessage/ErrorMessage.vue";
 import InfiniteChannelList from "@/app/shared/InfiniteList/InfiniteChannelList/InfiniteChannelList.vue";
 
@@ -23,7 +22,6 @@ export default class ChannelChannels extends Vue {
   channel!: GoogleApiYouTubeChannelResource | null;
 
   featuredChannels: GoogleApiYouTubeChannelResource[] = new Array(6);
-  resetDeferred = new DeferredObservable();
   canSeeSubs = true;
   isSubsVisible = false;
   noFeaturedError = "";
@@ -63,14 +61,6 @@ export default class ChannelChannels extends Vue {
         LangKeys.featuredChannels
       );
     }
-  }
-
-  @Watch("id")
-  reset() {
-    this.featuredChannels = new Array(6);
-    this.resetDeferred.next();
-    this.canSeeSubs = true;
-    this.isSubsVisible = false;
   }
 
   getFeaturedChannels() {

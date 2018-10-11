@@ -31,7 +31,11 @@ export function humanizeDuration(durationIsoOrMs: string | number) {
   }
 }
 
-export function humanizeNumber(number: number): string {
+export function humanizeNumber(number?: number): string {
+  if (!number) {
+    return "0";
+  }
+
   switch (true) {
     case number > 999999999:
       return (number / 1000000000).toFixed(1).toString() + "B";

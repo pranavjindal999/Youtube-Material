@@ -1,4 +1,3 @@
-import { DeferredObservable } from "@/extras/DeferredObservable";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
 import VideoCarousel from "@/app/shared/VideoCarousel/VideoCarousel.vue";
@@ -16,13 +15,6 @@ export default class ChannelHome extends Vue {
 
   getPopularVideos = this.getVideoListFetcher("viewCount");
   getRecentVideos = this.getVideoListFetcher("date");
-
-  resetDeferred = new DeferredObservable();
-
-  @Watch("id")
-  reset() {
-    this.resetDeferred.next();
-  }
 
   getVideoListFetcher(
     order: "date" | "viewCount"

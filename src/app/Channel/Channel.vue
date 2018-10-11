@@ -44,9 +44,7 @@
     <transition 
       name="router" 
       mode="out-in">
-      <keep-alive>
-        <router-view v-bind="{channel}"/>
-      </keep-alive>
+      <router-view v-bind="{channel}"/>
     </transition>
   </div>
 </template>

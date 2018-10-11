@@ -2,7 +2,7 @@
   <v-app 
     id="ytmat">
     <Header/>
-    <Navigation v-swipable/>
+    <Navigation/>
     <v-content id="main-content">
       <VideoWrapper/>
       <transition 

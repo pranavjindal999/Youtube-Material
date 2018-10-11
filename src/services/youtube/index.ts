@@ -11,6 +11,7 @@ class YoutubeService {
     await asyncYoutubeClientAPI;
     return gapiWrapper({
       method: gapi.client.youtube.search.list,
+      methodId: "1",
       params: {
         channelId: parameters.channelId,
         order: parameters.order,
@@ -31,6 +32,7 @@ class YoutubeService {
     await asyncYoutubeClientAPI;
     return gapiWrapper({
       method: gapi.client.youtube.videos.list,
+      methodId: "2",
       params: {
         hl: i18n.locale,
         regionCode: await asyncRegionCode,
@@ -49,6 +51,7 @@ class YoutubeService {
     await asyncYoutubeClientAPI;
     return gapiWrapper({
       method: gapi.client.youtube.channels.list,
+      methodId: "3",
       params: {
         hl: i18n.locale,
         part: part,
@@ -67,6 +70,7 @@ class YoutubeService {
     await asyncYoutubeClientAPI;
     return gapiWrapper({
       method: gapi.client.youtube.subscriptions.list,
+      methodId: "4",
       params: {
         channelId: params.channelId,
         part: "snippet",
@@ -83,6 +87,7 @@ class YoutubeService {
     await asyncYoutubeClientAPI;
     return gapiWrapper({
       method: gapi.client.youtube.i18nRegions.list,
+      methodId: "5",
       params: {
         hl: i18n.locale,
         part: "snippet",
@@ -102,6 +107,7 @@ class YoutubeService {
     await asyncYoutubeClientAPI;
     return gapiWrapper({
       method: gapi.client.youtube.videoCategories.list,
+      methodId: "6",
       params: {
         part: "snippet",
         hl: i18n.locale,
@@ -121,6 +127,7 @@ class YoutubeService {
     await asyncYoutubeClientAPI;
     return gapiWrapper({
       method: gapi.client.youtube.videos.list,
+      methodId: "7",
       params: {
         part: "snippet,statistics,contentDetails",
         hl: i18n.locale,
@@ -144,6 +151,7 @@ class YoutubeService {
     await asyncYoutubeClientAPI;
     return gapiWrapper({
       method: gapi.client.youtube.commentThreads.list,
+      methodId: "8",
       params: {
         part: "snippet,replies",
         videoId: params.videoId,
@@ -165,6 +173,7 @@ class YoutubeService {
     await asyncYoutubeClientAPI;
     return gapiWrapper({
       method: gapi.client.youtube.comments.list,
+      methodId: "9",
       params: {
         part: "snippet",
         pageToken: params.pageToken,

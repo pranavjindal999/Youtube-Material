@@ -1,3 +1,4 @@
+import { logger } from "./../services/logger/index";
 import Vue, { DirectiveOptions, VNode } from "vue";
 
 interface CustomElement extends HTMLElement {
@@ -31,7 +32,7 @@ function unbind(el: CustomElement) {
 
 async function bind(el: CustomElement, binding?: SwipableOptions) {
   if (!binding) {
-    console.warn("No Swipable binding options provided!");
+    logger.warn("No Swipable binding options provided!");
     return;
   }
 
@@ -45,7 +46,6 @@ async function bind(el: CustomElement, binding?: SwipableOptions) {
   el.__hammerManager = manager;
   manager.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL }));
   manager.on("pan", function(e) {
-    console.log("pan left or right: ", isVerticalLike(e.angle));
     if (e.pointerType !== "touch" || isVerticalLike(e.angle)) {
       return;
     }

@@ -45,6 +45,7 @@ export default class InfiniteList<T> extends Vue {
     this.totalResults = null;
     this.resultsFetchedYet = 0;
     this.isCurrentRequestPending = false;
+    this.errorMessageKey = "";
     this.onScrollFire();
   }
 

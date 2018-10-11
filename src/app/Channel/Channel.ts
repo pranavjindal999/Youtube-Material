@@ -120,6 +120,7 @@ export default class Channel extends Vue {
 
   @Watch("id", { immediate: true })
   getChannelInfo() {
+    this.channel = null;
     youtubeService.getChannelDetails([this.id]).then(result => {
       this.channel = result.items[0];
     });

@@ -34,8 +34,7 @@
         :text="$t('subscriptions')" />
       <InfiniteChannelList 
         no-channel-text="noChannelsSubscribed"
-        :list-fetcher="subscriptionFetcher"
-        :reset-onable="resetDeferred.onable"/>
+        :list-fetcher="subscriptionFetcher"/>
     </div>
   </v-container>
 </template>

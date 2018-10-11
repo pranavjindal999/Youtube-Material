@@ -10,7 +10,6 @@
 
     <VideoCarousel 
       hide-channel-link 
-      :reset-onable="resetDeferred.onable"
       :video-fetcher="getRecentVideos"/>
 
 
@@ -24,7 +23,6 @@
   
     <VideoCarousel 
       hide-channel-link 
-      :reset-onable="resetDeferred.onable"
       :video-fetcher="getPopularVideos"/>
   </v-container>
 </template>
