@@ -58,7 +58,7 @@
               fab 
               small
               @click="close">
-              <v-icon>clear</v-icon>
+              <v-icon>stop</v-icon>
             </v-btn>
           </v-layout>
         </div>
