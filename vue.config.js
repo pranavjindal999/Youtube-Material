@@ -37,23 +37,7 @@ module.exports = {
     },
     workboxOptions: {
       skipWaiting: true,
-      exclude: [/^_redirects$/, /\.map$/, /^manifest.*\.js(?:on)?$/],
-      runtimeCaching: [
-        {
-          urlPattern: new RegExp("^https://.*youtube/v3"),
-          handler: "cacheFirst",
-          options: {
-            cacheName: "youtube-api-cache",
-            expiration: {
-              maxEntries: 50,
-              maxAgeSeconds: 20
-            },
-            cacheableResponse: {
-              statuses: [200]
-            }
-          }
-        }
-      ]
+      exclude: [/^_redirects$/, /\.map$/, /^manifest.*\.js(?:on)?$/]
     }
   },
   devServer: {
