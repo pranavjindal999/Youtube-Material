@@ -1,21 +1,10 @@
-# Youtube-Material
-My naïve attempt at making a material version of Youtube using materializecss, GoogleApi and AngularJs.
+# vTyoob
 
-## Where I started from
-http://579cda6671e20a255417ab8c.youtube-material.bitballoon.com/
+This project is my naïve attempt aimed at making a simple Material version of YouTube using Google APIs, VueJS and Vuetify.
+I make this project in my leisure time just to improve my front-end skills.
 
-## Where I'm currently
-http://youtube-material.bitballoon.com
+> You are on `vuetube` branch which is Vue version of this project. This project was originally written using AngularJS and MaterializeCSS and code for the is present in [`ngtube`](https://github.com/pranavjindal999/Youtube-Material/tree/ngtube) branch.
 
+This branch is dev branch for vTyoob. For deployed version, switch to `master`.
 
-## How to start:
-
-Get node dependencies:
-`npm install`
-`npm install -g gulp-cli`
-
-For minified build and run:
-`gulp build`
-
-For uniminified build with angular debug data:
-`gulp`
+Thanks for visiting!

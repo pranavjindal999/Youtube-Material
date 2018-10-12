@@ -1,41 +1,113 @@
 {
   "name": "youtube-material",
-  "version": "1.0.0",
-  "description": "Attempt at making material SPA of youtube using AngularJS.",
-  "main": "",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Attempt at making material SPA of youtube using VueJS.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --modern",
+    "build-staging": "vue-cli-service build --modern --mode staging",
+    "lint": "vue-cli-service lint"
+  },
+  "bugs": {
+    "url": "https://github.com/pranavjindal999/Youtube-Material/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pranavjindal999/Youtube-Material.git"
   },
-  "devDependencies": {
-    "browser-sync": "^2.18.7",
-    "connect-history-api-fallback": "^1.3.0",
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-cssnano": "^2.1.2",
-    "gulp-if": "^2.0.2",
-    "gulp-minify-html": "^1.0.6",
-    "gulp-ng-template": "^0.2.3",
-    "gulp-uglify": "^2.0.1",
-    "gulp-useref": "^3.1.2",
-    "run-sequence": "^1.2.2",
-    "bitballoon": "^0.2.2"
-  },
   "keywords": [
     "Youtube",
     "material",
-    "design",
-    "angular",
-    "materialize",
-    "css"
+    "vue",
+    "vuetify"
   ],
-  "author": "Pranav Jindal",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pranavjindal999/Youtube-Material/issues"
+  "dependencies": {
+    "autolinker": "^1.7.1",
+    "axios": "^0.18.0",
+    "hammerjs": "^2.0.8",
+    "js-sha256": "^0.9.0",
+    "jsonp": "^0.2.1",
+    "lazyload-css": "^1.0.4",
+    "load-js": "3.0.2",
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "moment-duration-format": "^2.2.2",
+    "register-service-worker": "^1.0.0",
+    "store2": "^2.7.0",
+    "toprogress2": "^2.0.0",
+    "vue": "^2.5.17",
+    "vue-analytics": "^5.16.0",
+    "vue-class-component": "^6.0.0",
+    "vue-i18n": "^8.1.0",
+    "vue-property-decorator": "^7.0.0",
+    "vue-router": "^3.0.1",
+    "vuetify": "^1.2.3",
+    "vuex": "^3.0.1",
+    "vuex-persist": "^1.5.4"
   },
-  "homepage": "https://github.com/pranavjindal999/Youtube-Material#readme"
+  "devDependencies": {
+    "@types/gapi": "^0.0.36",
+    "@types/hammerjs": "^2.0.36",
+    "@types/jsonp": "^0.2.0",
+    "@types/lodash": "^4.14.116",
+    "@types/moment-duration-format": "^2.2.2",
+    "@types/ms": "^0.7.30",
+    "@types/youtube": "^0.0.34",
+    "@vue/cli-plugin-babel": "^3.0.3",
+    "@vue/cli-plugin-eslint": "^3.0.3",
+    "@vue/cli-plugin-pwa": "^3.0.3",
+    "@vue/cli-plugin-typescript": "^3.0.3",
+    "@vue/cli-service": "^3.0.3",
+    "@vue/eslint-config-prettier": "^3.0.3",
+    "@vue/eslint-config-typescript": "^3.0.3",
+    "babel-plugin-lodash": "^3.3.4",
+    "git-revision-webpack-plugin": "^3.0.3",
+    "lint-staged": "^7.2.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "typescript": "^3.0.0",
+    "vue-template-compiler": "^2.5.17",
+    "webpack-bundle-analyzer": "^3.0.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/recommended",
+      "@vue/prettier",
+      "@vue/typescript"
+    ],
+    "rules": {
+      "vue/attributes-order": 0
+    },
+    "parserOptions": {
+      "parser": "typescript-eslint-parser"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
 }
