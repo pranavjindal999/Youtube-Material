@@ -1,6 +1,6 @@
 # Youtube-Material
 
-> You are viewing the `ngtube` branch of youtube-material. This branch is obsolete and was developed in AngularJS. For latest code, switch to `vuetube` branch.
+> You are viewing the `ngtube` branch of youtube-material. This branch is obsolete and was developed in AngularJS. For latest code, switch to [`vuetube`](https://github.com/pranavjindal999/Youtube-Material/tree/vuetube) branch.
 
 My naïve attempt at making a material version of Youtube using materializecss, GoogleApi and AngularJs.
 
