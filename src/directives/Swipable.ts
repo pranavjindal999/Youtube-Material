@@ -54,7 +54,11 @@ async function bind(el: CustomElement, binding?: SwipableOptions) {
   });
 
   manager.on("panend", e => {
-    if (e.pointerType !== "touch" || isVerticalLike(e.angle)) {
+    if (
+      e.pointerType !== "touch" ||
+      isVerticalLike(e.angle) ||
+      Math.abs(e.deltaX) < 100
+    ) {
       el.style.transform = `translateX(0px)`;
       return;
     }

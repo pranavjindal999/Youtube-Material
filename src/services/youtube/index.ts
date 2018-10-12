@@ -1,3 +1,4 @@
+import moment from "moment";
 import { CommentThreadOrder, SearchParams } from "./youtubeServiceTypes";
 import { asyncRegionCode } from "@/services/geolocation";
 import { asyncYoutubeClientAPI } from "@/services/youtube/youtubeClient";
@@ -12,6 +13,7 @@ class YoutubeService {
     return gapiWrapper({
       method: gapi.client.youtube.search.list,
       methodId: "1",
+      diskCache: true,
       params: {
         channelId: parameters.channelId,
         order: parameters.order,
@@ -33,6 +35,7 @@ class YoutubeService {
     return gapiWrapper({
       method: gapi.client.youtube.videos.list,
       methodId: "2",
+      diskCache: true,
       params: {
         hl: i18n.locale,
         regionCode: await asyncRegionCode,
@@ -52,6 +55,7 @@ class YoutubeService {
     return gapiWrapper({
       method: gapi.client.youtube.channels.list,
       methodId: "3",
+      diskCache: true,
       params: {
         hl: i18n.locale,
         part: part,
@@ -71,6 +75,7 @@ class YoutubeService {
     return gapiWrapper({
       method: gapi.client.youtube.subscriptions.list,
       methodId: "4",
+      diskCache: true,
       params: {
         channelId: params.channelId,
         part: "snippet",
@@ -88,6 +93,8 @@ class YoutubeService {
     return gapiWrapper({
       method: gapi.client.youtube.i18nRegions.list,
       methodId: "5",
+      diskCache: true,
+      cacheDuration: +moment.duration(30, "days"),
       params: {
         hl: i18n.locale,
         part: "snippet",
@@ -128,6 +135,7 @@ class YoutubeService {
     return gapiWrapper({
       method: gapi.client.youtube.videos.list,
       methodId: "7",
+      diskCache: true,
       params: {
         part: "snippet,statistics,contentDetails",
         hl: i18n.locale,
@@ -151,6 +159,12 @@ class YoutubeService {
     await asyncYoutubeClientAPI;
     return gapiWrapper({
       method: gapi.client.youtube.commentThreads.list,
+      memCache: params.order === CommentThreadOrder.TIME,
+      diskCache: params.order === CommentThreadOrder.RELEVANCE,
+      cacheDuration:
+        params.order === CommentThreadOrder.TIME
+          ? +moment.duration(1, "minute")
+          : +moment.duration(5, "minute"),
       methodId: "8",
       params: {
         part: "snippet,replies",

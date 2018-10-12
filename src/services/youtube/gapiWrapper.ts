@@ -1,3 +1,4 @@
+import moment from "moment";
 import { LangKeys } from "@/translations";
 import { TopProgress } from "./../topProgress/index";
 import cache from "@/services/youtube/cacher";
@@ -16,9 +17,9 @@ type GapiWrapperParams<T, K> = {
 export function gapiWrapper<T, K>({
   method,
   methodId,
-  diskCache = true,
+  diskCache = false,
   memCache = false,
-  cacheDuration = 5 * 60 * 1000,
+  cacheDuration = +moment.duration(5, "minutes"),
   isBlocking = false,
   noTopProgress = false,
   params

@@ -1,7 +1,5 @@
 <template>
-  <div 
-    v-show="videoId">
-
+  <div>
     <VideoBar 
       @click="goToVideo" 
       :active="!!(barMode && videoId)"
@@ -9,20 +7,22 @@
       app
       :video="video"
       :force-updater="forceUpdater"/>
-   
-    <transition 
-      appear
-      @before-enter="beforeVideoPageOpen" 
-      @after-leave="afterVideoPageClose" 
-      name="video-page">
-      <div 
-        :class="videoPageClass" 
-        v-show="!barMode">
-        <VideoPage 
-          :video="video" 
-          :video-id="videoId"/>
-      </div>
-    </transition>
+    
+    <div v-show="videoId">
+      <transition 
+        appear
+        @before-enter="beforeVideoPageOpen" 
+        @after-leave="afterVideoPageClose" 
+        name="video-page">
+        <div 
+          :class="videoPageClass" 
+          v-show="!barMode">
+          <VideoPage 
+            :video="video" 
+            :video-id="videoId"/>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 

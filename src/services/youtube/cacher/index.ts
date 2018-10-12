@@ -5,8 +5,9 @@ import {
   CacheEntry
 } from "./interfaces";
 import store from "store2";
-import { cloneDeep } from "lodash";
+import { cloneDeep, pull, remove } from "lodash";
 
+let cacheQ = "cacheQ";
 let memCache: CacheObject = {};
 var diskCache = store.namespace("gapiCache");
 
@@ -27,11 +28,12 @@ async function get<T = any>({ method, requestPayload }: GetCacheParams) {
 
   if (memCache[method] && memCache[method][dataHash]) {
     let cachedValue = memCache[method][dataHash] as CacheEntry<T>;
-    if (cachedValue.expires > Date.now())
-      return Promise.resolve(cloneDeep(cachedValue.response));
-    else {
-      delete memCache[method][dataHash];
-      diskCache.namespace(method).remove(dataHash);
+    if (cachedValue.expires > Date.now()) {
+      return Promise.resolve(cachedValue.response).then(response => {
+        return cloneDeep(response);
+      });
+    } else {
+      clear(method, requestPayload);
     }
   }
   return Promise.reject(null);
@@ -70,14 +72,21 @@ async function clear(method?: string, requestPayload?: any) {
     if (memCache[method] && memCache[method][dataHash]) {
       delete memCache[method][dataHash];
       diskCache.namespace(method).remove(dataHash);
+      let q = store.get(cacheQ) || [];
+      pull(q, `${method}.${dataHash}`);
+      store.set(cacheQ, q, true);
     }
   } else if (method && !requestPayload) {
     delete memCache[method];
-    diskCache.namespace("test").clearAll();
+    diskCache.namespace(method).clearAll();
+    let q = store.get(cacheQ) || [];
+    remove(q, (i: string) => i.split(".")[0] === method);
+    store.set(cacheQ, q, true);
   } else if (!method && requestPayload) {
     throw new Error("Invalid argument. Url is mandatory with requestPayload.");
   } else {
     memCache = {};
+    store.set(cacheQ, [], true);
     diskCache.clearAll();
     return;
   }
@@ -90,26 +99,21 @@ async function generateHash(data: any) {
 }
 
 function saveData(
-  namespace: string,
+  method: string,
   dataHash: string,
   expires: number,
   response: any
 ) {
-  let cacheQ = "cacheQ";
-  let q: string[] = store.get(cacheQ);
-  if (!q) {
-    store.set(cacheQ, []);
-    q = [];
-  }
+  let q: string[] = store.get(cacheQ) || [];
 
   if (q.length === 25) {
     let [namespace, dataHash] = q.shift()!.split(".");
     diskCache.namespace(namespace).remove(dataHash);
   }
 
-  q.push(`${namespace}.${dataHash}`);
+  q.push(`${method}.${dataHash}`);
   store.set(cacheQ, q, true);
-  diskCache.namespace(namespace).set(dataHash, { expires, response }, true);
+  diskCache.namespace(method).set(dataHash, { expires, response }, true);
 }
 
 let cache = {

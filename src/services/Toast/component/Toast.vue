@@ -83,14 +83,14 @@
 }
 
 .toast i.intent {
-  font-size: 28px;
+  font-size: 24px;
   height: 28px;
   width: 28px;
   color: white;
 }
 
 .toast #message {
-  font-size: 20px;
+  font-size: 16px;
   color: white;
 }
 

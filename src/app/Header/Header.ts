@@ -16,11 +16,21 @@ export default class Header extends Vue {
     searchBox: Vue;
   };
 
+  get searchInput() {
+    return this.$refs.searchBox.$el!.querySelector("input")!;
+  }
+
   created() {
     EventBus.$on(
       EventNames.clearSearchText,
       () => (this.searchSelectedValue = "")
     );
+  }
+
+  mounted() {
+    this.searchInput.addEventListener("keydown", e => {
+      (e.keyCode === 38 || e.keyCode === 40) && e.preventDefault();
+    });
   }
 
   @Watch("query")
@@ -65,7 +75,7 @@ export default class Header extends Vue {
       this.preventNextSearch = true;
       this.searchSuggestions = [];
       //Following line to close keyboard on mobile
-      this.$refs.searchBox.$el!.querySelector("input")!.blur();
+      this.searchInput.blur();
     }
   }
 
