@@ -1,7 +1,8 @@
 import { GA } from "./../../init/ga";
 import Helmet from "@/app/shared/Helmet/Helmet.vue";
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import { sleep } from "@/extras/sleep";
+import lazyLoadCSS from "lazyload-css";
 
 @Component({
   components: {
@@ -40,17 +41,13 @@ export default class About extends Vue {
   ];
 
   created() {
-    import("lazyload-css").then(lazyLoadCSS => {
-      lazyLoadCSS
-        .default(
-          "https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?9ukd8d",
-          "socicon"
-        )
-        .then(async () => {
-          //buffer for download time for woffs
-          await sleep(1000);
-          this.isIconLoading = false;
-        });
+    lazyLoadCSS(
+      "https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?9ukd8d",
+      "socicon"
+    ).then(async () => {
+      //buffer for download time for woffs
+      await sleep(1000);
+      this.isIconLoading = false;
     });
   }
 

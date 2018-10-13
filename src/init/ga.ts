@@ -12,6 +12,7 @@ class GtagPlugin {
     this.appendGtagScript();
     this.setWindowVars();
     this.attachToRouter();
+    this.attachPWAEvents();
   }
 
   private setWindowVars() {
@@ -39,6 +40,20 @@ class GtagPlugin {
         page_path: to.fullPath
       });
     });
+  }
+
+  private attachPWAEvents() {
+    window.addEventListener("appinstalled", () => {
+      this.sendGeneralEvent("info", "PWA", "Installed");
+    });
+
+    if (window.matchMedia("(display-mode: standalone)").matches) {
+      this.sendGeneralEvent("info", "PWA", "Launched");
+    }
+
+    if ((window.navigator as any).standalone === true) {
+      this.sendGeneralEvent("info", "PWA", "Launched in Safari");
+    }
   }
 
   private sendEvent(...args: any[]) {
@@ -79,4 +94,4 @@ type GtagOptions = {
   sendHit: boolean;
 };
 
-type EventCategories = "engagement";
+type EventCategories = "engagement" | "info";
