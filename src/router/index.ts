@@ -1,6 +1,6 @@
 import { routes } from "./routeNames";
 import Vue from "vue";
-import Router, { Route } from "vue-router";
+import Router from "vue-router";
 import HomePage from "@/app/HomePage/HomePage.vue";
 import SearchResults from "@/app/SearchResults/SearchResults.vue";
 import About from "@/app/About/About.vue";
