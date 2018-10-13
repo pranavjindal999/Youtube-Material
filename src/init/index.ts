@@ -1,8 +1,8 @@
 import "@/assets/styles/global.css";
 
 import "./vuetify";
-import "./ga";
 import "./debugSettings";
+import "./ga";
 import "moment";
 import "moment-duration-format";
 import "./registerServiceWorker";
