@@ -11,8 +11,8 @@ Vue.use(VueAnalytics, {
     exception: true
   },
   debug: {
-    enabled: config.local,
-    trace: config.local,
+    enabled: config.debugInfo,
+    trace: config.debugInfo,
     sendHitTask: !config.local
   }
 });
