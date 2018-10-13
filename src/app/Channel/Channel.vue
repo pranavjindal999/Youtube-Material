@@ -36,7 +36,8 @@
         <v-tab
           v-for="tab in tabs"
           :key="tab.labelKey"
-          :to="tab.route">
+          :to="tab.route"
+          @click="sendChannelTabGA(tab.labelKey)">
           <v-icon class="icon">{{ tab.icon }}</v-icon>
           <span v-if="isTabTitleVisible">{{ $t(tab.labelKey) }}</span>
         </v-tab> 

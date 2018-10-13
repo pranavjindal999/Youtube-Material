@@ -1,3 +1,4 @@
+import { GA } from "./../../../init/ga";
 import { Vue, Component, Prop } from "vue-property-decorator";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 import moment from "moment";
@@ -68,20 +69,41 @@ export default class VideoTile extends Vue {
   }
 
   get videoRoute(): Location | undefined {
-    if (this.video)
+    if (this.video) {
       return {
         name: routes.video.name,
         params: { id: this.video.id }
       };
+    }
   }
 
   get channelRoute(): Location | undefined {
-    if (this.video)
+    if (this.video) {
       return {
         name: routes.channel.name,
         params: {
           [routes.channel.params.id]: this.video.snippet.channelId
         }
       };
+    }
+  }
+
+  sendTileClickGA() {
+    if (this.video) {
+      GA.sendGeneralEvent(
+        "engagement",
+        "click-video-tile",
+        this.video.snippet.title
+      );
+    }
+  }
+  sendChannelClickGA() {
+    if (this.video) {
+      GA.sendGeneralEvent(
+        "engagement",
+        "click-video-tile-channel",
+        this.video.snippet.channelTitle
+      );
+    }
   }
 }

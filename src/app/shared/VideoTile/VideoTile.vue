@@ -2,6 +2,7 @@
   <v-hover v-if="video">
     <v-card 
       :to="videoRoute"
+      @click.native="sendTileClickGA"
       class="video-tile"
       slot-scope="{ hover }"
       :class="`elevation-${hover ? 6 : 1}`">
@@ -47,6 +48,7 @@
       <router-link 
         v-if="!hideChannelLink"
         :to="channelRoute" 
+        @click.native="sendChannelClickGA"
         class="channel-name text-truncate">
         {{ channelName }}
       </router-link>

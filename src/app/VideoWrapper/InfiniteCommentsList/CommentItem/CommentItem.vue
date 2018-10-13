@@ -6,6 +6,7 @@
       class="ma-0 px-3 pt-3"
       row>
       <router-link 
+        @click.native="sendAuthorClickGA"
         class="no-link" 
         :to="commenterChannelRouter">
         <v-avatar class="mr-2">

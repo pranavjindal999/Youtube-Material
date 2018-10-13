@@ -23,6 +23,7 @@
           <span>
             The code for the project can be found at
             <a 
+              @click="sendContactGA('git-repo-link')"
               target="_blank" 
               href="https://github.com/pranavjindal999/Youtube-Material/tree/vuetube">
               Github
@@ -50,6 +51,7 @@
               class="mx-2"
               :href="item.href"
               target="_blank"
+              @click="sendContactGA(item.label)"
               color="primary">
               <v-progress-circular 
                 class="ma-2" 
@@ -69,6 +71,7 @@
         justify-center
         row>
         <a 
+          @click="sendTechnologyGA('developed-with-youtube')"
           target="_blank" 
           href="https://developers.google.com/youtube/v3/">
           <img 
@@ -82,6 +85,7 @@
         row>
         <a 
           class="mb-3" 
+          @click="sendTechnologyGA('vue')"
           target="_blank" 
           href="https://vuejs.org/">
           <img 
@@ -90,6 +94,7 @@
         </a>
         <a 
           class="mb-3" 
+          @click="sendTechnologyGA('ts')"
           target="_blank" 
           href="https://www.typescriptlang.org/">
           <img 
@@ -98,6 +103,7 @@
         </a>
         <a 
           class="mb-3" 
+          @click="sendTechnologyGA('vuetify')"
           target="_blank" 
           href="https://vuetifyjs.com/">
           <img 
@@ -106,6 +112,7 @@
         </a>
         <a 
           class="mb-3" 
+          @click="sendTechnologyGA('netlify')"
           target="_blank" 
           href="https://www.netlify.com">
           <img 

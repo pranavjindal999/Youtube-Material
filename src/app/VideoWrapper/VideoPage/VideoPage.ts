@@ -1,3 +1,4 @@
+import { GA } from "@/init/ga";
 import { CommentThreadOrder } from "./../../../services/youtube/youtubeServiceTypes";
 import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/InfiniteVideoList.vue";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
@@ -84,5 +85,13 @@ export default class VideoPage extends Vue {
   @Watch("commentThreadOrder")
   resetComments() {
     this.resetDeferredComments.next();
+  }
+
+  sendCommentSortGA() {
+    GA.sendGeneralEvent(
+      "engagement",
+      "video-page-comment-sort",
+      this.commentThreadOrder
+    );
   }
 }

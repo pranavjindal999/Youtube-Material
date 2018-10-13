@@ -10,6 +10,7 @@
   >
     <v-toolbar-side-icon @click="toggleDrawer"/>
     <router-link 
+      @click.native="sendLogoClickGA"
       aria-label="home" 
       :to="{name: 'home'}">
       <img 

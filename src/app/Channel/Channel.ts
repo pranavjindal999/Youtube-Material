@@ -1,3 +1,4 @@
+import { GA } from "@/init/ga";
 import Helmet from "@/app/shared/Helmet/Helmet.vue";
 import { routes } from "./../../router/routeNames";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
@@ -140,5 +141,9 @@ export default class Channel extends Vue {
     youtubeService.getChannelDetails([this.id]).then(result => {
       this.channel = result.items[0];
     });
+  }
+
+  sendChannelTabGA(tab: string) {
+    GA.sendGeneralEvent("engagement", "channel-page-tab-click", tab);
   }
 }
