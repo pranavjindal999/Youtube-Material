@@ -1,18 +1,9 @@
 import config from "@/config";
-import { Vue } from "vue-property-decorator";
-import VueAnalytics from "vue-analytics";
-import { $router } from "@/router";
+import { gtagPlugin } from "@/extras/gtagPlugin";
+import Vue from "vue";
 
-Vue.use(VueAnalytics, {
+Vue.use(gtagPlugin, {
   id: config.gaId,
-  router: $router,
-  autoTracking: {
-    screenview: true,
-    exception: true
-  },
-  debug: {
-    enabled: config.debugInfo,
-    trace: config.debugInfo,
-    sendHitTask: !config.local
-  }
+  debugInfo: config.debugInfo,
+  sendHit: !config.local
 });

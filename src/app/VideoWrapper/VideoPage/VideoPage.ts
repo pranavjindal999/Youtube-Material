@@ -5,12 +5,14 @@ import { youtubeService } from "@/services/youtube";
 import { DeferredObservable } from "@/extras/DeferredObservable";
 import VideoCard from "@/app/VideoWrapper/VideoCard/VideoCard.vue";
 import InfiniteCommentsList from "@/app/VideoWrapper/InfiniteCommentsList/InfiniteCommentsList.vue";
+import Helmet from "@/app/shared/Helmet/Helmet.vue";
 
 @Component({
   components: {
     InfiniteVideoList,
     VideoCard,
-    InfiniteCommentsList
+    InfiniteCommentsList,
+    Helmet
   }
 })
 export default class VideoPage extends Vue {
@@ -26,12 +28,21 @@ export default class VideoPage extends Vue {
   commentThreadOrder = CommentThreadOrder.RELEVANCE;
   CommentThreadOrderEnum = CommentThreadOrder;
 
+  get videoTitle() {
+    if (this.video) {
+      return this.video.snippet.title;
+    }
+  }
+
   get isMobile() {
     return this.$vuetify.breakpoint.smAndDown;
   }
 
   get relatedVideosFetcher(): ListFetcher<GoogleApiYouTubeVideoResource> {
     return (maxResults, pageToken) => {
+      if (!this.videoId) {
+        return Promise.reject();
+      }
       return youtubeService
         .searchVideos({
           relatedToVideoId: this.videoId,
@@ -52,6 +63,9 @@ export default class VideoPage extends Vue {
     GoogleApiYoutubeCommentThreadResource
   > {
     return (maxResults, pageToken) => {
+      if (!this.videoId) {
+        return Promise.reject();
+      }
       return youtubeService.getVideoComments({
         maxResults,
         pageToken,

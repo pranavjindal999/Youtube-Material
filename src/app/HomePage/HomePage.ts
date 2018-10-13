@@ -1,3 +1,4 @@
+import Helmet from "@/app/shared/Helmet/Helmet.vue";
 import VideoCarousel from "@/app/shared/VideoCarousel/VideoCarousel.vue";
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { trendingCategories } from "@/app/Navigation/TrendingCategories";
@@ -7,7 +8,8 @@ import IconHeading from "@/app/shared/IconHeading/IconHeading.vue";
 @Component({
   components: {
     VideoCarousel,
-    IconHeading
+    IconHeading,
+    Helmet
   }
 })
 export default class HomePage extends Vue {

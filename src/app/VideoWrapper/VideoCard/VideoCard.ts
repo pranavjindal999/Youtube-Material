@@ -115,7 +115,7 @@ export default class VideoCard extends Vue {
 
   @Watch("video", { immediate: true })
   getChannel() {
-    if (this.video) {
+    if (this.video && this.videoId) {
       youtubeService
         .getChannelDetails([this.video.snippet.channelId])
         .then(result => {

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Helmet :title="videoTitle"/>
     <v-container 
       fluid 
       grid-list-lg>

@@ -2,6 +2,7 @@
   <v-container 
     fluid 
     grid-list-lg>
+    <Helmet :title="$t('about')"/>
     <v-card>
       <v-card-title primary-title>
         <div>
@@ -64,19 +65,65 @@
       </v-card-actions>
       <v-divider/>
       <v-layout 
-        row 
-        justify-center>
-        <img 
-          class="developed-yt" 
-          src="@/assets/images/developed-with-youtube.png">
+        align-center 
+        justify-center
+        row>
+        <a 
+          target="_blank" 
+          href="https://developers.google.com/youtube/v3/">
+          <img 
+            class="developed-yt" 
+            src="@/assets/images/developed-with-youtube.png">
+        </a>
+      </v-layout>
+      <v-layout 
+        align-center 
+        justify-center
+        row>
+        <a 
+          class="mb-3" 
+          target="_blank" 
+          href="https://vuejs.org/">
+          <img 
+            class="logo-height mx-3" 
+            src="@/assets/images/vue-logo.svg">
+        </a>
+        <a 
+          class="mb-3" 
+          target="_blank" 
+          href="https://www.typescriptlang.org/">
+          <img 
+            class="logo-height mx-3" 
+            src="@/assets/images/ts-logo.svg">
+        </a>
+        <a 
+          class="mb-3" 
+          target="_blank" 
+          href="https://vuetifyjs.com/">
+          <img 
+            class="logo-height mx-3" 
+            src="@/assets/images/vuetify-logo.svg">
+        </a>
+        <a 
+          class="mb-3" 
+          target="_blank" 
+          href="https://www.netlify.com">
+          <img 
+            class="logo-height mx-3" 
+            src="@/assets/images/netlify-logo.svg">
+        </a>
       </v-layout>
     </v-card>
+    
   </v-container>
 </template>
 
 <style scoped>
 .developed-yt {
   max-height: 100px;
+}
+.logo-height {
+  max-height: 30px;
 }
 </style>
 

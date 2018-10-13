@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Helmet :title="channelTitle"/>
     <v-img 
       v-if="coverUrl"
       :src="coverUrl" 

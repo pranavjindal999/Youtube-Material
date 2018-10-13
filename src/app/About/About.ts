@@ -1,7 +1,12 @@
+import Helmet from "@/app/shared/Helmet/Helmet.vue";
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { sleep } from "@/extras/sleep";
 
-@Component
+@Component({
+  components: {
+    Helmet
+  }
+})
 export default class About extends Vue {
   isIconLoading = true;
 

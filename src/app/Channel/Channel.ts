@@ -1,3 +1,4 @@
+import Helmet from "@/app/shared/Helmet/Helmet.vue";
 import { routes } from "./../../router/routeNames";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { Location } from "vue-router";
@@ -12,7 +13,8 @@ type TabsListItem = {
 };
 @Component({
   components: {
-    FloatingDiv
+    FloatingDiv,
+    Helmet
   }
 })
 export default class Channel extends Vue {
@@ -24,6 +26,20 @@ export default class Channel extends Vue {
   $refs!: {
     tabBar: Vue;
   };
+
+  get channelTitle() {
+    if (this.channel) {
+      let tabName =
+        this.currentTab!.labelKey === "home"
+          ? ""
+          : `- ${this.$t(this.currentTab!.labelKey)}`;
+      return `${this.channel.snippet.title} ${tabName}`;
+    }
+  }
+
+  get currentTab() {
+    return this.tabs.find(i => i.route.name === this.$route.name);
+  }
 
   get tabs(): TabsListItem[] {
     return [

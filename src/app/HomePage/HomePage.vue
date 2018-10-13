@@ -2,6 +2,7 @@
   <v-container 
     fluid 
     grid-list-lg>
+    <Helmet title=""/>
     <div 
       :key="$index" 
       v-for="(category, $index) in categories">

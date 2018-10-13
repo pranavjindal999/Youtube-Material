@@ -1,11 +1,19 @@
 <template>
-  <v-container 
-    fluid 
-    grid-list-lg>
-    <InfiniteVideoList 
-      :reset-onable="resetDeferredObservable.onable"
-      :list-fetcher="searchResultsFetcher"/>
-  </v-container>
+  <div>
+    <Helmet :title="pageTitle"/>
+    <v-container 
+      fluid 
+      grid-list-lg>
+      <IconHeading 
+        icon="search" 
+        :text="$t('searchResultsFor', {query: query})" />
+      
+
+      <InfiniteVideoList 
+        :reset-onable="resetDeferredObservable.onable"
+        :list-fetcher="searchResultsFetcher"/>
+    </v-container>
+  </div>
 </template>
 
 <style scoped>
