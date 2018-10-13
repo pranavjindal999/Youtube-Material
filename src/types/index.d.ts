@@ -18,6 +18,10 @@ declare module "vue-analytics";
 declare var __COMMITHASH__: string;
 
 declare interface Window {
-  dataLayer?: Array<any>;
-  gtag: Function;
+  dataLayer: Array<any>;
+  gtag: (...args: any[]) => void;
+  __COMMITHASH__: string;
+  enableDebugInfo: () => void;
+  disableDebugInfo: () => void;
+  onYouTubeIframeAPIReady: () => void;
 }

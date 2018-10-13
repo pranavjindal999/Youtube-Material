@@ -111,7 +111,6 @@
   width: 100%;
   margin: 0;
   background: black;
-  opacity: 0.4;
 }
 .bar .seeker {
   position: absolute;

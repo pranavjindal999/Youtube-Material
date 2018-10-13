@@ -4,6 +4,7 @@ import { Vue, Component } from "vue-property-decorator";
 import { Route } from "vue-router";
 import VideoPage from "@/app/VideoWrapper/VideoPage/VideoPage.vue";
 import { youtubeService } from "@/services/youtube";
+import { GA } from "@/init/ga";
 
 @Component({
   components: {
@@ -63,6 +64,7 @@ export default class VideoWrapper extends Vue {
   }
 
   goToVideo() {
+    GA.sendGeneralEvent("engagement", "video-bar-click");
     this.$router.push({
       name: routes.video.name,
       params: {

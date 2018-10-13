@@ -1,3 +1,4 @@
+import { GA } from "@/init/ga";
 import { EventBus, EventNames } from "./../../services/eventBus/index";
 import { globalMutations, $store } from "./../../store/index";
 import { routes } from "./../../router/routeNames";
@@ -66,6 +67,11 @@ export default class Header extends Vue {
 
   searchVideos() {
     if (this.searchSelectedValue) {
+      GA.sendGeneralEvent(
+        "engagement",
+        "header-video-search",
+        this.searchSelectedValue
+      );
       this.$router.push({
         name: routes.search.name,
         params: {
@@ -81,5 +87,9 @@ export default class Header extends Vue {
 
   toggleDrawer() {
     $store.commit(globalMutations.toggleDrawer);
+  }
+
+  sendLogoClickGA() {
+    GA.sendGeneralEvent("engagement", "header-logo-click");
   }
 }

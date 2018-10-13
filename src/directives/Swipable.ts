@@ -1,3 +1,4 @@
+import { GA } from "./../init/ga";
 import { logger } from "./../services/logger/index";
 import Vue, { DirectiveOptions, VNode } from "vue";
 
@@ -79,6 +80,12 @@ async function bind(el: CustomElement, binding?: SwipableOptions) {
 
       isLeftSwipe && el.dispatchEvent(new Event("swipe-left"));
       isRightSwipe && el.dispatchEvent(new Event("swipe-right"));
+
+      GA.sendGeneralEvent(
+        "engagement",
+        "swipe",
+        isLeftSwipe ? "left" : "right"
+      );
     }
 
     requestAnimationFrame(() => {

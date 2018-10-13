@@ -1,3 +1,4 @@
+import { GA } from "./../../../../init/ga";
 import { linkify } from "@/services/linkify";
 import moment from "moment";
 import { routes } from "@/router/routeNames";
@@ -62,5 +63,13 @@ export default class CommentItem extends Vue {
     if (this.comment) {
       return (+this.comment.snippet.likeCount).toLocaleString();
     }
+  }
+
+  sendAuthorClickGA() {
+    GA.sendGeneralEvent(
+      "engagement",
+      "comment-item-author-click",
+      this.commenterName
+    );
   }
 }

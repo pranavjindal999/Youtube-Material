@@ -1,5 +1,6 @@
 import Vue from "vue";
 import config from "@/config";
+import { GA } from "./ga";
 
 if (sessionStorage.getItem("debug")) {
   (config.debugInfo as any) = true;
@@ -18,6 +19,8 @@ if (config.debugInfo) {
     -----TRACE-----
     ${err.stack!}
     `);
+
+    GA.sendException(err.toString(), true);
   };
   Vue.config.warnHandler = function(msg, vm, trace) {
     showError(
@@ -31,20 +34,22 @@ if (config.debugInfo) {
     `,
       true
     );
+
+    GA.sendException(msg);
   };
 }
 
-(window as any).enableDebugInfo = function() {
+window.enableDebugInfo = function() {
   sessionStorage.setItem("debug", "true");
   window.location.reload();
 };
 
-(window as any).disableDebugInfo = function() {
+window.disableDebugInfo = function() {
   sessionStorage.removeItem("debug");
   window.location.reload();
 };
 
-(window as any).__COMMITHASH__ = __COMMITHASH__;
+window.__COMMITHASH__ = __COMMITHASH__;
 
 /**
  * function to show error overlay.

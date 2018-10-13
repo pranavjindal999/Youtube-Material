@@ -1,7 +1,13 @@
+import { GA } from "./../../init/ga";
+import Helmet from "@/app/shared/Helmet/Helmet.vue";
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { sleep } from "@/extras/sleep";
 
-@Component
+@Component({
+  components: {
+    Helmet
+  }
+})
 export default class About extends Vue {
   isIconLoading = true;
 
@@ -46,5 +52,13 @@ export default class About extends Vue {
           this.isIconLoading = false;
         });
     });
+  }
+
+  sendContactGA(item: string) {
+    GA.sendGeneralEvent("engagement", "about-contact-media-click", item);
+  }
+
+  sendTechnologyGA(item: string) {
+    GA.sendGeneralEvent("engagement", "about-tech-icon-click", item);
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="carousel">
     <v-btn 
-      @click="previous" 
+      @click="sendNextPrevGA('prev');previous()" 
       class="previous" 
       :disabled="isCurrentRequestPending"
       v-show="prevPageToken"
@@ -35,7 +35,7 @@
       <ErrorMessage :text="$t(noVideoText)"/>
     </v-responsive>
     <v-btn 
-      @click="next" 
+      @click="sendNextPrevGA('next');next()" 
       class="next" 
       :disabled="isCurrentRequestPending"
       v-show="nextPageToken"

@@ -1,7 +1,9 @@
+import { GA } from "./../../../init/ga";
 import { Component, Prop, Mixins, Model } from "vue-property-decorator";
 import { EventBus, EventNames } from "@/services/eventBus";
 import { humanizeDuration } from "@/extras/utils";
 import applicationable from "vuetify/es5/mixins/applicationable";
+import { debounce } from "lodash";
 
 @Component({
   components: {}
@@ -129,6 +131,7 @@ export default class VideoBar extends Mixins(
   }
 
   close() {
+    GA.sendGeneralEvent("engagement", "video-bar-stop");
     this.$emit("close", false);
   }
 
@@ -140,13 +143,24 @@ export default class VideoBar extends Mixins(
   }
 
   toogleLoop() {
+    GA.sendGeneralEvent(
+      "engagement",
+      "video-bar-toggle-loop",
+      this.isLooping ? "off" : "on"
+    );
+
     if (this.playerRef) {
       this.isLooping = !this.isLooping;
       this.playerRef.setLoop(this.isLooping);
     }
   }
 
+  sendSeekGAEvent = debounce(() => {
+    GA.sendGeneralEvent("engagement", "video-bar-seek");
+  }, 2000);
+
   seekVideo(seekToPercent: number) {
+    this.sendSeekGAEvent();
     this.playerRef!.seekTo(
       (seekToPercent * this.playerRef!.getDuration()) / 100,
       true
@@ -154,6 +168,12 @@ export default class VideoBar extends Mixins(
   }
 
   playPause() {
+    GA.sendGeneralEvent(
+      "engagement",
+      "video-bar-play-pause",
+      this.isPlaying ? "pause" : "play"
+    );
+
     if (this.isPlaying) {
       this.playerRef!.pauseVideo();
     } else {

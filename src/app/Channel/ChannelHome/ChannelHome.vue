@@ -2,7 +2,6 @@
   <v-container 
     fluid 
     grid-list-lg>
-  
 
     <IconHeading 
       icon="restore" 

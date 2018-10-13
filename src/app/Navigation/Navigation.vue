@@ -9,6 +9,7 @@
   >
     <v-list subheader="">
       <v-list-tile 
+        @click="sendNavigationGA('home')"
         :to="homeRoute" 
         exact>
         <v-list-tile-action>
@@ -19,6 +20,7 @@
         </v-list-tile-content>
       </v-list-tile>
       <v-list-tile 
+        @click="sendNavigationGA('trending')"
         :to="trendingRoute" 
         exact>
         <v-list-tile-action>
@@ -32,6 +34,7 @@
       <v-subheader>Top Categories</v-subheader>
 
       <v-list-tile 
+        @click="sendNavigationGA(category.labelKey)"
         :to="category.route" 
         :key="$index"
         v-for="(category, $index) in categories"
@@ -46,6 +49,7 @@
 
       <v-divider/>
       <v-list-tile 
+        @click="sendNavigationGA('about')"
         :to="aboutRoute" 
         exact>
         <v-list-tile-action>

@@ -26,6 +26,7 @@ export default {
   featuredChannels: "Featured Channels",
   noChannelsFeatured: "No channels featured!",
   noChannelsSubscribed: "No channels subscribed!",
+  searchResultsFor: 'Search results for "{query}"',
   play: "Play",
   pause: "Pause",
   stop: "Stop",

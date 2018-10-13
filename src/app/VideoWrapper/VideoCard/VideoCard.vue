@@ -27,6 +27,7 @@
               xs6 
               class="pa-0">
               <router-link 
+                @click.native="sendChannelRouteGA"
                 class="channel-chip font-weight-light" 
                 :to="channelRoute">
                 <v-hover>

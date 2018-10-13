@@ -1,3 +1,4 @@
+import { GA } from "@/init/ga";
 import { SwipableOptions } from "./../../../directives/Swipable";
 import { LangKeys } from "./../../../translations/index";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
@@ -73,6 +74,10 @@ export default class VideoCarousel extends Vue {
 
   next() {
     if (this.nextPageToken) this.getVideos(this.nextPageToken);
+  }
+
+  sendNextPrevGA(btn: string) {
+    GA.sendGeneralEvent("engagement", "video-carousel-nex-prev", btn);
   }
 
   async getVideos(pageToken?: string) {

@@ -1,3 +1,4 @@
+import Helmet from "@/app/shared/Helmet/Helmet.vue";
 import IconHeading from "@/app/shared/IconHeading/IconHeading.vue";
 import { DeferredObservable } from "./../../extras/DeferredObservable";
 import { trendingCategories } from "./../Navigation/TrendingCategories";
@@ -10,7 +11,8 @@ import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/Infin
 @Component({
   components: {
     InfiniteVideoList,
-    IconHeading
+    IconHeading,
+    Helmet
   }
 })
 export default class Trending extends Vue {
@@ -18,6 +20,12 @@ export default class Trending extends Vue {
   category!: string;
 
   resetDeferredObservable = new DeferredObservable();
+
+  get pageTitle() {
+    return `${this.$t(LangKeys.trending)} ${
+      this.categoryObj ? `(${this.$t(this.categoryObj.labelKey)})` : ""
+    }`;
+  }
 
   get categoryObj() {
     if (this.category) {

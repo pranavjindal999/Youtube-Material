@@ -1,3 +1,4 @@
+import { GA } from "./../../../init/ga";
 import moment from "moment";
 import { routes } from "./../../../router/routeNames";
 import { Location } from "vue-router";
@@ -115,7 +116,7 @@ export default class VideoCard extends Vue {
 
   @Watch("video", { immediate: true })
   getChannel() {
-    if (this.video) {
+    if (this.video && this.videoId) {
       youtubeService
         .getChannelDetails([this.video.snippet.channelId])
         .then(result => {
@@ -126,6 +127,11 @@ export default class VideoCard extends Vue {
   }
 
   expandeCollapseDesc() {
+    GA.sendGeneralEvent(
+      "engagement",
+      "video-card-desc-expand-collapse",
+      this.isDescriptionExpanded ? "collapse" : "expand"
+    );
     this.isDescriptionExpanded = !this.isDescriptionExpanded;
 
     /**
@@ -139,5 +145,13 @@ export default class VideoCard extends Vue {
         });
       }
     });
+  }
+
+  sendChannelRouteGA() {
+    GA.sendGeneralEvent(
+      "engagement",
+      "video-card-channel-click",
+      this.channelName
+    );
   }
 }

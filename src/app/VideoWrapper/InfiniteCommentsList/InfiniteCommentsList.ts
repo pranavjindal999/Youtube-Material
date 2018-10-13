@@ -1,3 +1,4 @@
+import { GA } from "./../../../init/ga";
 import { youtubeService } from "@/services/youtube";
 import CommentItem from "./CommentItem/CommentItem.vue";
 import InfiniteList from "@/app/shared/InfiniteList/InfiniteList";
@@ -87,6 +88,8 @@ export default class InfiniteCommentsList extends InfiniteList<
   loadMoreReplies(
     commentThread: GoogleApiYoutubeCommentThreadResourceExtended
   ) {
+    GA.sendGeneralEvent("engagement", "load-more-replies");
+
     if (commentThread.areRepliesLoading) {
       return;
     }

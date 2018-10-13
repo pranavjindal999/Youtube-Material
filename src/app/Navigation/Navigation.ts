@@ -1,3 +1,4 @@
+import { GA } from "@/init/ga";
 import { trendingCategories } from "./TrendingCategories";
 import { routes } from "@/router/routeNames";
 import { globalMutations, $store } from "./../../store/index";
@@ -25,5 +26,9 @@ export default class Navigation extends Vue {
 
   updateDrawerState($event: boolean) {
     $store.commit(globalMutations.updateDrawer, $event);
+  }
+
+  sendNavigationGA(item: string) {
+    GA.sendGeneralEvent("engagement", "navigation-click", item);
   }
 }

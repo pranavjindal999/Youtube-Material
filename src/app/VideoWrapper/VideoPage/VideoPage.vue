@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Helmet :title="videoTitle"/>
     <v-container 
       fluid 
       grid-list-lg>
@@ -29,6 +30,7 @@
                 <v-btn-toggle 
                   mandatory
                   class="elevation-0 width100" 
+                  @click.native="sendCommentSortGA"
                   v-model="commentThreadOrder">
                   <v-btn 
                     color="primary" 

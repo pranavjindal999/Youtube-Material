@@ -1,11 +1,13 @@
+import Helmet from "@/app/shared/Helmet/Helmet.vue";
 import { EventBus, EventNames } from "./../../services/eventBus/index";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
 import { DeferredObservable } from "@/extras/DeferredObservable";
 import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/InfiniteVideoList.vue";
+import IconHeading from "../shared/IconHeading/IconHeading.vue";
 
 @Component({
-  components: { InfiniteVideoList }
+  components: { InfiniteVideoList, IconHeading, Helmet }
 })
 export default class SearchResults extends Vue {
   @Prop({
@@ -15,6 +17,10 @@ export default class SearchResults extends Vue {
   query!: string;
 
   resetDeferredObservable = new DeferredObservable();
+
+  get pageTitle() {
+    return `Search - ${this.query}`;
+  }
 
   get searchResultsFetcher(): ListFetcher<GoogleApiYouTubeVideoResource> {
     return (maxResults, pageToken) => {
