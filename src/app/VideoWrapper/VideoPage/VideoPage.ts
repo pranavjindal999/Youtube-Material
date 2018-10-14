@@ -14,7 +14,8 @@ import Helmet from "@/app/shared/Helmet/Helmet.vue";
     VideoCard,
     InfiniteCommentsList,
     Helmet
-  }
+  },
+  name: "VideoPage"
 })
 export default class VideoPage extends Vue {
   @Prop({ type: String, required: true })

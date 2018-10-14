@@ -36,7 +36,7 @@
         class="mt-0"
         color="primary"
         v-if="manual && haveMore" 
-        @click="onScrollFire" 
+        @click="sendLoadMoreCommentsGA();onScrollFire()" 
         block>
         {{ $t('loadMoreComments') }}      
       </v-btn>

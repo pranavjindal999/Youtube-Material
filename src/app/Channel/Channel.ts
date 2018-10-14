@@ -16,7 +16,8 @@ type TabsListItem = {
   components: {
     FloatingDiv,
     Helmet
-  }
+  },
+  name: "Channel"
 })
 export default class Channel extends Vue {
   @Prop({ type: String, required: true })

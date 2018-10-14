@@ -5,7 +5,8 @@ import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/Infin
 @Component({
   components: {
     InfiniteVideoList
-  }
+  },
+  name: "ChannelVideos"
 })
 export default class ChannelVideos extends Vue {
   @Prop({ type: String, required: true })

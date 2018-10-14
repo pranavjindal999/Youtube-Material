@@ -10,7 +10,8 @@ import config from "@/config";
 @Component({
   components: {
     FloatingDiv
-  }
+  },
+  name: "VideoTile"
 })
 export default class VideoTile extends Vue {
   @Prop({ type: Boolean, default: false })

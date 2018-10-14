@@ -7,7 +7,8 @@ import { Onable } from "@/extras/DeferredObservable";
 import ErrorMessage from "@/app/shared/ErrorMessage/ErrorMessage.vue";
 
 @Component({
-  components: { VideoTile, ErrorMessage }
+  components: { VideoTile, ErrorMessage },
+  name: "VideoCarousel"
 })
 export default class VideoCarousel extends Vue {
   @Prop({ type: Boolean, default: false })

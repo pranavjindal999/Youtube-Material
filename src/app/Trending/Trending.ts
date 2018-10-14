@@ -13,7 +13,8 @@ import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/Infin
     InfiniteVideoList,
     IconHeading,
     Helmet
-  }
+  },
+  name: "Trending"
 })
 export default class Trending extends Vue {
   @Prop({ type: String, default: "" })

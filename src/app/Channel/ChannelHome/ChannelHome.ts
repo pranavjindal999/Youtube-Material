@@ -7,7 +7,8 @@ import IconHeading from "@/app/shared/IconHeading/IconHeading.vue";
   components: {
     VideoCarousel,
     IconHeading
-  }
+  },
+  name: "ChannelHome"
 })
 export default class ChannelHome extends Vue {
   @Prop({ type: String, required: true })

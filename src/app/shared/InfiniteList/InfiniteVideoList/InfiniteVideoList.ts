@@ -6,7 +6,8 @@ import { LangKeys } from "@/translations";
 import ErrorMessage from "@/app/shared/ErrorMessage/ErrorMessage.vue";
 
 @Component({
-  components: { ScrollFire, VideoTile, ErrorMessage }
+  components: { ScrollFire, VideoTile, ErrorMessage },
+  name: "InfiniteVideoList"
 })
 export default class InfiniteVideoList extends InfiniteList<
   GoogleApiYouTubeVideoResource

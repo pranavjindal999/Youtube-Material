@@ -10,7 +10,8 @@ import { GA } from "@/init/ga";
   components: {
     VideoPage,
     VideoBar
-  }
+  },
+  name: "VideoWrapper"
 })
 export default class VideoWrapper extends Vue {
   barMode: boolean = true;

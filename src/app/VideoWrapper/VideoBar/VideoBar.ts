@@ -6,7 +6,8 @@ import applicationable from "vuetify/es5/mixins/applicationable";
 import { debounce } from "lodash";
 
 @Component({
-  components: {}
+  components: {},
+  name: "VideoBar"
 })
 export default class VideoBar extends Mixins(
   applicationable("bottom", ["height", "active"])

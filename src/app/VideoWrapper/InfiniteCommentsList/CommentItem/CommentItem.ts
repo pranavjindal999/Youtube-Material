@@ -10,7 +10,8 @@ import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 @Component({
   components: {
     FloatingDiv
-  }
+  },
+  name: "CommentItem"
 })
 export default class CommentItem extends Vue {
   @Prop({ type: Object, required: false })

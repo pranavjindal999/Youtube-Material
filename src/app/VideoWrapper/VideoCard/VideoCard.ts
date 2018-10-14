@@ -15,7 +15,8 @@ import { humanizeNumber } from "@/extras/utils";
   components: {
     YoutubePlayer,
     FloatingDiv
-  }
+  },
+  name: "VideoCard"
 })
 export default class VideoCard extends Vue {
   @Prop({ type: String, required: true })
