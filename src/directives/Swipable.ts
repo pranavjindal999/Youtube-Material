@@ -58,7 +58,7 @@ async function bind(el: CustomElement, binding?: SwipableOptions) {
     if (
       e.pointerType !== "touch" ||
       isVerticalLike(e.angle) ||
-      Math.abs(e.deltaX) < 100
+      Math.abs(e.deltaX) < 60
     ) {
       el.style.transform = `translateX(0px)`;
       return;

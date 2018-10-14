@@ -1,3 +1,4 @@
+import { GA } from "./../../init/ga";
 import { TopProgress } from "./../topProgress/index";
 import { Toast } from "@/services/Toast";
 import loadJs from "load-js";
@@ -29,6 +30,7 @@ loadJs(["https://apis.google.com/js/api.js"])
   });
 
 deferred.promise.catch(() => {
+  GA.sendException("YoutubeClientAPILoadError", true);
   Toast.show({
     message: "YoutubeClientAPILoadError",
     intent: "error"

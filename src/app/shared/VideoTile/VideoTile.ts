@@ -93,7 +93,7 @@ export default class VideoTile extends Vue {
     if (this.video) {
       GA.sendGeneralEvent(
         "engagement",
-        "click-video-tile",
+        "video-tile-click",
         this.video.snippet.title
       );
     }
@@ -102,7 +102,7 @@ export default class VideoTile extends Vue {
     if (this.video) {
       GA.sendGeneralEvent(
         "engagement",
-        "click-video-tile-channel",
+        "video-tile-channel-click",
         this.video.snippet.channelTitle
       );
     }
