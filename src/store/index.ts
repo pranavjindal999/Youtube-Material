@@ -1,3 +1,4 @@
+import { GA } from "./../init/ga";
 import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
@@ -34,6 +35,7 @@ const $store = new Vuex.Store<AppState>({
       state.currentLang = lang;
     },
     [globalMutations.updateDrawer](state, drawer: boolean) {
+      GA.sendGeneralEvent("engagement", "drawer", drawer ? "opened" : "closed");
       state.drawer = drawer;
     },
     [globalMutations.toggleDrawer](state) {

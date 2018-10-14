@@ -1,3 +1,4 @@
+import { GA } from "./../../init/ga";
 import loadJs from "load-js";
 import { Deferred } from "@/extras/Deferred";
 import { Toast } from "@/services/Toast";
@@ -19,6 +20,7 @@ setTimeout(() => {
 }, config.xhrTimeout);
 
 deferred.promise.catch(() => {
+  GA.sendException("YoutubeIFrameAPILoadError", true);
   Toast.show({
     message: "YoutubeIFrameAPILoadError",
     intent: "error"

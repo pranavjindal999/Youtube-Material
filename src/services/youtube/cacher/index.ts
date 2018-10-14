@@ -1,3 +1,4 @@
+import { GA } from "./../../../init/ga";
 import {
   CacheObject,
   GetCacheParams,
@@ -30,6 +31,7 @@ async function get<T = any>({ method, requestPayload }: GetCacheParams) {
     let cachedValue = memCache[method][dataHash] as CacheEntry<T>;
     if (cachedValue.expires > Date.now()) {
       return Promise.resolve(cachedValue.response).then(response => {
+        GA.sendGeneralEvent("info", "cached-response", method);
         return cloneDeep(response);
       });
     } else {
