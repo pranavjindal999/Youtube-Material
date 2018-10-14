@@ -5,7 +5,8 @@ import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 import { linkify } from "@/services/linkify";
 
 @Component({
-  components: { FloatingDiv }
+  components: { FloatingDiv },
+  name: "ChannelAbout"
 })
 export default class ChannelAbout extends Vue {
   @Prop({ required: true, default: null })

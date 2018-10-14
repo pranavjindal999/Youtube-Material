@@ -9,6 +9,7 @@ import { Vue, Component } from "vue-property-decorator";
     Header,
     Navigation,
     VideoWrapper
-  }
+  },
+  name: "Root"
 })
 export default class Root extends Vue {}

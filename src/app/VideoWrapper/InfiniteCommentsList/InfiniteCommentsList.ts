@@ -17,7 +17,8 @@ interface GoogleApiYoutubeCommentThreadResourceExtended
     CommentItem,
     ScrollFire,
     ErrorMessage
-  }
+  },
+  name: "InfiniteCommentsList"
 })
 export default class InfiniteCommentsList extends InfiniteList<
   GoogleApiYoutubeCommentThreadResource
@@ -127,5 +128,9 @@ export default class InfiniteCommentsList extends InfiniteList<
       .finally(() => {
         this.$set(commentThread, "areRepliesLoading", false);
       });
+  }
+
+  sendLoadMoreCommentsGA() {
+    GA.sendGeneralEvent("engagement", "load-more-commments");
   }
 }

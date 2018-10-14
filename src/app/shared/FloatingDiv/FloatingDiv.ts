@@ -1,4 +1,6 @@
 import { Component, Vue } from "vue-property-decorator";
 
-@Component
+@Component({
+  name: "FloatingDiv"
+})
 export default class FloatingDiv extends Vue {}

@@ -6,7 +6,8 @@ import { LangKeys } from "@/translations";
 import ErrorMessage from "@/app/shared/ErrorMessage/ErrorMessage.vue";
 
 @Component({
-  components: { ScrollFire, ChannelTile, ErrorMessage }
+  components: { ScrollFire, ChannelTile, ErrorMessage },
+  name: "InfiniteChannelList"
 })
 export default class InfiniteChannelList extends InfiniteList<
   GoogleApiYouTubeChannelResource

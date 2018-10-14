@@ -7,7 +7,8 @@ import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/Infin
 import IconHeading from "../shared/IconHeading/IconHeading.vue";
 
 @Component({
-  components: { InfiniteVideoList, IconHeading, Helmet }
+  components: { InfiniteVideoList, IconHeading, Helmet },
+  name: "SearchResults"
 })
 export default class SearchResults extends Vue {
   @Prop({

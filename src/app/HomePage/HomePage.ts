@@ -10,7 +10,8 @@ import IconHeading from "@/app/shared/IconHeading/IconHeading.vue";
     VideoCarousel,
     IconHeading,
     Helmet
-  }
+  },
+  name: "HomePage"
 })
 export default class HomePage extends Vue {
   categories = trendingCategories;

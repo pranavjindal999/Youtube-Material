@@ -7,7 +7,8 @@ import lazyLoadCSS from "lazyload-css";
 @Component({
   components: {
     Helmet
-  }
+  },
+  name: "About"
 })
 export default class About extends Vue {
   isIconLoading = true;

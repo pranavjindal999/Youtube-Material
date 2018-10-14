@@ -6,7 +6,8 @@ import { Location } from "vue-router";
 @Component({
   components: {
     FloatingDiv
-  }
+  },
+  name: "ChannelTile"
 })
 export default class ChannelTile extends Vue {
   @Prop({ type: Object, required: false })

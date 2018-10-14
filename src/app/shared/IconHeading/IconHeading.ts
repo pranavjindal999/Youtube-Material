@@ -4,7 +4,8 @@ import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 @Component({
   components: {
     FloatingDiv
-  }
+  },
+  name: "IconHeading"
 })
 export default class IconHeading extends Vue {
   @Prop({ type: String, default: "" })

@@ -12,7 +12,8 @@ import InfiniteChannelList from "@/app/shared/InfiniteList/InfiniteChannelList/I
     IconHeading,
     InfiniteChannelList,
     ErrorMessage
-  }
+  },
+  name: "ChannelChannels"
 })
 export default class ChannelChannels extends Vue {
   @Prop({ type: String, required: true })

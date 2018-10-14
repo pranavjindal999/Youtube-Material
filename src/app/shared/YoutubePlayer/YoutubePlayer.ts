@@ -7,7 +7,8 @@ import config from "@/config";
 @Component({
   components: {
     FloatingDiv
-  }
+  },
+  name: "YoutubePlayer"
 })
 export default class YoutubePlayer extends Vue {
   player: YT.Player | null = null;

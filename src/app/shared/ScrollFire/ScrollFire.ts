@@ -1,8 +1,10 @@
+import { GA } from "./../../../init/ga";
 import { Vue, Component, Watch, Prop } from "vue-property-decorator";
 import { throttle } from "lodash";
 
 @Component({
-  components: {}
+  components: {},
+  name: "ScrollFire"
 })
 export default class ScrollFire extends Vue {
   @Prop({ type: Boolean, required: true })
@@ -16,6 +18,11 @@ export default class ScrollFire extends Vue {
     if (isInViewPort && !wasPreviouslyInViewPort && this.haveMore) {
       this.$emit("fire");
       this.isInViewPort = false;
+      GA.sendGeneralEvent(
+        "engagement",
+        "scroll-fire",
+        this.$parent.$options.name
+      );
     }
   }
 
