@@ -34,7 +34,7 @@ export default class ScrollFire extends Vue {
     this.onScroll = throttle(() => {
       if (
         this.$el.getBoundingClientRect().top + 20 <
-        document.documentElement!.clientHeight
+        document.documentElement.clientHeight
       ) {
         this.isInViewPort = true;
       } else {
