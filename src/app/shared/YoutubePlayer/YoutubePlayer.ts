@@ -1,6 +1,5 @@
 import { EventNames, EventBus } from "./../../../services/eventBus/index";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { asyncYoutubeIframeAPI } from "@/services/youtube/youtubeIframe";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 import { randomString } from "@/extras/utils";
 import config from "@/config";
@@ -12,7 +11,7 @@ import config from "@/config";
 })
 export default class YoutubePlayer extends Vue {
   player: YT.Player | null = null;
-  asyncPlayerState!: Promise<void>;
+  asyncPlayerState: Promise<void> | null = null;
   elementToAttach = randomString();
   isPlayerReady: boolean = false;
 
@@ -23,12 +22,11 @@ export default class YoutubePlayer extends Vue {
     return config.local ? "" : this.videoId;
   }
 
-  async mounted() {
-    await this.makePlayerReady();
-  }
-
   @Watch("videoId")
   async changeVideo(newId: string, oldId: string) {
+    if (!this.asyncPlayerState) {
+      await this.makePlayerReady();
+    }
     await this.asyncPlayerState;
 
     if (newId !== oldId) {
@@ -38,7 +36,8 @@ export default class YoutubePlayer extends Vue {
 
   async makePlayerReady() {
     this.asyncPlayerState = new Promise(async resolve => {
-      await asyncYoutubeIframeAPI;
+      await (await import(/* webpackMode: "eager" */ "@/services/youtube/youtubeIframe"))
+        .asyncYoutubeIframeAPI;
       this.player = new YT.Player(this.elementToAttach, {
         playerVars: {
           autoplay: 0,
