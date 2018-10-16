@@ -1,2 +1,3 @@
 https://vtyoob.netlify.com/* https://www.vtyoob.com/:splat 301!
+https://staging-vtyoob.netlify.com/* https://staging.vtyoob.com/:splat 301!
 /*    /index.html   200
