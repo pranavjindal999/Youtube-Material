@@ -7,7 +7,7 @@ import { TopProgress } from "@/services/topProgress";
 
 let deferred = new Deferred<boolean>();
 
-(window as any).onYouTubeIframeAPIReady = function() {
+window.onYouTubeIframeAPIReady = function() {
   deferred.resolve();
 };
 
