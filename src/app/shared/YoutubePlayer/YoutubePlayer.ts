@@ -24,7 +24,7 @@ export default class YoutubePlayer extends Vue {
   }
 
   async mounted() {
-    await sleep(3000);
+    await sleep(5000);
     if (!this.playerInitializationPromise) {
       this.initializePlayer();
     }
