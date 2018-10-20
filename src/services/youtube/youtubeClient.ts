@@ -1,4 +1,3 @@
-import { sleep } from "@/extras/sleep";
 import { GA } from "./../../init/ga";
 import { TopProgress } from "./../topProgress/index";
 import { Toast } from "@/services/Toast";
@@ -8,30 +7,27 @@ import { Deferred } from "@/extras/Deferred";
 
 let deferred = new Deferred<boolean>();
 
-(async () => {
-  await sleep(10);
-  loadJs(["https://apis.google.com/js/api.js"])
-    .then(() => {
-      gapi.load("client", () => {
-        gapi.client
-          .init({
-            discoveryDocs: [
-              "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
-            ],
-            apiKey: config.apiKey
-          })
-          .then(() => {
-            deferred.resolve();
-          })
-          .catch(() => {
-            deferred.reject();
-          });
-      });
-    })
-    .catch(() => {
-      deferred.reject();
+loadJs(["https://apis.google.com/js/api.js"])
+  .then(() => {
+    gapi.load("client", () => {
+      gapi.client
+        .init({
+          discoveryDocs: [
+            "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
+          ],
+          apiKey: config.apiKey
+        })
+        .then(() => {
+          deferred.resolve();
+        })
+        .catch(() => {
+          deferred.reject();
+        });
     });
-})();
+  })
+  .catch(() => {
+    deferred.reject();
+  });
 
 deferred.promise.catch(() => {
   GA.sendException("YoutubeClientAPILoadError", true);
