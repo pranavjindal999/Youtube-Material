@@ -40,6 +40,7 @@ module.exports = {
     },
     workboxOptions: {
       skipWaiting: true,
+      importScripts: ["swClearCache.js"],
       exclude: [/^_redirects$/, /\.map$/, /^manifest.*\.js(?:on)?$/]
     }
   },
