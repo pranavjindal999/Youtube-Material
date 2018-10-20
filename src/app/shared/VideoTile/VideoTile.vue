@@ -129,7 +129,7 @@
 }
 .time-bar {
   background: black;
-  opacity: 0.7;
+  opacity: 0.75;
   position: absolute;
   width: 100%;
   height: 20px;

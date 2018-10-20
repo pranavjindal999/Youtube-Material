@@ -25,20 +25,50 @@
   <meta name="Description" content="vTyoob">
 
   <link rel="shortcut icon" href="<%= BASE_URL %>favicon.ico">
+
   <style>
-    .yt-init-loader {
+    .header-loader {
+      z-index: 999;
+      height: 64px;
+      background: #cb0000;
+      box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .header-loader .logo {
+      position: absolute;
+      top: 19px;
+      height: 28px;
+      left: 60px;
+    }
+
+    @media only screen and (max-width: 960px) {
+      .header-loader .logo {
+        left: 52px;
+      }
+    }
+
+    .header-loader .spinner {
       z-index: 999;
       position: fixed;
-      top: calc(50% - 25px);
-      left: calc(50% - 25px);
+      top: calc(50% - 40px);
+      left: calc(50% - 40px);
       border: 4px solid #f3f3f3;
       border-radius: 50%;
       border-top: 4px solid #cb0000;
       width: 50px;
       height: 50px;
       box-sizing: border-box;
-      -webkit-animation: spin-init-loader 1.5s ease infinite;
-      animation: spin-init-loader 1.5s ease-in-out infinite
+      -webkit-animation: spin-init-loader 1s linear infinite;
+      animation: spin-init-loader 1s linear infinite
+    }
+
+    #app-content {
+      opacity: 0;
+      transition: opacity .3s;
     }
 
     @-webkit-keyframes spin-init-loader {
@@ -53,15 +83,11 @@
 
     @keyframes spin-init-loader {
       0% {
-        transform: rotate(90deg)
-      }
-
-      50% {
-        transform: rotate(270deg)
+        transform: rotate(0deg)
       }
 
       100% {
-        transform: rotate(90deg)
+        transform: rotate(360deg)
       }
     }
   </style>
@@ -72,12 +98,38 @@
     <strong>Are you serious? Who uses web with JS disabled these days?</strong>
   </noscript>
 
-  <div id="app-init-loader" class="yt-init-loader">
+  <script>
+    window.gapiClientPromise = new Promise(function (resolve, reject) {
+      window.onGapiJsLoad = function () {
+        gapi.load("client", function () {
+          gapi.client
+            .init({
+              discoveryDocs: [
+                "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
+              ],
+              apiKey: "<%= process.env.VUE_APP_GAPI_KEY %>"
+            }).then(function () {
+              resolve()
+            })
+            .catch(function () {
+              reject()
+            })
+        })
+      }
+    })
+  </script>
+  <script async onload="onGapiJsLoad()" src="https://apis.google.com/js/api.js"></script>
+
+  <div id="app-init-loader" class="header-loader">
+    <img src="/img/full-logo-white.png" class="logo">
+    <div class="spinner"></div>
   </div>
 
-  <div id="ytmat">
+  <div id="app-content">
+    <div id="ytmat">
+    </div>
   </div>
-  <!-- built files will be auto injected -->
+
 </body>
 
 </html>

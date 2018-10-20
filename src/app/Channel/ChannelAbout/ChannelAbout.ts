@@ -1,8 +1,8 @@
-import moment from "moment";
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { LangKeys } from "@/translations";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 import { linkify } from "@/services/linkify";
+import { formatDate } from "@/extras/dateUtils";
 
 @Component({
   components: { FloatingDiv },
@@ -28,7 +28,7 @@ export default class ChannelAbout extends Vue {
         {
           labelKey: LangKeys.joined,
           icon: "date_range",
-          value: moment(this.channel.snippet.publishedAt).format("Do MMM, YYYY")
+          value: formatDate(this.channel.snippet.publishedAt, "Do MMM, YYYY")
         },
         {
           labelKey: LangKeys.totalViews,

@@ -16,7 +16,7 @@
       <img 
         class="logo mr-2" 
         alt="Youtube Logo"
-        src="@/assets/images/full-logo-white.png">
+        src="/img/full-logo-white.png">
     </router-link>
 
     <v-layout 

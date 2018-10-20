@@ -1,4 +1,4 @@
-import moment from "moment";
+import { ms } from "@/extras/dateUtils";
 import { CommentThreadOrder, SearchParams } from "./youtubeServiceTypes";
 import { asyncRegionCode } from "@/services/geolocation";
 import { asyncYoutubeClientAPI } from "@/services/youtube/youtubeClient";
@@ -94,7 +94,7 @@ class YoutubeService {
       method: gapi.client.youtube.i18nRegions.list,
       methodId: "5",
       diskCache: true,
-      cacheDuration: +moment.duration(30, "days"),
+      cacheDuration: ms(30, "day"),
       params: {
         hl: i18n.locale,
         part: "snippet",
@@ -162,9 +162,7 @@ class YoutubeService {
       memCache: params.order === CommentThreadOrder.TIME,
       diskCache: params.order === CommentThreadOrder.RELEVANCE,
       cacheDuration:
-        params.order === CommentThreadOrder.TIME
-          ? +moment.duration(1, "minute")
-          : +moment.duration(5, "minute"),
+        params.order === CommentThreadOrder.TIME ? ms(1, "min") : ms(5, "min"),
       methodId: "8",
       params: {
         part: "snippet,replies",

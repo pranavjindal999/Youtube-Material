@@ -1,11 +1,11 @@
 import { GA } from "./../../../init/ga";
 import { Vue, Component, Prop } from "vue-property-decorator";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
-import moment from "moment";
 import { routes } from "@/router/routeNames";
 import { Location } from "vue-router";
-import { humanizeDuration, humanizeNumber } from "@/extras/utils";
+import { humanizeNumber } from "@/extras/utils";
 import config from "@/config";
+import { humanizeDuration, fromNow, formatDate } from "@/extras/dateUtils";
 
 @Component({
   components: {
@@ -27,13 +27,13 @@ export default class VideoTile extends Vue {
   }
 
   get humaizedUploaded() {
-    return this.video && moment(this.video.snippet.publishedAt).fromNow();
+    return this.video && fromNow(this.video.snippet.publishedAt);
   }
 
   get uploaded() {
     return (
       this.video &&
-      moment(this.video.snippet.publishedAt).format(config.longDateTimeFormat)
+      formatDate(this.video.snippet.publishedAt, config.longDateTimeFormat)
     );
   }
 
