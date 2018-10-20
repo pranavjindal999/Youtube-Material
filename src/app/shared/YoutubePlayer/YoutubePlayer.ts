@@ -1,6 +1,6 @@
+import { sleep } from "@/extras/sleep";
 import { EventNames, EventBus } from "./../../../services/eventBus/index";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { asyncYoutubeIframeAPI } from "@/services/youtube/youtubeIframe";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 import { randomString } from "@/extras/utils";
 import config from "@/config";
@@ -12,7 +12,7 @@ import config from "@/config";
 })
 export default class YoutubePlayer extends Vue {
   player: YT.Player | null = null;
-  asyncPlayerState!: Promise<void>;
+  playerInitializationPromise: Promise<void> | null = null;
   elementToAttach = randomString();
   isPlayerReady: boolean = false;
 
@@ -24,21 +24,29 @@ export default class YoutubePlayer extends Vue {
   }
 
   async mounted() {
-    await this.makePlayerReady();
+    await sleep(5000);
+    if (!this.playerInitializationPromise) {
+      this.initializePlayer();
+    }
   }
 
   @Watch("videoId")
   async changeVideo(newId: string, oldId: string) {
-    await this.asyncPlayerState;
+    if (!this.playerInitializationPromise) {
+      await this.initializePlayer();
+    }
+    await this.playerInitializationPromise;
 
     if (newId !== oldId) {
       this.player!.loadVideoById(this.computedVideoId);
     }
   }
 
-  async makePlayerReady() {
-    this.asyncPlayerState = new Promise(async resolve => {
-      await asyncYoutubeIframeAPI;
+  async initializePlayer() {
+    this.playerInitializationPromise = new Promise(async resolve => {
+      let iFrameESM = await import(/* webpackMode: "eager" */ "@/services/youtube/youtubeIframe");
+      await iFrameESM.asyncYoutubeIframeAPI;
+
       this.player = new YT.Player(this.elementToAttach, {
         playerVars: {
           autoplay: 0,

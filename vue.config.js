@@ -5,8 +5,11 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 const GitRevisionPlugin = new require("git-revision-webpack-plugin");
 const fs = require("fs");
 const path = require("path");
+const RobotstxtPlugin = require("robotstxt-webpack-plugin").default;
 
-const isProd = process.env.NODE_ENV === "production";
+const isLocal = process.env.VUE_APP_MODE === "local";
+const isStaging = process.env.VUE_APP_MODE === "staging";
+const isProd = process.env.VUE_APP_MODE === "production";
 
 let isLegacyBuilt = false;
 
@@ -37,6 +40,7 @@ module.exports = {
     },
     workboxOptions: {
       skipWaiting: true,
+      importScripts: ["swClearCache.js"],
       exclude: [/^_redirects$/, /\.map$/, /^manifest.*\.js(?:on)?$/]
     }
   },
@@ -54,6 +58,8 @@ module.exports = {
   },
 
   chainWebpack: config => {
+    config.plugins.delete("prefetch");
+
     config
       .plugin("moment-locale-ignore")
       .use(webpack.IgnorePlugin, [/^\.\/locale$/, /moment$/]);
@@ -85,6 +91,30 @@ module.exports = {
       });
 
     if (isProd) {
+      config.plugin("robots.txt").use(RobotstxtPlugin, [
+        {
+          policy: [
+            {
+              userAgent: "*",
+              disallow: ""
+            }
+          ]
+        }
+      ]);
+    } else if (isStaging) {
+      config.plugin("robots.txt").use(RobotstxtPlugin, [
+        {
+          policy: [
+            {
+              userAgent: "*",
+              disallow: "/"
+            }
+          ]
+        }
+      ]);
+    }
+
+    if (isProd || isStaging) {
       config.plugin("webpack-report").use(BundleAnalyzerPlugin, [
         {
           analyzerMode: "static",

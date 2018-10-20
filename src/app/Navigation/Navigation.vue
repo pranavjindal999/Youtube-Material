@@ -64,23 +64,6 @@
   </v-navigation-drawer>
 </template>
 
-
-
-
-
-home
-trending_up
-music_video
-movie
-directions_run
-devices_other
-insert_emoticon
-school
-info_outline
-
-
-
-
 <script>
 import Navigation from "./Navigation.ts";
 export default Navigation;
