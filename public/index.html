@@ -71,6 +71,27 @@
   <noscript>
     <strong>Are you serious? Who uses web with JS disabled these days?</strong>
   </noscript>
+  <script>
+    window.gapiClientPromise = new Promise(function (resolve, reject) {
+      window.onGapiJsLoad = function () {
+        gapi.load("client", function () {
+          gapi.client
+            .init({
+              discoveryDocs: [
+                "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
+              ],
+              apiKey: "<%= process.env.VUE_APP_GAPI_KEY %>"
+            }).then(function () {
+              resolve()
+            })
+            .catch(function () {
+              reject()
+            })
+        })
+      }
+    })
+  </script>
+  <script async onload="onGapiJsLoad()" src="https://apis.google.com/js/api.js"></script>
 
   <div id="app-init-loader" class="yt-init-loader">
   </div>

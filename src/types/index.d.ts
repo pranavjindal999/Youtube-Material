@@ -24,4 +24,5 @@ declare interface Window {
   enableDebugInfo: () => void;
   disableDebugInfo: () => void;
   onYouTubeIframeAPIReady: () => void;
+  gapiClientPromise: Promise<void>;
 }
