@@ -1,11 +1,11 @@
 import { GA } from "./../../../../init/ga";
 import { linkify } from "@/services/linkify";
-import moment from "moment";
 import { routes } from "@/router/routeNames";
 import { Location } from "vue-router";
 import { Vue, Component, Prop } from "vue-property-decorator";
 import config from "@/config";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
+import { fromNow, formatDate } from "@/extras/dateUtils";
 
 @Component({
   components: {
@@ -42,13 +42,14 @@ export default class CommentItem extends Vue {
 
   get humanizedCommentTime() {
     if (this.comment) {
-      return moment(this.comment.snippet.publishedAt).fromNow();
+      return fromNow(this.comment.snippet.publishedAt);
     }
   }
 
   get commentTime() {
     if (this.comment) {
-      return moment(this.comment.snippet.publishedAt).format(
+      return formatDate(
+        this.comment.snippet.publishedAt,
         config.longDateTimeFormat
       );
     }

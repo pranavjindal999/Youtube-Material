@@ -1,5 +1,4 @@
 import { GA } from "./../../../init/ga";
-import moment from "moment";
 import { routes } from "./../../../router/routeNames";
 import { Location } from "vue-router";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
@@ -10,6 +9,7 @@ import { linkify } from "@/services/linkify";
 import { youtubeService } from "@/services/youtube";
 import config from "@/config";
 import { humanizeNumber } from "@/extras/utils";
+import { formatDate } from "@/extras/dateUtils";
 
 @Component({
   components: {
@@ -54,9 +54,10 @@ export default class VideoCard extends Vue {
 
   get uploaded() {
     if (this.video) {
-      return `${this.$t(LangKeys.uploaded)}: ${moment(
-        this.video.snippet.publishedAt
-      ).format(config.longDateTimeFormat)}`;
+      return `${this.$t(LangKeys.uploaded)}: ${formatDate(
+        this.video.snippet.publishedAt,
+        config.longDateTimeFormat
+      )}`;
     }
   }
 

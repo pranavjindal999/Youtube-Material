@@ -1,9 +1,9 @@
 import { GA } from "./../../../init/ga";
 import { Component, Prop, Mixins, Model } from "vue-property-decorator";
 import { EventBus, EventNames } from "@/services/eventBus";
-import { humanizeDuration } from "@/extras/utils";
 import applicationable from "vuetify/es5/mixins/applicationable";
 import { debounce } from "lodash";
+import { humanizeDuration } from "@/extras/dateUtils";
 
 @Component({
   components: {},
