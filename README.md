@@ -8,9 +8,14 @@ My naïve attempt at making a material version of Youtube using materializecss, 
 
 http://579cda6671e20a255417ab8c.youtube-material.bitballoon.com/ (maybe doesn't work now)
 
-## Where I'm currently
 
-https://youtube-material.netlify.com
+## Where I left Angular
+
+https://5bab9b7c792f8974c4a71ad3--youtube-material.netlify.com/
+
+## Where I'm currently (with Vue)
+
+https://www.vtyoob.com/
 
 ## How to start:
 
