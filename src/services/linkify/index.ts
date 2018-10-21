@@ -7,7 +7,7 @@ const supportedPages = {
 };
 
 export async function linkify(text: string) {
-  let Autolinker = await import("autolinker");
+  let Autolinker = await import(/* webpackChunkName: "autolinker" */ "autolinker");
 
   return Autolinker.link(text, {
     urls: {

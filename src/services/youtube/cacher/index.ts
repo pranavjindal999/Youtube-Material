@@ -95,7 +95,7 @@ async function clear(method?: string, requestPayload?: any) {
 }
 
 async function generateHash(data: any) {
-  let sha = await import("js-sha256");
+  let sha = await import(/* webpackChunkName: "js-sha256" */ "js-sha256");
   data = cloneDeep(data);
   return sha.sha224(JSON.stringify(data));
 }

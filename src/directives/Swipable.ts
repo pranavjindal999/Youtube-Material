@@ -41,7 +41,7 @@ async function bind(el: CustomElement, binding?: SwipableOptions) {
     return;
   }
 
-  let Hammer = await import("hammerjs");
+  let Hammer = await import(/* webpackChunkName: "hammerjs" */ "hammerjs");
   el.style.transition = "transform .2s";
   let manager = new Hammer.Manager(el);
   el.__hammerManager = manager;
