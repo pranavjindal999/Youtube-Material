@@ -89,7 +89,7 @@ const $router = new Router({
 $router.onReady(() => {
   let loaderDiv = document.getElementById("app-init-loader") as HTMLDivElement;
   let appDiv = document.getElementById("app-content") as HTMLDivElement;
-  loaderDiv.style.transition = "opacity 0.3s";
+  loaderDiv.style.transition = "opacity 0.2s";
   appDiv.style.opacity = "1";
   loaderDiv.addEventListener("transitionend", () => {
     loaderDiv.remove();
