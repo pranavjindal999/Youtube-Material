@@ -6,6 +6,7 @@ const GitRevisionPlugin = new require("git-revision-webpack-plugin");
 const fs = require("fs");
 const path = require("path");
 const RobotstxtPlugin = require("robotstxt-webpack-plugin").default;
+const VuetifyLoaderPlugin = require("vuetify-loader/lib/plugin");
 
 const isLocal = process.env.VUE_APP_MODE === "local";
 const isStaging = process.env.VUE_APP_MODE === "staging";
@@ -54,9 +55,9 @@ module.exports = {
         "lodash.merge": path.resolve("./node_modules/lodash/merge.js"),
         "circular-json": path.resolve("./node_modules/lodash/noop.js")
       }
-    }
+    },
+    plugins: [new VuetifyLoaderPlugin()]
   },
-
   chainWebpack: config => {
     config.plugins.delete("prefetch");
 
