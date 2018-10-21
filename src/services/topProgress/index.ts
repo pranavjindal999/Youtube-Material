@@ -1,21 +1,23 @@
 import { sleep } from "@/extras/sleep";
 
 class TopProgressWrapper {
-  private asyncInstance = import("toprogress2").then(async module => {
-    let instance = new module.ToProgress({
-      color: "#ffffff",
-      height: "2px",
-      duration: 0.2,
-      position: "top",
-      selector: "body"
-    });
+  private asyncInstance = import(/* webpackChunkName: "Toprogress" */ "toprogress2").then(
+    async module => {
+      let instance = new module.ToProgress({
+        color: "#ffffff",
+        height: "2px",
+        duration: 0.2,
+        position: "top",
+        selector: "body"
+      });
 
-    let elem: HTMLDivElement = (instance as any).element;
-    elem.style.zIndex = "99999999999999";
+      let elem: HTMLDivElement = (instance as any).element;
+      elem.style.zIndex = "99999999999999";
 
-    await sleep();
-    return instance;
-  });
+      await sleep();
+      return instance;
+    }
+  );
   private noOfPendingRequests = 0;
 
   async startAuto(promise: Promise<any>) {

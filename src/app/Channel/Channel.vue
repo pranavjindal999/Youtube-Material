@@ -38,7 +38,9 @@
           :key="tab.labelKey"
           :to="tab.route"
           @click="sendChannelTabGA(tab.labelKey)">
-          <v-icon class="icon">{{ tab.icon }}</v-icon>
+          <v-icon 
+            dark 
+            class="icon">{{ tab.icon }}</v-icon>
           <span v-if="isTabTitleVisible">{{ $t(tab.labelKey) }}</span>
         </v-tab> 
       </v-tabs>

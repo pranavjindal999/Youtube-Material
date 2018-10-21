@@ -1,4 +1,6 @@
 import { GA } from "./../../../init/ga";
+import { sha224 } from "js-sha256";
+
 import {
   CacheObject,
   GetCacheParams,
@@ -95,9 +97,8 @@ async function clear(method?: string, requestPayload?: any) {
 }
 
 async function generateHash(data: any) {
-  let sha = await import("js-sha256");
   data = cloneDeep(data);
-  return sha.sha224(JSON.stringify(data));
+  return sha224(JSON.stringify(data));
 }
 
 function saveData(

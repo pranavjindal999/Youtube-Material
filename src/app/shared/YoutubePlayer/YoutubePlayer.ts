@@ -44,7 +44,8 @@ export default class YoutubePlayer extends Vue {
 
   async initializePlayer() {
     this.playerInitializationPromise = new Promise(async resolve => {
-      let iFrameESM = await import(/* webpackMode: "eager" */ "@/services/youtube/youtubeIframe");
+      let iFrameESM = await import(/* webpackChunkName: "youtubeIframe" */
+      /* webpackMode: "eager" */ "@/services/youtube/youtubeIframe");
       await iFrameESM.asyncYoutubeIframeAPI;
 
       this.player = new YT.Player(this.elementToAttach, {

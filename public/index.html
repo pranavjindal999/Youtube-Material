@@ -66,9 +66,30 @@
       animation: spin-init-loader 1s linear infinite
     }
 
+    .header-loader .hamburger {
+      width: 18px;
+      position: absolute;
+      top: 26px;
+      left: 27px;
+      display: inline-block;
+    }
+
+    @media only screen and (max-width: 960px) {
+      .header-loader .hamburger {
+        left: 19px;
+      }
+    }
+
+
+    .header-loader .hamburger div {
+      height: 2px;
+      margin-bottom: 3px;
+      background: white;
+    }
+
     #app-content {
-      opacity: 0;
-      transition: opacity .3s;
+      opacity: .5;
+      transition: opacity .1s;
     }
 
     @-webkit-keyframes spin-init-loader {
@@ -121,6 +142,11 @@
   <script async onload="onGapiJsLoad()" src="https://apis.google.com/js/api.js"></script>
 
   <div id="app-init-loader" class="header-loader">
+    <div class="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
     <img src="/img/full-logo-white.png" class="logo">
     <div class="spinner"></div>
   </div>
