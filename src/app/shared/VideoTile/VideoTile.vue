@@ -33,7 +33,7 @@
       </v-img>
       
       <v-card-title 
-        class="px-2 pt-2 pb-0" 
+        class="px-2 pb-0 title-wrapper" 
         primary-title>
         <div class="title-div">
           <h3 
@@ -98,8 +98,12 @@
 .video-tile {
   cursor: pointer;
 }
+.title-wrapper {
+  padding-top: 6px;
+}
 .title-div {
   height: 32px;
+  margin-bottom: 3px;
 }
 .title {
   text-overflow: ellipsis;
@@ -107,7 +111,8 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   display: -webkit-box;
-  height: 29px;
+  height: 36px;
+  line-height: 18px !important;
 }
 .caption {
   width: 100%;
