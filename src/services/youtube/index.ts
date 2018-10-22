@@ -19,6 +19,8 @@ class YoutubeService {
         order: parameters.order,
         part: "snippet",
         type: "video",
+        videoSyndicated: "true",
+        videoEmbeddable: "true",
         regionCode: await asyncRegionCode,
         maxResults: parameters.maxResults,
         relatedToVideoId: parameters.relatedToVideoId,
