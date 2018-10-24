@@ -45,6 +45,10 @@ export default class Channel extends Vue {
     }
   }
 
+  get metaImage() {
+    return this.coverUrl;
+  }
+
   get currentTab() {
     return this.tabs.find(i => i.route.name === this.$route.name);
   }

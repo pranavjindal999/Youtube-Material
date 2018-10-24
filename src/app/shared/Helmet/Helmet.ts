@@ -12,11 +12,14 @@ export default class Helmet extends Vue {
   @Prop({ type: String, default: "" })
   description!: string;
 
+  @Prop({ type: String, default: "" })
+  image!: string;
+
   @Watch("title", { immediate: true })
   titleUpdater() {
     document.title = this.title ? `vTyoob - ${this.title}` : "vTyoob";
     let metaTitle = document.getElementById("meta-title") as HTMLMetaElement;
-    metaTitle.content = this.title;
+    metaTitle.content = document.title;
   }
 
   @Watch("description", { immediate: true })
@@ -30,6 +33,16 @@ export default class Helmet extends Vue {
 
     metaOGDescription.content = this.description;
     metaDescription.content = this.description;
+  }
+
+  @Watch("image", { immediate: true })
+  imageUpdater() {
+    let metaImage = document.getElementById("meta-image") as HTMLMetaElement;
+    if (this.image) {
+      metaImage.content = this.image;
+    } else {
+      metaImage.content = window.location.origin + "/img/only-logo.png";
+    }
   }
 
   @Watch("$route.fullPath", { immediate: true })
@@ -48,7 +61,8 @@ export default class Helmet extends Vue {
         this.$route.params[routes.video.params.id]
       }/hqdefault.jpg`;
     } else {
-      metaImage.content = "/img/only-logo.png";
+      metaType.content = "website";
+      metaImage.content = window.location.origin + "/img/only-logo.png";
     }
   }
 
