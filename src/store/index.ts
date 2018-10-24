@@ -26,7 +26,7 @@ const $store = new Vuex.Store<AppState>({
   state: {
     currentLang: config.defaultLanguage,
     regionCode: "",
-    drawer: true
+    drawer: false
   },
   getters: {},
   mutations: {

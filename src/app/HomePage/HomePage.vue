@@ -1,7 +1,8 @@
 <template>
   <v-container 
     fluid 
-    grid-list-lg>
+    grid-list-lg 
+    class="no-overflow-x">
     <Helmet title=""/>
     <div 
       :key="$index" 

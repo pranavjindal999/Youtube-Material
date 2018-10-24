@@ -17,7 +17,8 @@
       v-if="videos.length"
       class="mx-2"
       row 
-      align-center>
+      align-center 
+      wrap>
       <v-flex 
         xs6 
         md3
@@ -58,6 +59,7 @@
   width: 20px;
   left: -18px;
   top: 25%;
+  z-index: 1;
 }
 
 .next {
@@ -67,6 +69,7 @@
   width: 20px;
   right: -18px;
   top: 25%;
+  z-index: 1;
 }
 </style>
 
