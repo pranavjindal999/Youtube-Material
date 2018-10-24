@@ -22,10 +22,20 @@ export default class Trending extends Vue {
 
   resetDeferredObservable = new DeferredObservable();
 
-  get pageTitle() {
+  get metaTitle() {
     return `${this.$t(LangKeys.trending)} ${
       this.categoryObj ? `(${this.$t(this.categoryObj.labelKey)})` : ""
     }`;
+  }
+
+  get metaDescription() {
+    if (this.categoryObj) {
+      return `Latest trending videos in ${this.$t(
+        this.categoryObj.labelKey
+      )}...`;
+    } else {
+      return "Latest trending videos ...";
+    }
   }
 
   get categoryObj() {

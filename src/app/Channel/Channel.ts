@@ -29,13 +29,19 @@ export default class Channel extends Vue {
     tabBar: Vue;
   };
 
-  get channelTitle() {
+  get metaTitle() {
     if (this.channel) {
       let tabName =
         this.currentTab!.labelKey === "home"
           ? ""
           : `- ${this.$t(this.currentTab!.labelKey)}`;
       return `${this.channel.snippet.title} ${tabName}`;
+    }
+  }
+
+  get metaDescription() {
+    if (this.channel) {
+      return this.channel.snippet.description.substr(0, 250);
     }
   }
 

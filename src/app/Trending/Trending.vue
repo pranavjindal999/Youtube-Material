@@ -3,7 +3,9 @@
     :key="category"
     fluid 
     grid-list-lg>
-    <Helmet :title="pageTitle"/>
+    <Helmet 
+      :title="metaTitle" 
+      :description="metaDescription"/>
     <IconHeading 
       :icon="categoryIcon" 
       :text="$t(categoryLabelKey)" />

@@ -19,8 +19,12 @@ export default class SearchResults extends Vue {
 
   resetDeferredObservable = new DeferredObservable();
 
-  get pageTitle() {
+  get metaTitle() {
     return `Search - ${this.query}`;
+  }
+
+  get metaDescription() {
+    return `Video search results for ${this.query}`;
   }
 
   get searchResultsFetcher(): ListFetcher<GoogleApiYouTubeVideoResource> {

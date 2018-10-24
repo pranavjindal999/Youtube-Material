@@ -2,7 +2,9 @@
   <v-container 
     fluid 
     grid-list-lg>
-    <Helmet :title="$t('about')"/>
+    <Helmet 
+      title="About" 
+      :description="metaDescription"/>
     <v-card>
       <v-card-title primary-title>
         <div>

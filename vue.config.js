@@ -7,6 +7,7 @@ const fs = require("fs");
 const path = require("path");
 const RobotstxtPlugin = require("robotstxt-webpack-plugin").default;
 const VuetifyLoaderPlugin = require("vuetify-loader/lib/plugin");
+const SitemapWebpackPlugin = require("sitemap-webpack-plugin").default;
 
 const isLocal = process.env.VUE_APP_MODE === "local";
 const isStaging = process.env.VUE_APP_MODE === "staging";
@@ -56,7 +57,25 @@ module.exports = {
         "circular-json": path.resolve("./node_modules/lodash/noop.js")
       }
     },
-    plugins: [new VuetifyLoaderPlugin()]
+    plugins: [
+      new VuetifyLoaderPlugin(),
+      new SitemapWebpackPlugin(
+        "https://mysite.com",
+        [
+          "/",
+          "/trending",
+          "/trending/music",
+          "/trending/movies",
+          "/trending/comedy",
+          "/trending/sports",
+          "/trending/tech",
+          "/about"
+        ],
+        {
+          skipGzip: true
+        }
+      )
+    ]
   },
   chainWebpack: config => {
     config.plugins.delete("prefetch");

@@ -3,7 +3,9 @@
     fluid 
     grid-list-lg 
     class="no-overflow-x">
-    <Helmet title=""/>
+    <Helmet 
+      title="" 
+      :description="metaDescription"/>
     <div 
       :key="$index" 
       v-for="(category, $index) in categories">
