@@ -30,9 +30,15 @@ export default class VideoPage extends Vue {
   commentThreadOrder = CommentThreadOrder.RELEVANCE;
   CommentThreadOrderEnum = CommentThreadOrder;
 
-  get videoTitle() {
+  get metaTitle() {
     if (this.video) {
       return this.video.snippet.title;
+    }
+  }
+
+  get metaDescription() {
+    if (this.video) {
+      return this.video.snippet.description.substr(0, 250);
     }
   }
 

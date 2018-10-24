@@ -41,6 +41,10 @@ export default class About extends Vue {
     }
   ];
 
+  get metaDescription() {
+    return "vTyoob.com is a front-end only webapp made using latest technologies to provide best user experience for video viewing.";
+  }
+
   created() {
     lazyLoadCSS(
       "https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?9ukd8d",

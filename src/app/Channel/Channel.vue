@@ -1,6 +1,9 @@
 <template>
   <div>
-    <Helmet :title="channelTitle"/>
+    <Helmet 
+      :title="metaTitle" 
+      :image="metaImage"
+      :description="metaDescription"/>
     <v-img 
       v-if="coverUrl"
       :src="coverUrl" 

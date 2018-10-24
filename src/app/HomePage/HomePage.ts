@@ -16,6 +16,10 @@ import IconHeading from "@/app/shared/IconHeading/IconHeading.vue";
 export default class HomePage extends Vue {
   categories = trendingCategories;
 
+  get metaDescription() {
+    return "vTyoob.com is your video source on internet with a slick interface. Find latest videos in music, movies, sports, comedy and more....";
+  }
+
   isNotLast(index: number) {
     return index !== this.categories.length - 1;
   }
