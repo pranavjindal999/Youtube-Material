@@ -10,6 +10,10 @@
   cursor: pointer !important;
 }
 
+.no-overflow-x {
+  overflow-x: hidden;
+}
+
 .spin {
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
