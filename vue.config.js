@@ -60,7 +60,7 @@ module.exports = {
     plugins: [
       new VuetifyLoaderPlugin(),
       new SitemapWebpackPlugin(
-        "https://mysite.com",
+        "https://www.vtyoob.com",
         [
           "/",
           "/trending",
