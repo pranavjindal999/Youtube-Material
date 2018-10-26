@@ -132,6 +132,9 @@
 <style scoped>
 .title {
   font-size: 18px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  line-height: 24px !important;
 }
 .channel-chip {
   text-decoration: none;
