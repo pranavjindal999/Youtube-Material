@@ -50,7 +50,7 @@ export default class YoutubePlayer extends Vue {
 
       this.player = new YT.Player(this.elementToAttach, {
         playerVars: {
-          autoplay: 0,
+          autoplay: 1,
           modestbranding: 1,
           rel: 0,
           hl: this.$i18n.locale,
