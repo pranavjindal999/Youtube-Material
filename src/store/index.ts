@@ -35,7 +35,6 @@ const $store = new Vuex.Store<AppState>({
       state.currentLang = lang;
     },
     [globalMutations.updateDrawer](state, drawer: boolean) {
-      GA.sendGeneralEvent("engagement", "drawer", drawer ? "opened" : "closed");
       state.drawer = drawer;
     },
     [globalMutations.toggleDrawer](state) {
