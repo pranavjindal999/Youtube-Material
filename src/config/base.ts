@@ -9,7 +9,8 @@ let base: IConfig = {
   staging: false,
   xhrTimeout: 1000 * 10,
   longDateTimeFormat: "Do MMM, YYYY (h:mm A)",
-  gaId: "UA-XXXX-LOCAL"
+  gaId: "UA-XXXX-LOCAL",
+  isPrerendering: navigator.userAgent.toLowerCase().includes("prerender")
 };
 
 export default base;

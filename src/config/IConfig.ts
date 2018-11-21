@@ -10,4 +10,5 @@ export interface IConfig {
   debugInfo: boolean;
   longDateTimeFormat: string;
   gaId: string;
+  isPrerendering: boolean;
 }

@@ -1,3 +1,4 @@
+import config from "@/config";
 import { ms } from "@/extras/dateUtils";
 import { CommentThreadOrder, SearchParams } from "./youtubeServiceTypes";
 import { asyncRegionCode } from "@/services/geolocation";
@@ -157,6 +158,10 @@ class YoutubeService {
     pageToken?: string;
   }) {
     await asyncYoutubeClientAPI;
+    if (config.isPrerendering) {
+      return Promise.reject("");
+    }
+
     return gapiWrapper({
       method: gapi.client.youtube.commentThreads.list,
       memCache: params.order === CommentThreadOrder.TIME,
