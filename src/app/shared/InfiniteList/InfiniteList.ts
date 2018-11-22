@@ -98,6 +98,7 @@ export default class InfiniteList<T> extends Vue {
       .catch(err => {
         this.errorMessageKey = err;
         this.list.splice(this.list.length - resultsToFetch, resultsToFetch);
+        this.haveMore = false;
       })
       .finally(() => {
         this.isCurrentRequestPending = false;
