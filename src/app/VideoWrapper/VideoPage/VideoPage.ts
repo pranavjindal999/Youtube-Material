@@ -91,7 +91,9 @@ export default class VideoPage extends Vue {
 
   @Watch("commentThreadOrder")
   resetComments() {
-    this.resetDeferredComments.next();
+    if (this.commentThreadOrder) {
+      this.resetDeferredComments.next();
+    }
   }
 
   sendCommentSortGA() {
