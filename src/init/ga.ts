@@ -94,4 +94,4 @@ type GtagOptions = {
   sendHit: boolean;
 };
 
-type EventCategories = "engagement" | "info";
+type EventCategories = "engagement" | "info" | "featured";

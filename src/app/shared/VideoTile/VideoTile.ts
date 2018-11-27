@@ -1,5 +1,6 @@
+import { featuredService } from "@/services/featured";
 import { GA } from "./../../../init/ga";
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
 import { routes } from "@/router/routeNames";
 import { Location } from "vue-router";
@@ -89,22 +90,58 @@ export default class VideoTile extends Vue {
     }
   }
 
-  sendTileClickGA() {
+  @Watch("video")
+  async videoWatcher() {
+    let featuredIds = await featuredService.getFeaturedVideos();
+
+    if (this.video) {
+      if (featuredIds.includes(this.video.id)) {
+        GA.sendGeneralEvent(
+          "featured",
+          "video-tile-displayed",
+          this.video.snippet.title
+        );
+      }
+    }
+  }
+
+  async sendTileClickGA() {
     if (this.video) {
       GA.sendGeneralEvent(
         "engagement",
         "video-tile-click",
         this.video.snippet.title
       );
+
+      let featuredIds = await featuredService.getFeaturedVideos();
+
+      if (featuredIds.includes(this.video.id)) {
+        GA.sendGeneralEvent(
+          "featured",
+          "video-tile-click",
+          this.video.snippet.title
+        );
+      }
     }
   }
-  sendChannelClickGA() {
+
+  async sendChannelClickGA() {
     if (this.video) {
       GA.sendGeneralEvent(
         "engagement",
         "video-tile-channel-click",
         this.video.snippet.channelTitle
       );
+
+      let featuredIds = await featuredService.getFeaturedVideos();
+
+      if (featuredIds.includes(this.video.id)) {
+        GA.sendGeneralEvent(
+          "featured",
+          "video-tile-channel-click",
+          this.video.snippet.channelTitle
+        );
+      }
     }
   }
 }

@@ -1,5 +1,8 @@
 import { GA } from "@/init/ga";
-import { trendingCategories } from "./TrendingCategories";
+import {
+  trendingCategories,
+  CustomTrendingCategory
+} from "./TrendingCategories";
 import { routes } from "@/router/routeNames";
 import { globalMutations, $store } from "./../../store/index";
 import Vue from "vue";
@@ -12,7 +15,9 @@ import { Location } from "vue-router";
 export default class Navigation extends Vue {
   drawer = false;
 
-  categories = trendingCategories;
+  categories = trendingCategories.filter(
+    category => category.id !== CustomTrendingCategory.FEATURED
+  );
 
   homeRoute: Location = {
     name: routes.home.name
