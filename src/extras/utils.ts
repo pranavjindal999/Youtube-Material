@@ -35,3 +35,17 @@ export function humanizeNumber(number?: number): string {
       return number.toString();
   }
 }
+
+export function pickRandom<T>(array: T[], numberToPick: number): T[] {
+  var result = new Array(numberToPick),
+    len = array.length,
+    taken = new Array(len);
+  if (numberToPick > len)
+    throw new RangeError("getRandom: more elements taken than available");
+  while (numberToPick--) {
+    var x = Math.floor(Math.random() * len);
+    result[numberToPick] = array[x in taken ? taken[x] : x];
+    taken[x] = --len in taken ? taken[len] : len;
+  }
+  return result;
+}

@@ -778,11 +778,11 @@ interface GoogleApiYouTubePaginationInfo<T> {
   /**
    * The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
    */
-  nextPageToken: string;
+  nextPageToken?: string;
   /**
    * The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set.
    */
-  prevPageToken: string;
+  prevPageToken?: string;
   /**
    * A list of activities, or events, that match the request criteria.
    */

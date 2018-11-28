@@ -1,3 +1,5 @@
+import { pull } from "lodash";
+import { featuredService } from "@/services/featured";
 import { GA } from "@/init/ga";
 import { CommentThreadOrder } from "./../../../services/youtube/youtubeServiceTypes";
 import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/InfiniteVideoList.vue";
@@ -7,6 +9,7 @@ import { DeferredObservable } from "@/extras/DeferredObservable";
 import VideoCard from "@/app/VideoWrapper/VideoCard/VideoCard.vue";
 import InfiniteCommentsList from "@/app/VideoWrapper/InfiniteCommentsList/InfiniteCommentsList.vue";
 import Helmet from "@/app/shared/Helmet/Helmet.vue";
+import { pickRandom } from "@/extras/utils";
 
 @Component({
   components: {
@@ -51,14 +54,23 @@ export default class VideoPage extends Vue {
       if (!this.videoId) {
         return Promise.reject();
       }
+
       return youtubeService
         .searchVideos({
           relatedToVideoId: this.videoId,
           pageToken,
           maxResults
         })
-        .then(searchResult => {
+        .then(async searchResult => {
           let ids = searchResult.items.map(i => i.id.videoId);
+          if (!pageToken) {
+            let { items } = await featuredService.getFeaturedVideos();
+            pull(items, this.videoId);
+            ids.pop();
+            ids.pop();
+            ids = [...pickRandom(items, 2), ...ids];
+          }
+
           return youtubeService.getVideoDetails(ids).then(videoResult => {
             searchResult.items = videoResult.items as any;
             return searchResult as any;
