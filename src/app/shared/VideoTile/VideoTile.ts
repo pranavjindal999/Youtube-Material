@@ -92,10 +92,8 @@ export default class VideoTile extends Vue {
 
   @Watch("video")
   async videoWatcher() {
-    let featuredIds = await featuredService.getFeaturedVideos();
-
     if (this.video) {
-      if (featuredIds.includes(this.video.id)) {
+      if (await featuredService.isFeaturedVideo(this.video.id)) {
         GA.sendGeneralEvent(
           "featured",
           "video-tile-displayed",
@@ -113,9 +111,7 @@ export default class VideoTile extends Vue {
         this.video.snippet.title
       );
 
-      let featuredIds = await featuredService.getFeaturedVideos();
-
-      if (featuredIds.includes(this.video.id)) {
+      if (await featuredService.isFeaturedVideo(this.video.id)) {
         GA.sendGeneralEvent(
           "featured",
           "video-tile-click",
@@ -133,9 +129,7 @@ export default class VideoTile extends Vue {
         this.video.snippet.channelTitle
       );
 
-      let featuredIds = await featuredService.getFeaturedVideos();
-
-      if (featuredIds.includes(this.video.id)) {
+      if (await featuredService.isFeaturedVideo(this.video.id)) {
         GA.sendGeneralEvent(
           "featured",
           "video-tile-channel-click",

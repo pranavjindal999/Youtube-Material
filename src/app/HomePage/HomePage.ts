@@ -31,8 +31,17 @@ export default class HomePage extends Vue {
   ): ListFetcher<GoogleApiYouTubeVideoResource> {
     return async (maxResults, pageToken) => {
       if (category.id === CustomTrendingCategory.FEATURED) {
-        let vidoeIds = await featuredService.getFeaturedVideos();
-        return youtubeService.getVideoDetails(vidoeIds);
+        let {
+          items,
+          nextPageToken,
+          prevPageToken
+        } = await featuredService.getFeaturedVideos(maxResults, pageToken);
+
+        return youtubeService.getVideoDetails(items).then(response => {
+          response.nextPageToken = nextPageToken;
+          response.prevPageToken = prevPageToken;
+          return response;
+        });
       } else {
         return youtubeService.getCategoryTrendingVideos({
           pageToken,

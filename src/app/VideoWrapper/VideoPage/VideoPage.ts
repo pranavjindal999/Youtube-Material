@@ -64,11 +64,11 @@ export default class VideoPage extends Vue {
         .then(async searchResult => {
           let ids = searchResult.items.map(i => i.id.videoId);
           if (!pageToken) {
-            let featuredVideoIds = await featuredService.getFeaturedVideos();
-            pull(featuredVideoIds, this.videoId);
+            let { items } = await featuredService.getFeaturedVideos();
+            pull(items, this.videoId);
             ids.pop();
             ids.pop();
-            ids = [...pickRandom(featuredVideoIds, 2), ...ids];
+            ids = [...pickRandom(items, 2), ...ids];
           }
 
           return youtubeService.getVideoDetails(ids).then(videoResult => {
