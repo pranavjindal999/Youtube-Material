@@ -1,168 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta
+      name="google-site-verification"
+      content="BDIKpkIoJAikaEbI4j2Ps84_uXh0376aOtwRsz6o90g"
+    />
+    <meta name="yandex-verification" content="f5f6b7cfa275fa3d" />
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="google-site-verification" content="BDIKpkIoJAikaEbI4j2Ps84_uXh0376aOtwRsz6o90g" />
+    <!-- PRECONNECT ORIGINS -->
+    <link href="https://ip-api.io" rel="preconnect" crossorigin />
+    <link
+      href="https://www.google-analytics.com"
+      rel="preconnect"
+      crossorigin
+    />
+    <link href="https://apis.google.com" rel="preconnect" crossorigin />
+    <link href="https://s.ytimg.com" rel="preconnect" crossorigin />
+    <link href="https://i.ytimg.com" rel="preconnect" crossorigin />
+    <link href="https://www.youtube.com" rel="preconnect" crossorigin />
+    <link
+      href="https://www.googletagmanager.com"
+      rel="preconnect"
+      crossorigin
+    />
+    <link href="https://www.google.com" rel="preconnect" crossorigin />
+    <link href="https://content.googleapis.com" rel="preconnect" crossorigin />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin />
 
+    <meta property="og:url" id="meta-url" />
+    <meta property="og:type" id="meta-type" content="website" />
+    <meta property="og:title" id="meta-title" />
+    <meta
+      property="og:description"
+      id="meta-og-description"
+      content="vTyoob.com is your video source on internet with a slick interface. Find latest videos in music, movies, sports, comedy and more...."
+    />
+    <meta property="og:image" id="meta-image" content="/img/only-logo.png" />
 
-  <!--PRECONNECT ORIGINS-->
-  <link href="https://ip-api.io" rel="preconnect" crossorigin>
-  <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
-  <link href="https://apis.google.com" rel="preconnect" crossorigin>
-  <link href="https://s.ytimg.com" rel="preconnect" crossorigin>
-  <link href="https://i.ytimg.com" rel="preconnect" crossorigin>
-  <link href="https://www.youtube.com" rel="preconnect" crossorigin>
-  <link href="https://www.googletagmanager.com" rel="preconnect" crossorigin>
-  <link href="https://www.google.com" rel="preconnect" crossorigin>
-  <link href="https://content.googleapis.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin>
+    <meta
+      name="Description"
+      id="meta-description"
+      content="vTyoob.com is your video source on internet with a slick interface. Find latest videos in music, movies, sports, comedy and more...."
+    />
+    <title>vTyoob</title>
+    <link rel="canonical" id="canonical-link" />
 
-  <meta property="og:url" id="meta-url" />
-  <meta property="og:type" id="meta-type" content="website" />
-  <meta property="og:title" id="meta-title" />
-  <meta property="og:description" id="meta-og-description" content="vTyoob.com is your video source on internet with a slick interface. Find latest videos in music, movies, sports, comedy and more...." />
-  <meta property="og:image" id="meta-image" content="/img/only-logo.png">
+    <link rel="shortcut icon" href="<%= BASE_URL %>favicon.ico" />
 
-  <meta name="Description" id="meta-description" content="vTyoob.com is your video source on internet with a slick interface. Find latest videos in music, movies, sports, comedy and more....">
-  <title>vTyoob</title>
-  <link rel="canonical" id="canonical-link">
+    <style>
+      .header-loader {
+        z-index: 999;
+        height: 64px;
+        background: #cb0000;
+        box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+          0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+          0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
 
-  <link rel="shortcut icon" href="<%= BASE_URL %>favicon.ico">
-
-  <style>
-    .header-loader {
-      z-index: 999;
-      height: 64px;
-      background: #cb0000;
-      box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-    }
-
-    .header-loader .logo {
-      position: absolute;
-      top: 19px;
-      height: 28px;
-      left: 60px;
-    }
-
-    @media only screen and (max-width: 960px) {
       .header-loader .logo {
-        left: 52px;
+        position: absolute;
+        top: 19px;
+        height: 28px;
+        left: 60px;
       }
-    }
 
-    .header-loader .spinner {
-      z-index: 999;
-      position: fixed;
-      top: calc(50% - 40px);
-      left: calc(50% - 40px);
-      border: 4px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 4px solid #cb0000;
-      width: 50px;
-      height: 50px;
-      box-sizing: border-box;
-      -webkit-animation: spin-init-loader 1s linear infinite;
-      animation: spin-init-loader 1s linear infinite
-    }
+      @media only screen and (max-width: 960px) {
+        .header-loader .logo {
+          left: 52px;
+        }
+      }
 
-    .header-loader .hamburger {
-      width: 18px;
-      position: absolute;
-      top: 26px;
-      left: 27px;
-      display: inline-block;
-    }
+      .header-loader .spinner {
+        z-index: 999;
+        position: fixed;
+        top: calc(50% - 40px);
+        left: calc(50% - 40px);
+        border: 4px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 4px solid #cb0000;
+        width: 50px;
+        height: 50px;
+        box-sizing: border-box;
+        -webkit-animation: spin-init-loader 1s linear infinite;
+        animation: spin-init-loader 1s linear infinite;
+      }
 
-    @media only screen and (max-width: 960px) {
       .header-loader .hamburger {
-        left: 19px;
-      }
-    }
-
-
-    .header-loader .hamburger div {
-      height: 2px;
-      margin-bottom: 3px;
-      background: white;
-    }
-
-    #app-content {
-      opacity: .5;
-      transition: opacity .1s;
-    }
-
-    @-webkit-keyframes spin-init-loader {
-      0% {
-        -webkit-transform: rotate(0deg)
+        width: 18px;
+        position: absolute;
+        top: 26px;
+        left: 27px;
+        display: inline-block;
       }
 
-      100% {
-        -webkit-transform: rotate(360deg)
-      }
-    }
-
-    @keyframes spin-init-loader {
-      0% {
-        transform: rotate(0deg)
+      @media only screen and (max-width: 960px) {
+        .header-loader .hamburger {
+          left: 19px;
+        }
       }
 
-      100% {
-        transform: rotate(360deg)
+      .header-loader .hamburger div {
+        height: 2px;
+        margin-bottom: 3px;
+        background: white;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <noscript>
-    <strong>Are you serious? Who uses web with JS disabled these days?</strong>
-  </noscript>
-
-  <script>
-    window.gapiClientPromise = new Promise(function (resolve, reject) {
-      window.onGapiJsLoad = function () {
-        gapi.load("client", function () {
-          gapi.client
-            .init({
-              discoveryDocs: [
-                "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
-              ],
-              apiKey: "<%= process.env.VUE_APP_GAPI_KEY %>"
-            }).then(function () {
-              resolve()
-            })
-            .catch(function () {
-              reject()
-            })
-        })
+      #app-content {
+        opacity: 0.5;
+        transition: opacity 0.1s;
       }
-    })
-  </script>
-  <script async onload="onGapiJsLoad()" src="https://apis.google.com/js/api.js"></script>
 
-  <div id="app-init-loader" class="header-loader">
-    <div class="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
+      @-webkit-keyframes spin-init-loader {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin-init-loader {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript>
+      <strong
+        >Are you serious? Who uses web with JS disabled these days?</strong
+      >
+    </noscript>
+
+    <script>
+      window.gapiClientPromise = new Promise(function(resolve, reject) {
+        window.onGapiJsLoad = function() {
+          gapi.load("client", function() {
+            gapi.client
+              .init({
+                discoveryDocs: [
+                  "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
+                ],
+                apiKey: "<%= process.env.VUE_APP_GAPI_KEY %>"
+              })
+              .then(function() {
+                resolve();
+              })
+              .catch(function() {
+                reject();
+              });
+          });
+        };
+      });
+    </script>
+    <script
+      async
+      onload="onGapiJsLoad()"
+      src="https://apis.google.com/js/api.js"
+    ></script>
+
+    <div id="app-init-loader" class="header-loader">
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <img src="/img/full-logo-white.png" class="logo" />
+      <div class="spinner"></div>
     </div>
-    <img src="/img/full-logo-white.png" class="logo">
-    <div class="spinner"></div>
-  </div>
 
-  <div id="app-content">
-    <div id="ytmat">
-    </div>
-  </div>
-
-</body>
-
+    <div id="app-content"><div id="ytmat"></div></div>
+  </body>
 </html>
