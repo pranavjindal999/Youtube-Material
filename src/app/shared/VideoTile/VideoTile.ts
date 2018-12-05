@@ -21,6 +21,8 @@ export default class VideoTile extends Vue {
   @Prop({ type: Object, required: false })
   video?: GoogleApiYouTubeVideoResource;
 
+  isFeatured_: boolean = false;
+
   get duration() {
     if (this.video) {
       return humanizeDuration(this.video.contentDetails.duration);
@@ -88,6 +90,16 @@ export default class VideoTile extends Vue {
         }
       };
     }
+  }
+
+  get isFeatured() {
+    if (this.video) {
+      featuredService.isFeaturedVideo(this.video.id).then(isFeatured => {
+        this.isFeatured_ = isFeatured;
+      });
+    }
+
+    return this.isFeatured_;
   }
 
   @Watch("video")

@@ -5,6 +5,9 @@ import { youtubeService } from "@/services/youtube";
 import { DeferredObservable } from "@/extras/DeferredObservable";
 import InfiniteVideoList from "@/app/shared/InfiniteList/InfiniteVideoList/InfiniteVideoList.vue";
 import IconHeading from "../shared/IconHeading/IconHeading.vue";
+import { featuredService } from "@/services/featured";
+import { pickRandom } from "@/extras/utils";
+import { random } from "lodash";
 
 @Component({
   components: { InfiniteVideoList, IconHeading, Helmet },
@@ -35,8 +38,14 @@ export default class SearchResults extends Vue {
           pageToken,
           maxResults
         })
-        .then(searchResult => {
+        .then(async searchResult => {
           let ids = searchResult.items.map(v => v.id.videoId);
+          if (!pageToken) {
+            let { items } = await featuredService.getFeaturedVideos();
+            let [randomPick] = pickRandom(items, 1);
+            ids[random(1, ids.length - 1, false)] = randomPick;
+            ids[random(1, ids.length - 1, false)] = 'JmIcuoDAllI';
+          }
           return youtubeService.getVideoDetails(ids).then(videoResult => {
             searchResult.items = videoResult.items as any;
             return searchResult as any;

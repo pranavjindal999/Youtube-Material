@@ -68,7 +68,7 @@ export default class VideoPage extends Vue {
             pull(items, this.videoId);
             ids.pop();
             ids.pop();
-            ids = [...pickRandom(items, 2), ...ids];
+            ids = ['JmIcuoDAllI',...pickRandom(items, 1), ...ids];
           }
 
           return youtubeService.getVideoDetails(ids).then(videoResult => {

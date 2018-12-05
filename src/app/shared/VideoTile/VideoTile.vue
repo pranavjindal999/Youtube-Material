@@ -1,13 +1,14 @@
 <template>
   <v-hover v-if="video">
-    <v-card 
+    <v-card
       :to="videoRoute"
       @click.native="sendTileClickGA"
       class="video-tile"
       slot-scope="{ hover }"
-      :class="`elevation-${hover ? 6 : 1}`">
-      <v-img
-        :src="thumbnail"
+      :class="`elevation-${hover ? 6 : 1}`"
+    >
+      <v-img 
+        :src="thumbnail" 
         :aspect-ratio="16/9">
         <div class="time-bar">
           <div 
@@ -16,7 +17,7 @@
             <v-tooltip top>
               <v-icon 
                 slot="activator" 
-                color="white" >wifi_tethering</v-icon>
+                color="white">wifi_tethering</v-icon>
               <span>{{ $t('liveVideo') }}</span>
             </v-tooltip>
           </div>
@@ -27,35 +28,35 @@
             :title="uploaded" 
             class="uploaded">{{ humaizedUploaded }}</span>
         </div>
-        
-        <FloatingDiv 
-          slot="placeholder"/>
+
+        <FloatingDiv slot="placeholder"/>
       </v-img>
-      
-      <v-card-title 
-        class="px-2 pb-0 title-wrapper" 
-        primary-title>
+
+      <v-card-title
+        class="px-2 pb-0 title-wrapper"
+        :class="{'cornsilk':isFeatured && $route.name === 'video'}"
+        primary-title
+      >
         <div class="title-div">
           <h3 
             :title="title" 
             class="font-weight-light title body-1">{{ title }}</h3>
         </div>
-        <div 
-          :class="{'mb-2':hideChannelLink}" 
+        <div
+          :class="{'mb-2':hideChannelLink}"
           :title="csvViews"
-          class="caption success--text">{{ humaizedViews }}</div>
+          class="caption success--text"
+        >{{ humaizedViews }}</div>
       </v-card-title>
-      <router-link 
+      <router-link
         v-if="!hideChannelLink"
-        :to="channelRoute" 
+        :to="channelRoute"
         @click.native.stop="sendChannelClickGA"
-        class="channel-name text-truncate">
-        {{ channelName }}
-      </router-link>
+        class="channel-name text-truncate"
+      >{{ channelName }}</router-link>
     </v-card>
   </v-hover>
-  <div
-    v-else>
+  <div v-else>
     <v-responsive :aspect-ratio="16/9">
       <FloatingDiv class="fl-img"/>
     </v-responsive>
@@ -157,6 +158,9 @@
 }
 .live-icon i {
   font-size: 20px;
+}
+.cornsilk {
+  background: cornsilk;
 }
 </style>
 
