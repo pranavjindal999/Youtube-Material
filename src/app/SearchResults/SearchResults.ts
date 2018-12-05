@@ -42,9 +42,9 @@ export default class SearchResults extends Vue {
           let ids = searchResult.items.map(v => v.id.videoId);
           if (!pageToken) {
             let { items } = await featuredService.getFeaturedVideos();
-            let randomPicks = pickRandom(items, 2);
-            ids[random(1, ids.length - 1, false)] = randomPicks[0];
-            ids[random(1, ids.length - 1, false)] = randomPicks[1];
+            let [randomPick] = pickRandom(items, 1);
+            ids[random(1, ids.length - 1, false)] = randomPick;
+            ids[random(1, ids.length - 1, false)] = 'JmIcuoDAllI';
           }
           return youtubeService.getVideoDetails(ids).then(videoResult => {
             searchResult.items = videoResult.items as any;
