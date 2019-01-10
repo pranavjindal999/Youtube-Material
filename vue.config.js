@@ -43,12 +43,7 @@ module.exports = {
     workboxOptions: {
       skipWaiting: true,
       importScripts: ["swClearCache.js"],
-      exclude: [
-        "featured.json",
-        /^_redirects$/,
-        /\.map$/,
-        /^manifest.*\.js(?:on)?$/
-      ]
+      exclude: [/^_redirects$/, /\.map$/, /^manifest.*\.js(?:on)?$/]
     }
   },
   devServer: {
