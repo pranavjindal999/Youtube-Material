@@ -2,23 +2,7 @@ import { LangKeys } from "@/translations";
 import { routes } from "@/router/routeNames";
 import { Location } from "vue-router";
 
-export enum CustomTrendingCategory {
-  FEATURED = "featured"
-}
-
 export const trendingCategories = [
-  {
-    id: CustomTrendingCategory.FEATURED,
-    name: "featured",
-    labelKey: LangKeys.featured,
-    icon: "movie_filter",
-    get route(): Location {
-      return {
-        name: routes.trending.name,
-        params: { [routes.trending.params.category]: this.name }
-      };
-    }
-  },
   {
     id: "10",
     name: "music",

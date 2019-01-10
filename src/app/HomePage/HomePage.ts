@@ -1,11 +1,9 @@
-import { CustomTrendingCategory } from "./../Navigation/TrendingCategories";
 import Helmet from "@/app/shared/Helmet/Helmet.vue";
 import VideoCarousel from "@/app/shared/VideoCarousel/VideoCarousel.vue";
 import { Vue, Component } from "vue-property-decorator";
 import { trendingCategories } from "@/app/Navigation/TrendingCategories";
 import { youtubeService } from "@/services/youtube";
 import IconHeading from "@/app/shared/IconHeading/IconHeading.vue";
-import { featuredService } from "@/services/featured";
 
 @Component({
   components: {
@@ -30,25 +28,12 @@ export default class HomePage extends Vue {
     category: typeof trendingCategories[0]
   ): ListFetcher<GoogleApiYouTubeVideoResource> {
     return async (maxResults, pageToken) => {
-      if (category.id === CustomTrendingCategory.FEATURED) {
-        let {
-          items,
-          nextPageToken,
-          prevPageToken
-        } = await featuredService.getFeaturedVideos(maxResults, pageToken);
 
-        return youtubeService.getVideoDetails(items).then(response => {
-          response.nextPageToken = nextPageToken;
-          response.prevPageToken = prevPageToken;
-          return response;
-        });
-      } else {
         return youtubeService.getCategoryTrendingVideos({
           pageToken,
           maxResults,
           videoCategoryId: category.id
         });
-      }
     };
   }
 }

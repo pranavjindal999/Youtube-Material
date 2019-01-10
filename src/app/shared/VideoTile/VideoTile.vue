@@ -34,7 +34,6 @@
 
       <v-card-title
         class="px-2 pb-0 title-wrapper"
-        :class="{'cornsilk':isFeatured && $route.name === 'video'}"
         primary-title
       >
         <div class="title-div">

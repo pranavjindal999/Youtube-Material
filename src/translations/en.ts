@@ -9,7 +9,6 @@ export default {
   home: "Home",
   trending: "Trending",
   music: "Music",
-  featured: "Featured",
   movies: "Movies",
   sports: "Sports",
   technology: "Technology",

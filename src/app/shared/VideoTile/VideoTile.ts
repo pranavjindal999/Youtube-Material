@@ -1,4 +1,3 @@
-import { featuredService } from "@/services/featured";
 import { GA } from "./../../../init/ga";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import FloatingDiv from "@/app/shared/FloatingDiv/FloatingDiv.vue";
@@ -20,8 +19,6 @@ export default class VideoTile extends Vue {
 
   @Prop({ type: Object, required: false })
   video?: GoogleApiYouTubeVideoResource;
-
-  isFeatured_: boolean = false;
 
   get duration() {
     if (this.video) {
@@ -92,29 +89,6 @@ export default class VideoTile extends Vue {
     }
   }
 
-  get isFeatured() {
-    if (this.video) {
-      featuredService.isFeaturedVideo(this.video.id).then(isFeatured => {
-        this.isFeatured_ = isFeatured;
-      });
-    }
-
-    return this.isFeatured_;
-  }
-
-  @Watch("video")
-  async videoWatcher() {
-    if (this.video) {
-      if (await featuredService.isFeaturedVideo(this.video.id)) {
-        GA.sendGeneralEvent(
-          "featured",
-          "video-tile-displayed",
-          this.video.snippet.title
-        );
-      }
-    }
-  }
-
   async sendTileClickGA() {
     if (this.video) {
       GA.sendGeneralEvent(
@@ -122,14 +96,6 @@ export default class VideoTile extends Vue {
         "video-tile-click",
         this.video.snippet.title
       );
-
-      if (await featuredService.isFeaturedVideo(this.video.id)) {
-        GA.sendGeneralEvent(
-          "featured",
-          "video-tile-click",
-          this.video.snippet.title
-        );
-      }
     }
   }
 
@@ -140,14 +106,6 @@ export default class VideoTile extends Vue {
         "video-tile-channel-click",
         this.video.snippet.channelTitle
       );
-
-      if (await featuredService.isFeaturedVideo(this.video.id)) {
-        GA.sendGeneralEvent(
-          "featured",
-          "video-tile-channel-click",
-          this.video.snippet.channelTitle
-        );
-      }
     }
   }
 }
