@@ -11,10 +11,10 @@ let asyncRegionCode = Promise.resolve($store.state.regionCode)
   })
   .catch(() => {
     return axios
-      .get("https://ip-api.io/json/")
+      .get("https://ip.nf/me.json")
       .then(({ data }) => {
-        $store.commit(globalMutations.updateRegionCode, data.country_code);
-        return data.country_code;
+        $store.commit(globalMutations.updateRegionCode, data.ip.country_code);
+        return data.ip.country_code;
       })
       .catch(() => {
         return "IN";
