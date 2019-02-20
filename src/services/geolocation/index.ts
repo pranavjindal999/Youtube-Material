@@ -1,7 +1,7 @@
-import { $store, globalMutations } from "@/store";
+import { globalState } from '@/store';
 import axios from "axios";
 
-let asyncRegionCode = Promise.resolve($store.state.regionCode)
+let asyncRegionCode = Promise.resolve(globalState.regionCode)
   .then(storedRegion => {
     if (storedRegion) {
       return storedRegion;
@@ -13,7 +13,7 @@ let asyncRegionCode = Promise.resolve($store.state.regionCode)
     return axios
       .get("https://ip.nf/me.json")
       .then(({ data }) => {
-        $store.commit(globalMutations.updateRegionCode, data.ip.country_code);
+        globalState.updateRegionCode(data.ip.country_code)
         return data.ip.country_code;
       })
       .catch(() => {

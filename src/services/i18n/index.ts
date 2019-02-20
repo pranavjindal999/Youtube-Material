@@ -1,7 +1,7 @@
+import { globalState } from '@/store';
 import { Language } from "@/translations";
 import Vue from "vue";
 import VueI18n from "vue-i18n";
-import { $store } from "@/store";
 import config from "@/config";
 import en from "@/translations/en";
 
@@ -13,7 +13,7 @@ const i18n = new VueI18n({
 });
 
 const loadedLanguages: Language[] = [config.defaultLanguage];
-setLanguage($store.state.currentLang);
+setLanguage(globalState.currentLang);
 
 export { i18n, setLanguage };
 
@@ -45,9 +45,9 @@ function setLanguage(lang: Language) {
  * @param {Language} lang
  * @returns
  */
-function setLanguageInternal(lang: string) {
+function setLanguageInternal(lang: Language) {
   i18n.locale = lang;
   document.documentElement.setAttribute("lang", lang);
-  $store.commit("updateLang", lang);
+  globalState.updateLang(lang);
   return lang;
 }

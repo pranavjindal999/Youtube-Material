@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer
-    :value="$store.state.drawer"
+    :value="drawerState"
     @input="updateDrawerState"
     width="200"
     fixed
