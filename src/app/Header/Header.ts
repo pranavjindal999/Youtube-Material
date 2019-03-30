@@ -1,9 +1,9 @@
 import { GA } from "@/init/ga";
 import { EventBus, EventNames } from "./../../services/eventBus/index";
-import { globalMutations, $store } from "./../../store/index";
 import { routes } from "./../../router/routeNames";
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { youtubeService } from "@/services/youtube";
+import { globalState } from '@/store';
 
 @Component({
   name: "Header"
@@ -88,7 +88,7 @@ export default class Header extends Vue {
   }
 
   toggleDrawer() {
-    $store.commit(globalMutations.toggleDrawer);
+    globalState.toggleDrawer();
   }
 
   sendLogoClickGA() {

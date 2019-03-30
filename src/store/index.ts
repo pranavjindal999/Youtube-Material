@@ -1,55 +1,28 @@
-import { GA } from "./../init/ga";
 import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
 import config from "@/config";
-import { Language } from "@/translations";
+import { GlobalState } from './GlobalState';
+import { getModule } from 'vuex-module-decorators';
 
 Vue.use(Vuex);
-
-export const globalMutations = {
-  updateLang: "updateLang",
-  updateDrawer: "updateDrawer",
-  toggleDrawer: "toggleDrawer",
-  updateMaxResults: "updateMaxResults",
-  updateRegionCode: "updateRegionCode"
-};
 
 const vuexPersist = new VuexPersistence({
   key: "ytmat",
   strictMode: config.local
 });
 
-const $store = new Vuex.Store<AppState>({
+const $store = new Vuex.Store({
   plugins: [vuexPersist.plugin],
   strict: config.local,
-  state: {
-    currentLang: config.defaultLanguage,
-    regionCode: "",
-    drawer: false
+  modules: {
+    GlobalState
   },
-  getters: {},
   mutations: {
     RESTORE_MUTATION: vuexPersist.RESTORE_MUTATION,
-    [globalMutations.updateLang](state, lang: Language) {
-      state.currentLang = lang;
-    },
-    [globalMutations.updateDrawer](state, drawer: boolean) {
-      state.drawer = drawer;
-    },
-    [globalMutations.toggleDrawer](state) {
-      state.drawer = !state.drawer;
-    },
-    [globalMutations.updateRegionCode](state, regionCode: string) {
-      state.regionCode = regionCode;
-    }
   }
 });
 
-interface AppState {
-  currentLang: Language;
-  regionCode: string;
-  drawer: boolean;
-}
+const globalState = getModule(GlobalState, $store);
 
-export { $store };
+export { $store, globalState };

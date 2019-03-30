@@ -1,4 +1,3 @@
-import { $store, globalMutations } from "@/store";
 import Header from "./Header/Header.vue";
 import Navigation from "./Navigation/Navigation.vue";
 import VideoWrapper from "./VideoWrapper/VideoWrapper.vue";

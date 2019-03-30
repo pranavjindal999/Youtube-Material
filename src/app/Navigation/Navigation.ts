@@ -1,9 +1,9 @@
+import { globalState } from '@/store';
 import { GA } from "@/init/ga";
 import {
   trendingCategories
 } from "./TrendingCategories";
 import { routes } from "@/router/routeNames";
-import { globalMutations, $store } from "./../../store/index";
 import Vue from "vue";
 import Component from "vue-class-component";
 import { Location } from "vue-router";
@@ -28,8 +28,12 @@ export default class Navigation extends Vue {
     name: routes.about.name
   };
 
+  get drawerState(){
+    return globalState.isDrawerOpen
+  }
+
   updateDrawerState($event: boolean) {
-    $store.commit(globalMutations.updateDrawer, $event);
+    globalState.updateDrawer($event);
   }
 
   sendNavigationGA(item: string) {
