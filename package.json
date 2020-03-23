@@ -72,7 +72,7 @@
     "typescript": "^3.0.0",
     "vue-template-compiler": "^2.5.17",
     "vuetify-loader": "^1.0.5",
-    "webpack-bundle-analyzer": "^3.0.2"
+    "webpack-bundle-analyzer": "^3.3.2"
   },
   "eslintConfig": {
     "root": true,
