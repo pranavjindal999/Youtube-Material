@@ -33,7 +33,7 @@
     "jsonp": "^0.2.1",
     "lazyload-css": "^1.0.4",
     "load-js": "3.0.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "register-service-worker": "^1.0.0",
     "store2": "^2.7.0",
     "toprogress2": "^2.0.0",
